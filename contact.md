@@ -23,7 +23,7 @@ Vanessa's professional prowess and dedication to the company's mission have not 
 
 
 <div class="gallery-box">
-  <center><img src="https://www.quedic.com/images/WechatIMG784.jpg" title="test"></center>
+  <center><img src="https://www.quedic.com/images/GCWzBX1aYAAic7-.jpeg" title="test"></center>
 <br>
 </div>
 ##  <center> Brian Lau <center>
