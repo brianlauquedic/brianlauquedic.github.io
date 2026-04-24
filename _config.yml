@@ -1,7 +1,9 @@
-baseurl: '/'
+baseurl: ''
+url: 'https://www.quedic.com'
 permalink: pretty
 title: 'Quedic'
 description: 'Integrated PR, marketing & KOL for Web3 exchanges and protocols.'
+og_image: '/images/og-image.png'
 
 logo:
   mobile: "images/logo/logo-mobile.svg"

@@ -2,7 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>{% if page.meta_title %}{{ page.meta_title }}{% elsif page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  {% assign _title = page.meta_title | default: page.title %}
+  {% if _title and page.layout != 'home' %}{% assign _full_title = _title | append: ' | ' | append: site.title %}{% else %}{% assign _full_title = site.title %}{% if site.description %}{% assign _full_title = _full_title | append: ' — ' | append: site.description %}{% endif %}{% endif %}
+  <title>{{ _full_title }}</title>
+
+  {% assign _desc = page.description | default: site.description %}
+  {% assign _img = page.image | default: site.og_image %}
+  {% assign _abs_img = _img | absolute_url %}
+
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#5B2FD9" />
   <link rel="icon" type="image/svg+xml" href="{{ '/images/favicon-32x32.svg' | relative_url }}">
@@ -12,14 +19,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="{{ '/assets/css/style.css' | relative_url }}" rel="stylesheet">
 
-  {% if page.description %}<meta name="description" content="{{ page.description }}" />{% endif %}
-  <meta property="og:title" content="{% if page.meta_title %}{{ page.meta_title }}{% else %}{{ page.title | default: site.title }}{% endif %}"/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:url" content="{{ page.url | absolute_url }}"/>
-  {% if page.image %}<meta property="og:image" content="{{ page.image | absolute_url }}"/>{% endif %}
-  {% if page.description %}<meta property="og:description" content="{{ page.description }}"/>{% endif %}
-  <meta name="twitter:card" content="summary_large_image"/>
-  {% if site.data.seo.meta_twitter_site %}<meta name="twitter:site" content="{{ site.data.seo.meta_twitter_site }}"/>{% endif %}
+  <meta name="description" content="{{ _desc }}" />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="{{ site.title }}" />
+  <meta property="og:title" content="{{ _title | default: site.title }}" />
+  <meta property="og:description" content="{{ _desc }}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ page.url | absolute_url }}" />
+  <meta property="og:image" content="{{ _abs_img }}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="{{ _title | default: site.title }}" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ _title | default: site.title }}" />
+  <meta name="twitter:description" content="{{ _desc }}" />
+  <meta name="twitter:image" content="{{ _abs_img }}" />
+  {% if site.data.seo.meta_twitter_site %}<meta name="twitter:site" content="{{ site.data.seo.meta_twitter_site }}" />{% endif %}
+  {% if site.data.seo.meta_twitter_creator %}<meta name="twitter:creator" content="{{ site.data.seo.meta_twitter_creator }}" />{% endif %}
 </head>
 <body class="{{ layout.bodyClass }}">
   {% include header.html %}
