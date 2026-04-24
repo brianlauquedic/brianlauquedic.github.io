@@ -1,0 +1,40 @@
+---
+layout: default
+bodyClass: "page-service"
+---
+
+<section class="page-header">
+  <div class="container">
+    <span class="page-header__eyebrow">{{ page.number }} ／ サービス</span>
+    <h1>{{ page.title }}</h1>
+    {% if page.summary %}<p class="lede">{{ page.summary }}</p>{% endif %}
+  </div>
+</section>
+
+<section class="detail">
+  <div class="container">
+    <div class="detail__grid">
+      <aside class="detail__sidebar">
+        <span class="eyebrow eyebrow--brand">全サービス</span>
+        <h4>提供領域</h4>
+        <ul>
+          {% assign services = site.services_ja | sort: 'weight' %}
+          {% for s in services %}
+          <li><a href="{{ s.url | relative_url }}" class="{% if s.url == page.url %}active{% endif %}">{{ s.title }}</a></li>
+          {% endfor %}
+        </ul>
+        <h4 style="margin-top:32px;">主な内容</h4>
+        <ul>
+          {% for b in page.bullets %}<li>{{ b }}</li>{% endfor %}
+        </ul>
+      </aside>
+
+      <div class="detail__content">
+        {{ content }}
+        <hr class="divider" style="margin:48px 0;"/>
+        <a class="btn btn--primary" href="{{ '/contact/' | relative_url }}">このサービスについて相談する</a>
+        <a class="btn btn--ghost" href="{{ '/ja/services/' | relative_url }}" style="margin-left:8px;">全サービス一覧へ</a>
+      </div>
+    </div>
+  </div>
+</section>
