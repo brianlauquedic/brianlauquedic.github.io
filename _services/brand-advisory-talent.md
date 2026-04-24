@@ -21,7 +21,9 @@ Great comms needs a brand that can carry it. This is the long-horizon work — p
 
 Most agencies skip this layer because it&rsquo;s harder to bill and slower to show results. We start here because skipping it is why most crypto comms programs underdeliver.
 
-<div class="callout">You can&rsquo;t market your way out of bad positioning. <em>If your story doesn&rsquo;t survive a five-minute conversation with a sceptical reporter</em>, no amount of pitching will save it. Brand and advisory exist to make sure it does.</div>
+Our team&rsquo;s combined experience spans brand-building at tier-1 venues, token launch programs across L1s, L2s and DeFi protocols, and senior-hire searches that have placed Heads of Marketing, Communications and Growth at category-defining Web3 businesses.
+
+<div class="callout">You can&rsquo;t market your way out of bad positioning. <em>The agencies that fix yours first are the ones that earn the right to run the rest.</em></div>
 
 <div class="subservices">
 

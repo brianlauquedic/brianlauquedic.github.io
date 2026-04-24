@@ -18,9 +18,9 @@ bullets:
 
 Follower counts lie. Engagement screenshots lie. The crypto KOL economy is full of accounts with 200K followers and 12 real readers. We evaluate every creator on engagement quality, audience overlap with your buyer, narrative fit, and a private history of what their last ten promotional posts actually produced — not what their media kit claims.
 
-For token launches, listings and product milestones, KOL layers are sequenced with your PR timeline so earned coverage and creator endorsements reinforce each other instead of fighting for the same 24 hours.
+Our team&rsquo;s combined experience spans creator partnerships at tier-1 exchanges, KOL programs across English, Chinese, Japanese and Korean markets, and the kind of relationships that mean we get told the truth about who paid whom and what actually moved.
 
-<div class="callout">If a KOL&rsquo;s last campaign generated 600K impressions but zero wallet activations, we don&rsquo;t care how big their follower count is. <em>We measure on signal that touches your funnel</em> &mdash; not vanity metrics that look good in a screenshot.</div>
+<div class="callout"><em>Half the KOL economy is sold to people who can&rsquo;t tell a real audience from a paid one.</em> The other half is wasted on people who can but pitch the wrong creator anyway. We don&rsquo;t do either.</div>
 
 <div class="subservices">
 

@@ -19,9 +19,9 @@ bullets:
 
 Conferences are expensive. Most of what companies spend on them disappears into lanyard budgets, empty booths and after-parties no one remembers attending. We plan around the two things that actually move the needle: the rooms your buyers are in, and the conversations that get documented afterward.
 
-We operate across the global crypto calendar — Token2049, Consensus, Devcon, ETHDenver, Paris Blockchain Week, Hong Kong FinTech Week, KBW, ETHCC and the regional events that often outperform the headliners on signal-to-noise.
+We operate across the global crypto calendar — Token2049, Consensus, Devcon, ETHDenver, Paris Blockchain Week, Hong Kong FinTech Week, KBW, ETHCC and the regional events that often outperform the headliners on signal-to-noise. Our team has produced events ranging from twelve-seat private dinners to thousand-attendee headline summits, with on-ground media operations across Singapore, Dubai, NY, London and HK.
 
-<div class="callout">A booth nobody visits is a $200K newspaper ad. We&rsquo;d rather put you in three small dinners with the right twelve people than on the main stage of an event whose audience isn&rsquo;t yours.</div>
+<div class="callout"><em>The stage doesn&rsquo;t make the deal. The dinner after it does.</em> We optimize for the dinner.</div>
 
 <div class="subservices">
 

@@ -19,9 +19,9 @@ bullets:
 
 Coverage is a byproduct of narrative. Most agencies sell pitches; we sell positioning that makes pitching unnecessary. We start by sharpening the story — who you serve, why you exist, what you move the market toward — and only then engineer the announcements, data, interviews and commentaries that give reporters a reason to pick up the phone.
 
-For exchanges, protocols and public-markets-adjacent businesses, we run the full PR stack: pre-launch positioning, embargoed exclusives, sustained press cadences, and rapid-response defense when news cycles turn against you. Our team reads the same Crypto Twitter, Substacks and Telegrams your reporters do — and writes pitches to people who are already paying attention.
+For exchanges, protocols and public-markets-adjacent businesses, we run the full PR stack: pre-launch positioning, embargoed exclusives, sustained press cadences, and rapid-response defense when news cycles turn against you. Our team&rsquo;s combined experience spans tier-1 exchanges, traditional PR agencies, financial newsrooms and crypto-native publications &mdash; and we read the same Crypto Twitter, Substacks and Telegrams your reporters do.
 
-<div class="callout">We don&rsquo;t pitch to lists. We pitch to <em>specific reporters</em> writing about specific things this week. Generic outreach gets generic results &mdash; and that&rsquo;s where 90% of crypto PR money disappears.</div>
+<div class="callout"><em>If your story can&rsquo;t survive a five-minute call with a sceptical reporter,</em> no pitch will save it. Most crypto PR money dies on that call. Ours doesn&rsquo;t.</div>
 
 <div class="subservices">
 
@@ -119,6 +119,16 @@ For exchanges, protocols and public-markets-adjacent businesses, we run the full
   <div class="subservice__tags"><span>Spokesperson Coaching</span><span>On-Camera Prep</span><span>Crisis Drills</span><span>Message Discipline</span></div>
   <div class="subservice__body">
   <p>Founders and executives prepared for the interviews that actually matter. On-camera coaching, hostile-question simulation, message-discipline drills, and crisis-scenario role-playing — designed around the formats your spokespeople will actually face: tier-1 broadcast, podcast long-form, conference panel, X Spaces, AMA.</p>
+  </div>
+</section>
+
+<section class="subservice">
+  <span class="subservice__num">11</span>
+  <h3 class="subservice__title">Press Conferences & On-Ground Briefings</h3>
+  <div class="subservice__tags"><span>Newsworthiness Assessment</span><span>Media Coordination</span><span>Spokesperson Prep</span><span>Coverage Capture</span></div>
+  <div class="subservice__body">
+  <p>A press conference is one of the highest-leverage formats in PR &mdash; and one of the easiest to waste. We deploy them only when the announcement is genuinely newsworthy enough to merit a journalist&rsquo;s travel and attention. When that bar is met, we run the full operation: media invitations and briefings, press kits and embargoed releases, on-site coordination, journalist seating, Q&amp;A pre-briefing for your spokesperson, and post-event distribution that captures the story before it goes cold.</p>
+  <p>For conference-tied news, we run on-ground briefings instead &mdash; smaller-format, higher conversion, designed around the journalists who are already in town for Token2049, Consensus or Devcon.</p>
   </div>
 </section>
 

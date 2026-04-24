@@ -19,7 +19,9 @@ bullets:
 
 PR lands the spike. Marketing compounds it. We run the always-on layer — social, community, content and SEO — so that every press hit, KOL post and conference moment keeps paying off long after the news cycle moves on. Most agencies treat marketing as decoration around the press release. We treat it as the engine that makes the press release worth doing.
 
-<div class="callout">We don&rsquo;t do vanity content. Every piece is built to do one of three things: <em>earn coverage, drive search, or convert intent</em>. If it doesn&rsquo;t do at least one, we don&rsquo;t ship it.</div>
+Our team&rsquo;s combined experience spans growth roles at tier-1 crypto venues, content leadership at financial publishers, and SEO programs that have ranked Web3 brands ahead of incumbents on high-intent keywords.
+
+<div class="callout">A press hit you don&rsquo;t amplify is a press hit you wasted. <em>Earned media without distribution is a screenshot.</em></div>
 
 <div class="subservices">
 
