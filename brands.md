@@ -18,37 +18,19 @@ bodyClass: "page-brands"
 <section class="section">
   <div class="container">
     <div class="logo-wall">
-      <div class="section-title">
-        <div>
-          <span class="eyebrow eyebrow--brand">01 / Featured</span>
-          <h2>Exchanges &amp; trading venues.</h2>
-        </div>
-        <div class="section-title__aside">
-          Tier-1 venues we&rsquo;ve supported through launches, listings, campaigns and news moments.
-        </div>
-      </div>
-
-      <div class="logo-wall__featured">
+      <div class="logo-wall__grid">
         <div class="logo-wall__cell"><img src="{{ '/images/Binance-Logo.jpg' | relative_url }}" alt="Binance" /></div>
         <div class="logo-wall__cell"><img src="{{ '/images/okx-review.png' | relative_url }}" alt="OKX" /></div>
         <div class="logo-wall__cell"><img src="{{ '/images/bybit.jpg' | relative_url }}" alt="Bybit" /></div>
         <div class="logo-wall__cell"><img src="{{ '/images/bitget.png' | relative_url }}" alt="Bitget" /></div>
         <div class="logo-wall__cell"><img src="{{ '/images/htx.png' | relative_url }}" alt="HTX" /></div>
-      </div>
-
-      <div style="margin-top: 64px;">
-        <span class="eyebrow">02 / Ecosystem</span>
-        <h3 style="margin-top:8px;">Infrastructure, capital &amp; consumer crypto.</h3>
-      </div>
-
-      <div class="logo-wall__secondary" style="margin-top:24px;">
-        <a href="#" aria-label="WOO"><img src="{{ '/images/woo.jpg' | relative_url }}" alt="WOO" /></a>
-        <a href="#" aria-label="Orderly Network"><img src="{{ '/images/orderly.png' | relative_url }}" alt="Orderly Network" /></a>
-        <a href="#" aria-label="Waterdrip Capital"><img src="{{ '/images/WaterDrip_Capital.png' | relative_url }}" alt="Waterdrip Capital" /></a>
-        <a href="#" aria-label="8SIAN"><img src="{{ '/images/8sian.png' | relative_url }}" alt="8SIAN" /></a>
-        <a href="#" aria-label="Chatyn"><img src="{{ '/images/chatyn.png' | relative_url }}" alt="Chatyn" /></a>
-        <a href="#" aria-label="Mhaya"><img src="{{ '/images/mhaya.png' | relative_url }}" alt="Mhaya" /></a>
-        <a href="#" aria-label="Assure"><img src="{{ '/images/assure.png' | relative_url }}" alt="Assure" /></a>
+        <div class="logo-wall__cell"><img src="{{ '/images/woo.jpg' | relative_url }}" alt="WOO" /></div>
+        <div class="logo-wall__cell"><img src="{{ '/images/orderly.png' | relative_url }}" alt="Orderly Network" /></div>
+        <div class="logo-wall__cell"><img src="{{ '/images/WaterDrip_Capital.png' | relative_url }}" alt="Waterdrip Capital" /></div>
+        <div class="logo-wall__cell"><img src="{{ '/images/8sian.png' | relative_url }}" alt="8SIAN" /></div>
+        <div class="logo-wall__cell"><img src="{{ '/images/chatyn.png' | relative_url }}" alt="Chatyn" /></div>
+        <div class="logo-wall__cell"><img src="{{ '/images/mhaya.png' | relative_url }}" alt="Mhaya" /></div>
+        <div class="logo-wall__cell"><img src="{{ '/images/assure.png' | relative_url }}" alt="Assure" /></div>
       </div>
 
       <p class="fine-print">

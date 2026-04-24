@@ -80,6 +80,42 @@
 }
 
 // -----------
+// Stats strip (archival-safe factual framing)
+// -----------
+.stats {
+  &__grid {
+    display: grid;
+    gap: 0;
+    grid-template-columns: repeat(2, 1fr);
+    @media (min-width: $bp-md) { grid-template-columns: repeat(4, 1fr); }
+    border-top: 1px solid $border;
+    border-left: 1px solid $border;
+  }
+  &__cell {
+    padding: 40px 28px;
+    border-right: 1px solid $border;
+    border-bottom: 1px solid $border;
+    background: $bg;
+  }
+  &__value {
+    font-family: $font-display;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1;
+    color: $brand;
+    margin: 0 0 12px;
+  }
+  &__label {
+    font-family: $font-body;
+    font-size: 0.92rem;
+    color: $text-muted;
+    line-height: 1.45;
+    margin: 0;
+  }
+}
+
+// -----------
 // Three things (MarketAcross-style differentiator block)
 // -----------
 .three-things {
@@ -122,7 +158,7 @@
 }
 
 // -----------
-// Logo wall (clients / partners)
+// Logo wall (clients / partners) — unified single-tier grid
 // -----------
 .logo-wall {
   &__title {
@@ -136,13 +172,11 @@
       margin: 0;
     }
   }
-
-  // Featured tier — large, in color
-  &__featured {
+  &__grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     @media (min-width: $bp-sm) { grid-template-columns: repeat(3, 1fr); }
-    @media (min-width: $bp-md) { grid-template-columns: repeat(5, 1fr); }
+    @media (min-width: $bp-md) { grid-template-columns: repeat(4, 1fr); }
     gap: 0;
     border-top: 1px solid $border;
     border-left: 1px solid $border;
@@ -152,31 +186,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 24px;
+    padding: 28px;
     border-right: 1px solid $border;
     border-bottom: 1px solid $border;
     transition: background .2s;
     &:hover { background: $bg-soft; }
-    img { max-height: 44px; max-width: 140px; object-fit: contain; }
-  }
-  // Secondary tier — smaller, greyscale
-  &__secondary {
-    margin-top: 40px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    @media (min-width: $bp-sm) { grid-template-columns: repeat(4, 1fr); }
-    @media (min-width: $bp-md) { grid-template-columns: repeat(7, 1fr); }
-    gap: 16px 32px;
-    align-items: center;
-    justify-items: center;
     img {
-      max-height: 28px;
-      max-width: 110px;
+      max-height: 52px;
+      max-width: 160px;
       object-fit: contain;
-      filter: grayscale(100%) opacity(0.55);
-      transition: filter .2s;
+      display: block;
     }
-    a:hover img, &:hover img:hover { filter: grayscale(0) opacity(1); }
   }
 }
 

@@ -9,7 +9,7 @@
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: saturate(180%) blur(12px);
   -webkit-backdrop-filter: saturate(180%) blur(12px);
   border-bottom: 1px solid $border;
@@ -17,13 +17,18 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 72px;
+    height: 88px;
+    @media (max-width: $bp-sm) { height: 72px; }
   }
-  &__logo img { height: 28px; width: auto; }
+  &__logo img {
+    height: 44px;
+    width: auto;
+    display: block;
+  }
   &__logo-mobile { display: none; }
   @media (max-width: $bp-sm) {
     &__logo { display: none; }
-    &__logo-mobile { display: block; img { height: 28px; } }
+    &__logo-mobile { display: block; img { height: 36px; width: auto; display: block; } }
   }
 }
 
