@@ -66,16 +66,18 @@ bodyClass: "page-about"
     <!-- Remaining leadership grid -->
     <div class="team team--two" style="margin-top: 80px;">
       <div class="team__card">
-        <div class="team__avatar">V</div>
+        <div class="team__avatar team__avatar--photo">
+          <img src="{{ '/images/team/vanessa-holmes.jpg' | relative_url }}" alt="Vanessa Holmes" onerror="this.style.display='none';this.parentNode.classList.add('no-photo');this.parentNode.setAttribute('data-initial','V');" />
+        </div>
         <h3 class="team__name">Vanessa Holmes</h3>
         <div class="team__role">Chief Executive Officer</div>
-        <p class="team__bio">Bio coming soon.</p>
       </div>
       <div class="team__card">
-        <div class="team__avatar">L</div>
+        <div class="team__avatar team__avatar--photo">
+          <img src="{{ '/images/team/lara-chang.jpg' | relative_url }}" alt="Lara Chang" onerror="this.style.display='none';this.parentNode.classList.add('no-photo');this.parentNode.setAttribute('data-initial','L');" />
+        </div>
         <h3 class="team__name">Lara Chang</h3>
         <div class="team__role">Chief Communications Officer</div>
-        <p class="team__bio">Bio coming soon.</p>
       </div>
     </div>
   </div>

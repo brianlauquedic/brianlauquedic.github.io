@@ -764,6 +764,21 @@
     font-size: 3rem;
     color: $brand;
     letter-spacing: -0.02em;
+    overflow: hidden;
+    position: relative;
+  }
+  &__avatar--photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: $radius-lg;
+  }
+  &__avatar.no-photo::after {
+    content: attr(data-initial);
+    font-family: $font-display;
+    font-size: 3rem;
+    color: $brand;
   }
   &__name { font-size: 1.3rem; margin: 0 0 4px; }
   &__role {
