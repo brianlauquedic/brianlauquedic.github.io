@@ -1,41 +1,100 @@
+{%- assign lang = page.lang | default: 'en' -%}
+
+{%- if lang == 'zh-tw' -%}
+  {%- assign url_prefix = '/zh-tw' -%}
+  {%- assign s_title = '業務' -%}
+  {%- assign s1 = '公關' -%}
+  {%- assign s2 = '行銷與 SEO' -%}
+  {%- assign s3 = '影響者與 KOL' -%}
+  {%- assign s4 = '活動' -%}
+  {%- assign s5 = '品牌與諮詢' -%}
+  {%- assign c_title = '公司' -%}
+  {%- assign c_about = '關於我們' -%}
+  {%- assign c_industries = '產業' -%}
+  {%- assign c_playbook = '作戰手冊' -%}
+  {%- assign c_brands = '合作品牌' -%}
+  {%- assign c_insights = '產業洞察' -%}
+  {%- assign c_contact = '聯絡我們' -%}
+  {%- assign k_title = '聯絡方式' -%}
+  {%- assign footer_tagline = '為 Web3 領先的交易所與協議提供整合式公關、行銷與 KOL 服務。' -%}
+  {%- assign footer_cta = '聯絡我們 →' -%}
+  {%- assign footer_rights = '版權所有' -%}
+{%- elsif lang == 'ja' -%}
+  {%- assign url_prefix = '/ja' -%}
+  {%- assign s_title = 'サービス' -%}
+  {%- assign s1 = 'PR' -%}
+  {%- assign s2 = 'マーケティング＆SEO' -%}
+  {%- assign s3 = 'インフルエンサー＆KOL' -%}
+  {%- assign s4 = 'イベント' -%}
+  {%- assign s5 = 'ブランド・アドバイザリー' -%}
+  {%- assign c_title = '会社情報' -%}
+  {%- assign c_about = '会社概要' -%}
+  {%- assign c_industries = '業種' -%}
+  {%- assign c_playbook = 'プレイブック' -%}
+  {%- assign c_brands = '顧客ブランド' -%}
+  {%- assign c_insights = 'インサイト' -%}
+  {%- assign c_contact = 'お問い合わせ' -%}
+  {%- assign k_title = 'コンタクト' -%}
+  {%- assign footer_tagline = 'Web3をリードする取引所・プロトコルのための統合PR、マーケティング、KOL。' -%}
+  {%- assign footer_cta = 'お問い合わせはこちら →' -%}
+  {%- assign footer_rights = 'All rights reserved.' -%}
+{%- else -%}
+  {%- assign url_prefix = '' -%}
+  {%- assign s_title = 'Services' -%}
+  {%- assign s1 = 'Public Relations' -%}
+  {%- assign s2 = 'Marketing & SEO' -%}
+  {%- assign s3 = 'Influencer & KOL' -%}
+  {%- assign s4 = 'Events' -%}
+  {%- assign s5 = 'Brand & Advisory' -%}
+  {%- assign c_title = 'Company' -%}
+  {%- assign c_about = 'About' -%}
+  {%- assign c_industries = 'Industries' -%}
+  {%- assign c_playbook = 'Playbook' -%}
+  {%- assign c_brands = 'Brands' -%}
+  {%- assign c_insights = 'Insights' -%}
+  {%- assign c_contact = 'Contact' -%}
+  {%- assign k_title = 'Connect' -%}
+  {%- assign footer_tagline = 'Integrated PR, marketing & KOL for Web3&rsquo;s leading exchanges and protocols.' -%}
+  {%- assign footer_cta = 'Get in touch →' -%}
+  {%- assign footer_rights = 'All rights reserved.' -%}
+{%- endif -%}
+
 <footer class="site-footer">
   <div class="container">
     <div class="site-footer__top">
       <div class="site-footer__brand">
-        <a href="{{ '/' | relative_url }}" aria-label="{{ site.title }}">
+        <a href="{{ url_prefix | append: '/' | relative_url }}" aria-label="{{ site.title }}">
           <img src="{{ site.logo.desktop | relative_url }}" alt="{{ site.title }}" style="height:28px;width:auto;" />
         </a>
-        <p class="site-footer__tagline">
-          Integrated PR, marketing &amp; KOL for Web3&rsquo;s leading exchanges and protocols.
-        </p>
-        {% if site.data.contact.email %}<a class="btn btn--ghost" href="mailto:{{ site.data.contact.email }}">Get in touch →</a>{% endif %}
+        <p class="site-footer__tagline">{{ footer_tagline }}</p>
+        {% if site.data.contact.email %}<a class="btn btn--ghost" href="mailto:{{ site.data.contact.email }}">{{ footer_cta }}</a>{% endif %}
       </div>
 
       <div class="site-footer__col">
-        <h5>Services</h5>
+        <h5>{{ s_title }}</h5>
         <ul>
-          <li><a href="{{ '/services/public-relations/' | relative_url }}">Public Relations</a></li>
-          <li><a href="{{ '/services/marketing-content-seo/' | relative_url }}">Marketing &amp; SEO</a></li>
-          <li><a href="{{ '/services/influencer-kol/' | relative_url }}">Influencer &amp; KOL</a></li>
-          <li><a href="{{ '/services/events-conferences/' | relative_url }}">Events</a></li>
-          <li><a href="{{ '/services/brand-advisory-talent/' | relative_url }}">Brand &amp; Advisory</a></li>
+          <li><a href="{{ url_prefix | append: '/services/public-relations/' | relative_url }}">{{ s1 }}</a></li>
+          <li><a href="{{ url_prefix | append: '/services/marketing-content-seo/' | relative_url }}">{{ s2 }}</a></li>
+          <li><a href="{{ url_prefix | append: '/services/influencer-kol/' | relative_url }}">{{ s3 }}</a></li>
+          <li><a href="{{ url_prefix | append: '/services/events-conferences/' | relative_url }}">{{ s4 }}</a></li>
+          <li><a href="{{ url_prefix | append: '/services/brand-advisory-talent/' | relative_url }}">{{ s5 }}</a></li>
         </ul>
       </div>
 
       <div class="site-footer__col">
-        <h5>Company</h5>
+        <h5>{{ c_title }}</h5>
         <ul>
-          <li><a href="{{ '/about/' | relative_url }}">About</a></li>
-          <li><a href="{{ '/industries/' | relative_url }}">Industries</a></li>
-          <li><a href="{{ '/playbook/' | relative_url }}">Playbook</a></li>
-          <li><a href="{{ '/brands/' | relative_url }}">Brands</a></li>
-          <li><a href="{{ '/insights/' | relative_url }}">Insights</a></li>
-          <li><a href="{{ '/contact/' | relative_url }}">Contact</a></li>
+          <li><a href="{{ url_prefix | append: '/about/' | relative_url }}">{{ c_about }}</a></li>
+          <li><a href="{{ url_prefix | append: '/industries/' | relative_url }}">{{ c_industries }}</a></li>
+          <li><a href="{{ url_prefix | append: '/playbook/' | relative_url }}">{{ c_playbook }}</a></li>
+          <li><a href="{{ url_prefix | append: '/brands/' | relative_url }}">{{ c_brands }}</a></li>
+          <li><a href="{{ url_prefix | append: '/insights/' | relative_url }}">{{ c_insights }}</a></li>
+          <li><a href="{{ url_prefix | append: '/contact/' | relative_url }}">{{ c_contact }}</a></li>
         </ul>
       </div>
 
       <div class="site-footer__col">
-        <h5>Connect</h5>
+        <h5>{{ k_title }}</h5>
         <ul>
           {% if site.data.contact.email %}<li><a href="mailto:{{ site.data.contact.email }}">{{ site.data.contact.email }}</a></li>{% endif %}
           {% if site.data.contact.twitter_name %}<li><a href="https://twitter.com/{{ site.data.contact.twitter_name | remove: '@' }}">Twitter / X</a></li>{% endif %}
@@ -45,7 +104,7 @@
     </div>
 
     <div class="site-footer__bottom">
-      <div>© {{ 'now' | date: '%Y' }} {{ site.title }}. All rights reserved.</div>
+      <div>© {{ 'now' | date: '%Y' }} {{ site.title }}. {{ footer_rights }}</div>
       <div class="site-footer__socials">
         {% if site.data.contact.twitter_name %}<a href="https://twitter.com/{{ site.data.contact.twitter_name | remove: '@' }}">X</a>{% endif %}
         {% if site.data.contact.telegram_name %}<a href="https://t.me/{{ site.data.contact.telegram_name | remove: '@' }}">Telegram</a>{% endif %}
