@@ -670,6 +670,65 @@
 }
 
 // -----------
+// Founder feature (About page hero bio)
+// -----------
+.team-feature {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 1fr;
+  @media (min-width: $bp-md) {
+    grid-template-columns: 380px 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  &__photo {
+    aspect-ratio: 1 / 1;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(91,47,217,0.12), rgba(124,77,255,0.05));
+    position: relative;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    // Fallback when no photo is present
+    &.no-photo::after {
+      content: attr(data-initial);
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: $font-display;
+      font-size: 7rem;
+      color: $brand;
+      letter-spacing: -0.02em;
+    }
+  }
+  &__content {
+    padding-top: 8px;
+    .eyebrow { margin-bottom: 16px; }
+  }
+  &__name {
+    font-size: clamp(2rem, 3.2vw, 2.6rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0 0 24px;
+  }
+  &__bio {
+    p {
+      font-size: 1.02rem;
+      line-height: 1.65;
+      color: $text-muted;
+      margin: 0 0 1em;
+      &:last-child { margin-bottom: 0; }
+    }
+  }
+}
+
+// -----------
 // About page — team
 // -----------
 .team {
@@ -678,6 +737,14 @@
   grid-template-columns: 1fr;
   @media (min-width: $bp-sm) { grid-template-columns: repeat(2, 1fr); }
   @media (min-width: $bp-md) { grid-template-columns: repeat(3, 1fr); }
+  &--two {
+    @media (min-width: $bp-md) {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
   &__card {
     padding: 32px;
     border: 1px solid $border;

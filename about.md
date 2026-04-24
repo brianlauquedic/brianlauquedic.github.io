@@ -46,17 +46,29 @@ bodyClass: "page-about"
       </div>
     </div>
 
-    <div class="team">
+    <!-- Founder feature -->
+    <div class="team-feature">
+      <div class="team-feature__photo">
+        <img src="{{ '/images/team/brian-lau.jpg' | relative_url }}" alt="Brian Lau" onerror="this.style.display='none';this.parentNode.classList.add('no-photo');this.parentNode.setAttribute('data-initial','B');" />
+      </div>
+      <div class="team-feature__content">
+        <span class="eyebrow eyebrow--brand">Co-Founder &amp; Chief Marketing Officer</span>
+        <h3 class="team-feature__name">Brian Lau</h3>
+        <div class="team-feature__bio">
+          <p>Brian Lau co-founded Quedic to build the kind of integrated communications agency crypto had been missing &mdash; one run by operators who actually work inside the market, not consultants describing it from the outside.</p>
+          <p>Over five years in Web3 marketing and strategic communications, Brian has led brand, social, KOL and go-to-market programs for companies across the exchange, protocol and consumer-crypto stack. His work has consistently intersected with the tier-1 exchange ecosystem &mdash; the launches, listings, campaigns and narrative moments that shape where attention actually flows in crypto &mdash; giving him a ground-level view of how real demand is created versus where marketing dollars quietly disappear.</p>
+          <p>As Chief Marketing Officer, Brian leads Quedic&rsquo;s marketing, content, KOL and social practices. He architects end-to-end programs that sequence PR, creator campaigns and owned-channel strategy around client roadmaps rather than agency billing cycles. He is known for a direct, data-led approach to crypto comms: no template pitches, no follower-count theatrics, and no marketing that can&rsquo;t trace back to narrative, search or conversion.</p>
+          <p>Brian brings a cross-border operating lens &mdash; fluent across Greater China, Southeast Asia and the broader Asia-Pacific &mdash; that gives Quedic clients real access to regional KOL, media and community networks beyond the English-language press cycle. He is a recurring voice at industry events and side programs across the global crypto calendar.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Remaining leadership grid -->
+    <div class="team team--two" style="margin-top: 80px;">
       <div class="team__card">
         <div class="team__avatar">V</div>
         <h3 class="team__name">Vanessa Holmes</h3>
         <div class="team__role">Chief Executive Officer</div>
-        <p class="team__bio">Bio coming soon.</p>
-      </div>
-      <div class="team__card">
-        <div class="team__avatar">B</div>
-        <h3 class="team__name">Brian Lau</h3>
-        <div class="team__role">Chief Marketing Officer</div>
         <p class="team__bio">Bio coming soon.</p>
       </div>
       <div class="team__card">
