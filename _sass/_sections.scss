@@ -56,17 +56,32 @@
     background: radial-gradient(closest-side, rgba(124,77,255,0.18), rgba(91,47,217,0.06) 55%, transparent 75%);
     pointer-events: none;
   }
-  &__network {
+  &__visual {
     position: absolute;
     z-index: 1;
     top: -40px;
     right: -160px;
     width: 760px;
-    height: auto;
     max-width: 60vw;
-    opacity: 1;
+    aspect-ratio: 1 / 1;
     pointer-events: none;
     @media (max-width: $bp-md) { display: none; }
+  }
+  &__network {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  &__mark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 22%;       // ~22% of network diameter — sits inside the empty center
+    height: auto;
+    display: block;
+    // Soft glow behind the Q so it lifts off the network lines
+    filter: drop-shadow(0 0 24px rgba(255,255,255,0.95));
   }
 }
 
