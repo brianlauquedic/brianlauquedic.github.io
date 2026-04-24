@@ -18,6 +18,14 @@ collections:
     output: true
     sort_by: weight
     permalink: /services/:path/
+  services_zh:
+    output: true
+    sort_by: weight
+    permalink: /zh-tw/services/:path/
+  services_ja:
+    output: true
+    sort_by: weight
+    permalink: /ja/services/:path/
   industries:
     output: true
     sort_by: weight
@@ -29,6 +37,19 @@ defaults:
       type: "services"
     values:
       layout: "service"
+      lang: "en"
+  - scope:
+      path: ""
+      type: "services_zh"
+    values:
+      layout: "service-zh"
+      lang: "zh-tw"
+  - scope:
+      path: ""
+      type: "services_ja"
+    values:
+      layout: "service-ja"
+      lang: "ja"
   - scope:
       path: ""
       type: "industries"

@@ -1,0 +1,40 @@
+---
+layout: default
+bodyClass: "page-service"
+---
+
+<section class="page-header">
+  <div class="container">
+    <span class="page-header__eyebrow">{{ page.number }} ／ 服務</span>
+    <h1>{{ page.title }}</h1>
+    {% if page.summary %}<p class="lede">{{ page.summary }}</p>{% endif %}
+  </div>
+</section>
+
+<section class="detail">
+  <div class="container">
+    <div class="detail__grid">
+      <aside class="detail__sidebar">
+        <span class="eyebrow eyebrow--brand">所有業務</span>
+        <h4>業務項目</h4>
+        <ul>
+          {% assign services = site.services_zh | sort: 'weight' %}
+          {% for s in services %}
+          <li><a href="{{ s.url | relative_url }}" class="{% if s.url == page.url %}active{% endif %}">{{ s.title }}</a></li>
+          {% endfor %}
+        </ul>
+        <h4 style="margin-top:32px;">服務內容</h4>
+        <ul>
+          {% for b in page.bullets %}<li>{{ b }}</li>{% endfor %}
+        </ul>
+      </aside>
+
+      <div class="detail__content">
+        {{ content }}
+        <hr class="divider" style="margin:48px 0;"/>
+        <a class="btn btn--primary" href="{{ '/contact/' | relative_url }}">討論此項服務</a>
+        <a class="btn btn--ghost" href="{{ '/zh-tw/services/' | relative_url }}" style="margin-left:8px;">回到所有業務</a>
+      </div>
+    </div>
+  </div>
+</section>
