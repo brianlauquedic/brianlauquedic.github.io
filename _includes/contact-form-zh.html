@@ -1,0 +1,43 @@
+<form class="contact-form" action="https://formspree.io/f/your-id" method="POST" novalidate>
+  <div class="contact-form__row">
+    <div>
+      <label for="cf-name-zh">您的姓名</label>
+      <input type="text" id="cf-name-zh" name="name" required />
+    </div>
+    <div>
+      <label for="cf-email-zh">電子郵件</label>
+      <input type="email" id="cf-email-zh" name="email" required />
+    </div>
+  </div>
+
+  <div class="contact-form__row">
+    <div>
+      <label for="cf-company-zh">公司／項目</label>
+      <input type="text" id="cf-company-zh" name="company" />
+    </div>
+    <div>
+      <label for="cf-help-zh">我們可以如何協助？</label>
+      <select id="cf-help-zh" name="help">
+        <option value="">請選擇</option>
+        <option>公關與媒體觸達</option>
+        <option>行銷、內容與 SEO</option>
+        <option>影響者與 KOL 計劃</option>
+        <option>活動與會議</option>
+        <option>品牌、諮詢與人才</option>
+        <option>其他</option>
+      </select>
+    </div>
+  </div>
+
+  <div>
+    <label for="cf-message-zh">告訴我們您的項目</label>
+    <textarea id="cf-message-zh" name="message" rows="5"></textarea>
+  </div>
+
+  <button class="btn btn--primary contact-form__submit" type="submit">送出訊息</button>
+
+  <p class="fine-print" style="margin-top:8px;">
+    我們將於一個工作日內回覆。您也可直接聯絡我們
+    {% if site.data.contact.email %}<a href="mailto:{{ site.data.contact.email }}">{{ site.data.contact.email }}</a>{% endif %}。
+  </p>
+</form>

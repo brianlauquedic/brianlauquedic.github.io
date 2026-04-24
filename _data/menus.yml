@@ -20,3 +20,49 @@ main:
   - name: "Contact"
     url: "/contact/"
     weight: 7
+
+main_zh:
+  - name: "業務"
+    url: "/zh-tw/services/"
+    weight: 1
+  - name: "產業"
+    url: "/zh-tw/industries/"
+    weight: 2
+  - name: "作戰手冊"
+    url: "/zh-tw/playbook/"
+    weight: 3
+  - name: "合作品牌"
+    url: "/zh-tw/brands/"
+    weight: 4
+  - name: "產業洞察"
+    url: "/zh-tw/insights/"
+    weight: 5
+  - name: "關於我們"
+    url: "/zh-tw/about/"
+    weight: 6
+  - name: "聯絡我們"
+    url: "/zh-tw/contact/"
+    weight: 7
+
+main_ja:
+  - name: "サービス"
+    url: "/ja/services/"
+    weight: 1
+  - name: "業種"
+    url: "/ja/industries/"
+    weight: 2
+  - name: "プレイブック"
+    url: "/ja/playbook/"
+    weight: 3
+  - name: "顧客ブランド"
+    url: "/ja/brands/"
+    weight: 4
+  - name: "インサイト"
+    url: "/ja/insights/"
+    weight: 5
+  - name: "会社概要"
+    url: "/ja/about/"
+    weight: 6
+  - name: "お問い合わせ"
+    url: "/ja/contact/"
+    weight: 7

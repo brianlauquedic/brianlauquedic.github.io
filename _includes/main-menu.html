@@ -1,7 +1,14 @@
+{% assign lang = page.lang | default: 'en' %}
+{% if lang == 'zh-tw' %}
+  {% assign menu = site.data.menus.main_zh | sort: 'weight' %}
+{% elsif lang == 'ja' %}
+  {% assign menu = site.data.menus.main_ja | sort: 'weight' %}
+{% else %}
+  {% assign menu = site.data.menus.main | sort: 'weight' %}
+{% endif %}
 <nav class="main-menu" aria-label="Primary">
-  {% assign mainmenu = site.data.menus.main | sort: 'weight' %}
   <ul>
-    {% for item in mainmenu %}
+    {% for item in menu %}
     <li class="{% if item.url == page.url %}active{% endif %}">
       <a href="{{ item.url | relative_url }}">{{ item.name }}</a>
     </li>

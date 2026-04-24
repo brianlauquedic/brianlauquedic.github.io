@@ -1,0 +1,44 @@
+<form class="contact-form" action="https://formspree.io/f/your-id" method="POST" novalidate>
+  <div class="contact-form__row">
+    <div>
+      <label for="cf-name-ja">お名前</label>
+      <input type="text" id="cf-name-ja" name="name" required />
+    </div>
+    <div>
+      <label for="cf-email-ja">メールアドレス</label>
+      <input type="email" id="cf-email-ja" name="email" required />
+    </div>
+  </div>
+
+  <div class="contact-form__row">
+    <div>
+      <label for="cf-company-ja">会社・プロジェクト名</label>
+      <input type="text" id="cf-company-ja" name="company" />
+    </div>
+    <div>
+      <label for="cf-help-ja">ご相談内容</label>
+      <select id="cf-help-ja" name="help">
+        <option value="">選択してください</option>
+        <option>PR・メディア対応</option>
+        <option>マーケティング・コンテンツ・SEO</option>
+        <option>インフルエンサー・KOL施策</option>
+        <option>イベント・カンファレンス</option>
+        <option>ブランド・アドバイザリー・人材</option>
+        <option>その他</option>
+      </select>
+    </div>
+  </div>
+
+  <div>
+    <label for="cf-message-ja">プロジェクトについてお聞かせください</label>
+    <textarea id="cf-message-ja" name="message" rows="5"></textarea>
+  </div>
+
+  <button class="btn btn--primary contact-form__submit" type="submit">送信する</button>
+
+  <p class="fine-print" style="margin-top:8px;">
+    営業日1日以内にお返事いたします。直接ご連絡される場合は
+    {% if site.data.contact.email %}<a href="mailto:{{ site.data.contact.email }}">{{ site.data.contact.email }}</a>{% endif %}
+    までどうぞ。
+  </p>
+</form>

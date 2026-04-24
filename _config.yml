@@ -30,6 +30,14 @@ collections:
     output: true
     sort_by: weight
     permalink: /industries/:path/
+  industries_zh:
+    output: true
+    sort_by: weight
+    permalink: /zh-tw/industries/:path/
+  industries_ja:
+    output: true
+    sort_by: weight
+    permalink: /ja/industries/:path/
 
 defaults:
   - scope:
@@ -55,6 +63,19 @@ defaults:
       type: "industries"
     values:
       layout: "industry"
+      lang: "en"
+  - scope:
+      path: ""
+      type: "industries_zh"
+    values:
+      layout: "industry-zh"
+      lang: "zh-tw"
+  - scope:
+      path: ""
+      type: "industries_ja"
+    values:
+      layout: "industry-ja"
+      lang: "ja"
 
 sass:
   style: compressed
