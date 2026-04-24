@@ -7,4 +7,13 @@
     </li>
     {% endfor %}
   </ul>
+
+  {% assign current_lang = page.lang | default: 'en' %}
+  <div class="mobile-menu__lang" role="group" aria-label="Language">
+    {% for l in site.data.languages %}
+      <a href="{{ l.url | relative_url }}"
+         class="{% if l.code == current_lang %}active{% endif %}"
+         lang="{{ l.code }}">{{ l.full }}</a>
+    {% endfor %}
+  </div>
 </nav>

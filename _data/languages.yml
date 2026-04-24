@@ -1,0 +1,12 @@
+- code: en
+  label: EN
+  full: English
+  url: /
+- code: zh-tw
+  label: 繁中
+  full: 繁體中文
+  url: /zh-tw/
+- code: ja
+  label: 日本語
+  full: 日本語
+  url: /ja/

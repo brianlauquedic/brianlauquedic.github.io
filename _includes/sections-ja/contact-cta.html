@@ -1,0 +1,15 @@
+<section class="section section--tint">
+  <div class="container container--narrow">
+    <div class="contact-cta">
+      <span class="eyebrow eyebrow--brand">07 ／ お問い合わせ</span>
+      <h2 class="contact-cta__title">あなたの物語を、一緒に届けましょう。</h2>
+      <p class="contact-cta__sub">
+        現在取り組んでおられる事業についてお聞かせください。営業日1日以内に、汎用テンプレートではなく、貴社向けに作り込んだプランをお返しします。
+      </p>
+      <div class="contact-cta__ctas">
+        <a class="btn btn--primary" href="{{ '/contact/' | relative_url }}">対話を始める</a>
+        {% if site.data.contact.email %}<a class="btn btn--ghost" href="mailto:{{ site.data.contact.email }}">{{ site.data.contact.email }}</a>{% endif %}
+      </div>
+    </div>
+  </div>
+</section>
