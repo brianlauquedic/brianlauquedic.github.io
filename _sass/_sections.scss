@@ -59,11 +59,12 @@
   &__network {
     position: absolute;
     z-index: 1;
-    top: 40px;
-    right: -80px;
-    width: 620px;
-    max-width: 55vw;
-    opacity: 0.9;
+    top: -40px;
+    right: -160px;
+    width: 760px;
+    height: auto;
+    max-width: 60vw;
+    opacity: 1;
     pointer-events: none;
     @media (max-width: $bp-md) { display: none; }
   }
@@ -536,6 +537,80 @@
   textarea { min-height: 140px; resize: vertical; }
   &__row { display: grid; gap: 20px; @media (min-width: $bp-sm) { grid-template-columns: 1fr 1fr; } }
   &__submit { justify-self: start; margin-top: 8px; }
+}
+
+// -----------
+// Sub-service blocks (richer copy on service detail pages)
+// -----------
+.subservices {
+  margin: 48px 0 0;
+  display: grid;
+  gap: 0;
+  grid-template-columns: 1fr;
+}
+.subservice {
+  padding: 40px 0;
+  border-top: 1px solid $border;
+  &:last-child { border-bottom: 1px solid $border; }
+  &__num {
+    font-family: $font-display;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: $brand;
+    display: block;
+    margin-bottom: 12px;
+  }
+  &__title {
+    font-family: $font-display;
+    font-size: clamp(1.25rem, 2vw, 1.55rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    margin: 0 0 12px;
+    color: $text;
+  }
+  &__tags {
+    font-family: $font-body;
+    font-size: 0.85rem;
+    color: $text-muted;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    span {
+      &::after {
+        content: " /";
+        color: $text-label;
+        margin-left: 8px;
+      }
+      &:last-child::after { content: ""; }
+    }
+  }
+  &__body {
+    color: $text-muted;
+    font-size: 1rem;
+    line-height: 1.65;
+    max-width: 70ch;
+    margin: 0;
+    p { margin: 0 0 .8em; &:last-child { margin-bottom: 0; } }
+  }
+}
+
+// Pull-quote / contrarian callout
+.callout {
+  margin: 56px 0;
+  padding: 40px;
+  background: $bg-tint;
+  border-radius: $radius-lg;
+  border-left: 4px solid $brand;
+  font-family: $font-display;
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  font-weight: 500;
+  line-height: 1.4;
+  color: $text;
+  letter-spacing: -0.01em;
+  em { color: $brand; font-style: normal; }
 }
 
 // -----------

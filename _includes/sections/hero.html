@@ -1,46 +1,6 @@
 <section class="hero">
   <div class="hero__glow"></div>
-  <svg class="hero__network network-svg" viewBox="0 0 600 600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <radialGradient id="nodeGrad" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="#7C4DFF" stop-opacity="1"/>
-        <stop offset="100%" stop-color="#5B2FD9" stop-opacity="0.85"/>
-      </radialGradient>
-    </defs>
-    <g class="edges" stroke="#5B2FD9" stroke-width="0.5" stroke-opacity="0.28" fill="none">
-      <path d="M300 90 L180 200"/><path d="M300 90 L420 200"/>
-      <path d="M300 90 L300 220"/><path d="M180 200 L120 330"/>
-      <path d="M180 200 L240 330"/><path d="M420 200 L360 330"/>
-      <path d="M420 200 L480 330"/><path d="M180 200 L420 200"/>
-      <path d="M240 330 L360 330"/><path d="M120 330 L60 460"/>
-      <path d="M120 330 L180 460"/><path d="M240 330 L300 460"/>
-      <path d="M360 330 L300 460"/><path d="M360 330 L420 460"/>
-      <path d="M480 330 L540 460"/><path d="M480 330 L420 460"/>
-      <path d="M300 220 L240 330"/><path d="M300 220 L360 330"/>
-      <path d="M60 460 L180 460"/><path d="M180 460 L300 460"/>
-      <path d="M300 460 L420 460"/><path d="M420 460 L540 460"/>
-      <path d="M300 460 L300 540"/><path d="M180 460 L120 540"/>
-      <path d="M420 460 L480 540"/>
-    </g>
-    <g class="nodes">
-      <circle cx="300" cy="90"  r="9" fill="url(#nodeGrad)"/>
-      <circle cx="180" cy="200" r="6" fill="#5B2FD9"/>
-      <circle cx="420" cy="200" r="6" fill="#5B2FD9"/>
-      <circle cx="300" cy="220" r="4" fill="#7C4DFF"/>
-      <circle cx="120" cy="330" r="5" fill="#5B2FD9"/>
-      <circle cx="240" cy="330" r="7" fill="url(#nodeGrad)"/>
-      <circle cx="360" cy="330" r="7" fill="url(#nodeGrad)"/>
-      <circle cx="480" cy="330" r="5" fill="#5B2FD9"/>
-      <circle cx="60"  cy="460" r="4" fill="#7C4DFF"/>
-      <circle cx="180" cy="460" r="6" fill="#5B2FD9"/>
-      <circle cx="300" cy="460" r="9" fill="url(#nodeGrad)"/>
-      <circle cx="420" cy="460" r="6" fill="#5B2FD9"/>
-      <circle cx="540" cy="460" r="4" fill="#7C4DFF"/>
-      <circle cx="300" cy="540" r="5" fill="#5B2FD9"/>
-      <circle cx="120" cy="540" r="3" fill="#7C4DFF"/>
-      <circle cx="480" cy="540" r="3" fill="#7C4DFF"/>
-    </g>
-  </svg>
+  <img class="hero__network" src="{{ '/images/hero-network.svg' | relative_url }}" alt="" aria-hidden="true" />
 
   <div class="container">
     <div class="hero__inner">
