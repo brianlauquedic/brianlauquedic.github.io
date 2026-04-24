@@ -36,7 +36,8 @@
       {%- endif -%}
       <a href="{{ target | relative_url }}"
          class="{% if l.code == current_lang %}active{% endif %}"
-         lang="{{ l.code }}">{{ l.full }}</a>
+         lang="{{ l.code }}"
+         onclick="try{localStorage.setItem('quedic-lang','{{ l.code }}')}catch(e){}">{{ l.full }}</a>
     {% endfor %}
   </div>
 </nav>

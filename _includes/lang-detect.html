@@ -1,0 +1,42 @@
+<script>
+// Browser-language auto-redirect (runs before any content renders).
+// - Respects localStorage.quedic-lang when the user has chosen manually
+// - Otherwise maps zh-* → /zh-tw/ and ja-* → /ja/
+// - Preserves the current path/search/hash so deep-link redirects work
+(function () {
+  try {
+    var path = window.location.pathname || '/';
+    var qs = window.location.search || '';
+    var hash = window.location.hash || '';
+
+    // Already on a localized path — nothing to do.
+    if (path.indexOf('/zh-tw') === 0 || path.indexOf('/ja') === 0) return;
+
+    var go = function (prefix) {
+      window.location.replace(prefix + path + qs + hash);
+    };
+
+    // 1. Honor the user's stored preference, if any.
+    var chosen = null;
+    try { chosen = localStorage.getItem('quedic-lang'); } catch (e) {}
+    if (chosen === 'en') return;
+    if (chosen === 'zh-tw') { go('/zh-tw'); return; }
+    if (chosen === 'ja')    { go('/ja'); return; }
+
+    // 2. No stored choice — probe the browser language.
+    var langs = navigator.languages && navigator.languages.length
+      ? navigator.languages
+      : [navigator.language || navigator.userLanguage || ''];
+    for (var i = 0; i < langs.length; i++) {
+      var l = (langs[i] || '').toLowerCase();
+      if (!l) continue;
+      if (l.indexOf('zh') === 0) { go('/zh-tw'); return; }
+      if (l.indexOf('ja') === 0) { go('/ja'); return; }
+      if (l.indexOf('en') === 0) return; // explicit English preference — stay.
+    }
+    // Unknown locale — keep English as the safe default.
+  } catch (e) {
+    // Never block rendering due to a script error.
+  }
+})();
+</script>

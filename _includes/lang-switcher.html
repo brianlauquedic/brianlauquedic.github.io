@@ -1,5 +1,4 @@
 {%- assign current_lang = page.lang | default: 'en' -%}
-{%- comment -%} Derive the "language-free" path of current page {%- endcomment -%}
 {%- if current_lang == 'zh-tw' -%}
   {%- assign base_path = page.url | remove_first: '/zh-tw' -%}
 {%- elsif current_lang == 'ja' -%}
@@ -21,6 +20,7 @@
     <a href="{{ target | relative_url }}"
        class="lang-switcher__item{% if l.code == current_lang %} active{% endif %}"
        lang="{{ l.code }}"
-       title="{{ l.full }}">{{ l.label }}</a>
+       title="{{ l.full }}"
+       onclick="try{localStorage.setItem('quedic-lang','{{ l.code }}')}catch(e){}">{{ l.label }}</a>
   {% endfor %}
 </div>

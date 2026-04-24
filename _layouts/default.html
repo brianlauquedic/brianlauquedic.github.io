@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  {% include lang-detect.html %}
   {% assign _title = page.meta_title | default: page.title %}
   {% if _title and page.layout != 'home' %}{% assign _full_title = _title | append: ' | ' | append: site.title %}{% else %}{% assign _full_title = site.title %}{% if site.description %}{% assign _full_title = _full_title | append: ' — ' | append: site.description %}{% endif %}{% endif %}
   <title>{{ _full_title }}</title>
