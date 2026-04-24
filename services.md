@@ -1,12 +1,7 @@
 ---
 title: Services
+meta_title: "Services — Quedic"
+description: "Public relations, marketing, KOL programs, events and brand advisory for Web3 exchanges, protocols and the projects they list."
 layout: services
-description: Services
-intro_image: "images/illustrations/service.png"
-intro_image_absolute: true
-intro_image_hide_on_mobile: true
+summary: "Five integrated practices, one team. Engineered for the way crypto news cycles actually move."
 ---
-
-# Our Services
-
-Quedic, a premier blockchain PR agency, excels in providing tailored, comprehensive marketing services for crypto companies. By understanding clients' unique positions, crafting superior content strategies, and securing top-tier publication placements, Quedic enhances visibility among reporters, investors, and the blockchain community, positioning these companies at the forefront of global financial innovation.

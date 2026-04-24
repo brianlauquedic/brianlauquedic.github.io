@@ -1,21 +1,82 @@
 ---
 title: About
-layout: page
-description: About
-bodyClass: page-about
+meta_title: "About — Quedic"
+description: "Quedic is an integrated communications agency for Web3 exchanges, protocols and emerging technology brands."
+layout: default
+bodyClass: "page-about"
 ---
 
+<section class="page-header">
+  <div class="container">
+    <span class="page-header__eyebrow">About</span>
+    <h1>Built for operators, by operators.</h1>
+    <p class="lede">Quedic is an integrated communications agency for Web3 exchanges, protocols, and the emerging-technology brands shaping the next generation of finance.</p>
+  </div>
+</section>
 
-![Accounting Services](/images/quedic.png)
+<section class="section">
+  <div class="container container--narrow">
+    <div class="detail__content">
+      <p>We exist because the crypto market deserves better communications than it usually gets. Too many agencies sell template pitches, follower-count KOL programs and press releases no reporter opens. We build communications programs that look and feel like they were put together by people who actually read the outlets, follow the creators, and understand the product &mdash; because they do.</p>
 
-Quedic is a dynamic and forward-thinking public relations and content marketing firm, established with the vision to empower and elevate blockchain and cryptocurrency ventures. Since our inception, we have been at the forefront of the Web3 revolution, offering bespoke communication strategies that resonate with the core values of decentralization and innovation inherent in the blockchain space.
+      <p>Our team has worked alongside tier-1 exchanges, infrastructure providers, DeFi protocols, GameFi studios and emerging AI &times; crypto platforms. We blend crypto-native fluency with the craft of traditional strategic communications &mdash; the message discipline, the reporter relationships, the capital-markets awareness &mdash; so clients get the best of both worlds instead of having to choose.</p>
 
-At Quedic, we specialize in crafting compelling narratives that not only inform but also inspire action and foster community engagement. Our services are tailored to the unique needs of startups and established entities within the crypto ecosystem, ensuring that each client's story is told with authenticity and impact.
+      <p>We work end-to-end: public relations, marketing, KOL, events, brand and advisory. A single team, a single plan, a single narrative &mdash; maintained from launch day through listing, partnership cycles and every milestone that follows.</p>
 
-Our expertise spans across strategic brand positioning, comprehensive media outreach, and robust content creation and distribution. We pride ourselves on our ability to connect with influential media, thought leaders, and key opinion leaders (KOLs) to amplify our clients' messages across a global stage.
+      <h2>What we believe</h2>
+      <ul>
+        <li><strong>Coverage is a byproduct of narrative.</strong> Get the story right and the placements follow. Get it wrong and no pitch template will save you.</li>
+        <li><strong>Credibility compounds.</strong> Every placement, every op-ed, every KOL activation should make the next one easier to land.</li>
+        <li><strong>Transparency wins.</strong> Clients see the media lists, the pitches, the reply rates and the attribution &mdash; not just headline metrics.</li>
+        <li><strong>Speed with discipline.</strong> Crypto moves in hours. Good communications teams ship fast <em>and</em> get it right.</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-Our approach is holistic and results-driven, focusing on measurable outcomes that align with our clients' growth objectives. From insightful thought leadership pieces and engaging social media campaigns to targeted influencer partnerships and community-building initiatives, we ensure that every aspect of our clients' content marketing needs is met with precision and creativity.
+<section class="section section--soft">
+  <div class="container">
+    <div class="section-title">
+      <div>
+        <span class="eyebrow eyebrow--brand">Leadership</span>
+        <h2>The team behind the work.</h2>
+      </div>
+      <div class="section-title__aside">
+        Senior operators with backgrounds spanning exchanges, traditional PR agencies, capital markets and the broader Web3 ecosystem.
+      </div>
+    </div>
 
-Quedic stands as a beacon of innovation in crypto PR, blending the latest trends in digital marketing with a deep understanding of the blockchain landscape. We don't just share your vision; we actively participate in shaping it, delivering content that drives the conversation forward and positions our clients at the cusp of the industry's evolution.
+    <div class="team">
+      <div class="team__card">
+        <div class="team__avatar">V</div>
+        <h3 class="team__name">Vanessa Holmes</h3>
+        <div class="team__role">Chief Executive Officer</div>
+        <p class="team__bio">Bio coming soon.</p>
+      </div>
+      <div class="team__card">
+        <div class="team__avatar">B</div>
+        <h3 class="team__name">Brian Lau</h3>
+        <div class="team__role">Chief Marketing Officer</div>
+        <p class="team__bio">Bio coming soon.</p>
+      </div>
+      <div class="team__card">
+        <div class="team__avatar">L</div>
+        <h3 class="team__name">Lara Chang</h3>
+        <div class="team__role">Chief Communications Officer</div>
+        <p class="team__bio">Bio coming soon.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-As a company that thrives on the ethos of Web3 and the transformative potential of blockchain technology, Quedic is not just a service provider but a partner in your journey towards achieving groundbreaking success in the digital age.
+<section class="section section--tint">
+  <div class="container container--narrow">
+    <div class="contact-cta">
+      <h2 class="contact-cta__title">Work with us.</h2>
+      <p class="contact-cta__sub">Tell us what you&rsquo;re building.</p>
+      <div class="contact-cta__ctas">
+        <a class="btn btn--primary" href="{{ '/contact/' | relative_url }}">Start a conversation</a>
+      </div>
+    </div>
+  </div>
+</section>

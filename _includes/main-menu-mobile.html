@@ -1,5 +1,5 @@
-<div id="main-menu-mobile" class="main-menu-mobile">
-  {% assign mainmenu = site.data.menus.main | sort: 'weight'  %}
+<nav class="mobile-menu" id="mobile-menu" aria-label="Mobile">
+  {% assign mainmenu = site.data.menus.main | sort: 'weight' %}
   <ul>
     {% for item in mainmenu %}
     <li class="{% if item.url == page.url %}active{% endif %}">
@@ -7,4 +7,4 @@
     </li>
     {% endfor %}
   </ul>
-</div>
+</nav>

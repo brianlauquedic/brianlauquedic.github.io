@@ -1,14 +1,6 @@
 ---
 title: Quedic
+meta_title: "Quedic — Integrated PR, Marketing & KOL for Web3"
+description: "Quedic is an integrated communications agency for Web3 exchanges, protocols and the projects they list. Public relations, marketing, KOL, events and advisory."
 layout: home
-description: We help crypto to disseminat remarkable and highly concentrated interactive content 
-intro_image: "images/illustrations/2023-11-04 01.53.18.jpg"
-intro_image_absolute: true
-intro_image_hide_on_mobile: true
-show_call_box: true
 ---
-
-
-# Quedic
-
-We help crypto to disseminat remarkable and highly concentrated interactive content 

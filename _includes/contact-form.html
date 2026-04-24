@@ -1,0 +1,43 @@
+<form class="contact-form" action="https://formspree.io/f/your-id" method="POST" novalidate>
+  <div class="contact-form__row">
+    <div>
+      <label for="cf-name">Your name</label>
+      <input type="text" id="cf-name" name="name" required />
+    </div>
+    <div>
+      <label for="cf-email">Email</label>
+      <input type="email" id="cf-email" name="email" required />
+    </div>
+  </div>
+
+  <div class="contact-form__row">
+    <div>
+      <label for="cf-company">Company / project</label>
+      <input type="text" id="cf-company" name="company" />
+    </div>
+    <div>
+      <label for="cf-help">How can we help?</label>
+      <select id="cf-help" name="help">
+        <option value="">Select one</option>
+        <option>Strategic PR &amp; Media Outreach</option>
+        <option>Marketing, Content &amp; SEO</option>
+        <option>Influencer &amp; KOL Programs</option>
+        <option>Events &amp; Conferences</option>
+        <option>Brand, Advisory &amp; Talent</option>
+        <option>Other</option>
+      </select>
+    </div>
+  </div>
+
+  <div>
+    <label for="cf-message">Tell us about your project</label>
+    <textarea id="cf-message" name="message" rows="5"></textarea>
+  </div>
+
+  <button class="btn btn--primary contact-form__submit" type="submit">Send message</button>
+
+  <p class="fine-print" style="margin-top:8px;">
+    We&rsquo;ll reply within one business day. You can also reach us directly at
+    {% if site.data.contact.email %}<a href="mailto:{{ site.data.contact.email }}">{{ site.data.contact.email }}</a>{% endif %}.
+  </p>
+</form>

@@ -1,10 +1,55 @@
-<div class="footer">
+<footer class="site-footer">
   <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="footer-inner">
-        </div>
+    <div class="site-footer__top">
+      <div class="site-footer__brand">
+        <a href="{{ '/' | relative_url }}" aria-label="{{ site.title }}">
+          <img src="{{ site.logo.desktop | relative_url }}" alt="{{ site.title }}" style="height:28px;width:auto;" />
+        </a>
+        <p class="site-footer__tagline">
+          Integrated PR, marketing &amp; KOL for Web3&rsquo;s leading exchanges and protocols.
+        </p>
+        {% if site.data.contact.email %}<a class="btn btn--ghost" href="mailto:{{ site.data.contact.email }}">Get in touch →</a>{% endif %}
+      </div>
+
+      <div class="site-footer__col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="{{ '/services/public-relations/' | relative_url }}">Public Relations</a></li>
+          <li><a href="{{ '/services/marketing-content-seo/' | relative_url }}">Marketing &amp; SEO</a></li>
+          <li><a href="{{ '/services/influencer-kol/' | relative_url }}">Influencer &amp; KOL</a></li>
+          <li><a href="{{ '/services/events-conferences/' | relative_url }}">Events</a></li>
+          <li><a href="{{ '/services/brand-advisory-talent/' | relative_url }}">Brand &amp; Advisory</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+          <li><a href="{{ '/industries/' | relative_url }}">Industries</a></li>
+          <li><a href="{{ '/playbook/' | relative_url }}">Playbook</a></li>
+          <li><a href="{{ '/brands/' | relative_url }}">Brands</a></li>
+          <li><a href="{{ '/insights/' | relative_url }}">Insights</a></li>
+          <li><a href="{{ '/contact/' | relative_url }}">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__col">
+        <h5>Connect</h5>
+        <ul>
+          {% if site.data.contact.email %}<li><a href="mailto:{{ site.data.contact.email }}">{{ site.data.contact.email }}</a></li>{% endif %}
+          {% if site.data.contact.twitter_name %}<li><a href="https://twitter.com/{{ site.data.contact.twitter_name | remove: '@' }}">Twitter / X</a></li>{% endif %}
+          {% if site.data.contact.telegram_name %}<li><a href="https://t.me/{{ site.data.contact.telegram_name | remove: '@' }}">Telegram</a></li>{% endif %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <div>© {{ 'now' | date: '%Y' }} {{ site.title }}. All rights reserved.</div>
+      <div class="site-footer__socials">
+        {% if site.data.contact.twitter_name %}<a href="https://twitter.com/{{ site.data.contact.twitter_name | remove: '@' }}">X</a>{% endif %}
+        {% if site.data.contact.telegram_name %}<a href="https://t.me/{{ site.data.contact.telegram_name | remove: '@' }}">Telegram</a>{% endif %}
       </div>
     </div>
   </div>
-</div>
+</footer>

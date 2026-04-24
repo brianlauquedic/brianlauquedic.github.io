@@ -1,13 +1,12 @@
-<div class='header header-absolute'>
-  <div class="container">
-    <div class="logo">
-      <a href="/"><img width="{{ site.logo.desktop_width }}" height="{{ site.logo.desktop_height }}" alt="{{ site.title }}" src="{{ site.logo.desktop | relative_url }}" /></a>
-    </div>
-    <div class="logo-mobile">
-      <a href="/"><img width="{{ site.logo.mobile_width }}" height="{{ site.logo.mobile_height }}" alt="{{ site.title }}" src="{{ site.logo.mobile | relative_url }}" /></a>
-    </div>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__logo" href="{{ '/' | relative_url }}" aria-label="{{ site.title }}">
+      <img src="{{ site.logo.desktop | relative_url }}" alt="{{ site.title }}" />
+    </a>
+    <a class="site-header__logo-mobile" href="{{ '/' | relative_url }}" aria-label="{{ site.title }}">
+      <img src="{{ site.logo.mobile | relative_url }}" alt="{{ site.title }}" />
+    </a>
     {% include main-menu.html %}
-    {% include translate-ui.html %}
     {% include hamburger.html %}
   </div>
-</div>
+</header>

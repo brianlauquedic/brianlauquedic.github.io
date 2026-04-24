@@ -1,17 +1,36 @@
 ---
-title: Contact
 layout: default
 bodyClass: "page-contact"
 ---
 
-<div class="container pb-6 pt-6 pt-md-10 pb-md-10">
-    <div class="row justify-content-start">
-        <div class="col-12 col-md-8">
-            <div class="service service-single">
-                <h1 class="title">{{page.title}}</h1>
-                {% include call.html show_button=false %}
-                <div class="content mt-4">{{content}}</div>
-            </div>
-        </div>
+<section class="page-header">
+  <div class="container">
+    <span class="page-header__eyebrow">Contact</span>
+    <h1>{{ page.title }}</h1>
+    {% if page.summary %}<p class="lede">{{ page.summary }}</p>{% endif %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="detail__grid">
+      <aside class="detail__sidebar">
+        <span class="eyebrow eyebrow--brand">Direct channels</span>
+        <h4>Email</h4>
+        {% if site.data.contact.email %}<p><a href="mailto:{{ site.data.contact.email }}">{{ site.data.contact.email }}</a></p>{% endif %}
+        <h4>Messaging</h4>
+        <ul>
+          {% if site.data.contact.telegram_name %}<li><a href="https://t.me/{{ site.data.contact.telegram_name | remove: '@' }}">Telegram: {{ site.data.contact.telegram_name }}</a></li>{% endif %}
+          {% if site.data.contact.twitter_name %}<li><a href="https://twitter.com/{{ site.data.contact.twitter_name | remove: '@' }}">X / Twitter: {{ site.data.contact.twitter_name }}</a></li>{% endif %}
+        </ul>
+        <h4 style="margin-top:32px;">Response time</h4>
+        <p style="color: var(--text-muted,#5C5C6A); font-size:.92rem;">We reply within one business day.</p>
+      </aside>
+
+      <div class="detail__content">
+        {{ content }}
+        {% include contact-form.html %}
+      </div>
     </div>
-</div>
+  </div>
+</section>

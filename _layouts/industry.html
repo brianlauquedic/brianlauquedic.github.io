@@ -1,0 +1,42 @@
+---
+layout: default
+bodyClass: "page-industry"
+---
+
+<section class="page-header">
+  <div class="container">
+    <span class="page-header__eyebrow">{{ page.number }} / Industry</span>
+    <h1>{{ page.title }}</h1>
+    {% if page.summary %}<p class="lede">{{ page.summary }}</p>{% endif %}
+  </div>
+</section>
+
+<section class="detail">
+  <div class="container">
+    <div class="detail__grid">
+      <aside class="detail__sidebar">
+        <span class="eyebrow eyebrow--brand">All industries</span>
+        <h4>Verticals</h4>
+        <ul>
+          {% assign industries = site.industries | sort: 'weight' %}
+          {% for i in industries %}
+          <li><a href="{{ i.url | relative_url }}" class="{% if i.url == page.url %}active{% endif %}">{{ i.title }}</a></li>
+          {% endfor %}
+        </ul>
+        {% if page.tags %}
+        <h4 style="margin-top:32px;">Sub-categories</h4>
+        <ul>
+          {% for t in page.tags %}<li>{{ t }}</li>{% endfor %}
+        </ul>
+        {% endif %}
+      </aside>
+
+      <div class="detail__content">
+        {{ content }}
+        <hr class="divider" style="margin:48px 0;"/>
+        <a class="btn btn--primary" href="{{ '/contact/' | relative_url }}">Discuss your {{ page.title }} project</a>
+        <a class="btn btn--ghost" href="{{ '/industries/' | relative_url }}" style="margin-left:8px;">All industries</a>
+      </div>
+    </div>
+  </div>
+</section>

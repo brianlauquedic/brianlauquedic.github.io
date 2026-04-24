@@ -1,15 +1,22 @@
 main:
   - name: "Services"
     url: "/services/"
+    weight: 1
+  - name: "Industries"
+    url: "/industries/"
     weight: 2
-  - name: "Clients"
-    url: "/clients/"
+  - name: "Playbook"
+    url: "/playbook/"
     weight: 3
+  - name: "Brands"
+    url: "/brands/"
+    weight: 4
+  - name: "Insights"
+    url: "/insights/"
+    weight: 5
   - name: "About"
     url: "/about/"
-    weight: 4
+    weight: 6
   - name: "Contact"
     url: "/contact/"
-    weight: 5
-
-
+    weight: 7

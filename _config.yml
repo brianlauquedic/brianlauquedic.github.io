@@ -1,6 +1,7 @@
 baseurl: '/'
 permalink: pretty
-title: 'Jekyll Serif'
+title: 'Quedic'
+description: 'Integrated PR, marketing & KOL for Web3 exchanges and protocols.'
 
 logo:
   mobile: "images/logo/logo-mobile.svg"
@@ -10,15 +11,15 @@ logo:
   desktop_height: "32px"
   desktop_width: "120px"
 
-home: 
-  limit_services: 6
-
 collections:
   services:
     output: true
     sort_by: weight
-  team:
+    permalink: /services/:path/
+  industries:
     output: true
+    sort_by: weight
+    permalink: /industries/:path/
 
 defaults:
   - scope:
@@ -28,15 +29,12 @@ defaults:
       layout: "service"
   - scope:
       path: ""
-      type: "team"
+      type: "industries"
     values:
-      layout: "team"
+      layout: "industry"
 
 sass:
-  style: compressed # possible values: nested expanded compact compressed
-
-plugins:
-  - jekyll-environment-variables
+  style: compressed
 
 exclude:
   - Gemfile
@@ -49,3 +47,4 @@ exclude:
   - LICENSE.md
   - LICENSE
   - README.md
+  - run.sh
