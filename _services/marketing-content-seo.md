@@ -3,11 +3,11 @@ title: Marketing & SEO
 number: "02"
 weight: 2
 summary: "Always-on content, community and search — so the earned wins keep compounding."
-description: "Content, social, community, SEO and campaign activations built for Web3 audiences on X, LinkedIn, Discord, Telegram and Chinese platforms."
+description: "Content, social, community, SEO and campaign activations built for Web3 audiences on X, Instagram, TikTok, Discord and Telegram."
 bullets:
   - Content strategy
   - Ghostwriting
-  - Social media (X / 微博 / 微信)
+  - Social media (X / Instagram / TikTok)
   - Community ops (Discord / Telegram)
   - SEO for Web3
   - Campaigns &amp; activations
@@ -56,9 +56,9 @@ PR lands the spike. Marketing compounds it. We run the always-on layer — socia
 <section class="subservice">
   <span class="subservice__num">04</span>
   <h3 class="subservice__title">Social Media Management</h3>
-  <div class="subservice__tags"><span>X / LinkedIn</span><span>Chinese Platforms</span><span>Visual Identity</span><span>Daily Cadence</span></div>
+  <div class="subservice__tags"><span>X</span><span>Instagram</span><span>TikTok</span><span>Daily Cadence</span></div>
   <div class="subservice__body">
-  <p>Daily ownership of brand and founder accounts across X, LinkedIn, 微博, 微信公众号 and the platforms that matter to your category. Real engagement, not scheduled-post automation: replies, quote-tweets, thread amplification, community moments captured and seeded out.</p>
+  <p>Daily ownership of brand and founder accounts across X, Instagram, TikTok and the platforms that matter to your category. Real engagement, not scheduled-post automation: replies, quote-tweets, thread amplification, short-form video, and community moments captured and seeded out.</p>
   <p>Visual identity, asset production and platform-specific copy handled in-house. Reporting on what worked, what didn&rsquo;t, and what to test next.</p>
   </div>
 </section>
