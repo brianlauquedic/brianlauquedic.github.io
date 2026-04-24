@@ -1,18 +1,21 @@
 ---
-title: Marketing, Content & SEO
+title: Marketing & SEO
 number: "02"
 weight: 2
 summary: "Always-on content, community and search — so the earned wins keep compounding."
 description: "Content, social, community, SEO and campaign activations built for Web3 audiences on X, LinkedIn, Discord, Telegram and Chinese platforms."
 bullets:
-  - Content strategy &amp; ghostwriting
-  - Social media management (X / LinkedIn / 微博 / 微信)
-  - Community management (Discord / Telegram / Reddit)
-  - SEO for Web3 — keyword, link building, on-page, technical
+  - Content strategy
+  - Ghostwriting
+  - Social media (X / 微博 / 微信)
+  - Community ops (Discord / Telegram)
+  - SEO for Web3
   - Campaigns &amp; activations
-  - Podcast placement &amp; production
-  - Newsletter &amp; owned-channel strategy
+  - Podcast placement
+  - Newsletter strategy
 ---
+
+**Always-on content, community and search that turn earned coverage into compounding growth.**
 
 PR lands the spike. Marketing compounds it. We run the always-on layer — social, community, content and SEO — so that the earned coverage keeps paying off long after the news cycle moves on.
 

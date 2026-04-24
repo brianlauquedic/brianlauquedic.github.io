@@ -1,18 +1,21 @@
 ---
-title: Brand, Advisory & Talent
+title: Brand & Advisory
 number: "05"
 weight: 5
 summary: "Identity, positioning, launch strategy and senior hires — the long-horizon work behind every strong comms program."
 description: "Brand strategy, visual identity, token launch communications, exchange listing support, personal branding and C-level recruitment for Web3 companies."
 bullets:
-  - Brand strategy, visual identity &amp; design collateral
-  - Token launch communications
+  - Brand strategy
+  - Visual identity
+  - Token launch comms
   - Exchange listing support
-  - Messaging frameworks &amp; market positioning
-  - Personal branding for founders &amp; C-suite
-  - C-level recruitment (delivered with vetted partners)
-  - Policy &amp; government affairs
+  - Messaging frameworks
+  - Personal branding
+  - C-level recruitment
+  - Policy affairs
 ---
+
+**The upstream work — identity, positioning, launch strategy and senior hires — that makes every downstream campaign hit harder.**
 
 Great comms needs a brand that can carry it. This is the upstream work — positioning, identity, narrative architecture and the senior hires that decide whether your communications program has a chance before the first press release goes out.
 

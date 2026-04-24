@@ -1,18 +1,21 @@
 ---
-title: Events & Conferences
+title: Events
 number: "04"
 weight: 4
 summary: "Presence engineered for impact — on the show floor, in the room, and in the post-event coverage."
 description: "Conference booth strategy, speaking slots, launch events, private dinners and VIP gatherings across the global crypto calendar."
 bullets:
-  - Conference booths, speaking slots &amp; roundtables
-  - Launch events &amp; activations
-  - Private dinners &amp; VIP gatherings
-  - IR &amp; VC-facing events
-  - Side events, parties &amp; exhibitions
-  - On-site media and KOL coordination
-  - Post-event distribution and repurposing
+  - Conference presence
+  - Speaking slots
+  - Launch events
+  - Private dinners
+  - VIP gatherings
+  - IR / VC events
+  - Side events &amp; parties
+  - On-site media coordination
 ---
+
+**Presence engineered for impact — on the show floor, in the right room, and in the post-event coverage.**
 
 Conferences are expensive. Most of what companies spend on them disappears into lanyard budgets and empty booths. We plan around the two things that actually move the needle: the rooms your buyers are in, and the conversations that get documented afterward.
 

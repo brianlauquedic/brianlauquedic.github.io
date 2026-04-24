@@ -80,6 +80,48 @@
 }
 
 // -----------
+// Three things (MarketAcross-style differentiator block)
+// -----------
+.three-things {
+  &__grid {
+    display: grid;
+    gap: 0;
+    grid-template-columns: 1fr;
+    @media (min-width: $bp-md) { grid-template-columns: repeat(3, 1fr); }
+    border-top: 1px solid $border;
+  }
+  &__item {
+    padding: 48px 32px;
+    border-bottom: 1px solid $border;
+    @media (min-width: $bp-md) {
+      padding: 56px 40px;
+      border-bottom: 0;
+      border-right: 1px solid $border;
+      &:last-child { border-right: 0; }
+    }
+  }
+  &__num {
+    font-family: $font-display;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: $brand;
+    margin-bottom: 24px;
+    display: block;
+  }
+  &__title {
+    font-family: $font-display;
+    font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    margin: 0 0 16px;
+    color: $text;
+  }
+  &__body { color: $text-muted; font-size: 1rem; line-height: 1.55; margin: 0; }
+}
+
+// -----------
 // Logo wall (clients / partners)
 // -----------
 .logo-wall {

@@ -1,17 +1,20 @@
 ---
-title: Influencer & KOL Programs
+title: Influencer & KOL
 number: "03"
 weight: 3
 summary: "Global and regional KOL programs measured on signal, not follower counts."
 description: "Global and regional KOL programs across X, YouTube and TikTok — covering English, Chinese, Japanese, Korean, Turkish, Spanish and Arabic audiences."
 bullets:
-  - Global KOL networks (X / YouTube / TikTok)
-  - Regional activations — 中文 / JP / KR / TR / ES / AR
-  - KOL vetting, diligence &amp; brief design
-  - Campaign management &amp; reporting
-  - Creator partnerships &amp; long-form content
-  - Paid, gifted and equity-aligned structures
+  - Global KOL networks
+  - Regional activations (中文 / JP / KR / TR)
+  - Vetting &amp; diligence
+  - Brief design
+  - Campaign management
+  - Creator partnerships
+  - Paid, gifted &amp; equity deals
 ---
+
+**Global and regional KOL programs measured on signal — not screenshotted follower counts.**
 
 Follower counts lie. We evaluate KOLs on engagement quality, audience overlap with your buyer, narrative fit, and a private history of what each creator&rsquo;s last ten posts actually produced — not what their screenshots claim.
 
