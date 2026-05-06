@@ -377,10 +377,15 @@
 
   // ---- 8. Open / close modal -----------------------------------------
   function openModal(card) {
-    // Both .shop-card and .quickbuy-card use the same data attributes.
-    // Title/summary selectors fall back gracefully between the two layouts.
-    var titleEl = card.querySelector('.shop-card__title, .quickbuy-card__title');
+    // Three layouts share the same data attributes:
+    // .shop-card (main bundles), .quickbuy-card (quick buys),
+    // .pricing-row <tr> (full pricing reference table).
+    var titleEl = card.querySelector('.shop-card__title, .quickbuy-card__title, .pricing-row__service');
     var summaryEl = card.querySelector('.shop-card__summary, .quickbuy-card__desc');
+    // For pricing-row <tr>, the service label IS the title; no summary.
+    if (!titleEl && card.classList.contains('pricing-row')) {
+      titleEl = card.querySelector('.pricing-row__service') || card;
+    }
     state.pkg = {
       id: card.getAttribute('data-package-id'),
       priceUsdt: parseFloat(card.getAttribute('data-price-usdt')),
@@ -437,12 +442,13 @@
 
   // ---- 9. Wire up event handlers --------------------------------------
   function bind() {
-    // Open from any package card (main grid OR quick-buy grid)
+    // Open from any orderable element: package card, quick-buy card,
+    // or full-pricing-table row (.pricing-row <tr>).
     document.addEventListener('click', function (e) {
       var trigger = e.target.closest('[data-checkout-trigger]');
       if (!trigger) return;
       e.preventDefault();
-      var card = trigger.closest('.shop-card, .quickbuy-card');
+      var card = trigger.closest('.shop-card, .quickbuy-card, .pricing-row');
       if (card) openModal(card);
     });
 

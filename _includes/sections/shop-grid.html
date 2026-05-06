@@ -45,9 +45,18 @@
   {%- assign t_terms_4 = '保密協議（NDA）依需求簽訂，不額外收費。' -%}
   {%- assign t_jump_programs = '套餐' -%}
   {%- assign t_jump_alacarte = '單品下單' -%}
+  {%- assign t_jump_reference = '完整報價單' -%}
   {%- assign t_jump_howit = '如何下單' -%}
   {%- assign t_jump_faq = '常見問題' -%}
   {%- assign t_jump_enterprise = '企業級' -%}
+  {%- assign t_reference_eyebrow = '完整服務目錄' -%}
+  {%- assign t_reference_title = '完整報價單' -%}
+  {%- assign t_reference_body = '我們提供的全部服務 SKU。每個分類預設折疊，點擊展開後可單筆下單，使用同一鏈上結帳流程。' -%}
+  {%- assign t_reference_table_service = '服務' -%}
+  {%- assign t_reference_table_price = '價格' -%}
+  {%- assign t_reference_table_action = '操作' -%}
+  {%- assign t_buy_btn = '下單' -%}
+  {%- assign t_on_request = '報價請洽' -%}
   {%- assign t_faq_eyebrow = '常見問題' -%}
   {%- assign t_faq_title = 'FAQ' -%}
   {%- assign t_faq_q1 = '交易失敗怎麼辦？' -%}
@@ -106,9 +115,18 @@
   {%- assign t_terms_4 = 'NDA（秘密保持契約）はご要望に応じ無料で締結します。' -%}
   {%- assign t_jump_programs = 'パッケージ' -%}
   {%- assign t_jump_alacarte = '単品オーダー' -%}
+  {%- assign t_jump_reference = '全価格表' -%}
   {%- assign t_jump_howit = '注文方法' -%}
   {%- assign t_jump_faq = 'FAQ' -%}
   {%- assign t_jump_enterprise = 'エンタープライズ' -%}
+  {%- assign t_reference_eyebrow = '全サービスカタログ' -%}
+  {%- assign t_reference_title = '全価格表' -%}
+  {%- assign t_reference_body = '当社が提供する全SKU。カテゴリーは初期状態で折りたたまれており、展開後は同じオンチェーン決済フローで個別注文できます。' -%}
+  {%- assign t_reference_table_service = 'サービス' -%}
+  {%- assign t_reference_table_price = '価格' -%}
+  {%- assign t_reference_table_action = '操作' -%}
+  {%- assign t_buy_btn = '注文' -%}
+  {%- assign t_on_request = 'お見積もり' -%}
   {%- assign t_faq_eyebrow = 'よくあるご質問' -%}
   {%- assign t_faq_title = 'FAQ' -%}
   {%- assign t_faq_q1 = 'トランザクションが失敗したら？' -%}
@@ -167,9 +185,18 @@
   {%- assign t_terms_4 = 'NDAs are signed on request, at no additional charge.' -%}
   {%- assign t_jump_programs = 'Programs' -%}
   {%- assign t_jump_alacarte = 'À la carte' -%}
+  {%- assign t_jump_reference = 'Full pricing' -%}
   {%- assign t_jump_howit = 'How it works' -%}
   {%- assign t_jump_faq = 'FAQ' -%}
   {%- assign t_jump_enterprise = 'Enterprise' -%}
+  {%- assign t_reference_eyebrow = 'Full service catalog' -%}
+  {%- assign t_reference_title = 'Full pricing reference' -%}
+  {%- assign t_reference_body = 'Every SKU we sell. Each category is collapsed by default — expand to order any single line, same on-chain checkout flow.' -%}
+  {%- assign t_reference_table_service = 'Service' -%}
+  {%- assign t_reference_table_price = 'Price' -%}
+  {%- assign t_reference_table_action = 'Action' -%}
+  {%- assign t_buy_btn = 'Order' -%}
+  {%- assign t_on_request = 'On request' -%}
   {%- assign t_faq_eyebrow = 'Frequently asked' -%}
   {%- assign t_faq_title = 'FAQ' -%}
   {%- assign t_faq_q1 = 'What if my transaction fails?' -%}
@@ -187,6 +214,7 @@
 {%- assign packages = site.data.packages.packages | sort: 'weight' -%}
 {%- assign categories = site.data.packages.categories -%}
 {%- assign quick_buys = site.data.packages.quick_buys -%}
+{%- assign pricing_tables = site.data.packages.pricing_tables -%}
 
 <!-- Slim social-proof strip -->
 <section class="section section--tight section--soft shop-trust">
@@ -212,6 +240,7 @@
       <ul>
         <li><a href="#programs">{{ t_jump_programs }}</a></li>
         <li><a href="#a-la-carte">{{ t_jump_alacarte }}</a></li>
+        <li><a href="#reference">{{ t_jump_reference }}</a></li>
         <li><a href="#how-it-works">{{ t_jump_howit }}</a></li>
         <li><a href="#faq">{{ t_jump_faq }}</a></li>
         <li><a href="#enterprise">{{ t_jump_enterprise }}</a></li>
@@ -372,6 +401,70 @@
             <button class="btn btn--ghost btn--sm" data-checkout-trigger data-package-id="{{ q.id }}">{{ t_pay }}</button>
           </div>
         </article>
+        {%- endfor -%}
+      </div>
+    </section>
+    {%- endif -%}
+
+    <!-- Full pricing reference — collapsible category tables for the
+         long-tail of single-platform SKUs that don't deserve their own
+         card but need to be findable & buyable. Same checkout modal. -->
+    {%- if pricing_tables and pricing_tables.size > 0 -%}
+    <section class="shop-reference" id="reference">
+      <div class="shop-reference__head">
+        <span class="eyebrow eyebrow--brand">{{ t_reference_eyebrow }}</span>
+        <h2 class="shop-reference__title">{{ t_reference_title }}</h2>
+        <p class="shop-reference__body">{{ t_reference_body }}</p>
+      </div>
+
+      <div class="shop-reference__groups">
+        {%- for grp in pricing_tables -%}
+        <details class="shop-reference__group" id="ref-{{ grp.id }}">
+          <summary class="shop-reference__summary">
+            <span class="shop-reference__group-title">{{ grp.title[lang] | default: grp.title.en }}</span>
+            <span class="shop-reference__count">{{ grp.rows | size }}</span>
+          </summary>
+          {%- if grp.note -%}
+          <p class="shop-reference__note">{{ grp.note[lang] | default: grp.note.en }}</p>
+          {%- endif -%}
+          <table class="shop-reference__table">
+            <thead>
+              <tr>
+                <th class="shop-reference__th-service">{{ t_reference_table_service }}</th>
+                <th class="shop-reference__th-price">{{ t_reference_table_price }}</th>
+                <th class="shop-reference__th-action">{{ t_reference_table_action }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%- for row in grp.rows -%}
+              <tr class="pricing-row"
+                  data-package-id="{{ row.id }}"
+                  data-price-usdt="{{ row.price_usdt | default: 0 }}"
+                  data-price-usdc="{{ row.price_usdt | default: 0 }}"
+                  data-recurring="false"
+                  data-category="{{ row.category | default: 'pr' }}"
+                  data-on-quote="{{ row.on_quote | default: false }}">
+                <td class="pricing-row__service">{{ row.label[lang] | default: row.label.en }}</td>
+                <td class="pricing-row__price">
+                  {%- if row.on_quote -%}
+                    <span class="pricing-row__quote">{{ t_on_request }}</span>
+                  {%- else -%}
+                    <span class="pricing-row__amount">{{ row.price_usdt }}</span>
+                    <span class="pricing-row__unit">USDT</span>
+                  {%- endif -%}
+                </td>
+                <td class="pricing-row__action">
+                  {%- if row.on_quote -%}
+                    <a class="btn btn--ghost btn--xs" href="{{ t_contact_url }}">{{ t_on_request }}</a>
+                  {%- else -%}
+                    <button class="btn btn--ghost btn--xs" data-checkout-trigger data-package-id="{{ row.id }}">{{ t_buy_btn }}</button>
+                  {%- endif -%}
+                </td>
+              </tr>
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </details>
         {%- endfor -%}
       </div>
     </section>

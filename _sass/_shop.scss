@@ -1155,6 +1155,211 @@ body.checkout-open {
   animation: shopJumpFlash 1.6s ease-out;
 }
 
+// ============================================================
+// Full pricing reference — collapsible category tables for the
+// long-tail of single-platform SKUs (~150 items across 9 groups).
+// Visually quieter than the card grids above; rows are dense so
+// the catalog reads as a quick scan rather than a wall of cards.
+// ============================================================
+.shop-reference {
+  margin-top: 80px;
+  padding-top: 64px;
+  border-top: 1px solid $border;
+
+  &__head {
+    margin-bottom: 32px;
+    max-width: 70ch;
+    .eyebrow { display: inline-block; margin-bottom: 8px; }
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: $text;
+    margin: 0 0 12px;
+  }
+
+  &__body {
+    color: $text-muted;
+    font-size: 1rem;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  &__groups {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__group {
+    border: 1px solid $border;
+    border-radius: $radius-lg;
+    background: $bg;
+    overflow: hidden;
+    transition: border-color .2s ease;
+
+    &[open] {
+      border-color: rgba(91, 47, 217, 0.25);
+    }
+  }
+
+  &__summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-family: $font-display;
+    font-weight: 600;
+    color: $text;
+    transition: background .15s ease;
+
+    &::-webkit-details-marker { display: none; }
+    &:hover { background: $bg-soft; }
+
+    &::after {
+      content: "+";
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: $brand;
+      width: 24px;
+      text-align: center;
+      transition: transform .2s ease;
+      flex-shrink: 0;
+    }
+    .shop-reference__group[open] > &::after {
+      content: "−";
+    }
+  }
+
+  &__group-title {
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+    flex: 1;
+  }
+
+  &__count {
+    font-family: $font-body;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: $text-muted;
+    background: $bg-soft;
+    padding: 3px 10px;
+    border-radius: 999px;
+    line-height: 1;
+  }
+  .shop-reference__group[open] > .shop-reference__summary > .shop-reference__count {
+    background: rgba(91, 47, 217, 0.1);
+    color: $brand;
+  }
+
+  &__note {
+    margin: 0 24px 16px;
+    padding: 12px 16px;
+    background: $bg-soft;
+    border-radius: $radius;
+    font-size: 0.88rem;
+    color: $text-muted;
+    line-height: 1.55;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 4px;
+
+    th, td {
+      padding: 12px 24px;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    thead {
+      th {
+        font-family: $font-display;
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: $text-label;
+        border-top: 1px solid $border;
+        border-bottom: 1px solid $border;
+        background: $bg-soft;
+      }
+    }
+  }
+
+  &__th-price { width: 140px; text-align: right !important; }
+  &__th-action { width: 110px; text-align: right !important; }
+}
+
+.pricing-row {
+  border-bottom: 1px solid $border;
+  &:last-child { border-bottom: 0; }
+  &:hover { background: $bg-soft; }
+  transition: background .15s ease;
+
+  &__service {
+    font-size: 0.92rem;
+    color: $text;
+    line-height: 1.45;
+  }
+
+  &__price {
+    text-align: right;
+    font-family: $font-display;
+    white-space: nowrap;
+  }
+  &__amount {
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: $brand;
+  }
+  &__unit {
+    font-size: 0.76rem;
+    color: $text-muted;
+    margin-left: 3px;
+  }
+  &__quote {
+    font-size: 0.82rem;
+    color: $text-label;
+    font-style: italic;
+  }
+
+  &__action {
+    text-align: right;
+  }
+}
+
+// Mobile stacking — labels above values, action below
+@media (max-width: $bp-sm) {
+  .shop-reference {
+    &__table {
+      thead { display: none; }
+      tbody, tr, td { display: block; }
+      th, td { padding: 8px 18px; }
+    }
+  }
+  .pricing-row {
+    padding: 14px 0;
+    &__service { font-size: 0.92rem; padding-bottom: 6px !important; }
+    &__price { text-align: left; padding-top: 0 !important; padding-bottom: 6px !important; }
+    &__action { text-align: left; padding-top: 0 !important; padding-bottom: 14px !important; }
+  }
+}
+
+.btn--xs {
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  font-family: $font-display;
+  font-weight: 500;
+}
+
 // Brief highlight on the card a chip jumped to. Subtle tint pulse
 // rather than border flash so it doesn't compete with hover states.
 @keyframes shopJumpFlash {

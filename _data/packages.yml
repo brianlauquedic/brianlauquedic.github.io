@@ -768,7 +768,7 @@ quick_buys:
 
   - id: telegram-ama
     category: live
-    price_usdt: 200
+    price_usdt: 100
     delivery:
       en: "Scheduled within 3 business days"
       zh-tw: "3 個工作日內排程"
@@ -894,21 +894,806 @@ quick_buys:
       zh-tw: "一位精選英文加密 KOL 在 X 上發文 ── 以真實互動質量篩選，非媒體資料粉絲數。"
       ja: "厳選した英語クリプトKOLによるX投稿1本 ── 媒体資料のフォロワー数ではなく、真のエンゲージメント品質で選定。"
 
-  - id: korean-kol-single
+  - id: chinese-kol-single
     category: kol
-    price_usdt: 350
+    price_usdt: 500
     delivery:
       en: "5–7 business days"
       zh-tw: "5–7 個工作日"
       ja: "5〜7営業日"
     title:
-      en: "Korean crypto KOL — single curated post"
-      zh-tw: "韓文加密 KOL ── 單條精選"
-      ja: "韓国語クリプトKOL ── 単発精選投稿"
+      en: "Chinese-region curated KOL — single post"
+      zh-tw: "華語區精選 KOL ── 單條"
+      ja: "華語圏厳選KOL ── 単発投稿"
     description:
-      en: "One vetted Korean crypto KOL post on X or Naver — Korea retail responds to native voices, not translated copy."
-      zh-tw: "一位精選韓文加密 KOL 於 X 或 Naver 發文 ── 韓國散戶只認母語原生聲音，譯文難以打動。"
-      ja: "厳選した韓国語クリプトKOLによるX または Naver投稿1本 ── 韓国リテールは母語ネイティブの発信に反応し、翻訳コピーには動かない。"
+      en: "One vetted Chinese-region crypto KOL post on X — covers mainland readers via reachable accounts. Same screening criteria as English."
+      zh-tw: "一位精選華語區加密 KOL 於 X 發文 ── 透過可達帳戶覆蓋大陸讀者。篩選標準與英文版一致。"
+      ja: "厳選した華語圏クリプトKOLによるX投稿1本 ── 到達可能なアカウント経由で大陸読者をカバー。スクリーニング基準は英語版と同一。"
+
+# =====================================================================
+# Full pricing reference — every à-la-carte SKU we sell.
+# Rendered as collapsible <details> tables under Quick Buys, so the
+# 150+ catalog stays browseable without overwhelming the card grid.
+# Each row maps to the same on-chain checkout flow as the cards.
+# Prices: 对外价格 column from internal pricing sheets (报价.xlsx
+# + 报价(1).xlsx). When `on_quote: true` the row shows "On request"
+# instead of a Buy button — these are scope-dependent SKUs.
+# =====================================================================
+pricing_tables:
+
+  - id: data-listings
+    title:
+      en: "Data sites & wallet listings"
+      zh-tw: "數據站與錢包收錄"
+      ja: "データサイトとウォレット掲載"
+    note:
+      en: "Many of these are bundled into Token Discoverable (8 sites) and Wallet Pack (7 wallets). Buy individually below if you only need one."
+      zh-tw: "下列多項已包含在 Token Discoverable（8 站）與 Wallet Pack（7 錢包）整合方案內。如僅需單項，可在下方單買。"
+      ja: "下記の多くはToken Discoverable（8サイト）とWallet Pack（7ウォレット）に含まれます。単一項目のみ必要な場合は下記から個別購入可。"
+    rows:
+      - id: cmc-listing
+        category: listings
+        price_usdt: 6500
+        label: { en: "CoinMarketCap fast listing (24h)", zh-tw: "CoinMarketCap 24 小時上線", ja: "CoinMarketCap 24時間上場" }
+      - id: coingecko-listing
+        category: listings
+        price_usdt: 2200
+        label: { en: "CoinGecko listing", zh-tw: "CoinGecko 收錄", ja: "CoinGecko 掲載" }
+      - id: tp-wallet
+        category: listings
+        price_usdt: 1500
+        label: { en: "TokenPocket Wallet — token info listing", zh-tw: "TP 錢包 ── 代幣資訊收錄", ja: "TokenPocketウォレット ── トークン情報掲載" }
+      - id: ave-listing
+        category: listings
+        price_usdt: 300
+        label: { en: "Ave — fast token info listing", zh-tw: "Ave ── 秒上代幣資訊", ja: "Ave ── トークン情報を即時掲載" }
+      - id: ave-derisk
+        category: listings
+        price_usdt: 700
+        label: { en: "Ave — risk audit removal", zh-tw: "Ave ── 去風險審計", ja: "Ave ── リスク監査の解除" }
+      - id: ave-edit
+        category: listings
+        price_usdt: 1000
+        label: { en: "Ave — edit token info", zh-tw: "Ave ── 修改代幣資訊", ja: "Ave ── トークン情報の編集" }
+      - id: trust-wallet
+        category: listings
+        price_usdt: 6300
+        label: { en: "Trust Wallet — token info listing", zh-tw: "Trust 錢包 ── 代幣資訊收錄", ja: "Trustウォレット ── トークン情報掲載" }
+      - id: dextools-listing
+        category: listings
+        price_usdt: 1300
+        label: { en: "DexTools listing (required before OKX Wallet)", zh-tw: "DexTools 收錄（上 OKX 錢包必須先上 DexTools）", ja: "DexTools掲載（OKXウォレット前に必須）" }
+      - id: feixiaohao-new
+        category: listings
+        price_usdt: 1700
+        label: { en: "Feixiaohao (new version) — info listing", zh-tw: "非小號新版 ── 資訊收錄", ja: "非小号 新版 ── 情報掲載" }
+      - id: feixiaohao-old
+        category: listings
+        price_usdt: 1000
+        label: { en: "Feixiaohao (old version) — info listing", zh-tw: "非小號老版 ── 資訊收錄", ja: "非小号 旧版 ── 情報掲載" }
+      - id: rootdata-listing
+        category: listings
+        price_usdt: 2700
+        label: { en: "Rootdata — info listing", zh-tw: "Rootdata ── 資訊收錄", ja: "Rootdata ── 情報掲載" }
+      - id: mytoken-listing
+        category: listings
+        price_usdt: 1300
+        label: { en: "Mytoken — info listing", zh-tw: "Mytoken ── 資訊收錄", ja: "Mytoken ── 情報掲載" }
+      - id: dexscreener-listing
+        category: listings
+        price_usdt: 700
+        label: { en: "DexScreener — info listing", zh-tw: "DexScreener ── 資訊收錄", ja: "DexScreener ── 情報掲載" }
+      - id: geckoterminal-listing
+        category: listings
+        price_usdt: 700
+        label: { en: "GeckoTerminal — info listing", zh-tw: "GeckoTerminal ── 資訊收錄", ja: "GeckoTerminal ── 情報掲載" }
+      - id: binance-wallet
+        category: listings
+        price_usdt: 1000
+        label: { en: "Binance Wallet — token info listing", zh-tw: "幣安錢包 ── 代幣資訊收錄", ja: "Binanceウォレット ── トークン情報掲載" }
+      - id: metamask-wallet
+        category: listings
+        price_usdt: 3000
+        label: { en: "MetaMask Wallet — token info listing", zh-tw: "MetaMask 錢包 ── 代幣資訊收錄", ja: "MetaMaskウォレット ── トークン情報掲載" }
+      - id: okx-wallet
+        category: listings
+        price_usdt: 1000
+        label: { en: "OKX Wallet — token info listing (DexTools listing required first)", zh-tw: "OKX 錢包 ── 代幣資訊收錄（需先上 DexTools）", ja: "OKXウォレット ── トークン情報掲載（先にDexTools掲載が必要）" }
+      - id: bitget-wallet
+        category: listings
+        price_usdt: 300
+        label: { en: "Bitget Wallet — token info listing", zh-tw: "Bitget 錢包 ── 代幣資訊收錄", ja: "Bitgetウォレット ── トークン情報掲載" }
+      - id: gmgn-info
+        category: listings
+        price_usdt: 600
+        label: { en: "GMGN — trader info listing", zh-tw: "GMGN ── 交易員資訊收錄", ja: "GMGN ── トレーダー情報掲載" }
+      - id: msg-listing
+        category: listings
+        price_usdt: 400
+        label: { en: "MSG — info listing", zh-tw: "MSG ── 資訊收錄", ja: "MSG ── 情報掲載" }
+
+  - id: flash-news
+    title:
+      en: "Crypto-native flash news desks"
+      zh-tw: "加密原生快訊發佈"
+      ja: "クリプト系速報配信"
+    note:
+      en: "Single-piece flash distribution to dedicated crypto news outlets — high signal for traders watching real-time feeds."
+      zh-tw: "向專屬加密原生媒體發佈單篇快訊 ── 對盯盤交易員觸達極強。"
+      ja: "暗号ニュース系メディアへの単発フラッシュ配信 ── リアルタイムフィードを見るトレーダーへの到達性が高い。"
+    rows:
+      - id: chaincatcher-flash
+        category: pr
+        price_usdt: 1200
+        label: { en: "ChainCatcher — flash news", zh-tw: "鏈捕手快訊發佈", ja: "ChainCatcher 速報" }
+      - id: odaily-flash
+        category: pr
+        price_usdt: 1200
+        label: { en: "Odaily Planet Daily — flash news", zh-tw: "星球日報快訊發佈", ja: "Odaily星球日報 速報" }
+      - id: feixiaohao-flash
+        category: pr
+        price_usdt: 1200
+        label: { en: "Feixiaohao (new version) — flash news", zh-tw: "新版非小號快訊發佈", ja: "非小号 新版 速報" }
+      - id: bsc-daily
+        category: pr
+        price_usdt: 1700
+        label: { en: "BSC Daily — 3 content pieces", zh-tw: "BSC Daily ── 3 條內容發佈", ja: "BSC Daily ── コンテンツ3本" }
+
+  - id: press-distribution
+    title:
+      en: "Press distribution — multi-region"
+      zh-tw: "國際媒體分發 ── 多地區"
+      ja: "プレス配信 ── 多地域"
+    note:
+      en: "Translated press release distribution. Choose by region or language."
+      zh-tw: "翻譯後新聞稿分發。可依地區或語言選擇。"
+      ja: "翻訳済みプレスリリースの配信。地域・言語から選択可。"
+    rows:
+      - id: pr-ap-300
+        category: pr
+        price_usdt: 600
+        label: { en: "AP wire + 300 satellite outlets", zh-tw: "美聯社 + 300 家媒體小站", ja: "AP通信 + 300サイト" }
+      - id: pr-yahoo
+        category: pr
+        price_usdt: 600
+        label: { en: "Yahoo Finance / News (Web2 only)", zh-tw: "雅虎系列（僅限 Web2 投放）", ja: "Yahoo Finance / News（Web2 のみ）" }
+      - id: pr-google-150
+        category: pr
+        price_usdt: 200
+        label: { en: "Google indexable pack — 150 outlets", zh-tw: "谷歌包收錄套餐 ── 150 家", ja: "Google包収録パック ── 150サイト" }
+      - id: pr-en-100
+        category: pr
+        price_usdt: 100
+        label: { en: "English — 100 outlets", zh-tw: "英文媒體 ── 100 家", ja: "英語媒体 ── 100サイト" }
+      - id: pr-boutique
+        category: pr
+        price_usdt: 20
+        label: { en: "Boutique overseas — single placement", zh-tw: "精品海外媒體 ── 單篇", ja: "精選海外媒体 ── 単発" }
+      - id: pr-boutique-pack
+        category: pr
+        price_usdt: 50
+        label: { en: "Boutique overseas — indexable pack", zh-tw: "精品海外包收錄", ja: "精選海外 包収録" }
+      - id: pr-japan-curated
+        category: pr
+        price_usdt: 80
+        label: { en: "Japan — curated outlets", zh-tw: "日本精選媒體", ja: "日本厳選媒体" }
+      - id: pr-jp-50
+        category: pr
+        price_usdt: 100
+        label: { en: "Japanese — 50 outlets", zh-tw: "50 家日語媒體", ja: "日本語50媒体" }
+      - id: pr-de-50
+        category: pr
+        price_usdt: 100
+        label: { en: "German — 50 outlets", zh-tw: "50 家德語媒體", ja: "ドイツ語50媒体" }
+      - id: pr-ms-50
+        category: pr
+        price_usdt: 100
+        label: { en: "Malay — 50 outlets", zh-tw: "50 家馬來西亞語媒體", ja: "マレー語50媒体" }
+      - id: pr-es-50
+        category: pr
+        price_usdt: 100
+        label: { en: "Spanish — 50 outlets", zh-tw: "50 家西班牙語媒體", ja: "スペイン語50媒体" }
+      - id: pr-fr-50
+        category: pr
+        price_usdt: 100
+        label: { en: "French — 50 outlets", zh-tw: "50 家法語媒體", ja: "フランス語50媒体" }
+      - id: pr-ru-60
+        category: pr
+        price_usdt: 120
+        label: { en: "Russian — 60 outlets", zh-tw: "60 家俄語媒體", ja: "ロシア語60媒体" }
+      - id: pr-hi-60
+        category: pr
+        price_usdt: 120
+        label: { en: "Hindi — 60 outlets", zh-tw: "60 家印度語媒體", ja: "ヒンディー語60媒体" }
+      - id: pr-sv-60
+        category: pr
+        price_usdt: 120
+        label: { en: "Swedish — 60 outlets", zh-tw: "60 家瑞典語媒體", ja: "スウェーデン語60媒体" }
+      - id: pr-th-60
+        category: pr
+        price_usdt: 120
+        label: { en: "Thai — 60 outlets", zh-tw: "60 家泰語媒體", ja: "タイ語60媒体" }
+      - id: pr-es-60
+        category: pr
+        price_usdt: 120
+        label: { en: "Spanish — 60 outlets", zh-tw: "60 家西班牙語媒體", ja: "スペイン語60媒体" }
+      - id: pr-vi-60
+        category: pr
+        price_usdt: 120
+        label: { en: "Vietnamese — 60 outlets", zh-tw: "60 家越南語媒體", ja: "ベトナム語60媒体" }
+      - id: pr-ar-60
+        category: pr
+        price_usdt: 120
+        label: { en: "Arabic — 60 outlets", zh-tw: "60 家阿拉伯語媒體", ja: "アラビア語60媒体" }
+      - id: pr-pt-60
+        category: pr
+        price_usdt: 120
+        label: { en: "Portuguese — 60 outlets", zh-tw: "60 家葡萄牙語媒體", ja: "ポルトガル語60媒体" }
+      - id: pr-ko-60
+        category: pr
+        price_usdt: 120
+        label: { en: "Korean — 60 outlets", zh-tw: "60 家韓語媒體", ja: "韓国語60媒体" }
+      - id: pr-africa-80
+        category: pr
+        price_usdt: 150
+        label: { en: "Africa pack — 80 outlets", zh-tw: "80 家非洲套餐", ja: "アフリカパック ── 80媒体" }
+      - id: pr-me-80
+        category: pr
+        price_usdt: 150
+        label: { en: "Middle East pack — 80 outlets", zh-tw: "80 家中東套餐", ja: "中東パック ── 80媒体" }
+      - id: pr-greater-china-80
+        category: pr
+        price_usdt: 150
+        label: { en: "HK / Macau / Taiwan — 80 outlets", zh-tw: "80 家港澳台媒體", ja: "香港・マカオ・台湾 ── 80媒体" }
+      - id: pr-business-100
+        category: pr
+        price_usdt: 100
+        label: { en: "High-end business / finance — 100 outlets", zh-tw: "高端商業財經類媒體 ── 100 家", ja: "ハイエンド経済紙 ── 100媒体" }
+      - id: pr-china-flagship-100
+        category: pr
+        price_usdt: 100
+        label: { en: "China flagship outlets — 100 outlets", zh-tw: "中國字頭媒體套餐 ── 100 家", ja: "中国フラッグシップ媒体 ── 100媒体" }
+      - id: pr-full-mix-300
+        category: pr
+        price_usdt: 200
+        label: { en: "Full-mix general pack — 300 outlets", zh-tw: "各門類總包套餐 ── 300 家", ja: "全分野総合パック ── 300媒体" }
+      - id: pr-indexable-100
+        category: pr
+        price_usdt: 150
+        label: { en: "Indexable pack — 100 outlets", zh-tw: "包收錄套餐 ── 100 家", ja: "包収録パック ── 100媒体" }
+      - id: pr-health-100
+        category: pr
+        price_usdt: 150
+        label: { en: "Health-vertical — 100 outlets", zh-tw: "健康類媒體 ── 100 家", ja: "ヘルス系媒体 ── 100媒体" }
+      - id: pr-energy-100
+        category: pr
+        price_usdt: 200
+        label: { en: "Energy-vertical — 100 outlets", zh-tw: "能源類媒體 ── 100 家", ja: "エネルギー系媒体 ── 100媒体" }
+
+  - id: china-self-media
+    title:
+      en: "China self-media platforms"
+      zh-tw: "中國自媒體平台"
+      ja: "中国自社メディア"
+    note:
+      en: "Per-publication pricing for the Chinese mainland's most-read self-media platforms."
+      zh-tw: "中國大陸最高觸達自媒體平台單篇發佈價。"
+      ja: "中国本土の主要自社メディア・プラットフォームの単発掲載料金。"
+    rows:
+      - id: bjh-regular
+        category: pr
+        price_usdt: 30
+        label: { en: "Baijiahao — regular account", zh-tw: "普通百家號", ja: "普通百家号" }
+      - id: bjh-vip
+        category: pr
+        price_usdt: 50
+        label: { en: "Baijiahao — verified account", zh-tw: "大V 百家號", ja: "大V百家号" }
+      - id: sm-sina
+        category: pr
+        price_usdt: 30
+        label: { en: "Sina — news article", zh-tw: "新浪文章", ja: "新浪記事" }
+      - id: sm-netease
+        category: pr
+        price_usdt: 30
+        label: { en: "NetEase — news article", zh-tw: "網易文章", ja: "NetEase記事" }
+      - id: sm-sohu
+        category: pr
+        price_usdt: 30
+        label: { en: "Sohu — news article", zh-tw: "搜狐文章", ja: "搜狐記事" }
+      - id: sm-zhihu
+        category: pr
+        price_usdt: 30
+        label: { en: "Zhihu — post", zh-tw: "知乎文章", ja: "知乎投稿" }
+      - id: sm-wechat
+        category: pr
+        price_usdt: 20
+        label: { en: "WeChat Official Account — post", zh-tw: "微信公眾號文章", ja: "WeChat公式アカウント投稿" }
+      - id: sm-weibo
+        category: pr
+        price_usdt: 30
+        label: { en: "Weibo — 10K+ follower influencer post", zh-tw: "微博萬粉博主", ja: "Weibo 1万フォロワー以上のインフルエンサー投稿" }
+      - id: sm-xhs
+        category: pr
+        price_usdt: 20
+        label: { en: "Xiaohongshu (RedNote) — post", zh-tw: "小紅書", ja: "小紅書（RedNote）投稿" }
+
+  - id: qa-platforms
+    title:
+      en: "Q&A platforms & content libraries"
+      zh-tw: "問答平台與文庫"
+      ja: "Q&Aプラットフォームとライブラリ"
+    note:
+      en: "How-To-buy / risk-evaluation Q&A pages drive search-engine first impressions in China."
+      zh-tw: "在中國，如何購買 / 風險評估類問答頁面驅動搜尋引擎第一印象。"
+      ja: "「買い方」「リスク評価」系のQ&Aページは中国で検索エンジンの第一印象を左右します。"
+    rows:
+      - id: qa-baidu-zd-10
+        category: pr
+        price_usdt: 80
+        label: { en: "Baidu Zhidao — 10 Q&A groups (1Q-3A each)", zh-tw: "百度知道 ── 10 組（一問三答）", ja: "百度知道 ── 10組（1問3答）" }
+      - id: qa-zhihu-12
+        category: pr
+        price_usdt: 150
+        label: { en: "Zhihu — 12 Q&A items", zh-tw: "知乎問答 ── 12 條", ja: "知乎Q&A ── 12件" }
+      - id: qa-baidu-zd-blue-5
+        category: pr
+        price_usdt: 80
+        label: { en: "Baidu Zhidao Blue-V — 5 groups", zh-tw: "百度知道藍 V 問答 ── 5 組", ja: "百度知道 ブルーV ── 5組" }
+      - id: qa-sogou-10
+        category: pr
+        price_usdt: 80
+        label: { en: "Sogou Q&A — 10 groups", zh-tw: "搜狗問答 ── 10 組", ja: "搜狗Q&A ── 10組" }
+      - id: qa-baidu-wenku
+        category: pr
+        price_usdt: 50
+        label: { en: "Baidu Wenku — document", zh-tw: "百度文庫", ja: "百度文庫" }
+      - id: qa-baidu-app
+        category: pr
+        price_usdt: 50
+        label: { en: "Baidu app — homepage placement", zh-tw: "百度客戶端 ── 上首頁", ja: "百度クライアント ── トップページ掲載" }
+      - id: qa-geo-ai-200
+        category: pr
+        price_usdt: 300
+        label: { en: "GEO AI indexable pack — 200 outlets", zh-tw: "GEO AI 收錄套餐 ── 200 家", ja: "GEO AI包収録パック ── 200媒体" }
+
+  - id: short-video
+    title:
+      en: "Short-video platforms (China)"
+      zh-tw: "短影音平台（中國）"
+      ja: "ショート動画プラットフォーム（中国）"
+    note:
+      en: "Per-post pricing on China's eight major short-video platforms. KOC = Key Opinion Consumer (high-credibility everyday accounts)."
+      zh-tw: "中國八大短影音平台單篇報價。KOC = 關鍵意見消費者（高可信度日常帳號）。"
+      ja: "中国の主要ショート動画プラットフォーム8社の単発投稿料金。KOC = キー・オピニオン・コンシューマー（信頼性の高い一般アカウント）。"
+    rows:
+      - id: sv-wechat-koc
+        category: pr
+        price_usdt: 20
+        label: { en: "WeChat Channels — KOC volume", zh-tw: "微信視頻號 ── KOC 素人鋪量", ja: "WeChat動画号 ── KOCボリューム" }
+      - id: sv-wechat-tech
+        category: pr
+        price_usdt: 30
+        label: { en: "WeChat Channels — tech / finance", zh-tw: "微信視頻號 ── 科技財經類", ja: "WeChat動画号 ── テック・経済" }
+      - id: sv-wechat-bigv
+        category: pr
+        price_usdt: 120
+        label: { en: "WeChat Channels — 100K-500K influencer", zh-tw: "微信視頻號 ── 10–50W 大 V", ja: "WeChat動画号 ── 10〜50万大V" }
+      - id: sv-douyin-koc
+        category: pr
+        price_usdt: 20
+        label: { en: "Douyin — KOC volume", zh-tw: "抖音 ── KOC 素人鋪量", ja: "抖音 ── KOCボリューム" }
+      - id: sv-douyin-tech
+        category: pr
+        price_usdt: 30
+        label: { en: "Douyin — tech / finance", zh-tw: "抖音 ── 科技財經類", ja: "抖音 ── テック・経済" }
+      - id: sv-douyin-bigv
+        category: pr
+        price_usdt: 150
+        label: { en: "Douyin — 100K-500K influencer", zh-tw: "抖音 ── 10–50W 大 V", ja: "抖音 ── 10〜50万大V" }
+      - id: sv-kuaishou-koc
+        category: pr
+        price_usdt: 20
+        label: { en: "Kuaishou — KOC volume", zh-tw: "快手 ── KOC 素人鋪量", ja: "快手 ── KOCボリューム" }
+      - id: sv-kuaishou-tech
+        category: pr
+        price_usdt: 30
+        label: { en: "Kuaishou — tech / finance", zh-tw: "快手 ── 科技財經類", ja: "快手 ── テック・経済" }
+      - id: sv-kuaishou-bigv
+        category: pr
+        price_usdt: 120
+        label: { en: "Kuaishou — 100K-500K influencer", zh-tw: "快手 ── 10–50W 大 V", ja: "快手 ── 10〜50万大V" }
+      - id: sv-xigua-koc
+        category: pr
+        price_usdt: 20
+        label: { en: "Xigua Video — KOC volume", zh-tw: "西瓜視頻 ── KOC 素人鋪量", ja: "西瓜視頻 ── KOCボリューム" }
+      - id: sv-xigua-tech
+        category: pr
+        price_usdt: 30
+        label: { en: "Xigua Video — tech / finance", zh-tw: "西瓜視頻 ── 科技財經類", ja: "西瓜視頻 ── テック・経済" }
+      - id: sv-xigua-bigv
+        category: pr
+        price_usdt: 120
+        label: { en: "Xigua Video — 100K-500K influencer", zh-tw: "西瓜視頻 ── 10–50W 大 V", ja: "西瓜視頻 ── 10〜50万大V" }
+      - id: sv-bilibili-koc
+        category: pr
+        price_usdt: 20
+        label: { en: "Bilibili — KOC volume", zh-tw: "嗶哩嗶哩 ── KOC 素人鋪量", ja: "ビリビリ ── KOCボリューム" }
+      - id: sv-bilibili-tech
+        category: pr
+        price_usdt: 30
+        label: { en: "Bilibili — tech / finance", zh-tw: "嗶哩嗶哩 ── 科技財經類", ja: "ビリビリ ── テック・経済" }
+      - id: sv-iqiyi-koc
+        category: pr
+        price_usdt: 20
+        label: { en: "iQiyi — KOC volume", zh-tw: "愛奇藝 ── KOC 素人鋪量", ja: "iQiyi ── KOCボリューム" }
+      - id: sv-iqiyi-tech
+        category: pr
+        price_usdt: 30
+        label: { en: "iQiyi — tech / finance", zh-tw: "愛奇藝 ── 科技財經類", ja: "iQiyi ── テック・経済" }
+      - id: sv-youku-koc
+        category: pr
+        price_usdt: 20
+        label: { en: "Youku — KOC volume", zh-tw: "優酷 ── KOC 素人鋪量", ja: "Youku ── KOCボリューム" }
+      - id: sv-youku-tech
+        category: pr
+        price_usdt: 30
+        label: { en: "Youku — tech / finance", zh-tw: "優酷 ── 科技財經類", ja: "Youku ── テック・経済" }
+      - id: sv-youku-bigv
+        category: pr
+        price_usdt: 120
+        label: { en: "Youku — 10K+ follower influencer", zh-tw: "優酷 ── 萬粉大 V", ja: "Youku ── 1万フォロワー以上の大V" }
+      - id: sv-tencent-koc
+        category: pr
+        price_usdt: 20
+        label: { en: "Tencent Video — KOC volume", zh-tw: "騰訊視頻 ── KOC 素人鋪量", ja: "騰訊視頻 ── KOCボリューム" }
+      - id: sv-tencent-tech
+        category: pr
+        price_usdt: 30
+        label: { en: "Tencent Video — tech / finance", zh-tw: "騰訊視頻 ── 科技財經類", ja: "騰訊視頻 ── テック・経済" }
+
+  - id: x-kol-packages
+    title:
+      en: "X / Twitter KOL packages"
+      zh-tw: "X / Twitter KOL 套餐"
+      ja: "X / Twitter KOL パッケージ"
+    note:
+      en: "Curated by region or vertical. KOLs are screened on engagement quality, not media-kit follower count."
+      zh-tw: "依地區或賽道精選。KOL 以真實互動質量篩選，非媒體資料粉絲數。"
+      ja: "地域・垂直分野ごとに厳選。KOLはメディアキットのフォロワー数ではなく、エンゲージメント品質で選定。"
+    rows:
+      - id: kol-jp-curated
+        category: kol
+        price_usdt: 400
+        label: { en: "Japan — curated single KOL", zh-tw: "日本精選 KOL ── 單條", ja: "日本厳選KOL ── 単発" }
+      - id: kol-jp-premium-3
+        category: kol
+        price_usdt: 3000
+        label: { en: "Japan — premium pack (3 KOLs)", zh-tw: "日本高端 KOL 套餐（3 位）", ja: "日本ハイエンドKOLパック（3名）" }
+      - id: kol-jp-mid-5
+        category: kol
+        price_usdt: 3500
+        label: { en: "Japan — mid-premium pack (5 KOLs)", zh-tw: "日本中高端 KOL 套餐（5 位）", ja: "日本ミッドハイエンドKOLパック（5名）" }
+      - id: kol-jp-full-10
+        category: kol
+        price_usdt: 6000
+        label: { en: "Japan — full-coverage pack (10 KOLs)", zh-tw: "日本全覆蓋 KOL 套餐（10 位）", ja: "日本フルカバレッジKOLパック（10名）" }
+      - id: kol-jp-bulk-10
+        category: kol
+        price_usdt: 2000
+        label: { en: "Japan — volume pack (10 KOLs)", zh-tw: "日本批量 KOL 套餐（10 位）", ja: "日本ボリュームKOLパック（10名）" }
+      - id: kol-cn-curated
+        category: kol
+        price_usdt: 500
+        label: { en: "Chinese-region — curated single KOL", zh-tw: "華語區精選 KOL ── 單條", ja: "華語圏厳選KOL ── 単発" }
+      - id: kol-cn-premium-3
+        category: kol
+        price_usdt: 4000
+        label: { en: "Chinese — premium pack (3 KOLs)", zh-tw: "華語區高端 KOL 套餐（3 位）", ja: "華語圏ハイエンドKOLパック（3名）" }
+      - id: kol-cn-mid-5
+        category: kol
+        price_usdt: 3500
+        label: { en: "Chinese — mid-premium pack (5 KOLs)", zh-tw: "華語區中高端 KOL 套餐（5 位）", ja: "華語圏ミッドハイエンドKOLパック（5名）" }
+      - id: kol-cn-full-10
+        category: kol
+        price_usdt: 6000
+        label: { en: "Chinese — full-coverage pack (10 KOLs)", zh-tw: "華語區全覆蓋 KOL 套餐（10 位）", ja: "華語圏フルカバレッジKOLパック（10名）" }
+      - id: kol-cn-bulk-10
+        category: kol
+        price_usdt: 1500
+        label: { en: "Chinese — volume pack (10 KOLs)", zh-tw: "華語區批量 KOL 套餐（10 位）", ja: "華語圏ボリュームKOLパック（10名）" }
+      - id: kol-en-budget
+        category: kol
+        price_usdt: 100
+        label: { en: "English — value-for-money KOL (single)", zh-tw: "英文區高性價比 KOL ── 單條", ja: "英語圏コスパKOL ── 単発" }
+      - id: kol-en-curated
+        category: kol
+        price_usdt: 300
+        label: { en: "English — curated single KOL", zh-tw: "英文區精選 KOL ── 單條", ja: "英語圏厳選KOL ── 単発" }
+      - id: kol-ai-3
+        category: kol
+        price_usdt: 1800
+        label: { en: "AI vertical — curated pack (3 KOLs)", zh-tw: "AI 賽道精選套餐（3 位）", ja: "AI分野厳選パック（3名）" }
+      - id: kol-ai-5
+        category: kol
+        price_usdt: 2500
+        label: { en: "AI vertical — pack (5 KOLs)", zh-tw: "AI 賽道套餐（5 位）", ja: "AI分野パック（5名）" }
+      - id: kol-ai-10
+        category: kol
+        price_usdt: 5000
+        label: { en: "AI vertical — pack (10 KOLs)", zh-tw: "AI 賽道套餐（10 位）", ja: "AI分野パック（10名）" }
+      - id: kol-rwa-3
+        category: kol
+        price_usdt: 2200
+        label: { en: "RWA vertical — curated pack (3 KOLs)", zh-tw: "RWA 賽道精選套餐（3 位）", ja: "RWA分野厳選パック（3名）" }
+      - id: kol-rwa-5
+        category: kol
+        price_usdt: 3500
+        label: { en: "RWA vertical — pack (5 KOLs)", zh-tw: "RWA 賽道套餐（5 位）", ja: "RWA分野パック（5名）" }
+      - id: kol-rwa-10
+        category: kol
+        price_usdt: 5000
+        label: { en: "RWA vertical — pack (10 KOLs)", zh-tw: "RWA 賽道套餐（10 位）", ja: "RWA分野パック（10名）" }
+      - id: kol-pm-3
+        category: kol
+        price_usdt: 2500
+        label: { en: "Prediction Markets — curated pack (3 KOLs)", zh-tw: "預測市場賽道精選套餐（3 位）", ja: "予測市場分野厳選パック（3名）" }
+      - id: kol-pm-5
+        category: kol
+        price_usdt: 3500
+        label: { en: "Prediction Markets — pack (5 KOLs)", zh-tw: "預測市場賽道套餐（5 位）", ja: "予測市場分野パック（5名）" }
+      - id: kol-pm-10
+        category: kol
+        price_usdt: 6000
+        label: { en: "Prediction Markets — pack (10 KOLs)", zh-tw: "預測市場賽道套餐（10 位）", ja: "予測市場分野パック（10名）" }
+      - id: kol-l1-3
+        category: kol
+        price_usdt: 2000
+        label: { en: "Public-chain vertical — curated pack (3 KOLs)", zh-tw: "公鏈賽道精選套餐（3 位）", ja: "パブリックチェーン分野厳選パック（3名）" }
+      - id: kol-l1-5
+        category: kol
+        price_usdt: 3000
+        label: { en: "Public-chain — pack (5 KOLs)", zh-tw: "公鏈賽道套餐（5 位）", ja: "パブリックチェーン分野パック（5名）" }
+      - id: kol-l1-10
+        category: kol
+        price_usdt: 4500
+        label: { en: "Public-chain — pack (10 KOLs)", zh-tw: "公鏈賽道套餐（10 位）", ja: "パブリックチェーン分野パック（10名）" }
+      - id: kol-any-3
+        category: kol
+        price_usdt: 800
+        label: { en: "All-vertical general pack (3 KOLs)", zh-tw: "全類目通用套餐（3 位）", ja: "全分野汎用パック（3名）" }
+      - id: kol-any-5
+        category: kol
+        price_usdt: 1500
+        label: { en: "All-vertical general pack (5 KOLs)", zh-tw: "全類目通用套餐（5 位）", ja: "全分野汎用パック（5名）" }
+      - id: kol-any-10
+        category: kol
+        price_usdt: 3000
+        label: { en: "All-vertical general pack (10 KOLs)", zh-tw: "全類目通用套餐（10 位）", ja: "全分野汎用パック（10名）" }
+      - id: kol-budget-3
+        category: kol
+        price_usdt: 300
+        label: { en: "Budget pack (3 KOLs)", zh-tw: "高性價比套餐（3 位）", ja: "コスパパック（3名）" }
+      - id: kol-budget-5
+        category: kol
+        price_usdt: 500
+        label: { en: "Budget pack (5 KOLs)", zh-tw: "高性價比套餐（5 位）", ja: "コスパパック（5名）" }
+      - id: kol-budget-10
+        category: kol
+        price_usdt: 1000
+        label: { en: "Budget pack (10 KOLs)", zh-tw: "高性價比套餐（10 位）", ja: "コスパパック（10名）" }
+      - id: kol-tg-elite
+        category: kol
+        price_usdt: 100
+        label: { en: "Premium TG community KOL post", zh-tw: "高端 TG 社群 KOL 宣發", ja: "プレミアムTGコミュニティKOL投稿" }
+
+  - id: x-engagement
+    title:
+      en: "X / Twitter engagement & growth"
+      zh-tw: "X / Twitter 互動與增長"
+      ja: "X / Twitter エンゲージメントと成長"
+    note:
+      en: "Single-orderable units. For sustained growth or custom volumes, contact us — minimum order applies on micro-transactions."
+      zh-tw: "可單獨下單的單位。如需持續增長或定制量，請聯繫我們 ── 微小金額有最低訂購量限制。"
+      ja: "単発注文可。継続成長やカスタム数量はお問い合わせください ── 少額の場合は最低注文数あり。"
+    rows:
+      - id: x-followers-bot
+        category: kol
+        price_usdt: 20
+        label: { en: "X followers (bot, no warranty)", zh-tw: "X 粉絲（機器粉、無售後）", ja: "Xフォロワー（ボット、保証なし）" }
+      - id: x-followers-warranty
+        category: kol
+        price_usdt: 30
+        label: { en: "X followers (bot, 30-day warranty)", zh-tw: "X 粉絲（機器粉、包售後 30 天）", ja: "Xフォロワー（ボット、30日保証付）" }
+      - id: x-giveaway
+        category: kol
+        price_usdt: 150
+        label: { en: "X Giveaway custom campaign", zh-tw: "X Giveaway 定制化活動", ja: "X Giveaway カスタムキャンペーン" }
+      - id: x-likes-100
+        category: kol
+        price_usdt: 3
+        label: { en: "X likes per 100 (min 100 batches)", zh-tw: "X 點讚 / 100（最少 100 起）", ja: "Xいいね / 100（100バッチ以上）" }
+      - id: x-likes-10
+        category: kol
+        price_usdt: 2
+        label: { en: "X likes per 100 (min 10 batches)", zh-tw: "X 點讚 / 100（最少 10 起）", ja: "Xいいね / 100（10バッチ以上）" }
+      - id: x-reposts-100
+        category: kol
+        price_usdt: 3
+        label: { en: "X reposts per 100 (min 100 batches)", zh-tw: "X 轉發 / 100（最少 100 起）", ja: "Xリポスト / 100（100バッチ以上）" }
+      - id: x-reposts-10
+        category: kol
+        price_usdt: 2
+        label: { en: "X reposts per 100 (min 10 batches)", zh-tw: "X 轉發 / 100（最少 10 起）", ja: "Xリポスト / 100（10バッチ以上）" }
+      - id: x-comments-100
+        category: kol
+        price_usdt: 15
+        label: { en: "X comments per 100 (custom optional)", zh-tw: "X 評論 / 100（可選自定義）", ja: "Xコメント / 100（カスタム可）" }
+      - id: x-views-1k
+        category: kol
+        price_usdt: 1
+        label: { en: "X views per 1,000", zh-tw: "X 瀏覽 / 1000", ja: "X閲覧 / 1000" }
+      - id: x-ama-anon
+        category: kol
+        price_usdt: 6
+        label: { en: "X AMA anonymous listeners — 100 / 1H", zh-tw: "X AMA 匿名在線收聽 ── 100 人 / 1H", ja: "X AMA 匿名リスナー ── 100名 / 1H" }
+      - id: x-ama-real
+        category: kol
+        price_usdt: 5
+        label: { en: "X AMA real listeners — 1 / 1H", zh-tw: "X AMA 真人在線收聽 ── 1 人 / 1H", ja: "X AMA 実在リスナー ── 1名 / 1H" }
+      - id: x-tweet-cadence
+        category: kol
+        price_usdt: 200
+        label: { en: "X tweet operations — 20 posts / week", zh-tw: "X 推文運營 ── 20 條 / 週", ja: "X投稿運用 ── 週20本" }
+
+  - id: social-engagement
+    title:
+      en: "Telegram, Discord, Instagram, YouTube & Binance Square"
+      zh-tw: "Telegram、Discord、Instagram、YouTube 與幣安廣場"
+      ja: "Telegram、Discord、Instagram、YouTube とBinance Square"
+    note:
+      en: "Cross-platform engagement and community-growth units. Custom-volume orders welcomed."
+      zh-tw: "跨平台互動與社群增長服務單位。歡迎客製化量級。"
+      ja: "クロスプラットフォームのエンゲージメント・コミュニティ成長ユニット。カスタム数量も受注可。"
+    rows:
+      - id: tg-group-1k
+        category: kol
+        price_usdt: 5
+        label: { en: "Telegram group followers per 1,000", zh-tw: "Telegram 群聊增粉 / 1000", ja: "Telegramグループフォロワー / 1000" }
+      - id: tg-giveaway
+        category: kol
+        price_usdt: 150
+        label: { en: "TG Giveaway custom campaign", zh-tw: "TG Giveaway 定制化活動", ja: "TG Giveaway カスタムキャンペーン" }
+      - id: tg-real-volume
+        category: kol
+        price_usdt: 200
+        label: { en: "Telegram human chat volume — 10K msgs / month / language", zh-tw: "Telegram 真人水軍 ── 單語言 1 萬條訊息 / 月", ja: "Telegram 人力チャットボリューム ── 言語別1万投稿 / 月" }
+      - id: tg-real-mod
+        category: kol
+        price_usdt: 100
+        label: { en: "Telegram human moderation — monthly", zh-tw: "Telegram 真人群管 ── 月", ja: "Telegram 人力モデレーション ── 月次" }
+      - id: dc-group-1k
+        category: kol
+        price_usdt: 20
+        label: { en: "Discord group followers per 1,000", zh-tw: "Discord 群聊增粉 / 1000", ja: "Discordグループフォロワー / 1000" }
+      - id: dc-giveaway
+        category: kol
+        price_usdt: 150
+        label: { en: "Discord custom campaign", zh-tw: "Discord 定制化活動", ja: "Discord カスタムキャンペーン" }
+      - id: ig-followers-1k
+        category: kol
+        price_usdt: 5
+        label: { en: "Instagram followers per 1,000", zh-tw: "Instagram 粉絲 / 1000", ja: "Instagramフォロワー / 1000" }
+      - id: ig-likes-1k
+        category: kol
+        price_usdt: 5
+        label: { en: "Instagram likes per 1,000", zh-tw: "Instagram 點讚 / 1000", ja: "Instagramいいね / 1000" }
+      - id: ig-views-1k
+        category: kol
+        price_usdt: 2
+        label: { en: "Instagram views per 1,000", zh-tw: "Instagram 瀏覽量 / 1000", ja: "Instagram閲覧 / 1000" }
+      - id: ig-saves-1k
+        category: kol
+        price_usdt: 5
+        label: { en: "Instagram saves per 1,000", zh-tw: "Instagram 收藏 / 1000", ja: "Instagramコレクション / 1000" }
+      - id: ig-shares-1k
+        category: kol
+        price_usdt: 5
+        label: { en: "Instagram shares per 1,000", zh-tw: "Instagram 分享 / 1000", ja: "Instagramシェア / 1000" }
+      - id: ig-comments-100
+        category: kol
+        price_usdt: 20
+        label: { en: "Instagram comments per 100", zh-tw: "Instagram 評論 / 100", ja: "Instagramコメント / 100" }
+      - id: yt-followers-1k
+        category: kol
+        price_usdt: 60
+        label: { en: "YouTube followers per 1,000 (min 100)", zh-tw: "YouTube 粉絲 / 1000（100 起）", ja: "YouTubeチャンネル登録 / 1000（100以上）" }
+      - id: yt-views-1k
+        category: kol
+        price_usdt: 15
+        label: { en: "YouTube views per 1,000 (min 50)", zh-tw: "YouTube 瀏覽 / 1000（50 起）", ja: "YouTube視聴 / 1000（50以上）" }
+      - id: yt-shares-1k
+        category: kol
+        price_usdt: 10
+        label: { en: "YouTube shares per 1,000 (min 50)", zh-tw: "YouTube 分享 / 1000（50 起）", ja: "YouTubeシェア / 1000（50以上）" }
+      - id: yt-comments-1k
+        category: kol
+        price_usdt: 150
+        label: { en: "YouTube comments per 1,000 (min 50)", zh-tw: "YouTube 評論 / 1000（50 起）", ja: "YouTubeコメント / 1000（50以上）" }
+      - id: bsq-followers-1k
+        category: kol
+        price_usdt: 300
+        label: { en: "Binance Square followers per 1,000 (min 100)", zh-tw: "幣安廣場粉絲 / 1000（100 起）", ja: "Binance Squareフォロワー / 1000（100以上）" }
+      - id: bsq-likes-1k
+        category: kol
+        price_usdt: 200
+        label: { en: "Binance Square post likes per 1,000 (min 50)", zh-tw: "幣安廣場帖子點讚 / 1000（50 起）", ja: "Binance Square投稿いいね / 1000（50以上）" }
+      - id: bsq-shares-1k
+        category: kol
+        price_usdt: 200
+        label: { en: "Binance Square post shares per 1,000 (min 50)", zh-tw: "幣安廣場帖子轉發 / 1000（50 起）", ja: "Binance Square投稿シェア / 1000（50以上）" }
+      - id: bsq-saves-1k
+        category: kol
+        price_usdt: 200
+        label: { en: "Binance Square post saves per 1,000 (min 50)", zh-tw: "幣安廣場帖子收藏 / 1000（50 起）", ja: "Binance Square投稿コレクション / 1000（50以上）" }
+      - id: bsq-comments-1k
+        category: kol
+        price_usdt: 200
+        label: { en: "Binance Square post comments per 1,000 (min 50)", zh-tw: "幣安廣場帖子評論 / 1000（50 起）", ja: "Binance Square投稿コメント / 1000（50以上）" }
+
+  - id: on-quote
+    title:
+      en: "Custom & on-quote services"
+      zh-tw: "客製化與報價類服務"
+      ja: "カスタム・お見積もり制サービス"
+    note:
+      en: "Scope-dependent items priced per project. Contact us for quotes."
+      zh-tw: "依範疇定價的客製項目。請聯繫我們報價。"
+      ja: "スコープに応じて個別見積もりを行う項目。お問い合わせください。"
+    rows:
+      - id: q-web3-major
+        category: pr
+        on_quote: true
+        label: { en: "Major Web3 media — current rates on request", zh-tw: "主流 Web3 媒體 ── 最新報價請洽詢", ja: "主要Web3媒体 ── 最新料金はお問い合わせ" }
+      - id: q-baidu-baike
+        category: pr
+        on_quote: true
+        label: { en: "Baidu Baike — priced by content scope", zh-tw: "百度百科 ── 看內容定價", ja: "百度百科 ── コンテンツ規模により価格決定" }
+      - id: q-x-account-buy
+        category: kol
+        on_quote: true
+        label: { en: "X account purchase — contact support", zh-tw: "X 帳號購買 ── 聯繫客服", ja: "Xアカウント購入 ── サポートまでご連絡" }
+      - id: q-x-custom
+        category: kol
+        on_quote: true
+        label: { en: "X custom services", zh-tw: "X 定制化服務", ja: "Xカスタムサービス" }
+      - id: q-ig-region
+        category: kol
+        on_quote: true
+        label: { en: "Instagram followers — region-targeted (custom)", zh-tw: "Instagram 粉絲 ── 定制地區", ja: "Instagramフォロワー ── 地域指定（カスタム）" }
+      - id: q-cmc-fb-other
+        category: kol
+        on_quote: true
+        label: { en: "CMC, Facebook & other platforms — contact support", zh-tw: "CMC、FaceBook 等其他平台服務 ── 聯繫客服", ja: "CMC、Facebook等その他プラットフォーム ── サポートまで" }
+      - id: q-company-formation
+        category: pr
+        on_quote: true
+        label: { en: "Overseas company formation", zh-tw: "海外各地公司創建", ja: "海外各地での会社設立" }
+      - id: q-ai-token-sale
+        category: kol
+        on_quote: true
+        label: { en: "AI platform token sale services", zh-tw: "AI 平台 token 售賣", ja: "AIプラットフォーム・トークン販売" }
+      - id: q-foreign-stage
+        category: kol
+        on_quote: true
+        label: { en: "Foreign-pro talent for stage / panel", zh-tw: "站台老外服務資源", ja: "海外専門家による登壇・パネル出演" }
+      - id: q-ai-agent-dev
+        category: kol
+        on_quote: true
+        label: { en: "AI Agent development", zh-tw: "AI Agent 開發", ja: "AI Agent 開発" }
+      - id: q-contract-lp-dev
+        category: kol
+        on_quote: true
+        label: { en: "Smart contract & LP development", zh-tw: "合約開發、LP 開發", ja: "スマートコントラクト・LP開発" }
 
 # =====================================================================
 # Enterprise tier — anchor pricing reference
