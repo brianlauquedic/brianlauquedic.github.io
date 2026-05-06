@@ -5,18 +5,33 @@
   {%- assign t_includes = '包含' -%}
   {%- assign t_chain_label = 'BNB Smart Chain · USDT 或 USDC' -%}
   {%- assign t_finer = '結帳將直接從您的錢包向 Quedic 收款地址發起 USDT 或 USDC 轉帳。一旦上鏈確認，我們將在一個工作日內以電子郵件聯絡您。所有交易完成後不予退款。' -%}
+  {%- assign t_custom_eyebrow = '需要其他方案？' -%}
+  {%- assign t_custom_title = '客製化報價' -%}
+  {%- assign t_custom_body = '上方為精選套餐。我們同時提供逾 200 項細項服務 — 涵蓋細分 KOL、社群增長、會議活動、單一平台收錄、品牌與廣告投放等。請聯繫我們取得針對您需求的報價單。' -%}
+  {%- assign t_custom_cta = '取得客製報價' -%}
+  {%- assign t_contact_url = '/zh-tw/contact/' -%}
 {%- elsif lang == 'ja' -%}
   {%- assign t_pay = '今すぐ支払う' -%}
   {%- assign t_monthly = '／月' -%}
   {%- assign t_includes = '含まれる内容' -%}
   {%- assign t_chain_label = 'BNB Smart Chain · USDTまたはUSDC' -%}
   {%- assign t_finer = '決済はお客様のウォレットからQuedicの受取アドレスへ直接USDTまたはUSDCを送金します。トランザクションが承認され次第、営業日1日以内にメールでご連絡いたします。決済完了後の返金は承っておりません。' -%}
+  {%- assign t_custom_eyebrow = '別のプランをお探しですか？' -%}
+  {%- assign t_custom_title = 'カスタム見積もり' -%}
+  {%- assign t_custom_body = '上記は精選パッケージです。当社では200を超える個別サービスもご用意しています ── 個別KOL、コミュニティ成長、イベント、単一プラットフォーム掲載、ブランディング、広告配信など。ご要望に応じた見積もりはお問い合わせください。' -%}
+  {%- assign t_custom_cta = 'カスタム見積もりを依頼' -%}
+  {%- assign t_contact_url = '/ja/contact/' -%}
 {%- else -%}
   {%- assign t_pay = 'Pay now' -%}
   {%- assign t_monthly = '/mo' -%}
   {%- assign t_includes = 'Includes' -%}
   {%- assign t_chain_label = 'BNB Smart Chain · USDT or USDC' -%}
   {%- assign t_finer = 'Checkout sends USDT or USDC directly from your wallet to the Quedic receiving address. Once the transaction confirms on-chain, our team contacts you by email within one business day. All sales are final.' -%}
+  {%- assign t_custom_eyebrow = "Need something else?" -%}
+  {%- assign t_custom_title = 'Custom quote' -%}
+  {%- assign t_custom_body = 'The bundles above are curated. We also offer 200+ individual services — single KOL slots, community growth, conferences, individual platform listings, branding and paid media. Reach out for a quote tailored to your specific needs.' -%}
+  {%- assign t_custom_cta = 'Request custom quote' -%}
+  {%- assign t_contact_url = '/contact/' -%}
 {%- endif -%}
 
 <section class="section">
@@ -57,5 +72,12 @@
     </div>
 
     <p class="fine-print shop-finer">{{ t_finer }}</p>
+
+    <aside class="shop-custom">
+      <span class="eyebrow eyebrow--brand">{{ t_custom_eyebrow }}</span>
+      <h3 class="shop-custom__title">{{ t_custom_title }}</h3>
+      <p class="shop-custom__body">{{ t_custom_body }}</p>
+      <a class="btn btn--ghost" href="{{ t_contact_url | relative_url }}">{{ t_custom_cta }}</a>
+    </aside>
   </div>
 </section>
