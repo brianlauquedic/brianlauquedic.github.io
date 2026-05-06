@@ -1,11 +1,15 @@
 # =====================================================================
 # Quedic Shop — package catalog & on-chain payment configuration
 #
-# Prices are USDT (= USDC = USD-equivalent on BNB Smart Chain).
-# Source: internal pricing sheets, normalized into customer-facing bundles.
-# Long-tail SKUs (per-item KOL slots, single platform listings, social
-# growth numbers, etc.) are not displayed here — those go through the
-# "custom quote" CTA at the bottom of the shop page.
+# Currency: USDT (= USDC = USD-equivalent on BNB Smart Chain).
+# Source:    Internal pricing sheets (报价.xlsx + 报价(1).xlsx).
+#            Bundle prices are computed for honest discount math —
+#            every bundle is meaningfully cheaper than buying its
+#            individual SKUs separately.
+# Long-tail SKUs (single-platform listings, per-1k follower growth,
+# individual KOL slots, branding line items, etc.) are intentionally
+# not displayed here. They route through the "Bespoke programs" CTA
+# at the bottom of the shop page so the storefront stays curated.
 # =====================================================================
 
 # ⚠️ MUST be set to a real BSC wallet you control before launch.
@@ -14,7 +18,6 @@ receiving_wallet: "0x0000000000000000000000000000000000000000"
 # Reuse the same Formspree project as the contact form.
 formspree_endpoint: "https://formspree.io/f/your-id"
 
-# Target chain — BNB Smart Chain mainnet
 chain:
   id: 56
   hex: "0x38"
@@ -23,7 +26,6 @@ chain:
   block_explorer: "https://bscscan.com"
   native_symbol: "BNB"
 
-# ERC-20 token contracts on BSC (both 18 decimals)
 tokens:
   USDT:
     address: "0x55d398326f99059fF775485246999027B3197955"
@@ -35,315 +37,574 @@ tokens:
     symbol: "USDC"
 
 # =====================================================================
-# 9 customer-facing bundles, 3×3 grid on desktop
+# 12 outcome-driven bundles, 3-column grid (4 rows on desktop).
+# Each bundle has 1-2 tags for scannability.
 # =====================================================================
 packages:
 
   # -------------------------------------------------------------------
-  - id: top-listings
+  # 01 — Listings: data sites
+  # Discount: $17,100 → $13,500 (-21%)
+  - id: token-discoverable
     weight: 1
-    price_usdt: 8500
-    price_usdc: 8500
+    price_usdt: 13500
+    price_usdc: 13500
     recurring: false
+    tags:
+      en: ["Listings"]
+      zh-tw: ["收錄"]
+      ja: ["掲載"]
     title:
-      en: "Top Data Listings Bundle"
-      zh-tw: "頂級數據站收錄套餐"
-      ja: "トップデータサイト掲載パッケージ"
+      en: "Make your token discoverable."
+      zh-tw: "讓您的代幣，被看見。"
+      ja: "あなたのトークンを、見つけてもらう。"
     summary:
-      en: "CoinMarketCap + CoinGecko + DexTools — the three listings every serious token needs."
-      zh-tw: "CoinMarketCap + CoinGecko + DexTools — 任何嚴肅代幣都該有的三大數據站。"
-      ja: "CoinMarketCap + CoinGecko + DexTools — 真剣なトークンに必須の3大データサイト。"
+      en: "Eight data-site listings — the visibility layer every serious token needs before it can be traded, tracked or talked about."
+      zh-tw: "八個數據站收錄 ── 任何嚴肅代幣在被交易、追蹤、討論之前必備的曝光基底。"
+      ja: "8つのデータサイト掲載 ── 真剣に取引・追跡・議論されるトークンに必須の可視化レイヤー。"
     bullets:
       en:
-        - "CoinMarketCap listing (24h fast track)"
-        - "CoinGecko listing"
-        - "DexTools listing (prerequisite for OKX wallet)"
+        - "CoinMarketCap — 24h fast-track listing"
+        - "CoinGecko full listing"
+        - "DexTools (prerequisite for OKX Wallet)"
+        - "DexScreener &amp; GeckoTerminal"
+        - "Mytoken &amp; Rootdata business profile"
+        - "非小号 (FXH) — Chinese-language data hub"
         - "Token info maintenance for 90 days"
       zh-tw:
-        - "CoinMarketCap 上架（24 小時快速通道）"
-        - "CoinGecko 收錄"
-        - "DexTools 收錄（上 OKX 錢包的前置條件）"
+        - "CoinMarketCap ── 24 小時快速上架"
+        - "CoinGecko 完整收錄"
+        - "DexTools（OKX 錢包的前置條件）"
+        - "DexScreener 與 GeckoTerminal"
+        - "Mytoken 與 Rootdata 企業頁"
+        - "非小號 ── 中文數據站"
         - "代幣資訊維護 90 天"
       ja:
-        - "CoinMarketCap掲載（24時間ファストトラック）"
-        - "CoinGecko掲載"
-        - "DexTools掲載（OKX Wallet掲載の前提条件）"
+        - "CoinMarketCap ── 24時間ファストトラック掲載"
+        - "CoinGecko フル掲載"
+        - "DexTools（OKX Wallet掲載の前提条件）"
+        - "DexScreener と GeckoTerminal"
+        - "Mytoken と Rootdata 企業プロフィール"
+        - "非小号 ── 中国語データハブ"
         - "トークン情報メンテナンス 90日間"
 
   # -------------------------------------------------------------------
-  - id: wallet-listings
+  # 02 — Listings: wallets
+  # Discount: $12,600 → $9,800 (-22%)
+  - id: wallet-pack
     weight: 2
-    price_usdt: 10000
-    price_usdc: 10000
+    price_usdt: 9800
+    price_usdc: 9800
     recurring: false
+    tags:
+      en: ["Listings"]
+      zh-tw: ["收錄"]
+      ja: ["掲載"]
     title:
-      en: "Wallet Listings Pack"
-      zh-tw: "錢包收錄組合"
-      ja: "ウォレット掲載パック"
+      en: "Land where buyers transact."
+      zh-tw: "落地買家真正交易的所在。"
+      ja: "買い手が実際に取引する場所へ。"
     summary:
-      en: "MetaMask + OKX + Bitget + Trust + Binance Wallet — the five wallets that decide whether your token gets used."
-      zh-tw: "MetaMask + OKX + Bitget + Trust + Binance Wallet — 五大錢包決定您的代幣能否被真正使用。"
-      ja: "MetaMask + OKX + Bitget + Trust + Binance Wallet — トークンの実利用を左右する5大ウォレット。"
+      en: "Listings on the seven wallets and explorers that decide whether your token gets used — not just talked about."
+      zh-tw: "上架七大錢包與數據工具 ── 決定您的代幣是被使用、還是僅被談論。"
+      ja: "7つのウォレットとエクスプローラへ掲載 ── トークンが「使われる」か「語られるだけ」かを分ける場所。"
     bullets:
       en:
-        - "MetaMask token info listing"
+        - "MetaMask token information"
         - "OKX Wallet listing (DexTools prerequisite handled)"
-        - "Bitget Wallet listing"
-        - "Trust Wallet listing"
-        - "Binance Wallet listing"
+        - "Bitget Wallet"
+        - "Trust Wallet"
+        - "Binance Wallet"
+        - "GMGN trader information"
+        - "MSG token profile"
       zh-tw:
-        - "MetaMask 代幣資訊收錄"
+        - "MetaMask 代幣資訊"
         - "OKX 錢包收錄（DexTools 前置條件處理）"
-        - "Bitget 錢包收錄"
-        - "Trust 錢包收錄"
-        - "幣安錢包收錄"
+        - "Bitget 錢包"
+        - "Trust 錢包"
+        - "幣安錢包"
+        - "GMGN 交易員資訊"
+        - "MSG 代幣頁"
       ja:
-        - "MetaMaskトークン情報掲載"
-        - "OKX Wallet掲載（DexTools前提条件は当方で対応）"
-        - "Bitget Wallet掲載"
-        - "Trust Wallet掲載"
-        - "Binance Wallet掲載"
+        - "MetaMaskトークン情報"
+        - "OKX Wallet掲載（DexTools前提条件は当方対応）"
+        - "Bitget Wallet"
+        - "Trust Wallet"
+        - "Binance Wallet"
+        - "GMGN トレーダー情報"
+        - "MSG トークンプロフィール"
 
   # -------------------------------------------------------------------
-  - id: global-en-pr
+  # 03 — Reach: Chinese mainland platforms
+  # Discount: $870 → $700 (-20%)
+  - id: china-mainland
     weight: 3
-    price_usdt: 1200
-    price_usdc: 1200
+    price_usdt: 700
+    price_usdc: 700
     recurring: false
+    tags:
+      en: ["Reach", "China"]
+      zh-tw: ["觸達", "中國"]
+      ja: ["リーチ", "中国"]
     title:
-      en: "Global English PR Distribution"
-      zh-tw: "全球英文新聞發佈"
-      ja: "グローバル英語PR配信"
+      en: "Reach the China retail market."
+      zh-tw: "進入中國散戶市場。"
+      ja: "中国リテール市場へ、リーチする。"
     summary:
-      en: "AP wire + 300 satellite outlets + Yahoo network + 100 English crypto/business sites + Google indexing."
-      zh-tw: "美聯社 + 300 家媒體小站 + 雅虎系列 + 100 家英文加密／商業媒體 + Google 收錄。"
-      ja: "AP通信 + 300サイト + Yahoo系列 + 英語クリプト/ビジネス100社 + Googleインデックス対応。"
+      en: "Coverage across the eleven Chinese-mainland platforms where retail still forms its first opinion of a project."
+      zh-tw: "覆蓋 11 個中國大陸平台 ── 散戶對項目形成第一印象的真實場域。"
+      ja: "中国本土の主要11プラットフォームをカバー ── リテール投資家が最初の印象を形成する現場。"
     bullets:
       en:
-        - "Press release writing & polish"
-        - "AP wire + 300 satellite site syndication"
+        - "Sina, NetEase, Sohu — top portals"
+        - "Zhihu Q&amp;A (12 placements)"
+        - "Weibo verified opinion accounts"
+        - "WeChat Official Account post"
+        - "Xiaohongshu placement"
+        - "Baidu Knows + Baidu Wenku + Baidu home placement"
+        - "GEO AI indexing (200 sources)"
+      zh-tw:
+        - "新浪、網易、搜狐 ── 頂級門戶"
+        - "知乎問答（12 條）"
+        - "微博萬粉博主"
+        - "微信公眾號發文"
+        - "小紅書版位"
+        - "百度知道 + 百度文庫 + 百度首頁"
+        - "GEO AI 收錄（200 家來源）"
+      ja:
+        - "Sina・NetEase・Sohu ── 主要ポータル"
+        - "知乎Q&amp;A（12件）"
+        - "微博 万フォロワー認証アカウント"
+        - "WeChat公式アカウント投稿"
+        - "小紅書（Xiaohongshu）掲載"
+        - "百度知道 + 百度文庫 + 百度トップ"
+        - "GEO AIインデックス（200ソース）"
+
+  # -------------------------------------------------------------------
+  # 04 — PR: Global English
+  # Discount: $1,850 → $1,400 (-24%)
+  - id: english-newsroom
+    weight: 4
+    price_usdt: 1400
+    price_usdc: 1400
+    recurring: false
+    tags:
+      en: ["PR", "Global"]
+      zh-tw: ["公關", "全球"]
+      ja: ["PR", "グローバル"]
+    title:
+      en: "Global English coverage, in one drop."
+      zh-tw: "一次發佈，覆蓋全球英語圈。"
+      ja: "1度の配信で、英語圏グローバルを網羅。"
+    summary:
+      en: "Wire-grade syndication, business-press indexing, and 100 English-language outlets — engineered for one announcement, broad reach."
+      zh-tw: "通訊社級聯播、商業財經索引、100 家英文媒體 ── 為單次重大發佈而設計的廣域觸達。"
+      ja: "通信社レベルのシンジケーション、ビジネス・プレス・インデックス、英語100媒体 ── 1度の重要発表に最大の到達範囲を設計。"
+    bullets:
+      en:
+        - "Press release writing &amp; polish"
+        - "AP wire + 300 satellite-site syndication"
         - "Yahoo Finance / News distribution"
-        - "100 English crypto & business outlets"
-        - "Google indexing package (250+ sources)"
+        - "100 English crypto &amp; business outlets"
+        - "Google indexing across 250+ sources"
+        - "High-end business-finance press (100)"
+        - "Performance summary report"
       zh-tw:
         - "新聞稿撰寫與打磨"
         - "美聯社 + 300 家媒體小站聯播"
         - "Yahoo Finance／News 發佈"
         - "100 家英文加密與商業媒體"
-        - "Google 收錄套餐（250+ 來源）"
+        - "Google 跨 250+ 家來源收錄"
+        - "高端商業財經媒體（100 家）"
+        - "成效摘要報告"
       ja:
         - "プレスリリース作成・推敲"
         - "AP通信 + 300サイトのシンジケーション"
         - "Yahoo Finance／News配信"
         - "英語クリプト・ビジネス100社"
-        - "Googleインデックスパッケージ（250+ソース）"
+        - "Googleインデックス（250+ソース）"
+        - "ハイエンド・ビジネス財経メディア（100社）"
+        - "成果サマリーレポート"
 
   # -------------------------------------------------------------------
-  - id: multilang-pr
-    weight: 4
-    price_usdt: 2000
-    price_usdc: 2000
+  # 05 — PR: Multi-language regional
+  # Discount: $1,480 → $1,200 (-19%)
+  - id: regional-wave
+    weight: 5
+    price_usdt: 1200
+    price_usdc: 1200
     recurring: false
+    tags:
+      en: ["PR", "Multi-Language"]
+      zh-tw: ["公關", "多語言"]
+      ja: ["PR", "多言語"]
     title:
-      en: "Multi-Language Regional PR"
-      zh-tw: "多語言區域新聞發佈"
-      ja: "多言語・地域別PR配信"
+      en: "Twelve languages, one announcement."
+      zh-tw: "一則公告，十二國語言。"
+      ja: "1つの発表を、12言語で。"
     summary:
-      en: "Reach across JP, KR, DE, FR, ES, RU, AR, IN, TH, VI, PT, SV — 12 languages, 600+ outlets."
-      zh-tw: "覆蓋 JP、KR、DE、FR、ES、RU、AR、IN、TH、VI、PT、SV ── 12 種語言、600+ 家媒體。"
-      ja: "日韓独仏西露アラビア印タイ越葡瑞 ── 12言語、600社超への配信。"
+      en: "Native-translated regional press across twelve languages — JP, KR, DE, FR, ES, RU, AR, IN, TH, VI, PT and SV."
+      zh-tw: "十二種語言的母語譯版區域新聞發佈 ── JP、KR、DE、FR、ES、RU、AR、IN、TH、VI、PT、SV。"
+      ja: "12言語のネイティブ翻訳済み地域配信 ── 日韓独仏西露アラビア印タイ越葡瑞。"
     bullets:
       en:
-        - "Native translation per region"
-        - "Japanese & Korean tier-1 selection"
-        - "European languages (DE / FR / ES / PT / SV)"
-        - "Emerging markets (RU / AR / IN / TH / VI)"
+        - "Native translation per locale"
+        - "Japan &amp; Korea — tier-1 outlet selection"
+        - "Continental Europe (DE / FR / ES / PT / SV)"
+        - "Eurasia &amp; Middle East (RU / AR)"
+        - "South &amp; Southeast Asia (IN / TH / VI)"
         - "Per-region performance summary"
       zh-tw:
-        - "各地區母語翻譯"
-        - "日本與韓國一線媒體精選"
-        - "歐洲語系（DE／FR／ES／PT／SV）"
-        - "新興市場（RU／AR／IN／TH／VI）"
+        - "各區母語翻譯"
+        - "日本與韓國 ── 一線媒體精選"
+        - "歐陸（DE／FR／ES／PT／SV）"
+        - "歐亞與中東（RU／AR）"
+        - "南亞與東南亞（IN／TH／VI）"
         - "各區域成效摘要"
       ja:
-        - "各地域のネイティブ翻訳"
-        - "日本・韓国のティア1メディア精選"
-        - "欧州言語（DE／FR／ES／PT／SV）"
-        - "新興市場（RU／AR／IN／TH／VI）"
+        - "ロケールごとのネイティブ翻訳"
+        - "日本・韓国 ── ティア1メディア精選"
+        - "欧州大陸（DE／FR／ES／PT／SV）"
+        - "ユーラシア・中東（RU／AR）"
+        - "南アジア・東南アジア（IN／TH／VI）"
         - "地域別成果サマリー"
 
   # -------------------------------------------------------------------
-  - id: ai-kol-pack
-    weight: 5
-    price_usdt: 2500
-    price_usdc: 2500
+  # 06 — KOL: AI × Crypto + live activation
+  # Discount: $3,400 → $2,800 (-18%)
+  - id: ai-narrative
+    weight: 6
+    price_usdt: 2800
+    price_usdc: 2800
     recurring: false
+    tags:
+      en: ["KOL", "AI"]
+      zh-tw: ["KOL", "AI"]
+      ja: ["KOL", "AI"]
     title:
-      en: "AI Sector KOL Pack — 5 KOLs"
-      zh-tw: "AI 賽道 KOL 套餐 — 5 位"
-      ja: "AIセクター KOLパック — 5名"
+      en: "Own the AI × crypto narrative."
+      zh-tw: "佔位 AI × 加密敘事。"
+      ja: "AI×クリプト・ナラティブを掌握する。"
     summary:
-      en: "Five vetted KOLs covering the AI × Crypto narrative — the loudest sector of this cycle."
-      zh-tw: "AI × Crypto 敘事 5 位精選 KOL — 本輪週期聲量最大的賽道。"
-      ja: "AI×クリプト・ナラティブを語る精選KOL5名 ── 今サイクル最も声量のあるセクター。"
+      en: "Five AI-sector KOLs paired with one X Space and one Binance Square AMA — the loudest narrative of this cycle, coordinated for compounding effect."
+      zh-tw: "5 位 AI 賽道 KOL + 一場 X Space + 一場幣安廣場 AMA ── 本輪週期最大聲量賽道，協同放大。"
+      ja: "AIセクターのKOL 5名 + X Space 1回 + Binance Square AMA 1回 ── 今サイクル最大声量のセクターを連動増幅。"
     bullets:
       en:
-        - "Five sector-aligned AI / Web3 KOLs"
-        - "Engagement-quality vetting"
-        - "Brief writing & content review"
+        - "Five AI / Web3 KOLs (sector-aligned, vetted on engagement)"
+        - "One curated X Space"
+        - "One Binance Square AMA"
+        - "Premium Telegram community shoutout"
+        - "Brief design &amp; content review"
         - "Coordinated posting sequence"
-        - "Reach & engagement reporting"
+        - "Reach &amp; engagement reporting"
       zh-tw:
-        - "5 位賽道對齊的 AI／Web3 KOL"
-        - "互動質量篩選"
+        - "5 位 AI／Web3 KOL（賽道對齊、互動質量篩選）"
+        - "一場精選 X Space"
+        - "一場幣安廣場 AMA"
+        - "高端 TG 社群發佈"
         - "腳本撰寫與審稿"
         - "協調發文順序"
         - "觸達與互動報告"
       ja:
-        - "セクター適合のAI／Web3 KOL 5名"
-        - "エンゲージメント品質審査"
-        - "ブリーフ作成とコンテンツレビュー"
+        - "AI／Web3 KOL 5名（セクター適合・エンゲージメント審査済み）"
+        - "厳選X Space 1回"
+        - "Binance Square AMA 1回"
+        - "ハイエンドTGコミュニティへの告知"
+        - "ブリーフ設計とコンテンツレビュー"
         - "投稿順序の調整"
         - "リーチ・エンゲージメント報告"
 
   # -------------------------------------------------------------------
-  - id: jp-kol-pack
-    weight: 6
-    price_usdt: 3500
-    price_usdc: 3500
+  # 07 — KOL: Japan + live
+  # Discount: $4,000 → $3,200 (-20%)
+  - id: japan-activation
+    weight: 7
+    price_usdt: 3200
+    price_usdc: 3200
     recurring: false
+    tags:
+      en: ["KOL", "Japan"]
+      zh-tw: ["KOL", "日本"]
+      ja: ["KOL", "日本"]
     title:
-      en: "Japanese KOL Pack — 5 KOLs"
-      zh-tw: "日本 KOL 套餐 — 5 位中高端"
-      ja: "日本KOLパック — 中堅〜上位5名"
+      en: "Activate Japan in five voices."
+      zh-tw: "以五位聲音啟動日本。"
+      ja: "5つの声で、日本市場を動かす。"
     summary:
-      en: "Five mid-to-high tier Japanese crypto KOLs across X, YouTube and Note."
-      zh-tw: "中至高端日本加密 KOL 5 位，覆蓋 X、YouTube 與 Note。"
-      ja: "X、YouTube、note にまたがる中堅〜上位の日本クリプトKOL 5名。"
+      en: "Five mid-to-high tier Japanese crypto KOLs across X, YouTube and Note — paired with a JP-language X Space and Telegram AMA."
+      zh-tw: "中至高端日本加密 KOL 5 位（X／YouTube／Note）+ 日語 X Space + Telegram AMA。"
+      ja: "中堅〜上位の日本クリプトKOL 5名（X／YouTube／note）＋ 日本語X Space ＋ Telegram AMA。"
     bullets:
       en:
         - "Five Japanese-native KOLs, mid-high tier"
         - "Cross-platform: X / YouTube / Note"
-        - "Native-language content review"
-        - "JP-aware compliance disclosures"
-        - "Performance reporting in JP & EN"
+        - "One JP-language X Space"
+        - "One Telegram text AMA"
+        - "Native compliance disclosures"
+        - "JP &amp; EN bilingual reporting"
       zh-tw:
         - "5 位日本母語 KOL，中至高端"
         - "跨平台：X／YouTube／Note"
-        - "母語內容審稿"
+        - "一場日語 X Space"
+        - "一場 Telegram 文字 AMA"
         - "日本合規披露用語"
         - "日英雙語成效報告"
       ja:
         - "中堅〜上位の日本ネイティブKOL 5名"
         - "クロスプラットフォーム：X／YouTube／note"
-        - "母語コンテンツレビュー"
+        - "日本語X Space 1回"
+        - "Telegram文字AMA 1回"
         - "日本基準のコンプライアンス開示"
         - "日英バイリンガル成果報告"
 
   # -------------------------------------------------------------------
-  - id: cn-kol-pack
-    weight: 7
-    price_usdt: 3500
-    price_usdc: 3500
+  # 08 — KOL: Chinese-language + video push
+  # Discount: $4,660 → $3,800 (-18%)
+  - id: chinese-retail
+    weight: 8
+    price_usdt: 3800
+    price_usdc: 3800
     recurring: false
+    tags:
+      en: ["KOL", "Chinese"]
+      zh-tw: ["KOL", "華語"]
+      ja: ["KOL", "中国語"]
     title:
-      en: "Chinese KOL Pack — 5 KOLs"
-      zh-tw: "華語區 KOL 套餐 — 5 位中高端"
-      ja: "中国語圏KOLパック — 中堅〜上位5名"
+      en: "Win Chinese-speaking retail."
+      zh-tw: "贏下華語散戶市場。"
+      ja: "中国語圏リテールを、掌握する。"
     summary:
-      en: "Five mid-to-high tier Chinese crypto KOLs across X, Weibo and WeChat Channels."
-      zh-tw: "中至高端華語加密 KOL 5 位，覆蓋 X、微博、微信視頻號。"
-      ja: "X・微博・微信視頻号にまたがる中堅〜上位の中国語圏クリプトKOL 5名。"
+      en: "Five mid-high Chinese KOLs plus a video push across WeChat Channels and Douyin — and one Chinese-language X Space."
+      zh-tw: "中至高端華語 KOL 5 位 + 微信視頻號與抖音的影片放大 + 一場中文 X Space。"
+      ja: "中堅〜上位の中国語圏KOL 5名 ＋ WeChat視頻号・抖音の動画ブースト ＋ 中国語X Space 1回。"
     bullets:
       en:
-        - "Five mid-high tier Chinese-language KOLs"
+        - "Five mid-high Chinese-language KOLs"
         - "Cross-platform: X / Weibo / WeChat Channels"
-        - "Sector-fit selection (CEX, L1/L2, GameFi, AI)"
-        - "Native content review"
-        - "Performance reporting"
+        - "WeChat Video Channels — 3 high-follower posts"
+        - "Douyin — 2 finance-tech KOL posts"
+        - "Premium Telegram community shoutout"
+        - "One Chinese-language X Space"
+        - "Native content review &amp; reporting"
       zh-tw:
         - "5 位中至高端華語 KOL"
         - "跨平台：X／微博／微信視頻號"
-        - "賽道契合度篩選（CEX、L1／L2、GameFi、AI）"
-        - "母語內容審稿"
-        - "成效回報"
+        - "微信視頻號 ── 3 條大 V 發文"
+        - "抖音 ── 2 條財經科技類 KOL"
+        - "高端 TG 社群發佈"
+        - "一場中文 X Space"
+        - "母語審稿與成效回報"
       ja:
         - "中堅〜上位の中国語圏KOL 5名"
         - "クロスプラットフォーム：X／微博／微信視頻号"
-        - "セクター適合の選定（CEX、L1／L2、GameFi、AI）"
-        - "ネイティブコンテンツレビュー"
-        - "成果報告"
+        - "WeChat視頻号 ── 大手アカウント3投稿"
+        - "抖音（Douyin）── 財経テック系KOL 2投稿"
+        - "ハイエンドTGコミュニティへの告知"
+        - "中国語X Space 1回"
+        - "ネイティブコンテンツレビュー・成果報告"
 
   # -------------------------------------------------------------------
-  - id: amas-bundle
-    weight: 8
-    price_usdt: 1000
-    price_usdc: 1000
+  # 09 — Live: AMAs & Spaces (FIXED — was previously +11% upcharge)
+  # Discount: $1,000 → $800 (-20%)
+  - id: live-conversations
+    weight: 9
+    price_usdt: 800
+    price_usdc: 800
     recurring: false
+    tags:
+      en: ["Live"]
+      zh-tw: ["直播"]
+      ja: ["ライブ"]
     title:
-      en: "X Spaces + Binance Square AMA"
-      zh-tw: "X Spaces + 幣安廣場 AMA"
-      ja: "X Spaces + Binance Square AMA"
+      en: "Three live conversations, one week."
+      zh-tw: "三場直接對話，一週完成。"
+      ja: "3つのライブ対話を、1週間で。"
     summary:
-      en: "One curated X Space, one Binance Square AMA, one Telegram text AMA — three live touchpoints in one week."
-      zh-tw: "一場精選 X Space + 一場幣安廣場 AMA + 一場 Telegram 文字 AMA — 一週三場直接對話。"
-      ja: "厳選X Space 1回 + Binance Square AMA 1回 + Telegram文字AMA 1回 ── 1週間で3つのライブ接点。"
+      en: "An X Space, a Binance Square AMA with face-cam, and a Telegram text AMA — three high-conversion live touchpoints sequenced together."
+      zh-tw: "一場 X Space + 一場露臉幣安廣場 AMA + 一場 Telegram 文字 AMA ── 三場高轉化直接對話，串聯排程。"
+      ja: "X Space 1回 ＋ 顔出しBinance Square AMA 1回 ＋ Telegram文字AMA 1回 ── 高コンバージョンの直接対話を3つ連続で。"
     bullets:
       en:
-        - "Curated X Space hosting (1 hour)"
-        - "Binance Square AMA (face-cam optional)"
+        - "Curated X Space (1 hour)"
+        - "Binance Square AMA — face-cam included"
         - "Telegram text AMA"
         - "Cross-promotion to all three audiences"
-        - "Recordings & summary deliverable"
+        - "Recordings &amp; written summary deliverable"
       zh-tw:
-        - "精選 X Space 主持（1 小時）"
-        - "幣安廣場 AMA（可選露臉）"
+        - "精選 X Space（1 小時）"
+        - "幣安廣場 AMA ── 含露臉"
         - "Telegram 文字 AMA"
         - "三方受眾交叉導流"
-        - "錄影與摘要交付"
+        - "錄影與書面摘要交付"
       ja:
-        - "厳選X Spaceホスティング（1時間）"
-        - "Binance Square AMA（顔出し選択可）"
+        - "厳選X Space（1時間）"
+        - "Binance Square AMA ── 顔出し含む"
         - "Telegram文字AMA"
         - "3つの観客へのクロスプロモーション"
-        - "録音とサマリー納品"
+        - "録画と書面サマリー納品"
 
   # -------------------------------------------------------------------
-  - id: token-launch
-    weight: 9
-    price_usdt: 25000
-    price_usdc: 25000
+  # 10 — Brand: 2-week strategy sprint
+  # Custom service (consulting), priced at industry standard
+  - id: brand-sprint
+    weight: 10
+    price_usdt: 7500
+    price_usdc: 7500
     recurring: false
+    tags:
+      en: ["Brand"]
+      zh-tw: ["品牌"]
+      ja: ["ブランド"]
     title:
-      en: "Token Launch — Full TGE Stack"
-      zh-tw: "代幣發行 — TGE 整合套餐"
-      ja: "トークンローンチ — TGEフルスタック"
+      en: "Sharpen your story in two weeks."
+      zh-tw: "兩週內，把您的故事打磨到位。"
+      ja: "2週間で、ストーリーを研ぎ澄ます。"
     summary:
-      en: "End-to-end TGE communications: positioning, listings, press, KOL, AMAs and listing-day execution."
-      zh-tw: "端到端 TGE 傳播：定位、收錄、媒體、KOL、AMA 與上架日執行。"
-      ja: "TGEコミュニケーション一気通貫：ポジショニング、掲載、PR、KOL、AMA、上場日対応。"
+      en: "A focused two-week sprint that turns your founder vision into a defensible position, three message pillars and a brand book your team can use everywhere."
+      zh-tw: "兩週聚焦衝刺：將創辦人願景轉譯為可防禦的定位、三條訊息支柱與全公司可用的品牌手冊。"
+      ja: "2週間集中スプリント：創業者ビジョンを、防御可能なポジション、3つのメッセージ柱、組織横断で使えるブランドブックへ。"
     bullets:
       en:
-        - "Pre-launch narrative & positioning"
-        - "Top data listings (CMC + CoinGecko + DexTools)"
-        - "Tier-1 wallet listings (MetaMask, OKX, etc.)"
-        - "Embargoed tier-1 press at TGE"
-        - "Multi-language KOL activation"
-        - "X Spaces + AMAs at listing day"
-        - "Post-launch amplification (4 weeks)"
+        - "Founder &amp; stakeholder interviews"
+        - "Competitive landscape mapping"
+        - "Defensible positioning statement"
+        - "Three message pillars + audience variants"
+        - "Brand book deliverable (PDF + editable)"
       zh-tw:
-        - "上線前敘事與定位"
-        - "頂級數據站收錄（CMC + CoinGecko + DexTools）"
-        - "一線錢包收錄（MetaMask、OKX 等）"
-        - "TGE 同步一線媒體禁運獨家"
-        - "多語言 KOL 啟動"
-        - "上架日 X Spaces + AMA"
-        - "上線後 4 週放大計劃"
+        - "創辦人與利害關係人訪談"
+        - "競爭版圖盤點"
+        - "可防禦的定位陳述"
+        - "三條訊息支柱 + 受眾變體"
+        - "品牌手冊交付（PDF + 可編輯版）"
       ja:
-        - "ローンチ前のナラティブ・ポジショニング"
-        - "トップデータサイト掲載（CMC + CoinGecko + DexTools）"
-        - "一線ウォレット掲載（MetaMask、OKX 他）"
-        - "TGE時のティア1エンバーゴ独占"
-        - "多言語KOLアクティベーション"
-        - "上場日のX Spaces + AMA"
-        - "ローンチ後4週間の拡散プログラム"
+        - "創業者・関係者インタビュー"
+        - "競合環境マッピング"
+        - "防御可能なポジショニング・ステートメント"
+        - "3つのメッセージ柱 + オーディエンス別バリアント"
+        - "ブランドブック納品（PDF + 編集可ファイル）"
+
+  # -------------------------------------------------------------------
+  # 11 — Recurring: Always-on PR retainer
+  # Monthly retainer covering distribution + KOL + live + Chinese coverage
+  - id: pr-retainer
+    weight: 11
+    price_usdt: 9800
+    price_usdc: 9800
+    recurring: true
+    tags:
+      en: ["Retainer", "Monthly"]
+      zh-tw: ["月費合約", "持續"]
+      ja: ["リテイナー", "月次"]
+    title:
+      en: "Always-on PR, monthly."
+      zh-tw: "持續性公關，月付制。"
+      ja: "常時稼働のPR、月次契約。"
+    summary:
+      en: "A dedicated team running a continuous PR cadence — one English drop, one regional wave, KOL activation, live touchpoints and Chinese-mainland coverage every month."
+      zh-tw: "專屬團隊營運持續性公關節奏 ── 每月一次英文發佈、一次區域聯播、KOL 啟動、直接對話與中國大陸覆蓋。"
+      ja: "専任チームによる継続的PRリズム ── 毎月、英語ドロップ・地域配信・KOL展開・ライブ接点・中国本土カバレッジを実行。"
+    bullets:
+      en:
+        - "Dedicated account team"
+        - "Monthly Global English drop"
+        - "Monthly multi-language regional wave"
+        - "Monthly KOL activation (5 mid-tier)"
+        - "Monthly live touchpoint (X Space or AMA)"
+        - "Chinese mainland coverage included"
+        - "Newsjacking / rapid-response window"
+        - "Monthly performance review"
+      zh-tw:
+        - "專屬客戶團隊"
+        - "每月英文新聞發佈一次"
+        - "每月多語言區域聯播一次"
+        - "每月 KOL 啟動（5 位中端）"
+        - "每月直接對話一場（X Space 或 AMA）"
+        - "中國大陸覆蓋包含在內"
+        - "新聞借勢／快速反應窗口"
+        - "每月成效檢視"
+      ja:
+        - "専任アカウントチーム"
+        - "月次・英語PRドロップ"
+        - "月次・多言語地域配信"
+        - "月次・KOL展開（中堅5名）"
+        - "月次・ライブ接点1回（X SpaceまたはAMA）"
+        - "中国本土カバレッジ含む"
+        - "ニュースジャック／即時対応枠"
+        - "月次成果レビュー"
+
+  # -------------------------------------------------------------------
+  # 12 — Anchor: Token Launch Full TGE Stack
+  # Discount: $54,300 component sum → $38,000 (-30%)
+  - id: token-launch
+    weight: 12
+    price_usdt: 38000
+    price_usdc: 38000
+    recurring: false
+    featured: true
+    tags:
+      en: ["Launch", "Featured"]
+      zh-tw: ["代幣發行", "旗艦"]
+      ja: ["ローンチ", "旗艦"]
+    title:
+      en: "Launch your token, end-to-end."
+      zh-tw: "代幣發行，端到端執行。"
+      ja: "トークンローンチを、一気通貫で。"
+    summary:
+      en: "Every package above, sequenced into a single TGE program — listings, wallets, English &amp; multi-language press, three KOL waves, AMAs, brand sharpening and a month of post-launch retainer."
+      zh-tw: "上述所有套餐串聯為單一 TGE 計劃 ── 數據站收錄、錢包、英文與多語言媒體、三場 KOL 啟動、AMA、品牌打磨，以及上線後 1 個月持續運營。"
+      ja: "上記すべてのパッケージを単一のTGEプログラムに統合 ── 掲載、ウォレット、英語・多言語PR、3つのKOLウェーブ、AMA、ブランド研磨、ローンチ後1ヶ月のリテイナー。"
+    bullets:
+      en:
+        - "Top data listings (8 sites)"
+        - "Wallet listings (7 wallets)"
+        - "Global English newsroom drop"
+        - "12-language regional wave"
+        - "AI + Japanese + Chinese KOL waves"
+        - "Two AMA &amp; Spaces bundles (pre-launch + listing day)"
+        - "Brand strategy sprint"
+        - "1 month post-launch retainer"
+        - "Dedicated launch director"
+      zh-tw:
+        - "頂級數據站收錄（8 站）"
+        - "錢包收錄（7 個）"
+        - "全球英文新聞發佈"
+        - "12 種語言區域聯播"
+        - "AI + 日本 + 華語三場 KOL 啟動"
+        - "兩場 AMA & Spaces（上線前 + 上架日）"
+        - "品牌策略衝刺"
+        - "上線後 1 個月月費營運"
+        - "專屬發行總監"
+      ja:
+        - "トップデータサイト掲載（8サイト）"
+        - "ウォレット掲載（7社）"
+        - "グローバル英語ニュースルームドロップ"
+        - "12言語地域配信"
+        - "AI + 日本 + 中国語の3KOLウェーブ"
+        - "AMA & Spacesバンドル2セット（ローンチ前 + 上場日）"
+        - "ブランド戦略スプリント"
+        - "ローンチ後1ヶ月のリテイナー"
+        - "専任ローンチディレクター"
+
+# =====================================================================
+# Enterprise tier — anchor pricing reference, displayed below the grid
+# Not directly purchasable; routes to contact form.
+# =====================================================================
+enterprise:
+  price_from_usdt: 75000
+  title:
+    en: "Enterprise"
+    zh-tw: "企業級客製"
+    ja: "エンタープライズ"
+  tagline:
+    en: "From 75,000 USDT"
+    zh-tw: "75,000 USDT 起"
+    ja: "75,000 USDT〜"
+  body:
+    en: "Multi-token portfolios, multi-region launches, ongoing strategic counsel and dedicated senior teams. Three- to twelve-month engagements, scoped against your business milestones rather than line-item SKUs."
+    zh-tw: "多代幣組合、跨區域發行、持續性戰略諮詢與專屬資深團隊。三至十二個月委託，依您的業務里程碑而非 SKU 列項定義範圍。"
+    ja: "複数トークン・ポートフォリオ、複数地域ローンチ、継続的な戦略カウンセル、専任シニアチーム。3〜12ヶ月の契約を、SKU項目ではなく事業マイルストーンを基準にスコープ設計。"
+  cta:
+    en: "Discuss enterprise scope"
+    zh-tw: "洽談企業級需求"
+    ja: "エンタープライズ要件を相談"

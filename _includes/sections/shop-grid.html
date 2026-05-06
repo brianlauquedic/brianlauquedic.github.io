@@ -5,10 +5,12 @@
   {%- assign t_includes = '包含' -%}
   {%- assign t_chain_label = 'BNB Smart Chain · USDT 或 USDC' -%}
   {%- assign t_finer = '結帳將直接從您的錢包向 Quedic 收款地址發起 USDT 或 USDC 轉帳。一旦上鏈確認，我們將在一個工作日內以電子郵件聯絡您。所有交易完成後不予退款。' -%}
-  {%- assign t_custom_eyebrow = '需要其他方案？' -%}
-  {%- assign t_custom_title = '客製化報價' -%}
-  {%- assign t_custom_body = '上方為精選套餐。我們同時提供逾 200 項細項服務 — 涵蓋細分 KOL、社群增長、會議活動、單一平台收錄、品牌與廣告投放等。請聯繫我們取得針對您需求的報價單。' -%}
-  {%- assign t_custom_cta = '取得客製報價' -%}
+  {%- assign t_featured_badge = '旗艦套餐' -%}
+  {%- assign t_recurring_badge = '持續月付' -%}
+  {%- assign t_bespoke_eyebrow = '更深度的需求' -%}
+  {%- assign t_bespoke_title = '客製化方案' -%}
+  {%- assign t_bespoke_body = '上方為精選套餐。對於範圍跨越多個里程碑的項目 ── 多語言代幣組合、跨區域發行、機構級傳播 ── 我們提供完整的客製化方案。' -%}
+  {%- assign t_bespoke_cta = '洽談客製方案' -%}
   {%- assign t_contact_url = '/zh-tw/contact/' -%}
 {%- elsif lang == 'ja' -%}
   {%- assign t_pay = '今すぐ支払う' -%}
@@ -16,10 +18,12 @@
   {%- assign t_includes = '含まれる内容' -%}
   {%- assign t_chain_label = 'BNB Smart Chain · USDTまたはUSDC' -%}
   {%- assign t_finer = '決済はお客様のウォレットからQuedicの受取アドレスへ直接USDTまたはUSDCを送金します。トランザクションが承認され次第、営業日1日以内にメールでご連絡いたします。決済完了後の返金は承っておりません。' -%}
-  {%- assign t_custom_eyebrow = '別のプランをお探しですか？' -%}
-  {%- assign t_custom_title = 'カスタム見積もり' -%}
-  {%- assign t_custom_body = '上記は精選パッケージです。当社では200を超える個別サービスもご用意しています ── 個別KOL、コミュニティ成長、イベント、単一プラットフォーム掲載、ブランディング、広告配信など。ご要望に応じた見積もりはお問い合わせください。' -%}
-  {%- assign t_custom_cta = 'カスタム見積もりを依頼' -%}
+  {%- assign t_featured_badge = '旗艦パッケージ' -%}
+  {%- assign t_recurring_badge = '月次サブスクリプション' -%}
+  {%- assign t_bespoke_eyebrow = 'より深いご要望に' -%}
+  {%- assign t_bespoke_title = 'カスタムプログラム' -%}
+  {%- assign t_bespoke_body = '上記は精選パッケージです。複数マイルストーンにまたがるご相談 ── 多言語トークン・ポートフォリオ、地域横断ローンチ、機関投資家向けコミュニケーション ── にはフルカスタム設計をご用意します。' -%}
+  {%- assign t_bespoke_cta = 'カスタム要件を相談' -%}
   {%- assign t_contact_url = '/ja/contact/' -%}
 {%- else -%}
   {%- assign t_pay = 'Pay now' -%}
@@ -27,10 +31,12 @@
   {%- assign t_includes = 'Includes' -%}
   {%- assign t_chain_label = 'BNB Smart Chain · USDT or USDC' -%}
   {%- assign t_finer = 'Checkout sends USDT or USDC directly from your wallet to the Quedic receiving address. Once the transaction confirms on-chain, our team contacts you by email within one business day. All sales are final.' -%}
-  {%- assign t_custom_eyebrow = "Need something else?" -%}
-  {%- assign t_custom_title = 'Custom quote' -%}
-  {%- assign t_custom_body = 'The bundles above are curated. We also offer 200+ individual services — single KOL slots, community growth, conferences, individual platform listings, branding and paid media. Reach out for a quote tailored to your specific needs.' -%}
-  {%- assign t_custom_cta = 'Request custom quote' -%}
+  {%- assign t_featured_badge = 'Flagship' -%}
+  {%- assign t_recurring_badge = 'Monthly retainer' -%}
+  {%- assign t_bespoke_eyebrow = 'Looking for something deeper?' -%}
+  {%- assign t_bespoke_title = 'Bespoke programs' -%}
+  {%- assign t_bespoke_body = 'The packages above are curated. For engagements that span multiple milestones — multi-token portfolios, cross-region launches, institutional-grade communications — we design full bespoke programs.' -%}
+  {%- assign t_bespoke_cta = 'Discuss a bespoke program' -%}
   {%- assign t_contact_url = '/contact/' -%}
 {%- endif -%}
 
@@ -43,8 +49,26 @@
     <div class="shop-grid">
       {%- assign packages = site.data.packages.packages | sort: 'weight' -%}
       {%- for pkg in packages -%}
-      <article class="shop-card" data-package-id="{{ pkg.id }}" data-price-usdt="{{ pkg.price_usdt }}" data-price-usdc="{{ pkg.price_usdc }}" data-recurring="{{ pkg.recurring }}">
+      <article class="shop-card{% if pkg.featured %} shop-card--featured{% endif %}{% if pkg.recurring %} shop-card--recurring{% endif %}"
+               data-package-id="{{ pkg.id }}"
+               data-price-usdt="{{ pkg.price_usdt }}"
+               data-price-usdc="{{ pkg.price_usdc }}"
+               data-recurring="{{ pkg.recurring }}">
+
+        {%- if pkg.featured -%}
+          <span class="shop-card__badge shop-card__badge--featured">{{ t_featured_badge }}</span>
+        {%- elsif pkg.recurring -%}
+          <span class="shop-card__badge shop-card__badge--recurring">{{ t_recurring_badge }}</span>
+        {%- endif -%}
+
         <header class="shop-card__head">
+          {%- if pkg.tags[lang] -%}
+          <div class="shop-card__tags">
+            {%- for tag in pkg.tags[lang] -%}
+              <span class="shop-card__tag">{{ tag }}</span>
+            {%- endfor -%}
+          </div>
+          {%- endif -%}
           <h3 class="shop-card__title">{{ pkg.title[lang] | default: pkg.title.en }}</h3>
           <p class="shop-card__summary">{{ pkg.summary[lang] | default: pkg.summary.en }}</p>
         </header>
@@ -73,11 +97,23 @@
 
     <p class="fine-print shop-finer">{{ t_finer }}</p>
 
+    {%- assign ent = site.data.packages.enterprise -%}
+    {%- if ent -%}
+    <aside class="shop-enterprise">
+      <div class="shop-enterprise__head">
+        <span class="eyebrow eyebrow--brand">{{ ent.title[lang] | default: ent.title.en }}</span>
+        <h3 class="shop-enterprise__title">{{ ent.tagline[lang] | default: ent.tagline.en }}</h3>
+      </div>
+      <p class="shop-enterprise__body">{{ ent.body[lang] | default: ent.body.en }}</p>
+      <a class="btn btn--primary" href="{{ t_contact_url | relative_url }}">{{ ent.cta[lang] | default: ent.cta.en }}</a>
+    </aside>
+    {%- endif -%}
+
     <aside class="shop-custom">
-      <span class="eyebrow eyebrow--brand">{{ t_custom_eyebrow }}</span>
-      <h3 class="shop-custom__title">{{ t_custom_title }}</h3>
-      <p class="shop-custom__body">{{ t_custom_body }}</p>
-      <a class="btn btn--ghost" href="{{ t_contact_url | relative_url }}">{{ t_custom_cta }}</a>
+      <span class="eyebrow eyebrow--brand">{{ t_bespoke_eyebrow }}</span>
+      <h3 class="shop-custom__title">{{ t_bespoke_title }}</h3>
+      <p class="shop-custom__body">{{ t_bespoke_body }}</p>
+      <a class="btn btn--ghost" href="{{ t_contact_url | relative_url }}">{{ t_bespoke_cta }}</a>
     </aside>
   </div>
 </section>
