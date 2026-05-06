@@ -450,7 +450,10 @@
     // (main packages and à la carte quick-buys). Also hides any
     // section whose visible card count drops to zero so users don't
     // see orphaned headers.
-    var filterButtons = $$('.shop-filter');
+    // NOTE: must use document.querySelectorAll (not $$ helper) because
+    // $$ is scoped to the checkout modal — filter buttons live in the
+    // page body, outside the modal.
+    var filterButtons = Array.from(document.querySelectorAll('.shop-filter'));
     if (filterButtons.length) {
       var mainCards = document.querySelectorAll('.shop-card[data-category]');
       var quickCards = document.querySelectorAll('.quickbuy-card[data-category]');
