@@ -44,11 +44,14 @@ packages:
 
   # -------------------------------------------------------------------
   # 01 — Listings: data sites
-  # Discount: $17,100 → $13,500 (-21%)
+  # Components (USDT): CMC 6000 + CoinGecko 2000 + DexTools 1000
+  #   + DexScreener 500 + GeckoTerminal 500 + 非小号新版 1500
+  #   + Mytoken 1000 + Rootdata 2500 = 15,000
+  # Bundle: 15,000 → 12,000 (-20%)
   - id: token-discoverable
     weight: 1
-    price_usdt: 13500
-    price_usdc: 13500
+    price_usdt: 12000
+    price_usdc: 12000
     recurring: false
     tags:
       en: ["Listings"]
@@ -90,11 +93,13 @@ packages:
 
   # -------------------------------------------------------------------
   # 02 — Listings: wallets
-  # Discount: $12,600 → $9,800 (-22%)
+  # Components (USDT): MetaMask 2500 + OKX 800 + Bitget 200
+  #   + Trust 6000 + Binance 800 + GMGN 500 + MSG 300 = 11,100
+  # Bundle: 11,100 → 8,800 (-21%)
   - id: wallet-pack
     weight: 2
-    price_usdt: 9800
-    price_usdc: 9800
+    price_usdt: 8800
+    price_usdc: 8800
     recurring: false
     tags:
       en: ["Listings"]
@@ -136,11 +141,16 @@ packages:
 
   # -------------------------------------------------------------------
   # 03 — Reach: Chinese mainland platforms
-  # Discount: $870 → $700 (-20%)
+  # Components (USDT, cost-tier per item): Sina 20 + NetEase 20
+  #   + Sohu 20 + Zhihu 20 + Weibo verified 20 + WeChat OA 15
+  #   + Big-V Baijiahao 50 + Xiaohongshu 10 + Zhihu Q&A×12 100
+  #   + Baidu Knows 50 + Baidu Wenku 30 + Baidu home 30
+  #   + GEO AI 200 = 565 (with extra coverage)
+  # Bundle: ~565 → 450 (-20%)
   - id: china-mainland
     weight: 3
-    price_usdt: 700
-    price_usdc: 700
+    price_usdt: 450
+    price_usdc: 450
     recurring: false
     tags:
       en: ["Reach", "China"]
@@ -182,11 +192,13 @@ packages:
 
   # -------------------------------------------------------------------
   # 04 — PR: Global English
-  # Discount: $1,850 → $1,400 (-24%)
+  # Components (USDT): AP+300 450 + Yahoo 450 + 100 EN 80 + Google 150
+  #   + High-end Business 20 + Chinese Big-Name 20 + Index Pack 35 = 1,205
+  # Bundle: 1,205 → 950 (-21%)
   - id: english-newsroom
     weight: 4
-    price_usdt: 1400
-    price_usdc: 1400
+    price_usdt: 950
+    price_usdc: 950
     recurring: false
     tags:
       en: ["PR", "Global"]
@@ -228,11 +240,14 @@ packages:
 
   # -------------------------------------------------------------------
   # 05 — PR: Multi-language regional
-  # Discount: $1,480 → $1,200 (-19%)
+  # Components (USDT, cost-tier): 50 JP 50 + 50 DE 50 + 50 ES 50
+  #   + 50 FR 50 + 60 KR 80 + 60 RU 80 + 60 IN 80 + 60 TH 80
+  #   + 60 VI 80 + 60 AR 80 + 60 PT 80 + 60 SV 80 = 840
+  # Bundle: 840 → 680 (-19%)
   - id: regional-wave
     weight: 5
-    price_usdt: 1200
-    price_usdc: 1200
+    price_usdt: 680
+    price_usdc: 680
     recurring: false
     tags:
       en: ["PR", "Multi-Language"]
@@ -271,11 +286,13 @@ packages:
 
   # -------------------------------------------------------------------
   # 06 — KOL: AI × Crypto + live activation
-  # Discount: $3,400 → $2,800 (-18%)
+  # Components (USDT, cost-tier): AI 5-pack 2200 + X Space 200
+  #   + Binance Sq AMA 200 + Premium TG 80 = 2,680
+  # Bundle: 2,680 → 2,200 (-18%)
   - id: ai-narrative
     weight: 6
-    price_usdt: 2800
-    price_usdc: 2800
+    price_usdt: 2200
+    price_usdc: 2200
     recurring: false
     tags:
       en: ["KOL", "AI"]
@@ -317,11 +334,13 @@ packages:
 
   # -------------------------------------------------------------------
   # 07 — KOL: Japan + live
-  # Discount: $4,000 → $3,200 (-20%)
+  # Components (USDT, cost-tier): JP mid-high 5-pack 3000
+  #   + JP X Space 200 + Telegram AMA 80 = 3,280
+  # Bundle: 3,280 → 2,600 (-21%)
   - id: japan-activation
     weight: 7
-    price_usdt: 3200
-    price_usdc: 3200
+    price_usdt: 2600
+    price_usdc: 2600
     recurring: false
     tags:
       en: ["KOL", "Japan"]
@@ -360,11 +379,14 @@ packages:
 
   # -------------------------------------------------------------------
   # 08 — KOL: Chinese-language + video push
-  # Discount: $4,660 → $3,800 (-18%)
+  # Components (USDT, cost-tier): CN mid-high 5-pack 3000
+  #   + WeChat Channels 大V × 3 = 300 + Douyin 10-50W × 2 = 200
+  #   + Premium TG 80 + X Space 200 = 3,780
+  # Bundle: 3,780 → 3,100 (-18%)
   - id: chinese-retail
     weight: 8
-    price_usdt: 3800
-    price_usdc: 3800
+    price_usdt: 3100
+    price_usdc: 3100
     recurring: false
     tags:
       en: ["KOL", "Chinese"]
@@ -405,12 +427,14 @@ packages:
         - "ネイティブコンテンツレビュー・成果報告"
 
   # -------------------------------------------------------------------
-  # 09 — Live: AMAs & Spaces (FIXED — was previously +11% upcharge)
-  # Discount: $1,000 → $800 (-20%)
+  # 09 — Live: AMAs & Spaces
+  # Components (USDT, cost-tier): X Space 200
+  #   + Binance Square AMA (face-cam) 200 + Telegram AMA 80 = 480
+  # Bundle: 480 → 400 (-17%)
   - id: live-conversations
     weight: 9
-    price_usdt: 800
-    price_usdc: 800
+    price_usdt: 400
+    price_usdc: 400
     recurring: false
     tags:
       en: ["Live"]
@@ -446,11 +470,11 @@ packages:
 
   # -------------------------------------------------------------------
   # 10 — Brand: 2-week strategy sprint
-  # Custom service (consulting), priced at industry standard
+  # Custom consulting service, priced at accessible mid-market tier
   - id: brand-sprint
     weight: 10
-    price_usdt: 7500
-    price_usdc: 7500
+    price_usdt: 5000
+    price_usdc: 5000
     recurring: false
     tags:
       en: ["Brand"]
@@ -486,11 +510,15 @@ packages:
 
   # -------------------------------------------------------------------
   # 11 — Recurring: Always-on PR retainer
-  # Monthly retainer covering distribution + KOL + live + Chinese coverage
+  # Monthly value (USDT, cost-tier of included items):
+  #   1× English drop 950 + 1× Multi-lang 680 + 5 mid-tier KOLs 1200
+  #   + 1 live touchpoint 200 + China mainland 450 = ~3,480 in tactical
+  #   + dedicated team / strategy / reporting premium ~2,500
+  # Monthly price: 6,000 (mid-market always-on retainer)
   - id: pr-retainer
     weight: 11
-    price_usdt: 9800
-    price_usdc: 9800
+    price_usdt: 6000
+    price_usdc: 6000
     recurring: true
     tags:
       en: ["Retainer", "Monthly"]
@@ -535,11 +563,16 @@ packages:
 
   # -------------------------------------------------------------------
   # 12 — Anchor: Token Launch Full TGE Stack
-  # Discount: $54,300 component sum → $38,000 (-30%)
+  # Component bundle sum (USDT):
+  #   Token discoverable 12,000 + Wallet pack 8,800 + English 950
+  #   + Multi-lang 680 + AI KOL 2,200 + Japan 2,600 + Chinese 3,100
+  #   + 2× Live (pre + listing day) 800 + Brand sprint 5,000
+  #   + 1 month retainer 6,000 = 42,130
+  # Bundle: 42,130 → 30,000 (-29%)
   - id: token-launch
     weight: 12
-    price_usdt: 38000
-    price_usdc: 38000
+    price_usdt: 30000
+    price_usdc: 30000
     recurring: false
     featured: true
     tags:
@@ -591,15 +624,15 @@ packages:
 # Not directly purchasable; routes to contact form.
 # =====================================================================
 enterprise:
-  price_from_usdt: 75000
+  price_from_usdt: 50000
   title:
     en: "Enterprise"
     zh-tw: "企業級客製"
     ja: "エンタープライズ"
   tagline:
-    en: "From 75,000 USDT"
-    zh-tw: "75,000 USDT 起"
-    ja: "75,000 USDT〜"
+    en: "From 50,000 USDT"
+    zh-tw: "50,000 USDT 起"
+    ja: "50,000 USDT〜"
   body:
     en: "Multi-token portfolios, multi-region launches, ongoing strategic counsel and dedicated senior teams. Three- to twelve-month engagements, scoped against your business milestones rather than line-item SKUs."
     zh-tw: "多代幣組合、跨區域發行、持續性戰略諮詢與專屬資深團隊。三至十二個月委託，依您的業務里程碑而非 SKU 列項定義範圍。"
