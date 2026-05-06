@@ -140,10 +140,17 @@
     box-shadow: 0 18px 40px -18px rgba(91,47,217,0.35), 0 2px 10px -6px rgba(10,10,15,0.08);
   }
 
-  // Featured: anchor / flagship card with subtle brand tint
+  // Featured: anchor / flagship card. Stronger lift than regular cards
+  // so customers spot the upgrade path against the surrounding grid.
   &--featured {
     background: linear-gradient(180deg, $bg-tint 0%, $bg 70%);
-    border-color: rgba(91, 47, 217, 0.25);
+    border-color: rgba(91, 47, 217, 0.45);
+    box-shadow: 0 12px 32px -16px rgba(91, 47, 217, 0.45),
+                0 2px 8px -4px rgba(10, 10, 15, 0.08);
+    &:hover {
+      box-shadow: 0 24px 48px -18px rgba(91, 47, 217, 0.55),
+                  0 4px 14px -6px rgba(10, 10, 15, 0.12);
+    }
   }
 
   // Mid-market: subtle tint to differentiate from full flagship
@@ -280,6 +287,30 @@
     color: $text-muted;
     line-height: 1.55;
     margin: 0;
+  }
+
+  // "Skips: …" diff line under Launch Lite summary, points customers
+  // who want more to the Full TGE bundle below.
+  &__diffline {
+    font-size: 0.82rem;
+    color: $text-label;
+    line-height: 1.5;
+    margin: 10px 0 0;
+    padding-top: 10px;
+    border-top: 1px dashed $border;
+    font-style: italic;
+  }
+
+  // Value anchor under the price (e.g. "≈ 14,000 USDT à la carte")
+  // turns a bare retainer figure into a quantified deal.
+  &__value-anchor {
+    font-family: $font-display;
+    font-size: 0.78rem;
+    color: $brand;
+    margin: -16px 0 24px;
+    padding: 0 0 0 2px;
+    letter-spacing: -0.005em;
+    font-weight: 500;
   }
 
   &__price {
@@ -505,34 +536,42 @@
 
 // ============================================================
 // Quick buys — single-item activations (smaller cards)
+// Visually demoted on a soft-grey panel so the 100–700 USDT scale
+// doesn't fight with the multi-thousand bundle prices above.
 // ============================================================
 .shop-quickbuys {
-  margin-top: 64px;
-  padding-top: 56px;
-  border-top: 1px solid $border;
+  margin-top: 72px;
+  padding: 48px 24px 56px;
+  background: $bg-soft;
+  border-radius: $radius-lg;
+  border: 1px solid $border;
+
+  @media (min-width: $bp-md) {
+    padding: 56px 40px 64px;
+  }
 
   &__head {
-    margin-bottom: 32px;
+    margin-bottom: 28px;
     max-width: 60ch;
     .eyebrow { display: inline-block; margin-bottom: 8px; }
   }
   &__title {
     font-family: $font-display;
-    font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+    font-size: clamp(1.3rem, 2.1vw, 1.6rem);
     font-weight: 600;
     letter-spacing: -0.015em;
     color: $text;
-    margin: 0 0 12px;
+    margin: 0 0 10px;
   }
   &__body {
     color: $text-muted;
-    font-size: 1rem;
+    font-size: 0.94rem;
     line-height: 1.55;
     margin: 0;
   }
   &__grid {
     display: grid;
-    gap: 12px;
+    gap: 10px;
     grid-template-columns: 1fr;
     @media (min-width: $bp-sm) { grid-template-columns: repeat(2, 1fr); }
     @media (min-width: $bp-md) { grid-template-columns: repeat(3, 1fr); }
@@ -544,8 +583,8 @@
   flex-direction: column;
   background: $bg;
   border: 1px solid $border;
-  border-radius: $radius-lg;
-  padding: 20px 22px;
+  border-radius: $radius;
+  padding: 18px 20px;
   transition: border-color .2s ease, transform .2s ease;
   &:hover {
     border-color: $brand;
@@ -554,7 +593,7 @@
 
   &__title {
     font-family: $font-display;
-    font-size: 0.98rem;
+    font-size: 0.94rem;
     font-weight: 600;
     color: $text;
     margin: 0 0 6px;
@@ -562,10 +601,10 @@
     letter-spacing: -0.01em;
   }
   &__desc {
-    font-size: 0.84rem;
+    font-size: 0.82rem;
     color: $text-muted;
     line-height: 1.5;
-    margin: 0 0 16px;
+    margin: 0 0 14px;
     flex: 1;
   }
   &__foot {

@@ -282,6 +282,9 @@
           {%- endif -%}
           <h3 class="shop-card__title">{{ pkg.title[lang] | default: pkg.title.en }}</h3>
           <p class="shop-card__summary">{{ pkg.summary[lang] | default: pkg.summary.en }}</p>
+          {%- if pkg.differs_from_full -%}
+          <p class="shop-card__diffline">{{ pkg.differs_from_full[lang] | default: pkg.differs_from_full.en }}</p>
+          {%- endif -%}
         </header>
 
         <div class="shop-card__price">
@@ -298,6 +301,9 @@
           {%- if pkg.recurring %}<span class="shop-card__period">{{ t_monthly }}</span>{%- endif %}
           {%- if discount_pct >= 10 %}<span class="shop-card__savings">{{ t_save }} {{ discount_pct }}%</span>{%- endif %}
         </div>
+        {%- if pkg.value_anchor -%}
+        <p class="shop-card__value-anchor">{{ pkg.value_anchor[lang] | default: pkg.value_anchor.en }}</p>
+        {%- endif -%}
 
         <div class="shop-card__includes">
           <span class="shop-card__includes-label">{{ t_includes }}</span>

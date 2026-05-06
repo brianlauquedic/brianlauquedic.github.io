@@ -61,21 +61,16 @@ categories:
       en: "Live"
       zh-tw: "直播"
       ja: "ライブ"
-  - id: brand
+  # Single "Programs" chip rolls up Brand sprint, Launch bundles, and
+  # Retainer — each was too thin on its own (1–2 cards). JS filter
+  # handler treats `programs` as a virtual id matching brand|launch|
+  # retainer cards. Card data still tagged with original category.
+  - id: programs
+    matches: ["brand", "launch", "retainer"]
     label:
-      en: "Brand"
-      zh-tw: "品牌"
-      ja: "ブランド"
-  - id: launch
-    label:
-      en: "Launch"
-      zh-tw: "代幣發行"
-      ja: "ローンチ"
-  - id: retainer
-    label:
-      en: "Retainer"
-      zh-tw: "月費合約"
-      ja: "リテイナー"
+      en: "Programs"
+      zh-tw: "綜合計劃"
+      ja: "プログラム"
 
 # =====================================================================
 # 13 curated programs — 3-column grid (4-5 rows on desktop)
@@ -544,6 +539,13 @@ packages:
     price_usdt: 9800
     price_usdc: 9800
     recurring: true
+    # Equivalent à la carte spend per month if components were bought
+    # individually (English newsroom + regional wave + KOL + live + China
+    # mainland ≈ 7,300, plus dedicated team and rapid-response premium).
+    value_anchor:
+      en: "≈ 14,000 USDT in monthly à la carte spend"
+      zh-tw: "≈ 每月 14,000 USDT 分項購買費用"
+      ja: "≈ 月次 14,000 USDT 相当のバラ買い費用"
     delivery:
       en: "Continuous"
       zh-tw: "持續性"
@@ -597,15 +599,19 @@ packages:
   # Components (USDT, 对外价格):
   #   Token Discoverable 13,500 + Wallet Pack 9,800 + English 1,400
   #   + Japan KOL 3,200 + Live 800 = 28,700
-  # Bundle: 28,700 → 27,000 (-6%) ── deliberately small discount so
-  # Launch Lite doesn't undercut customers buying Token Discoverable
-  # + Wallet Pack standalone (combined 23,300).
+  # Bundle: 28,700 → 24,500 (-15%) ── real, advertise-able discount.
+  # The "What's different from Full TGE" line is rendered by the
+  # template under the summary so customers see the natural upgrade.
   - id: launch-lite
     weight: 12
     category: launch
-    price_usdt: 27000
-    price_usdc: 27000
+    price_usdt: 24500
+    price_usdc: 24500
     original_usdt: 28700
+    differs_from_full:
+      en: "Skips: 12-language regional, AMA bundle ×2, brand sprint, post-launch retainer."
+      zh-tw: "不含：12 語言區域聯播、兩場 AMA & Spaces、品牌策略衝刺、上線後 1 個月月費。"
+      ja: "非含：12言語地域配信、AMA & Spaces 2セット、ブランド戦略スプリント、ローンチ後リテイナー。"
     recurring: false
     delivery:
       en: "21–28 business days"
@@ -756,13 +762,13 @@ quick_buys:
       zh-tw: "幣安廣場 AMA ── 露臉版"
       ja: "Binance Square AMA ── 顔出しあり"
     description:
-      en: "Face-cam Binance Square AMA — higher trust, higher conversion."
-      zh-tw: "露臉版幣安廣場 AMA ── 信任更高、轉化更高。"
-      ja: "顔出しBinance Square AMA ── 信頼性とコンバージョン向上。"
+      en: "Face-cam Binance Square AMA — typically ~2× watch-through vs. text-only, plus a recording you can re-cut for marketing."
+      zh-tw: "露臉版幣安廣場 AMA ── 觀看完播率約為純文字版的 2 倍，並交付可剪輯為行銷素材的錄影。"
+      ja: "顔出しBinance Square AMA ── テキスト版に対し視聴完了率は通常約2倍。マーケティング素材に再編集可能な録画も納品。"
 
   - id: telegram-ama
     category: live
-    price_usdt: 100
+    price_usdt: 200
     delivery:
       en: "Scheduled within 3 business days"
       zh-tw: "3 個工作日內排程"
@@ -887,6 +893,22 @@ quick_buys:
       en: "One vetted English-speaking crypto KOL post on X — engagement-quality screened, not media-kit follower count."
       zh-tw: "一位精選英文加密 KOL 在 X 上發文 ── 以真實互動質量篩選，非媒體資料粉絲數。"
       ja: "厳選した英語クリプトKOLによるX投稿1本 ── 媒体資料のフォロワー数ではなく、真のエンゲージメント品質で選定。"
+
+  - id: korean-kol-single
+    category: kol
+    price_usdt: 350
+    delivery:
+      en: "5–7 business days"
+      zh-tw: "5–7 個工作日"
+      ja: "5〜7営業日"
+    title:
+      en: "Korean crypto KOL — single curated post"
+      zh-tw: "韓文加密 KOL ── 單條精選"
+      ja: "韓国語クリプトKOL ── 単発精選投稿"
+    description:
+      en: "One vetted Korean crypto KOL post on X or Naver — Korea retail responds to native voices, not translated copy."
+      zh-tw: "一位精選韓文加密 KOL 於 X 或 Naver 發文 ── 韓國散戶只認母語原生聲音，譯文難以打動。"
+      ja: "厳選した韓国語クリプトKOLによるX または Naver投稿1本 ── 韓国リテールは母語ネイティブの発信に反応し、翻訳コピーには動かない。"
 
 # =====================================================================
 # Enterprise tier — anchor pricing reference

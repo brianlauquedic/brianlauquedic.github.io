@@ -456,10 +456,22 @@
       var quickCards = document.querySelectorAll('.quickbuy-card[data-category]');
       var quickbuySection = document.querySelector('.shop-quickbuys');
 
+      // Virtual category groups — clicking one chip surfaces multiple
+      // underlying tags. Avoids lonely 1-card filter views.
+      var virtualCategories = {
+        programs: ['brand', 'launch', 'retainer']
+      };
+
+      var matchesCategory = function (cardCat, cat) {
+        if (cat === 'all') return true;
+        if (virtualCategories[cat]) return virtualCategories[cat].indexOf(cardCat) !== -1;
+        return cardCat === cat;
+      };
+
       var applyFilter = function (cat) {
         var visibleMain = 0;
         mainCards.forEach(function (card) {
-          if (cat === 'all' || card.getAttribute('data-category') === cat) {
+          if (matchesCategory(card.getAttribute('data-category'), cat)) {
             card.removeAttribute('hidden');
             visibleMain += 1;
           } else {
@@ -469,7 +481,7 @@
 
         var visibleQuick = 0;
         quickCards.forEach(function (card) {
-          if (cat === 'all' || card.getAttribute('data-category') === cat) {
+          if (matchesCategory(card.getAttribute('data-category'), cat)) {
             card.removeAttribute('hidden');
             visibleQuick += 1;
           } else {
