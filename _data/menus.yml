@@ -2,67 +2,76 @@ main:
   - name: "Services"
     url: "/services/"
     weight: 1
+  - name: "Shop"
+    url: "/shop/"
+    weight: 2
   - name: "Industries"
     url: "/industries/"
-    weight: 2
+    weight: 3
   - name: "Playbook"
     url: "/playbook/"
-    weight: 3
+    weight: 4
   - name: "Brands"
     url: "/brands/"
-    weight: 4
+    weight: 5
   - name: "Insights"
     url: "/insights/"
-    weight: 5
+    weight: 6
   - name: "About"
     url: "/about/"
-    weight: 6
+    weight: 7
   - name: "Contact"
     url: "/contact/"
-    weight: 7
+    weight: 8
 
 main_zh:
   - name: "業務"
     url: "/zh-tw/services/"
     weight: 1
+  - name: "訂購"
+    url: "/zh-tw/shop/"
+    weight: 2
   - name: "產業"
     url: "/zh-tw/industries/"
-    weight: 2
+    weight: 3
   - name: "作戰手冊"
     url: "/zh-tw/playbook/"
-    weight: 3
+    weight: 4
   - name: "合作品牌"
     url: "/zh-tw/brands/"
-    weight: 4
+    weight: 5
   - name: "產業洞察"
     url: "/zh-tw/insights/"
-    weight: 5
+    weight: 6
   - name: "關於我們"
     url: "/zh-tw/about/"
-    weight: 6
+    weight: 7
   - name: "聯絡我們"
     url: "/zh-tw/contact/"
-    weight: 7
+    weight: 8
 
 main_ja:
   - name: "サービス"
     url: "/ja/services/"
     weight: 1
+  - name: "ご注文"
+    url: "/ja/shop/"
+    weight: 2
   - name: "業種"
     url: "/ja/industries/"
-    weight: 2
+    weight: 3
   - name: "プレイブック"
     url: "/ja/playbook/"
-    weight: 3
+    weight: 4
   - name: "顧客ブランド"
     url: "/ja/brands/"
-    weight: 4
+    weight: 5
   - name: "インサイト"
     url: "/ja/insights/"
-    weight: 5
+    weight: 6
   - name: "会社概要"
     url: "/ja/about/"
-    weight: 6
+    weight: 7
   - name: "お問い合わせ"
     url: "/ja/contact/"
-    weight: 7
+    weight: 8

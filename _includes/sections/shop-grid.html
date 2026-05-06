@@ -1,0 +1,61 @@
+{%- assign lang = page.lang | default: 'en' -%}
+{%- if lang == 'zh-tw' -%}
+  {%- assign t_pay = '立即付款' -%}
+  {%- assign t_monthly = '／月' -%}
+  {%- assign t_includes = '包含' -%}
+  {%- assign t_chain_label = 'BNB Smart Chain · USDT 或 USDC' -%}
+  {%- assign t_finer = '結帳將直接從您的錢包向 Quedic 收款地址發起 USDT 或 USDC 轉帳。一旦上鏈確認，我們將在一個工作日內以電子郵件聯絡您。所有交易完成後不予退款。' -%}
+{%- elsif lang == 'ja' -%}
+  {%- assign t_pay = '今すぐ支払う' -%}
+  {%- assign t_monthly = '／月' -%}
+  {%- assign t_includes = '含まれる内容' -%}
+  {%- assign t_chain_label = 'BNB Smart Chain · USDTまたはUSDC' -%}
+  {%- assign t_finer = '決済はお客様のウォレットからQuedicの受取アドレスへ直接USDTまたはUSDCを送金します。トランザクションが承認され次第、営業日1日以内にメールでご連絡いたします。決済完了後の返金は承っておりません。' -%}
+{%- else -%}
+  {%- assign t_pay = 'Pay now' -%}
+  {%- assign t_monthly = '/mo' -%}
+  {%- assign t_includes = 'Includes' -%}
+  {%- assign t_chain_label = 'BNB Smart Chain · USDT or USDC' -%}
+  {%- assign t_finer = 'Checkout sends USDT or USDC directly from your wallet to the Quedic receiving address. Once the transaction confirms on-chain, our team contacts you by email within one business day. All sales are final.' -%}
+{%- endif -%}
+
+<section class="section">
+  <div class="container">
+    <div class="shop-meta">
+      <span class="eyebrow eyebrow--brand">{{ t_chain_label }}</span>
+    </div>
+
+    <div class="shop-grid">
+      {%- assign packages = site.data.packages.packages | sort: 'weight' -%}
+      {%- for pkg in packages -%}
+      <article class="shop-card" data-package-id="{{ pkg.id }}" data-price-usdt="{{ pkg.price_usdt }}" data-price-usdc="{{ pkg.price_usdc }}" data-recurring="{{ pkg.recurring }}">
+        <header class="shop-card__head">
+          <h3 class="shop-card__title">{{ pkg.title[lang] | default: pkg.title.en }}</h3>
+          <p class="shop-card__summary">{{ pkg.summary[lang] | default: pkg.summary.en }}</p>
+        </header>
+
+        <div class="shop-card__price">
+          <span class="shop-card__amount">{{ pkg.price_usdt }}</span>
+          <span class="shop-card__currency">USDT</span>
+          {%- if pkg.recurring %}<span class="shop-card__period">{{ t_monthly }}</span>{%- endif %}
+        </div>
+
+        <div class="shop-card__includes">
+          <span class="shop-card__includes-label">{{ t_includes }}</span>
+          <ul>
+            {%- for b in pkg.bullets[lang] | default: pkg.bullets.en -%}
+            <li>{{ b }}</li>
+            {%- endfor -%}
+          </ul>
+        </div>
+
+        <button class="btn btn--primary shop-card__cta" data-checkout-trigger data-package-id="{{ pkg.id }}">
+          {{ t_pay }}
+        </button>
+      </article>
+      {%- endfor -%}
+    </div>
+
+    <p class="fine-print shop-finer">{{ t_finer }}</p>
+  </div>
+</section>

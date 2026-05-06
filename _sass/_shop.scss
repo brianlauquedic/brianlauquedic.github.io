@@ -1,0 +1,454 @@
+// ============================================================
+// Shop — package grid + checkout modal
+// ============================================================
+
+.shop-meta {
+  margin-bottom: 32px;
+}
+
+// ---- Package grid ----
+.shop-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;
+  @media (min-width: $bp-sm) { grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: $bp-md) { grid-template-columns: repeat(3, 1fr); }
+}
+
+.shop-card {
+  display: flex;
+  flex-direction: column;
+  background: $bg;
+  border: 1px solid $border;
+  border-radius: $radius-lg;
+  padding: 32px 28px;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: transparent;
+    box-shadow: 0 18px 40px -18px rgba(91,47,217,0.35), 0 2px 10px -6px rgba(10,10,15,0.08);
+  }
+
+  &__head { margin-bottom: 24px; }
+
+  &__title {
+    font-family: $font-display;
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    margin: 0 0 12px;
+    color: $text;
+  }
+
+  &__summary {
+    font-size: 0.95rem;
+    color: $text-muted;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  &__price {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 16px 0;
+    border-top: 1px solid $border;
+    border-bottom: 1px solid $border;
+    margin: 0 0 24px;
+  }
+  &__amount {
+    font-family: $font-display;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: $brand;
+    line-height: 1;
+  }
+  &__currency {
+    font-family: $font-display;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: $text-muted;
+  }
+  &__period {
+    font-size: 0.9rem;
+    color: $text-label;
+    margin-left: 4px;
+  }
+
+  &__includes-label {
+    display: block;
+    font-family: $font-display;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: $text-label;
+    margin-bottom: 12px;
+  }
+
+  &__includes {
+    flex: 1;
+    margin-bottom: 28px;
+    ul { margin: 0; }
+    li {
+      font-size: 0.9rem;
+      color: $text-muted;
+      line-height: 1.5;
+      padding: 6px 0 6px 18px;
+      position: relative;
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 14px;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: $brand;
+      }
+    }
+  }
+
+  &__cta {
+    align-self: stretch;
+    justify-content: center;
+  }
+}
+
+.shop-finer {
+  margin-top: 40px;
+  max-width: 70ch;
+}
+
+// ============================================================
+// Checkout modal
+// ============================================================
+.checkout {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .2s ease;
+
+  &[aria-hidden="false"] {
+    pointer-events: auto;
+    opacity: 1;
+  }
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 15, 0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  &__panel {
+    position: relative;
+    z-index: 1;
+    background: $bg;
+    border-radius: $radius-lg;
+    width: 100%;
+    max-width: 540px;
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+    padding: 36px 32px 28px;
+    box-shadow: 0 24px 64px -16px rgba(10,10,15,0.3);
+  }
+
+  &__close {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    background: transparent;
+    border: 0;
+    font-size: 28px;
+    color: $text-label;
+    line-height: 1;
+    cursor: pointer;
+    padding: 4px 10px;
+    border-radius: 6px;
+    transition: background .15s, color .15s;
+    &:hover { background: $bg-soft; color: $text; }
+  }
+
+  &__head {
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $border;
+  }
+
+  &__pkg-title {
+    font-family: $font-display;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    margin: 4px 0 8px;
+    color: $text;
+  }
+
+  &__pkg-summary {
+    font-size: 0.92rem;
+    color: $text-muted;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  &__step {
+    margin-bottom: 24px;
+  }
+
+  &__step-title {
+    font-family: $font-display;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: $text-label;
+    margin: 0 0 16px;
+    font-weight: 500;
+  }
+
+  &__warn {
+    background: rgba(255, 165, 60, 0.08);
+    border: 1px solid rgba(255, 165, 60, 0.35);
+    color: #8a4d00;
+    padding: 12px 14px;
+    border-radius: $radius;
+    font-size: 0.92rem;
+    margin: 0 0 12px;
+  }
+
+  &__wallet-cta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  &__wallet-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  &__wallet-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: $bg-soft;
+    border: 1px solid $border;
+    border-radius: $radius;
+    cursor: pointer;
+    transition: border-color .15s, background .15s;
+    text-align: left;
+    width: 100%;
+    img { width: 24px; height: 24px; border-radius: 4px; }
+    &:hover { border-color: $brand; background: $bg; }
+  }
+
+  &__wallet-fallback-icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(91,47,217,0.3), rgba(124,77,255,0.1));
+  }
+
+  &__wallet-option-label {
+    font-family: $font-display;
+    font-weight: 500;
+    color: $text;
+    font-size: 0.95rem;
+  }
+
+  &__wallet-state {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 12px 14px;
+    background: $bg-soft;
+    border-radius: $radius;
+    margin-top: 12px;
+  }
+
+  &__wallet-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #2bb673;
+    box-shadow: 0 0 0 3px rgba(43, 182, 115, 0.18);
+  }
+
+  &__wallet-name {
+    font-family: $font-display;
+    font-weight: 500;
+    color: $text;
+    font-size: 0.92rem;
+  }
+
+  &__wallet-addr {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.85rem;
+    color: $text-muted;
+    background: $bg;
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid $border;
+  }
+
+  &__chain-warn {
+    margin-top: 16px;
+    .checkout__warn { margin-bottom: 12px; }
+  }
+
+  &__form {
+    display: grid;
+    gap: 16px;
+
+    label {
+      display: block;
+      span {
+        display: block;
+        font-size: 0.78rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: $text-label;
+        margin-bottom: 6px;
+        font-weight: 500;
+
+        em {
+          font-style: normal;
+          color: $brand;
+          letter-spacing: 0;
+          text-transform: none;
+          font-weight: 400;
+          margin-left: 4px;
+          font-size: 0.7rem;
+        }
+      }
+    }
+
+    input, textarea {
+      width: 100%;
+      font: inherit;
+      font-size: 0.95rem;
+      padding: 12px 14px;
+      background: $bg;
+      border: 1px solid $border-strong;
+      border-radius: $radius;
+      color: $text;
+      transition: border-color .15s, box-shadow .15s;
+      &:focus {
+        outline: none;
+        border-color: $brand;
+        box-shadow: 0 0 0 3px rgba(91, 47, 217, 0.12);
+      }
+    }
+    textarea { resize: vertical; }
+  }
+
+  &__token-toggle {
+    display: inline-flex;
+    background: $bg-soft;
+    border: 1px solid $border;
+    border-radius: $radius;
+    padding: 4px;
+    margin-bottom: 16px;
+    button {
+      background: transparent;
+      border: 0;
+      padding: 8px 18px;
+      font-family: $font-display;
+      font-weight: 500;
+      font-size: 0.92rem;
+      color: $text-muted;
+      border-radius: ($radius - 2);
+      cursor: pointer;
+      transition: background .15s, color .15s;
+      &.active {
+        background: $bg;
+        color: $brand;
+        box-shadow: 0 1px 4px rgba(10,10,15,0.06);
+      }
+    }
+  }
+
+  &__pay-btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 1rem;
+    padding: 16px 22px;
+  }
+
+  &__secure-note {
+    margin-top: 12px;
+    color: $text-label;
+    font-size: 0.82rem;
+  }
+
+  // ---- Status panels ----
+  &__status {
+    text-align: center;
+    padding: 16px 0 8px;
+
+    h3 {
+      font-family: $font-display;
+      font-size: 1.3rem;
+      margin: 16px 0 8px;
+    }
+
+    p {
+      color: $text-muted;
+      font-size: 0.95rem;
+      margin: 0 0 20px;
+    }
+
+    .btn { margin: 4px 4px; }
+  }
+
+  &__spinner {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid $border;
+    border-top-color: $brand;
+    animation: checkout-spin 0.9s linear infinite;
+    margin: 0 auto 16px;
+  }
+
+  @keyframes checkout-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  &__check, &__cross {
+    width: 56px;
+    height: 56px;
+    line-height: 56px;
+    border-radius: 50%;
+    margin: 8px auto 12px;
+    font-size: 28px;
+    font-weight: 600;
+    display: block;
+  }
+  &__check {
+    background: rgba(43, 182, 115, 0.12);
+    color: #2bb673;
+  }
+  &__cross {
+    background: rgba(220, 50, 50, 0.1);
+    color: #c93030;
+  }
+}
+
+body.checkout-open {
+  overflow: hidden;
+}

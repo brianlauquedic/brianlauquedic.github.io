@@ -1,0 +1,290 @@
+# =====================================================================
+# Quedic Shop — package catalog & on-chain payment configuration
+#
+# IMPORTANT: replace `receiving_wallet` and the Formspree endpoint with
+# real values before going live. Prices are placeholders — adjust freely.
+# =====================================================================
+
+# Address that receives client payments. ⚠️ MUST be set to a real BSC
+# wallet you control before launch. Currently a zero address as a guard.
+receiving_wallet: "0x0000000000000000000000000000000000000000"
+
+# Endpoint that receives the order email. Reuses the same Formspree
+# project as the contact form for a single inbox.
+formspree_endpoint: "https://formspree.io/f/your-id"
+
+# Target chain — BNB Smart Chain mainnet
+chain:
+  id: 56
+  hex: "0x38"
+  name: "BNB Smart Chain"
+  rpc: "https://bsc-dataseed.binance.org"
+  block_explorer: "https://bscscan.com"
+  native_symbol: "BNB"
+
+# ERC-20 token contracts on BSC (both 18 decimals on this chain)
+tokens:
+  USDT:
+    address: "0x55d398326f99059fF775485246999027B3197955"
+    decimals: 18
+    symbol: "USDT"
+  USDC:
+    address: "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d"
+    decimals: 18
+    symbol: "USDC"
+
+# =====================================================================
+# Packages
+# Each package has trilingual title / summary / bullets, a price in
+# USDT and USDC (same number normally), and an optional `recurring`
+# flag for monthly retainers.
+# =====================================================================
+packages:
+  - id: pr-distribution
+    weight: 1
+    price_usdt: 1500
+    price_usdc: 1500
+    recurring: false
+    title:
+      en: "Press Release Distribution"
+      zh-tw: "新聞稿全網發佈"
+      ja: "プレスリリース配信"
+    summary:
+      en: "Wire-grade global distribution + 5 crypto-native placements."
+      zh-tw: "通訊社級全球發佈 + 5 家加密原生媒體版位。"
+      ja: "通信社レベルの全網配信 + 主要クリプト媒体5社への掲載。"
+    bullets:
+      en:
+        - "Press release writing & polish"
+        - "Chainwire global distribution"
+        - "5 tier-2 crypto outlet placements"
+        - "Performance summary report"
+      zh-tw:
+        - "新聞稿撰寫與打磨"
+        - "Chainwire 全球發佈"
+        - "5 家二線加密媒體版位"
+        - "成效摘要報告"
+      ja:
+        - "プレスリリース作成・推敲"
+        - "Chainwireグローバル配信"
+        - "主要クリプト媒体5社への掲載"
+        - "成果サマリーレポート"
+
+  - id: tier1-placement
+    weight: 2
+    price_usdt: 5000
+    price_usdc: 5000
+    recurring: false
+    title:
+      en: "Tier-1 Single Placement"
+      zh-tw: "一線媒體單篇版位"
+      ja: "ティア1単発掲載"
+    summary:
+      en: "One feature placement on Cointelegraph, The Block or Decrypt."
+      zh-tw: "Cointelegraph、The Block 或 Decrypt 三選一單篇刊載。"
+      ja: "Cointelegraph・The Block・Decryptから1社、特集記事掲載。"
+    bullets:
+      en:
+        - "Story angle development"
+        - "Direct pitching to beat reporter"
+        - "Pre-publication review"
+        - "Post-publication amplification plan"
+      zh-tw:
+        - "報導切入角度開發"
+        - "直接向專屬記者提案"
+        - "刊發前審稿"
+        - "刊發後放大計劃"
+      ja:
+        - "ストーリー切り口の設計"
+        - "担当記者への直接ピッチ"
+        - "公開前のレビュー"
+        - "公開後の拡散プラン"
+
+  - id: kol-pack-10
+    weight: 3
+    price_usdt: 6000
+    price_usdc: 6000
+    recurring: false
+    title:
+      en: "KOL Pack — 10 Posts"
+      zh-tw: "KOL 計劃 — 10 條推文"
+      ja: "KOLパック — 10投稿"
+    summary:
+      en: "10 vetted KOLs across English & Chinese crypto Twitter."
+      zh-tw: "中英文加密 Twitter 圈 10 位精選 KOL。"
+      ja: "英語・中国語クリプトTwitter圏で精選した10名のKOL。"
+    bullets:
+      en:
+        - "KOL vetting on engagement quality"
+        - "Brief design & content review"
+        - "Coordinated post sequencing"
+        - "Reach & engagement reporting"
+      zh-tw:
+        - "依互動質量篩選 KOL"
+        - "腳本設計與審稿"
+        - "協調發文順序"
+        - "觸達與互動報告"
+      ja:
+        - "エンゲージメント品質によるKOL選定"
+        - "ブリーフ設計とコンテンツ審査"
+        - "投稿順序の調整"
+        - "リーチ・エンゲージメント報告"
+
+  - id: token-launch
+    weight: 4
+    price_usdt: 25000
+    price_usdc: 25000
+    recurring: false
+    title:
+      en: "Token Launch Communications"
+      zh-tw: "代幣發行整合傳播"
+      ja: "トークンローンチ統合コミュニケーション"
+    summary:
+      en: "End-to-end TGE comms: positioning, press, KOL, listing day."
+      zh-tw: "端到端 TGE 傳播：定位、媒體、KOL、上架日執行。"
+      ja: "TGEを統合運用：ポジショニング、PR、KOL、上場日対応。"
+    bullets:
+      en:
+        - "Pre-launch narrative & positioning"
+        - "Embargoed tier-1 exclusives at TGE"
+        - "Multi-language KOL activation"
+        - "Listing-day press coordination"
+        - "Post-launch amplification (4 weeks)"
+      zh-tw:
+        - "上線前敘事與定位"
+        - "TGE 同步一線媒體禁運獨家"
+        - "多語言 KOL 啟動"
+        - "上架日媒體協調"
+        - "上線後 4 週放大計劃"
+      ja:
+        - "ローンチ前のナラティブ・ポジショニング"
+        - "TGE時のティア1エンバーゴ独占"
+        - "多言語KOLアクティベーション"
+        - "上場日のプレス対応"
+        - "ローンチ後4週間の拡散プログラム"
+
+  - id: pr-retainer
+    weight: 5
+    price_usdt: 12000
+    price_usdc: 12000
+    recurring: true
+    title:
+      en: "PR Retainer — Monthly"
+      zh-tw: "公關月費合約"
+      ja: "PRリテイナー — 月次"
+    summary:
+      en: "Always-on PR for sustained narrative and steady press cadence."
+      zh-tw: "持續性公關運作，維繫敘事與穩定的媒體節奏。"
+      ja: "常時稼働のPRで、ナラティブと媒体露出を継続的に維持。"
+    bullets:
+      en:
+        - "Dedicated account team"
+        - "Monthly editorial calendar"
+        - "Press placement targets per month"
+        - "Newsjacking & rapid response"
+        - "Monthly performance review"
+      zh-tw:
+        - "專屬客戶團隊"
+        - "每月編輯排程"
+        - "每月媒體版位目標"
+        - "新聞借勢與即時反應"
+        - "每月成效檢視"
+      ja:
+        - "専任アカウントチーム"
+        - "月次の編集カレンダー"
+        - "月次プレス掲載目標"
+        - "ニュースジャック・即時対応"
+        - "月次成果レビュー"
+
+  - id: side-event
+    weight: 6
+    price_usdt: 18000
+    price_usdc: 18000
+    recurring: false
+    title:
+      en: "Conference Side-Event"
+      zh-tw: "會議側邊活動"
+      ja: "カンファレンス・サイドイベント"
+    summary:
+      en: "End-to-end production for a 50–100 attendee curated side event."
+      zh-tw: "50–100 人精選側邊活動全套製作。"
+      ja: "50〜100名規模のキュレーション・サイドイベント全制作。"
+    bullets:
+      en:
+        - "Concept, programming & venue"
+        - "Curated guest list outreach"
+        - "On-site production & branding"
+        - "Press coordination & coverage"
+      zh-tw:
+        - "概念、節目與場地"
+        - "精選嘉賓邀請"
+        - "現場製作與品牌呈現"
+        - "媒體協調與報導"
+      ja:
+        - "コンセプト・プログラム・会場"
+        - "厳選ゲストリストへのアウトリーチ"
+        - "現場運営・ブランディング"
+        - "プレス対応とメディアカバレッジ"
+
+  - id: brand-strategy
+    weight: 7
+    price_usdt: 8000
+    price_usdc: 8000
+    recurring: false
+    title:
+      en: "Brand Strategy Workshop"
+      zh-tw: "品牌策略工作坊"
+      ja: "ブランド戦略ワークショップ"
+    summary:
+      en: "Two-week deep-dive: positioning, narrative, messaging system."
+      zh-tw: "兩週深度梳理：定位、敘事、訊息系統。"
+      ja: "2週間のディープダイブ：ポジショニング、ナラティブ、メッセージング体系。"
+    bullets:
+      en:
+        - "Founder & stakeholder interviews"
+        - "Competitive landscape mapping"
+        - "Positioning & message pillars"
+        - "Brand book deliverable"
+      zh-tw:
+        - "創辦人與利害關係人訪談"
+        - "競爭版圖盤點"
+        - "定位與訊息支柱"
+        - "品牌手冊交付"
+      ja:
+        - "創業者・関係者へのインタビュー"
+        - "競合環境マッピング"
+        - "ポジショニングとメッセージ柱"
+        - "ブランドブック納品"
+
+  - id: exchange-listing
+    weight: 8
+    price_usdt: 15000
+    price_usdc: 15000
+    recurring: false
+    title:
+      en: "Exchange Listing Comms"
+      zh-tw: "交易所上架傳播"
+      ja: "取引所上場コミュニケーション"
+    summary:
+      en: "Listing-day comms package timed for maximum impact."
+      zh-tw: "上架日完整傳播包，引導最大化曝光。"
+      ja: "上場日のコミュニケーション一式、効果最大化のためのタイミング設計。"
+    bullets:
+      en:
+        - "Listing announcement strategy"
+        - "Press release & embargo planning"
+        - "Co-marketing with the exchange"
+        - "Day-one social & community push"
+        - "Post-listing volume momentum plan"
+      zh-tw:
+        - "上架公告策略"
+        - "新聞稿與禁運規劃"
+        - "與交易所聯合行銷"
+        - "首日社交與社群推送"
+        - "上架後成交量延續計劃"
+      ja:
+        - "上場発表戦略"
+        - "プレスリリース・エンバーゴ計画"
+        - "取引所との共同マーケティング"
+        - "初日のSNS・コミュニティ展開"
+        - "上場後の出来高維持プラン"

@@ -1,0 +1,224 @@
+{%- assign lang = page.lang | default: 'en' -%}
+{%- if lang == 'zh-tw' -%}
+  {%- assign m_title = '結帳' -%}
+  {%- assign m_step1 = '1. 連接錢包' -%}
+  {%- assign m_step2 = '2. 您的資訊' -%}
+  {%- assign m_step3 = '3. 選擇幣種與付款' -%}
+  {%- assign m_connect = '連接錢包' -%}
+  {%- assign m_connected = '已連接' -%}
+  {%- assign m_disconnect = '切換錢包' -%}
+  {%- assign m_no_wallet = '未偵測到 Web3 錢包。請安裝 OKX Wallet 或 MetaMask。' -%}
+  {%- assign m_install_okx = '安裝 OKX Wallet' -%}
+  {%- assign m_install_mm = '安裝 MetaMask' -%}
+  {%- assign m_chain_warn = '請切換至 BNB Smart Chain（chainId 56）。' -%}
+  {%- assign m_switch_chain = '切換至 BNB Smart Chain' -%}
+  {%- assign m_name_label = '專案名稱' -%}
+  {%- assign m_email_label = '聯絡電子郵件' -%}
+  {%- assign m_telegram_label = 'Telegram（選填）' -%}
+  {%- assign m_notes_label = '專案簡述（選填）' -%}
+  {%- assign m_required = '必填' -%}
+  {%- assign m_pay_btn = '以 {token} 支付 {amount}' -%}
+  {%- assign m_paying = '錢包簽名中…' -%}
+  {%- assign m_pending = '交易上鏈中…' -%}
+  {%- assign m_success_title = '訂單已送出' -%}
+  {%- assign m_success_body = '已收到您的鏈上付款。我們將於一個工作日內以電子郵件聯絡您。' -%}
+  {%- assign m_view_tx = '在 BscScan 查看交易' -%}
+  {%- assign m_close = '關閉' -%}
+  {%- assign m_error_title = '交易失敗' -%}
+  {%- assign m_retry = '重試' -%}
+  {%- assign m_secure_note = '錢包直接與 BSC 區塊鏈互動。Quedic 不接觸您的私鑰。' -%}
+{%- elsif lang == 'ja' -%}
+  {%- assign m_title = 'お支払い' -%}
+  {%- assign m_step1 = '1. ウォレット接続' -%}
+  {%- assign m_step2 = '2. プロジェクト情報' -%}
+  {%- assign m_step3 = '3. 通貨選択と決済' -%}
+  {%- assign m_connect = 'ウォレットを接続' -%}
+  {%- assign m_connected = '接続済み' -%}
+  {%- assign m_disconnect = 'ウォレットを切替' -%}
+  {%- assign m_no_wallet = 'Web3ウォレットが見つかりません。OKX WalletまたはMetaMaskをインストールしてください。' -%}
+  {%- assign m_install_okx = 'OKX Walletをインストール' -%}
+  {%- assign m_install_mm = 'MetaMaskをインストール' -%}
+  {%- assign m_chain_warn = 'BNB Smart Chain（chainId 56）に切り替えてください。' -%}
+  {%- assign m_switch_chain = 'BNB Smart Chainに切替' -%}
+  {%- assign m_name_label = 'プロジェクト名' -%}
+  {%- assign m_email_label = 'ご連絡先メール' -%}
+  {%- assign m_telegram_label = 'Telegram（任意）' -%}
+  {%- assign m_notes_label = 'プロジェクト概要（任意）' -%}
+  {%- assign m_required = '必須' -%}
+  {%- assign m_pay_btn = '{amount} {token} を支払う' -%}
+  {%- assign m_paying = 'ウォレット署名中…' -%}
+  {%- assign m_pending = 'トランザクション処理中…' -%}
+  {%- assign m_success_title = 'ご注文を承りました' -%}
+  {%- assign m_success_body = 'オンチェーン決済を確認しました。営業日1日以内にメールでご連絡いたします。' -%}
+  {%- assign m_view_tx = 'BscScanで取引を確認' -%}
+  {%- assign m_close = '閉じる' -%}
+  {%- assign m_error_title = 'トランザクション失敗' -%}
+  {%- assign m_retry = '再試行' -%}
+  {%- assign m_secure_note = 'ウォレットはBSCブロックチェーンと直接やりとりします。Quedicが秘密鍵に触れることはありません。' -%}
+{%- else -%}
+  {%- assign m_title = 'Checkout' -%}
+  {%- assign m_step1 = '1. Connect wallet' -%}
+  {%- assign m_step2 = '2. Your details' -%}
+  {%- assign m_step3 = '3. Pick currency & pay' -%}
+  {%- assign m_connect = 'Connect wallet' -%}
+  {%- assign m_connected = 'Connected' -%}
+  {%- assign m_disconnect = 'Switch wallet' -%}
+  {%- assign m_no_wallet = 'No Web3 wallet detected. Install OKX Wallet or MetaMask to continue.' -%}
+  {%- assign m_install_okx = 'Install OKX Wallet' -%}
+  {%- assign m_install_mm = 'Install MetaMask' -%}
+  {%- assign m_chain_warn = 'Please switch to BNB Smart Chain (chainId 56).' -%}
+  {%- assign m_switch_chain = 'Switch to BNB Smart Chain' -%}
+  {%- assign m_name_label = 'Project name' -%}
+  {%- assign m_email_label = 'Contact email' -%}
+  {%- assign m_telegram_label = 'Telegram (optional)' -%}
+  {%- assign m_notes_label = 'Project notes (optional)' -%}
+  {%- assign m_required = 'required' -%}
+  {%- assign m_pay_btn = 'Pay {amount} {token}' -%}
+  {%- assign m_paying = 'Awaiting wallet signature…' -%}
+  {%- assign m_pending = 'Transaction pending on chain…' -%}
+  {%- assign m_success_title = 'Order placed' -%}
+  {%- assign m_success_body = 'Your on-chain payment was received. Our team will email you within one business day.' -%}
+  {%- assign m_view_tx = 'View transaction on BscScan' -%}
+  {%- assign m_close = 'Close' -%}
+  {%- assign m_error_title = 'Transaction failed' -%}
+  {%- assign m_retry = 'Try again' -%}
+  {%- assign m_secure_note = 'Your wallet talks directly to the BSC blockchain. Quedic never sees your private key.' -%}
+{%- endif -%}
+
+<div class="checkout" id="checkout-modal" aria-hidden="true" role="dialog" aria-labelledby="checkout-title">
+  <div class="checkout__backdrop" data-checkout-close></div>
+
+  <div class="checkout__panel">
+    <button class="checkout__close" type="button" aria-label="Close" data-checkout-close>×</button>
+
+    <header class="checkout__head">
+      <span class="eyebrow eyebrow--brand">{{ m_title }}</span>
+      <h2 id="checkout-title" class="checkout__pkg-title" data-checkout-pkg-title></h2>
+      <p class="checkout__pkg-summary" data-checkout-pkg-summary></p>
+    </header>
+
+    <!-- STEP 1: Wallet -->
+    <section class="checkout__step" data-checkout-step="wallet">
+      <h3 class="checkout__step-title">{{ m_step1 }}</h3>
+
+      <div data-checkout-no-wallet hidden>
+        <p class="checkout__warn">{{ m_no_wallet }}</p>
+        <div class="checkout__wallet-cta">
+          <a class="btn btn--ghost" href="https://www.okx.com/download" target="_blank" rel="noopener">{{ m_install_okx }}</a>
+          <a class="btn btn--ghost" href="https://metamask.io/download/" target="_blank" rel="noopener">{{ m_install_mm }}</a>
+        </div>
+      </div>
+
+      <div data-checkout-wallet-options class="checkout__wallet-list" hidden></div>
+
+      <button class="btn btn--primary" type="button" data-checkout-connect>{{ m_connect }}</button>
+
+      <div class="checkout__wallet-state" data-checkout-wallet-state hidden>
+        <span class="checkout__wallet-dot"></span>
+        <span class="checkout__wallet-name" data-checkout-wallet-name></span>
+        <code class="checkout__wallet-addr" data-checkout-wallet-addr></code>
+        <button type="button" class="btn btn--link" data-checkout-disconnect>{{ m_disconnect }}</button>
+      </div>
+
+      <div class="checkout__chain-warn" data-checkout-chain-warn hidden>
+        <p class="checkout__warn">{{ m_chain_warn }}</p>
+        <button type="button" class="btn btn--ghost" data-checkout-switch-chain>{{ m_switch_chain }}</button>
+      </div>
+    </section>
+
+    <!-- STEP 2: Form -->
+    <section class="checkout__step" data-checkout-step="form" hidden>
+      <h3 class="checkout__step-title">{{ m_step2 }}</h3>
+      <form data-checkout-form class="checkout__form" novalidate>
+        <label>
+          <span>{{ m_name_label }} <em>({{ m_required }})</em></span>
+          <input type="text" name="project_name" required />
+        </label>
+        <label>
+          <span>{{ m_email_label }} <em>({{ m_required }})</em></span>
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          <span>{{ m_telegram_label }}</span>
+          <input type="text" name="telegram" placeholder="@handle" />
+        </label>
+        <label>
+          <span>{{ m_notes_label }}</span>
+          <textarea name="notes" rows="3"></textarea>
+        </label>
+      </form>
+    </section>
+
+    <!-- STEP 3: Pay -->
+    <section class="checkout__step" data-checkout-step="pay" hidden>
+      <h3 class="checkout__step-title">{{ m_step3 }}</h3>
+      <div class="checkout__token-toggle" role="tablist">
+        <button type="button" class="active" data-checkout-token="USDT" role="tab" aria-selected="true">USDT</button>
+        <button type="button" data-checkout-token="USDC" role="tab" aria-selected="false">USDC</button>
+      </div>
+
+      <button class="btn btn--primary checkout__pay-btn" type="button" data-checkout-pay>
+        <span data-checkout-pay-label></span>
+      </button>
+
+      <p class="fine-print checkout__secure-note">{{ m_secure_note }}</p>
+    </section>
+
+    <!-- STATUS: Pending -->
+    <section class="checkout__status" data-checkout-status="pending" hidden>
+      <div class="checkout__spinner"></div>
+      <p data-checkout-pending-text>{{ m_paying }}</p>
+    </section>
+
+    <!-- STATUS: Success -->
+    <section class="checkout__status" data-checkout-status="success" hidden>
+      <div class="checkout__check">✓</div>
+      <h3>{{ m_success_title }}</h3>
+      <p>{{ m_success_body }}</p>
+      <a class="btn btn--ghost" target="_blank" rel="noopener" data-checkout-tx-link>{{ m_view_tx }}</a>
+      <button type="button" class="btn btn--link" data-checkout-close>{{ m_close }}</button>
+    </section>
+
+    <!-- STATUS: Error -->
+    <section class="checkout__status" data-checkout-status="error" hidden>
+      <div class="checkout__cross">✕</div>
+      <h3>{{ m_error_title }}</h3>
+      <p data-checkout-error-msg></p>
+      <button type="button" class="btn btn--primary" data-checkout-retry>{{ m_retry }}</button>
+    </section>
+  </div>
+</div>
+
+<!-- Bridge data the JS reads at boot. (Liquid -> JSON -> JS) -->
+<script id="checkout-config" type="application/json">
+{
+  "lang": "{{ lang }}",
+  "receiving_wallet": "{{ site.data.packages.receiving_wallet }}",
+  "formspree": "{{ site.data.packages.formspree_endpoint }}",
+  "chain": {
+    "id": {{ site.data.packages.chain.id }},
+    "hex": "{{ site.data.packages.chain.hex }}",
+    "name": "{{ site.data.packages.chain.name }}",
+    "rpc": "{{ site.data.packages.chain.rpc }}",
+    "block_explorer": "{{ site.data.packages.chain.block_explorer }}",
+    "native_symbol": "{{ site.data.packages.chain.native_symbol }}"
+  },
+  "tokens": {
+    "USDT": {
+      "address": "{{ site.data.packages.tokens.USDT.address }}",
+      "decimals": {{ site.data.packages.tokens.USDT.decimals }}
+    },
+    "USDC": {
+      "address": "{{ site.data.packages.tokens.USDC.address }}",
+      "decimals": {{ site.data.packages.tokens.USDC.decimals }}
+    }
+  },
+  "labels": {
+    "pay_btn": {{ m_pay_btn | jsonify }},
+    "paying": {{ m_paying | jsonify }},
+    "pending": {{ m_pending | jsonify }}
+  }
+}
+</script>
+
+<script src="{{ '/assets/js/checkout.js' | relative_url }}" defer></script>
