@@ -2,14 +2,10 @@
 # Quedic Shop — package catalog & on-chain payment configuration
 #
 # Currency: USDT (= USDC = USD-equivalent on BNB Smart Chain).
-# Source:    Internal pricing sheets (报价.xlsx + 报价(1).xlsx).
-#            Bundle prices are computed for honest discount math —
-#            every bundle is meaningfully cheaper than buying its
-#            individual SKUs separately.
-# Long-tail SKUs (single-platform listings, per-1k follower growth,
-# individual KOL slots, branding line items, etc.) are intentionally
-# not displayed here. They route through the "Bespoke programs" CTA
-# at the bottom of the shop page so the storefront stays curated.
+# Pricing source: 对外价格 column from internal pricing sheets.
+# Bundle math: each bundle is honestly cheaper than its component sum.
+#   `original_usdt` shown alongside `price_usdt` so customers see the
+#   savings (strikethrough display in the UI).
 # =====================================================================
 
 # ⚠️ MUST be set to a real BSC wallet you control before launch.
@@ -37,8 +33,47 @@ tokens:
     symbol: "USDC"
 
 # =====================================================================
-# 12 outcome-driven bundles, 3-column grid (4 rows on desktop).
-# Each bundle has 1-2 tags for scannability.
+# Filter categories shown as chips above the grid
+# =====================================================================
+categories:
+  - id: all
+    label:
+      en: "All"
+      zh-tw: "全部"
+      ja: "すべて"
+  - id: listings
+    label:
+      en: "Listings"
+      zh-tw: "收錄"
+      ja: "掲載"
+  - id: pr
+    label:
+      en: "PR"
+      zh-tw: "公關"
+      ja: "PR"
+  - id: kol
+    label:
+      en: "KOL"
+      zh-tw: "KOL"
+      ja: "KOL"
+  - id: live
+    label:
+      en: "Live"
+      zh-tw: "直播"
+      ja: "ライブ"
+  - id: brand
+    label:
+      en: "Brand"
+      zh-tw: "品牌"
+      ja: "ブランド"
+  - id: launch
+    label:
+      en: "Launch"
+      zh-tw: "代幣發行"
+      ja: "ローンチ"
+
+# =====================================================================
+# 13 curated programs — 3-column grid (4-5 rows on desktop)
 # =====================================================================
 packages:
 
@@ -50,9 +85,15 @@ packages:
   # Bundle: 17,100 → 13,500 (-21%)
   - id: token-discoverable
     weight: 1
+    category: listings
     price_usdt: 13500
     price_usdc: 13500
+    original_usdt: 17100
     recurring: false
+    delivery:
+      en: "10–14 business days"
+      zh-tw: "10–14 個工作日"
+      ja: "10〜14営業日"
     tags:
       en: ["Listings"]
       zh-tw: ["收錄"]
@@ -93,14 +134,18 @@ packages:
 
   # -------------------------------------------------------------------
   # 02 — Listings: wallets
-  # Components (USDT, 对外价格): MetaMask 3000 + OKX 1000 + Bitget 300
-  #   + Trust 6300 + Binance 1000 + GMGN 600 + MSG 400 = 12,600
   # Bundle: 12,600 → 9,800 (-22%)
   - id: wallet-pack
     weight: 2
+    category: listings
     price_usdt: 9800
     price_usdc: 9800
+    original_usdt: 12600
     recurring: false
+    delivery:
+      en: "12–21 business days"
+      zh-tw: "12–21 個工作日"
+      ja: "12〜21営業日"
     tags:
       en: ["Listings"]
       zh-tw: ["收錄"]
@@ -140,17 +185,19 @@ packages:
         - "MSG トークンプロフィール"
 
   # -------------------------------------------------------------------
-  # 03 — Reach: Chinese mainland platforms
-  # Components (USDT, 对外价格): Sina 30 + NetEase 30 + Sohu 30
-  #   + Zhihu 30 + Weibo verified 30 + WeChat OA 20 + Big-V Baijiahao 50
-  #   + Xiaohongshu 20 + Zhihu Q&A×12 150 + Baidu Knows 80
-  #   + Baidu Wenku 50 + Baidu home 50 + GEO AI 300 = 870
+  # 03 — China retail platforms
   # Bundle: 870 → 700 (-20%)
   - id: china-mainland
     weight: 3
+    category: pr
     price_usdt: 700
     price_usdc: 700
+    original_usdt: 870
     recurring: false
+    delivery:
+      en: "5–7 business days"
+      zh-tw: "5–7 個工作日"
+      ja: "5〜7営業日"
     tags:
       en: ["Reach", "China"]
       zh-tw: ["觸達", "中國"]
@@ -191,15 +238,18 @@ packages:
 
   # -------------------------------------------------------------------
   # 04 — PR: Global English
-  # Components (USDT, 对外价格): AP+300 600 + Yahoo 600 + 100 EN 100
-  #   + Google 200 + High-end Business 100 + Chinese Big-Name 100
-  #   + Index Pack 150 = 1,850
   # Bundle: 1,850 → 1,400 (-24%)
   - id: english-newsroom
     weight: 4
+    category: pr
     price_usdt: 1400
     price_usdc: 1400
+    original_usdt: 1850
     recurring: false
+    delivery:
+      en: "5–7 business days"
+      zh-tw: "5–7 個工作日"
+      ja: "5〜7営業日"
     tags:
       en: ["PR", "Global"]
       zh-tw: ["公關", "全球"]
@@ -240,15 +290,18 @@ packages:
 
   # -------------------------------------------------------------------
   # 05 — PR: Multi-language regional
-  # Components (USDT, 对外价格): 50 JP 100 + 50 DE 100 + 50 ES 100
-  #   + 50 FR 100 + 60 KR 120 + 60 RU 120 + 60 IN 120 + 60 TH 120
-  #   + 60 VI 120 + 60 AR 120 + 60 PT 120 + 60 SV 120 = 1,480
   # Bundle: 1,480 → 1,200 (-19%)
   - id: regional-wave
     weight: 5
+    category: pr
     price_usdt: 1200
     price_usdc: 1200
+    original_usdt: 1480
     recurring: false
+    delivery:
+      en: "7–10 business days"
+      zh-tw: "7–10 個工作日"
+      ja: "7〜10営業日"
     tags:
       en: ["PR", "Multi-Language"]
       zh-tw: ["公關", "多語言"]
@@ -285,23 +338,27 @@ packages:
         - "地域別成果サマリー"
 
   # -------------------------------------------------------------------
-  # 06 — KOL: AI × Crypto + live activation
-  # Components (USDT, 对外价格): AI 5-pack 2500 + X Space 400
-  #   + Binance Sq AMA 400 + Premium TG 100 = 3,400
+  # 06 — KOL: AI × Crypto + live activation (TITLE SOFTENED)
   # Bundle: 3,400 → 2,800 (-18%)
   - id: ai-narrative
     weight: 6
+    category: kol
     price_usdt: 2800
     price_usdc: 2800
+    original_usdt: 3400
     recurring: false
+    delivery:
+      en: "10–14 business days"
+      zh-tw: "10–14 個工作日"
+      ja: "10〜14営業日"
     tags:
       en: ["KOL", "AI"]
       zh-tw: ["KOL", "AI"]
       ja: ["KOL", "AI"]
     title:
-      en: "Own the AI × crypto narrative."
-      zh-tw: "佔位 AI × 加密敘事。"
-      ja: "AI×クリプト・ナラティブを掌握する。"
+      en: "Activate the AI × crypto conversation."
+      zh-tw: "啟動 AI × 加密的對話。"
+      ja: "AI×クリプトの会話を、立ち上げる。"
     summary:
       en: "Five AI-sector KOLs paired with one X Space and one Binance Square AMA — the loudest narrative of this cycle, coordinated for compounding effect."
       zh-tw: "5 位 AI 賽道 KOL + 一場 X Space + 一場幣安廣場 AMA ── 本輪週期最大聲量賽道，協同放大。"
@@ -334,21 +391,25 @@ packages:
 
   # -------------------------------------------------------------------
   # 07 — KOL: Japan + live
-  # Components (USDT, 对外价格): JP mid-high 5-pack 3500
-  #   + JP X Space 400 + Telegram AMA 100 = 4,000
   # Bundle: 4,000 → 3,200 (-20%)
   - id: japan-activation
     weight: 7
+    category: kol
     price_usdt: 3200
     price_usdc: 3200
+    original_usdt: 4000
     recurring: false
+    delivery:
+      en: "10–14 business days"
+      zh-tw: "10–14 個工作日"
+      ja: "10〜14営業日"
     tags:
       en: ["KOL", "Japan"]
       zh-tw: ["KOL", "日本"]
       ja: ["KOL", "日本"]
     title:
-      en: "Activate Japan in five voices."
-      zh-tw: "以五位聲音啟動日本。"
+      en: "Activate Japan, in five voices."
+      zh-tw: "以五位聲音，啟動日本。"
       ja: "5つの声で、日本市場を動かす。"
     summary:
       en: "Five mid-to-high tier Japanese crypto KOLs across X, YouTube and Note — paired with a JP-language X Space and Telegram AMA."
@@ -378,24 +439,27 @@ packages:
         - "日英バイリンガル成果報告"
 
   # -------------------------------------------------------------------
-  # 08 — KOL: Chinese-language + video push
-  # Components (USDT, 对外价格): CN mid-high 5-pack 3500
-  #   + WeChat Channels 大V × 3 = 360 + Douyin 10-50W × 2 = 300
-  #   + Premium TG 100 + X Space 400 = 4,660
+  # 08 — KOL: Chinese-language (TITLE SOFTENED)
   # Bundle: 4,660 → 3,800 (-18%)
   - id: chinese-retail
     weight: 8
+    category: kol
     price_usdt: 3800
     price_usdc: 3800
+    original_usdt: 4660
     recurring: false
+    delivery:
+      en: "10–14 business days"
+      zh-tw: "10–14 個工作日"
+      ja: "10〜14営業日"
     tags:
       en: ["KOL", "Chinese"]
       zh-tw: ["KOL", "華語"]
       ja: ["KOL", "中国語"]
     title:
-      en: "Win Chinese-speaking retail."
-      zh-tw: "贏下華語散戶市場。"
-      ja: "中国語圏リテールを、掌握する。"
+      en: "Reach Chinese-speaking retail audiences."
+      zh-tw: "觸達華語散戶受眾。"
+      ja: "中国語圏リテール層へリーチする。"
     summary:
       en: "Five mid-high Chinese KOLs plus a video push across WeChat Channels and Douyin — and one Chinese-language X Space."
       zh-tw: "中至高端華語 KOL 5 位 + 微信視頻號與抖音的影片放大 + 一場中文 X Space。"
@@ -427,23 +491,27 @@ packages:
         - "ネイティブコンテンツレビュー・成果報告"
 
   # -------------------------------------------------------------------
-  # 09 — Live: AMAs & Spaces
-  # Components (USDT, 对外价格): X Space 400
-  #   + Binance Square AMA (face-cam) 500 + Telegram AMA 100 = 1,000
+  # 09 — Live (TITLE SOFTENED)
   # Bundle: 1,000 → 800 (-20%)
   - id: live-conversations
     weight: 9
+    category: live
     price_usdt: 800
     price_usdc: 800
+    original_usdt: 1000
     recurring: false
+    delivery:
+      en: "Scheduled within 5–10 business days"
+      zh-tw: "5–10 個工作日內排程"
+      ja: "5〜10営業日以内にスケジュール"
     tags:
       en: ["Live"]
       zh-tw: ["直播"]
       ja: ["ライブ"]
     title:
-      en: "Three live conversations, one week."
-      zh-tw: "三場直接對話，一週完成。"
-      ja: "3つのライブ対話を、1週間で。"
+      en: "Three live conversations, one program."
+      zh-tw: "三場直接對話，一套節目。"
+      ja: "3つのライブ対話を、一つのプログラムで。"
     summary:
       en: "An X Space, a Binance Square AMA with face-cam, and a Telegram text AMA — three high-conversion live touchpoints sequenced together."
       zh-tw: "一場 X Space + 一場露臉幣安廣場 AMA + 一場 Telegram 文字 AMA ── 三場高轉化直接對話，串聯排程。"
@@ -469,13 +537,17 @@ packages:
         - "録画と書面サマリー納品"
 
   # -------------------------------------------------------------------
-  # 10 — Brand: 2-week strategy sprint
-  # Custom consulting service, premium tier
+  # 10 — Brand: 2-week sprint
   - id: brand-sprint
     weight: 10
+    category: brand
     price_usdt: 7500
     price_usdc: 7500
     recurring: false
+    delivery:
+      en: "14 business days"
+      zh-tw: "14 個工作日"
+      ja: "14営業日"
     tags:
       en: ["Brand"]
       zh-tw: ["品牌"]
@@ -509,17 +581,20 @@ packages:
         - "ブランドブック納品（PDF + 編集可ファイル）"
 
   # -------------------------------------------------------------------
-  # 11 — Recurring: Always-on PR retainer
-  # Monthly value (USDT, 对外价格 of included items):
-  #   1× English drop 1,400 + 1× Multi-lang 1,200 + 5 mid-tier KOLs 1,500
-  #   + 1 live touchpoint 400 + China mainland 700 = ~5,200 tactical
-  #   + dedicated team / strategy / reporting premium ~4,600
-  # Monthly price: 9,800 (premium always-on retainer)
+  # 11 — Recurring: PR retainer
+  # NOTE: payment is one-time USDT.transfer for first month only.
+  # Modal copy (and shop fine print) clearly explains we'll email a
+  # reminder before next month's invoice.
   - id: pr-retainer
     weight: 11
+    category: pr
     price_usdt: 9800
     price_usdc: 9800
     recurring: true
+    delivery:
+      en: "Continuous — kicks off within 5 business days"
+      zh-tw: "持續性 ── 5 個工作日內啟動"
+      ja: "継続的 ── 5営業日以内に始動"
     tags:
       en: ["Retainer", "Monthly"]
       zh-tw: ["月費合約", "持續"]
@@ -562,31 +637,84 @@ packages:
         - "月次成果レビュー"
 
   # -------------------------------------------------------------------
-  # 12 — Anchor: Token Launch Full TGE Stack
-  # Component bundle sum (USDT, 对外价格):
-  #   Token discoverable 13,500 + Wallet pack 9,800 + English 1,400
-  #   + Multi-lang 1,200 + AI KOL 2,800 + Japan 3,200 + Chinese 3,800
-  #   + 2× Live (pre + listing day) 1,600 + Brand sprint 7,500
-  #   + 1 month retainer 9,800 = 54,600
+  # 12 — NEW: Mid-tier launch package (bridges 13.5K → 38K gap)
+  # Components (USDT, 对外价格):
+  #   Token Discoverable 13,500 + Wallet Pack 9,800 + English 1,400
+  #   + Japan KOL 3,200 + Live 800 = 28,700
+  # Bundle: 28,700 → 24,000 (-16%)
+  - id: launch-lite
+    weight: 12
+    category: launch
+    price_usdt: 24000
+    price_usdc: 24000
+    original_usdt: 28700
+    recurring: false
+    delivery:
+      en: "21–28 business days"
+      zh-tw: "21–28 個工作日"
+      ja: "21〜28営業日"
+    tags:
+      en: ["Launch", "Mid-Market"]
+      zh-tw: ["代幣發行", "中型市場"]
+      ja: ["ローンチ", "中堅市場"]
+    title:
+      en: "Launch Lite — for mid-market TGEs."
+      zh-tw: "Launch Lite ── 中型市場 TGE 套餐。"
+      ja: "Launch Lite ── 中堅市場のTGE向け。"
+    summary:
+      en: "The launch essentials for projects between bootstrapped and enterprise — listings, English press, one regional KOL wave, and a live activation, sequenced into one program."
+      zh-tw: "為介於自啟動與企業級之間的項目而設 ── 數據站收錄、英文發佈、單場區域 KOL 啟動、現場活動，串聯成一個計劃。"
+      ja: "自走フェーズと企業級の中間にあるプロジェクト向け ── 掲載、英語PR、単一地域のKOLウェーブ、ライブ・アクティベーションを1つのプログラムへ統合。"
+    bullets:
+      en:
+        - "Top data listings (8 sites)"
+        - "Wallet listings (7 wallets)"
+        - "Global English newsroom drop"
+        - "Japanese KOL wave (5 KOLs + Live)"
+        - "One pre-launch AMA bundle"
+        - "Coordinated launch-day timing"
+      zh-tw:
+        - "頂級數據站收錄（8 站）"
+        - "錢包收錄（7 個）"
+        - "全球英文新聞發佈"
+        - "日本 KOL 啟動（5 位 + Live）"
+        - "上線前一場 AMA 串聯"
+        - "上架日協同時間軸"
+      ja:
+        - "トップデータサイト掲載（8サイト）"
+        - "ウォレット掲載（7社）"
+        - "グローバル英語ニュースルームドロップ"
+        - "日本KOLウェーブ（5名 + ライブ）"
+        - "ローンチ前のAMAバンドル1セット"
+        - "ローンチ日のタイミング調整"
+
+  # -------------------------------------------------------------------
+  # 13 — Anchor: Token Launch Full TGE Stack (RENAMED slightly)
   # Bundle: 54,600 → 38,000 (-30%)
   - id: token-launch
-    weight: 12
+    weight: 13
+    category: launch
     price_usdt: 38000
     price_usdc: 38000
+    original_usdt: 54600
     recurring: false
     featured: true
+    delivery:
+      en: "30–45 business days"
+      zh-tw: "30–45 個工作日"
+      ja: "30〜45営業日"
     tags:
       en: ["Launch", "Featured"]
       zh-tw: ["代幣發行", "旗艦"]
       ja: ["ローンチ", "旗艦"]
     title:
-      en: "Launch your token, end-to-end."
-      zh-tw: "代幣發行，端到端執行。"
-      ja: "トークンローンチを、一気通貫で。"
+      en: "Full TGE — end-to-end token launch."
+      zh-tw: "完整 TGE ── 端到端代幣發行。"
+      ja: "フルTGE ── 一気通貫のトークンローンチ。"
     summary:
-      en: "Every package above, sequenced into a single TGE program — listings, wallets, English &amp; multi-language press, three KOL waves, AMAs, brand sharpening and a month of post-launch retainer."
-      zh-tw: "上述所有套餐串聯為單一 TGE 計劃 ── 數據站收錄、錢包、英文與多語言媒體、三場 KOL 啟動、AMA、品牌打磨，以及上線後 1 個月持續運營。"
-      ja: "上記すべてのパッケージを単一のTGEプログラムに統合 ── 掲載、ウォレット、英語・多言語PR、3つのKOLウェーブ、AMA、ブランド研磨、ローンチ後1ヶ月のリテイナー。"
+      en: "Every program above, sequenced into a single TGE — listings, wallets, English &amp; multi-language press, three KOL waves, AMAs, brand sharpening and a month of post-launch retainer."
+      zh-tw: "上述所有計劃串聯為單一 TGE ── 數據站收錄、錢包、英文與多語言媒體、三場 KOL 啟動、AMA、品牌打磨，以及上線後 1 個月持續運營。"
+      ja: "上記すべてのプログラムを単一のTGEに統合 ── 掲載、ウォレット、英語・多言語PR、3つのKOLウェーブ、AMA、ブランド研磨、ローンチ後1ヶ月のリテイナー。"
     bullets:
       en:
         - "Top data listings (8 sites)"
@@ -620,8 +748,112 @@ packages:
         - "専任ローンチディレクター"
 
 # =====================================================================
-# Enterprise tier — anchor pricing reference, displayed below the grid
-# Not directly purchasable; routes to contact form.
+# Quick Buys — single-item activations under 1,000 USDT
+# Same checkout flow, simpler card layout
+# =====================================================================
+quick_buys:
+
+  - id: x-space
+    price_usdt: 400
+    title:
+      en: "Single X Space — curated host"
+      zh-tw: "單場精選 X Space"
+      ja: "単独X Space ── 厳選ホスト"
+    description:
+      en: "One curated, one-hour X Space hosted with your team."
+      zh-tw: "一場精選、一小時 X Space，與您的團隊共同主持。"
+      ja: "1時間の厳選X Space、貴社チームとの共同ホスト。"
+
+  - id: binance-ama
+    price_usdt: 400
+    title:
+      en: "Single Binance Square AMA"
+      zh-tw: "單場幣安廣場 AMA"
+      ja: "単独 Binance Square AMA"
+    description:
+      en: "One Binance Square AMA session, scheduled and moderated."
+      zh-tw: "一場幣安廣場 AMA，排程與主持包辦。"
+      ja: "Binance Square AMA を1回、スケジュール・モデレーション込み。"
+
+  - id: binance-ama-camera
+    price_usdt: 500
+    title:
+      en: "Binance Square AMA — face-cam"
+      zh-tw: "幣安廣場 AMA ── 露臉版"
+      ja: "Binance Square AMA ── 顔出しあり"
+    description:
+      en: "Face-cam Binance Square AMA — higher trust, higher conversion."
+      zh-tw: "露臉版幣安廣場 AMA ── 信任更高、轉化更高。"
+      ja: "顔出しBinance Square AMA ── 信頼性とコンバージョン向上。"
+
+  - id: telegram-ama
+    price_usdt: 100
+    title:
+      en: "Telegram text AMA"
+      zh-tw: "Telegram 文字 AMA"
+      ja: "Telegram文字AMA"
+    description:
+      en: "One Telegram text-format AMA in a curated community."
+      zh-tw: "一場精選社群內的 Telegram 文字 AMA。"
+      ja: "厳選コミュニティ内でのTelegram文字AMA 1回。"
+
+  - id: jp-50-media
+    price_usdt: 100
+    title:
+      en: "Japan — 50 outlets distribution"
+      zh-tw: "日本 ── 50 家媒體發佈"
+      ja: "日本 ── 50媒体配信"
+    description:
+      en: "Translated press release distributed across 50 Japanese outlets."
+      zh-tw: "翻譯後新聞稿，發佈至 50 家日本媒體。"
+      ja: "翻訳済みプレスリリースを日本国内50媒体へ配信。"
+
+  - id: en-100-media
+    price_usdt: 100
+    title:
+      en: "English — 100 outlets distribution"
+      zh-tw: "英文 ── 100 家媒體發佈"
+      ja: "英語 ── 100媒体配信"
+    description:
+      en: "Press release distributed across 100 English-language outlets."
+      zh-tw: "新聞稿發佈至 100 家英文媒體。"
+      ja: "プレスリリースを英語圏100媒体へ配信。"
+
+  - id: ap-press
+    price_usdt: 600
+    title:
+      en: "AP wire + 300 satellite outlets"
+      zh-tw: "美聯社 + 300 家媒體小站"
+      ja: "AP通信 + 300サイト"
+    description:
+      en: "One press release on the AP wire syndicated to 300 satellite sites."
+      zh-tw: "美聯社新聞稿一篇，聯播至 300 家媒體小站。"
+      ja: "AP通信プレスリリース1本、300サイトへシンジケーション。"
+
+  - id: yahoo-press
+    price_usdt: 600
+    title:
+      en: "Yahoo Finance / News distribution"
+      zh-tw: "雅虎財經／新聞發佈"
+      ja: "Yahoo Finance／News配信"
+    description:
+      en: "One press release distributed via Yahoo Finance and Yahoo News."
+      zh-tw: "新聞稿一篇，透過雅虎財經與雅虎新聞發佈。"
+      ja: "プレスリリース1本を Yahoo Finance / Yahoo News 経由で配信。"
+
+  - id: gmgn-listing
+    price_usdt: 600
+    title:
+      en: "GMGN trader info listing"
+      zh-tw: "GMGN 交易員資訊收錄"
+      ja: "GMGN トレーダー情報掲載"
+    description:
+      en: "Token info listed on GMGN — popular among on-chain traders."
+      zh-tw: "代幣資訊收錄至 GMGN ── 鏈上交易員常用。"
+      ja: "トークン情報をGMGNへ掲載 ── オンチェーン・トレーダーの利用が多い。"
+
+# =====================================================================
+# Enterprise tier — anchor pricing reference
 # =====================================================================
 enterprise:
   price_from_usdt: 75000

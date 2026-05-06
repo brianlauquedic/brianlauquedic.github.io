@@ -377,16 +377,27 @@
 
   // ---- 8. Open / close modal -----------------------------------------
   function openModal(card) {
+    // Both .shop-card and .quickbuy-card use the same data attributes.
+    // Title/summary selectors fall back gracefully between the two layouts.
+    var titleEl = card.querySelector('.shop-card__title, .quickbuy-card__title');
+    var summaryEl = card.querySelector('.shop-card__summary, .quickbuy-card__desc');
     state.pkg = {
       id: card.getAttribute('data-package-id'),
       priceUsdt: parseFloat(card.getAttribute('data-price-usdt')),
       priceUsdc: parseFloat(card.getAttribute('data-price-usdc')),
       recurring: card.getAttribute('data-recurring') === 'true',
-      title: card.querySelector('.shop-card__title').textContent.trim(),
-      summary: card.querySelector('.shop-card__summary').textContent.trim()
+      title: titleEl ? titleEl.textContent.trim() : '',
+      summary: summaryEl ? summaryEl.textContent.trim() : ''
     };
     setText('[data-checkout-pkg-title]', state.pkg.title);
     setText('[data-checkout-pkg-summary]', state.pkg.summary);
+
+    // Show / hide the monthly-renewal reminder for retainer packages
+    var recNote = $('[data-checkout-recurring-note]');
+    if (recNote) {
+      if (state.pkg.recurring) recNote.removeAttribute('hidden');
+      else recNote.setAttribute('hidden', '');
+    }
 
     refreshPayLabel();
 
@@ -426,14 +437,34 @@
 
   // ---- 9. Wire up event handlers --------------------------------------
   function bind() {
-    // Open from any package card
+    // Open from any package card (main grid OR quick-buy grid)
     document.addEventListener('click', function (e) {
       var trigger = e.target.closest('[data-checkout-trigger]');
       if (!trigger) return;
       e.preventDefault();
-      var card = trigger.closest('.shop-card');
+      var card = trigger.closest('.shop-card, .quickbuy-card');
       if (card) openModal(card);
     });
+
+    // Filter chips — show/hide cards by category
+    var filterButtons = $$('.shop-filter');
+    if (filterButtons.length) {
+      var allCards = document.querySelectorAll('.shop-card[data-category]');
+      filterButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var cat = btn.getAttribute('data-category');
+          filterButtons.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          allCards.forEach(function (card) {
+            if (cat === 'all' || card.getAttribute('data-category') === cat) {
+              card.removeAttribute('hidden');
+            } else {
+              card.setAttribute('hidden', '');
+            }
+          });
+        });
+      });
+    }
 
     // Close handlers
     $$('[data-checkout-close]').forEach(function (el) {

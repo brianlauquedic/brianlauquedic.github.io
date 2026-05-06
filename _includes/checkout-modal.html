@@ -1,5 +1,6 @@
 {%- assign lang = page.lang | default: 'en' -%}
 {%- if lang == 'zh-tw' -%}
+  {%- assign m_recurring_note = '此為月付制服務的首期付款。每月一次性付款，到期前我們會以電子郵件提醒您續約。鏈上沒有自動扣款 ── 您始終掌握下個月是否續訂的決定權。' -%}
   {%- assign m_title = '結帳' -%}
   {%- assign m_step1 = '1. 連接錢包' -%}
   {%- assign m_step2 = '2. 您的資訊' -%}
@@ -28,6 +29,7 @@
   {%- assign m_retry = '重試' -%}
   {%- assign m_secure_note = '錢包直接與 BSC 區塊鏈互動。Quedic 不接觸您的私鑰。' -%}
 {%- elsif lang == 'ja' -%}
+  {%- assign m_recurring_note = 'これは月次サービスの初月分のお支払いです。毎月単発でお支払いいただく形式で、次月が近づきましたら更新リマインダーをメールでお送りします。オンチェーンで自動引き落としは行いません ── 翌月の継続可否は常にお客様が判断します。' -%}
   {%- assign m_title = 'お支払い' -%}
   {%- assign m_step1 = '1. ウォレット接続' -%}
   {%- assign m_step2 = '2. プロジェクト情報' -%}
@@ -56,6 +58,7 @@
   {%- assign m_retry = '再試行' -%}
   {%- assign m_secure_note = 'ウォレットはBSCブロックチェーンと直接やりとりします。Quedicが秘密鍵に触れることはありません。' -%}
 {%- else -%}
+  {%- assign m_recurring_note = "This is the first month's payment for a monthly service. Each month is a separate transaction — we'll email a reminder before the next invoice. There's no on-chain auto-charge — the decision to renew is always yours." -%}
   {%- assign m_title = 'Checkout' -%}
   {%- assign m_step1 = '1. Connect wallet' -%}
   {%- assign m_step2 = '2. Your details' -%}
@@ -96,6 +99,10 @@
       <h2 id="checkout-title" class="checkout__pkg-title" data-checkout-pkg-title></h2>
       <p class="checkout__pkg-summary" data-checkout-pkg-summary></p>
     </header>
+
+    <div class="checkout__recurring-note" data-checkout-recurring-note hidden>
+      {{ m_recurring_note }}
+    </div>
 
     <!-- STEP 1: Wallet -->
     <section class="checkout__step" data-checkout-step="wallet">
