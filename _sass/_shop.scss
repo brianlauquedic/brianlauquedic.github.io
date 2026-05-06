@@ -33,6 +33,53 @@
     }
     &:hover img { filter: grayscale(0) opacity(1); }
   }
+  &__why {
+    margin: 16px 0 0;
+    color: $text-muted;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    max-width: 80ch;
+  }
+}
+
+// ---- Sticky anchor nav ----
+.shop-jump {
+  position: sticky;
+  top: 104px;            // matches site-header height
+  z-index: 30;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid $border;
+  ul {
+    display: flex;
+    gap: 4px;
+    margin: 0;
+    padding: 8px 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+  }
+  li {
+    flex-shrink: 0;
+    list-style: none;
+    a {
+      display: block;
+      padding: 8px 14px;
+      font-family: $font-display;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: $text-muted;
+      border-radius: 6px;
+      white-space: nowrap;
+      transition: color .15s, background .15s;
+      &:hover { color: $brand; background: rgba(91,47,217,0.06); }
+    }
+  }
+  @media (max-width: $bp-md) {
+    top: 72px;            // mobile header is 72px
+  }
 }
 
 // ---- Filter chips ----
@@ -131,15 +178,22 @@
     font-weight: 500;
   }
 
-  // Original (strikethrough) price
+  // Original (strikethrough) price — full unit included
   &__original {
     font-family: $font-display;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: $text-label;
     text-decoration: line-through;
-    margin-right: 8px;
+    text-decoration-thickness: 1.5px;
+    margin-right: 6px;
     font-weight: 400;
     align-self: center;
+  }
+  &__arrow {
+    color: $text-label;
+    margin-right: 8px;
+    align-self: center;
+    font-size: 0.95rem;
   }
 
   // Discount badge
@@ -914,4 +968,134 @@
 
 body.checkout-open {
   overflow: hidden;
+}
+
+// ============================================================
+// Commerce terms — invoices / contracts / SLA / NDA
+// ============================================================
+.shop-terms {
+  margin-top: 56px;
+  padding: 32px 32px 28px;
+  border-radius: $radius-lg;
+  background: $bg-soft;
+  border: 1px solid $border;
+
+  &__head {
+    margin-bottom: 20px;
+    .eyebrow { display: inline-block; margin-bottom: 6px; }
+  }
+  &__title {
+    font-family: $font-display;
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    margin: 0;
+    color: $text;
+  }
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+      padding: 12px 0 12px 28px;
+      position: relative;
+      color: $text-muted;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      border-bottom: 1px solid $border;
+      &::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        top: 12px;
+        color: $brand;
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+      &:last-child { border-bottom: 0; }
+    }
+  }
+}
+
+// ============================================================
+// FAQ — native <details>/<summary> accordion
+// ============================================================
+.shop-faq {
+  margin-top: 64px;
+  padding-top: 56px;
+  border-top: 1px solid $border;
+
+  &__head {
+    margin-bottom: 32px;
+    .eyebrow { display: inline-block; margin-bottom: 8px; }
+  }
+  &__title {
+    font-family: $font-display;
+    font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: $text;
+    margin: 0;
+  }
+  &__items {
+    border-top: 1px solid $border;
+  }
+  details {
+    border-bottom: 1px solid $border;
+    padding: 0;
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 20px 40px 20px 0;
+      position: relative;
+      font-family: $font-display;
+      font-size: 1.02rem;
+      font-weight: 500;
+      color: $text;
+      line-height: 1.4;
+      transition: color .15s;
+
+      &::-webkit-details-marker { display: none; }
+
+      &::after {
+        content: "+";
+        position: absolute;
+        right: 4px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-family: $font-display;
+        font-size: 1.4rem;
+        font-weight: 400;
+        color: $brand;
+        transition: transform .2s;
+        line-height: 1;
+      }
+
+      &:hover { color: $brand; }
+    }
+
+    p {
+      padding: 0 40px 24px 0;
+      color: $text-muted;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      margin: 0;
+      max-width: 80ch;
+    }
+
+    &[open] summary::after {
+      content: "−";
+    }
+  }
+}
+
+// ============================================================
+// Quickbuy card — small delivery line
+// ============================================================
+.quickbuy-card__delivery {
+  font-family: $font-body;
+  font-size: 0.78rem;
+  color: $text-label;
+  margin: 0 0 14px;
 }

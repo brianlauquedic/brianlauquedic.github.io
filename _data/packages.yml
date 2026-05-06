@@ -185,58 +185,6 @@ packages:
         - "MSG トークンプロフィール"
 
   # -------------------------------------------------------------------
-  # 03 — China retail platforms
-  # Bundle: 870 → 700 (-20%)
-  - id: china-mainland
-    weight: 3
-    category: pr
-    price_usdt: 700
-    price_usdc: 700
-    original_usdt: 870
-    recurring: false
-    delivery:
-      en: "5–7 business days"
-      zh-tw: "5–7 個工作日"
-      ja: "5〜7営業日"
-    tags:
-      en: ["Reach", "China"]
-      zh-tw: ["觸達", "中國"]
-      ja: ["リーチ", "中国"]
-    title:
-      en: "Reach the China retail market."
-      zh-tw: "進入中國散戶市場。"
-      ja: "中国リテール市場へ、リーチする。"
-    summary:
-      en: "Coverage across the eleven Chinese-mainland platforms where retail still forms its first opinion of a project."
-      zh-tw: "覆蓋 11 個中國大陸平台 ── 散戶對項目形成第一印象的真實場域。"
-      ja: "中国本土の主要11プラットフォームをカバー ── リテール投資家が最初の印象を形成する現場。"
-    bullets:
-      en:
-        - "Sina, NetEase, Sohu — top portals"
-        - "Zhihu Q&amp;A (12 placements)"
-        - "Weibo verified opinion accounts"
-        - "WeChat Official Account post"
-        - "Xiaohongshu placement"
-        - "Baidu Knows + Baidu Wenku + Baidu home placement"
-        - "GEO AI indexing (200 sources)"
-      zh-tw:
-        - "新浪、網易、搜狐 ── 頂級門戶"
-        - "知乎問答（12 條）"
-        - "微博萬粉博主"
-        - "微信公眾號發文"
-        - "小紅書版位"
-        - "百度知道 + 百度文庫 + 百度首頁"
-        - "GEO AI 收錄（200 家來源）"
-      ja:
-        - "Sina・NetEase・Sohu ── 主要ポータル"
-        - "知乎Q&amp;A（12件）"
-        - "微博 万フォロワー認証アカウント"
-        - "WeChat公式アカウント投稿"
-        - "小紅書（Xiaohongshu）掲載"
-        - "百度知道 + 百度文庫 + 百度トップ"
-        - "GEO AIインデックス（200ソース）"
-
-  # -------------------------------------------------------------------
   # 04 — PR: Global English
   # Bundle: 1,850 → 1,400 (-24%)
   - id: english-newsroom
@@ -637,16 +585,18 @@ packages:
         - "月次成果レビュー"
 
   # -------------------------------------------------------------------
-  # 12 — NEW: Mid-tier launch package (bridges 13.5K → 38K gap)
+  # 12 — Mid-tier launch package (bridges 13.5K → 38K gap)
   # Components (USDT, 对外价格):
   #   Token Discoverable 13,500 + Wallet Pack 9,800 + English 1,400
   #   + Japan KOL 3,200 + Live 800 = 28,700
-  # Bundle: 28,700 → 24,000 (-16%)
+  # Bundle: 28,700 → 27,000 (-6%) ── deliberately small discount so
+  # Launch Lite doesn't undercut customers buying Token Discoverable
+  # + Wallet Pack standalone (combined 23,300).
   - id: launch-lite
     weight: 12
     category: launch
-    price_usdt: 24000
-    price_usdc: 24000
+    price_usdt: 27000
+    price_usdc: 27000
     original_usdt: 28700
     recurring: false
     delivery:
@@ -662,9 +612,9 @@ packages:
       zh-tw: "Launch Lite ── 中型市場 TGE 套餐。"
       ja: "Launch Lite ── 中堅市場のTGE向け。"
     summary:
-      en: "The launch essentials for projects between bootstrapped and enterprise — listings, English press, one regional KOL wave, and a live activation, sequenced into one program."
-      zh-tw: "為介於自啟動與企業級之間的項目而設 ── 數據站收錄、英文發佈、單場區域 KOL 啟動、現場活動，串聯成一個計劃。"
-      ja: "自走フェーズと企業級の中間にあるプロジェクト向け ── 掲載、英語PR、単一地域のKOLウェーブ、ライブ・アクティベーションを1つのプログラムへ統合。"
+      en: "When the full TGE stack is overkill — listings + press + a single KOL wave covers your launch."
+      zh-tw: "完整 TGE 套餐略大時的精簡版 ── 收錄 + 媒體 + 單場 KOL 啟動，覆蓋核心發佈動作。"
+      ja: "フルTGEは規模が大きすぎる時の精簡版 ── 掲載・PR・単一KOLウェーブでローンチを成立させる。"
     bullets:
       en:
         - "Top data listings (8 sites)"
@@ -748,13 +698,19 @@ packages:
         - "専任ローンチディレクター"
 
 # =====================================================================
-# Quick Buys — single-item activations under 1,000 USDT
-# Same checkout flow, simpler card layout
+# Quick Buys — single-item activations
+# Same checkout flow, simpler card layout, category-tagged so the
+# main filter chips work across both grids.
 # =====================================================================
 quick_buys:
 
   - id: x-space
+    category: live
     price_usdt: 400
+    delivery:
+      en: "Scheduled within 5 business days"
+      zh-tw: "5 個工作日內排程"
+      ja: "5営業日以内にスケジュール"
     title:
       en: "Single X Space — curated host"
       zh-tw: "單場精選 X Space"
@@ -765,7 +721,12 @@ quick_buys:
       ja: "1時間の厳選X Space、貴社チームとの共同ホスト。"
 
   - id: binance-ama
+    category: live
     price_usdt: 400
+    delivery:
+      en: "Scheduled within 5 business days"
+      zh-tw: "5 個工作日內排程"
+      ja: "5営業日以内にスケジュール"
     title:
       en: "Single Binance Square AMA"
       zh-tw: "單場幣安廣場 AMA"
@@ -776,7 +737,12 @@ quick_buys:
       ja: "Binance Square AMA を1回、スケジュール・モデレーション込み。"
 
   - id: binance-ama-camera
+    category: live
     price_usdt: 500
+    delivery:
+      en: "Scheduled within 5 business days"
+      zh-tw: "5 個工作日內排程"
+      ja: "5営業日以内にスケジュール"
     title:
       en: "Binance Square AMA — face-cam"
       zh-tw: "幣安廣場 AMA ── 露臉版"
@@ -787,7 +753,12 @@ quick_buys:
       ja: "顔出しBinance Square AMA ── 信頼性とコンバージョン向上。"
 
   - id: telegram-ama
+    category: live
     price_usdt: 100
+    delivery:
+      en: "Scheduled within 3 business days"
+      zh-tw: "3 個工作日內排程"
+      ja: "3営業日以内にスケジュール"
     title:
       en: "Telegram text AMA"
       zh-tw: "Telegram 文字 AMA"
@@ -798,7 +769,12 @@ quick_buys:
       ja: "厳選コミュニティ内でのTelegram文字AMA 1回。"
 
   - id: jp-50-media
+    category: pr
     price_usdt: 100
+    delivery:
+      en: "3–5 business days"
+      zh-tw: "3–5 個工作日"
+      ja: "3〜5営業日"
     title:
       en: "Japan — 50 outlets distribution"
       zh-tw: "日本 ── 50 家媒體發佈"
@@ -809,7 +785,12 @@ quick_buys:
       ja: "翻訳済みプレスリリースを日本国内50媒体へ配信。"
 
   - id: en-100-media
+    category: pr
     price_usdt: 100
+    delivery:
+      en: "3–5 business days"
+      zh-tw: "3–5 個工作日"
+      ja: "3〜5営業日"
     title:
       en: "English — 100 outlets distribution"
       zh-tw: "英文 ── 100 家媒體發佈"
@@ -820,7 +801,12 @@ quick_buys:
       ja: "プレスリリースを英語圏100媒体へ配信。"
 
   - id: ap-press
+    category: pr
     price_usdt: 600
+    delivery:
+      en: "3–5 business days"
+      zh-tw: "3–5 個工作日"
+      ja: "3〜5営業日"
     title:
       en: "AP wire + 300 satellite outlets"
       zh-tw: "美聯社 + 300 家媒體小站"
@@ -831,7 +817,12 @@ quick_buys:
       ja: "AP通信プレスリリース1本、300サイトへシンジケーション。"
 
   - id: yahoo-press
+    category: pr
     price_usdt: 600
+    delivery:
+      en: "3–5 business days"
+      zh-tw: "3–5 個工作日"
+      ja: "3〜5営業日"
     title:
       en: "Yahoo Finance / News distribution"
       zh-tw: "雅虎財經／新聞發佈"
@@ -842,7 +833,12 @@ quick_buys:
       ja: "プレスリリース1本を Yahoo Finance / Yahoo News 経由で配信。"
 
   - id: gmgn-listing
+    category: listings
     price_usdt: 600
+    delivery:
+      en: "5–7 business days"
+      zh-tw: "5–7 個工作日"
+      ja: "5〜7営業日"
     title:
       en: "GMGN trader info listing"
       zh-tw: "GMGN 交易員資訊收錄"
@@ -851,6 +847,22 @@ quick_buys:
       en: "Token info listed on GMGN — popular among on-chain traders."
       zh-tw: "代幣資訊收錄至 GMGN ── 鏈上交易員常用。"
       ja: "トークン情報をGMGNへ掲載 ── オンチェーン・トレーダーの利用が多い。"
+
+  - id: china-mainland
+    category: pr
+    price_usdt: 700
+    delivery:
+      en: "5–7 business days"
+      zh-tw: "5–7 個工作日"
+      ja: "5〜7営業日"
+    title:
+      en: "China retail platforms — 11-platform pack"
+      zh-tw: "中國散戶平台 ── 11 平台套餐"
+      ja: "中国リテール ── 11プラットフォーム"
+    description:
+      en: "Sina, NetEase, Sohu, Zhihu, Weibo, WeChat, Xiaohongshu, Baidu Knows / Wenku and GEO AI — coverage of the eleven platforms where Chinese retail forms its first opinion."
+      zh-tw: "新浪、網易、搜狐、知乎、微博、微信、小紅書、百度知道／文庫與 GEO AI ── 覆蓋中國散戶形成第一印象的 11 個平台。"
+      ja: "Sina、NetEase、Sohu、知乎、微博、WeChat、小紅書、百度知道／文庫、GEO AI ── 中国リテールが最初の印象を形成する11プラットフォームをカバー。"
 
 # =====================================================================
 # Enterprise tier — anchor pricing reference

@@ -446,10 +446,13 @@
       if (card) openModal(card);
     });
 
-    // Filter chips — show/hide cards by category
+    // Filter chips — show/hide cards by category across BOTH grids
+    // (main packages and à la carte quick-buys).
     var filterButtons = $$('.shop-filter');
     if (filterButtons.length) {
-      var allCards = document.querySelectorAll('.shop-card[data-category]');
+      var allCards = document.querySelectorAll(
+        '.shop-card[data-category], .quickbuy-card[data-category]'
+      );
       filterButtons.forEach(function (btn) {
         btn.addEventListener('click', function () {
           var cat = btn.getAttribute('data-category');
@@ -465,6 +468,22 @@
         });
       });
     }
+
+    // Smooth-scroll for sticky shop nav anchors
+    document.querySelectorAll('.shop-jump a').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var href = a.getAttribute('href') || '';
+        if (href.charAt(0) !== '#') return;
+        var target = document.querySelector(href);
+        if (!target) return;
+        e.preventDefault();
+        // Account for sticky header (~104px) + sticky shop-jump (~52px) so
+        // the destination heading isn't hidden under the bars.
+        var offset = 160;
+        var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      });
+    });
 
     // Close handlers
     $$('[data-checkout-close]').forEach(function (el) {

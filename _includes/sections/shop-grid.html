@@ -6,7 +6,7 @@
   {%- assign t_chain_label = 'BNB Smart Chain · USDT 或 USDC' -%}
   {%- assign t_save = '節省' -%}
   {%- assign t_delivery = '預計交付' -%}
-  {%- assign t_finer = '結帳將直接從您的錢包向 Quedic 收款地址發起 USDT 或 USDC 轉帳。一旦上鏈確認，我們將在一個工作日內以電子郵件聯絡您。所有交易完成後不予退款。' -%}
+  {%- assign t_finer = '結帳將直接從您的錢包向 Quedic 收款地址發起 USDT 或 USDC 轉帳。一旦上鏈確認，我們將在一個工作日內以電子郵件聯絡您。' -%}
   {%- assign t_featured_badge = '旗艦套餐' -%}
   {%- assign t_recurring_badge = '持續月付' -%}
   {%- assign t_featured_program_badge = '中型市場' -%}
@@ -36,6 +36,32 @@
   {%- assign t_how_step4 = '錢包彈窗中，確認轉帳金額與接收地址後簽名。Gas 費 < 0.5 USDT。' -%}
   {%- assign t_how_step5 = '上鏈確認後，您將獲得交易雜湊作為訂單收據，並於一個工作日內收到我們的回信。' -%}
   {%- assign t_trust_eyebrow = '一線品牌信賴' -%}
+  {%- assign t_why_onchain = '鏈上結算更快、更便宜、自帶永久收據 ── 比銀行電匯對雙方都更好。' -%}
+  {%- assign t_terms_eyebrow = '商業條款' -%}
+  {%- assign t_terms_title = '我們的承諾' -%}
+  {%- assign t_terms_1 = '所有訂單於上鏈確認後立即出具服務收據與發票。' -%}
+  {%- assign t_terms_2 = '逾 10,000 USDT 的委託，啟動執行前簽訂正式服務協議。' -%}
+  {%- assign t_terms_3 = '若我們無法在約定時程內按範疇交付，將按比例退款。' -%}
+  {%- assign t_terms_4 = '保密協議（NDA）依需求簽訂，不額外收費。' -%}
+  {%- assign t_jump_programs = '套餐' -%}
+  {%- assign t_jump_alacarte = '單品下單' -%}
+  {%- assign t_jump_howit = '如何下單' -%}
+  {%- assign t_jump_faq = '常見問題' -%}
+  {%- assign t_jump_enterprise = '企業級' -%}
+  {%- assign t_faq_eyebrow = '常見問題' -%}
+  {%- assign t_faq_title = 'FAQ' -%}
+  {%- assign t_faq_q1 = '交易失敗怎麼辦？' -%}
+  {%- assign t_faq_a1 = '如果鏈上交易失敗（例如 Gas 不足、節點忙碌），您不會被扣款。請在錢包中重試，或檢查 BSC 上 BNB 餘額是否足以支付 Gas 費（< 0.5 USDT）。仍有問題請發郵件至 brianlau@quedic.com。' -%}
+  {%- assign t_faq_q2 = '可以取消訂單嗎？' -%}
+  {%- assign t_faq_a2 = '上鏈成功後，訂單已視為下達。如果您在我們開始執行前即提出取消，我們可協商部分退款；一旦執行啟動，依範疇按比例結算。詳見上方《商業條款》。' -%}
+  {%- assign t_faq_q3 = '需要 KYC 嗎？' -%}
+  {%- assign t_faq_a3 = '我們的訂購流程不要求個人 KYC。所有付款均為合約間（B2B）服務採購，不涉及個人身份驗證。但若您所在司法管轄區對加密支付有額外規範，請先自行確認合規。' -%}
+  {%- assign t_faq_q4 = '如何升級或反映問題？' -%}
+  {%- assign t_faq_a4 = '所有客戶在訂購後均獲指派一位專屬客戶經理，可透過電子郵件或 Telegram 聯繫。如服務交付有任何延誤或範疇爭議，請直接聯繫該客戶經理；逾 24 小時無回覆，請發信給 brianlau@quedic.com。' -%}
+  {%- assign t_faq_q5 = '可否為公司開發票？' -%}
+  {%- assign t_faq_a5 = '可以。每張訂單於確認後出具完整服務發票（包含項目、金額、交易雜湊、收款日期），可用於企業會計及稅務記錄。需要特定格式（如 GST／VAT／統編）請於訂購表單備註欄註明。' -%}
+  {%- assign t_faq_q6 = '為什麼是 USDT／USDC，而非銀行電匯？' -%}
+  {%- assign t_faq_a6 = '鏈上結算對雙方都更高效：到帳秒級、手續費 < 0.5 USDT、收據永久可查。銀行電匯需 1-3 個工作日、手續費 25-50 USD、且常受跨境合規延誤。對於加密原生客戶，這是最自然的支付通道。' -%}
 {%- elsif lang == 'ja' -%}
   {%- assign t_pay = '今すぐ支払う' -%}
   {%- assign t_monthly = '／月' -%}
@@ -43,7 +69,7 @@
   {%- assign t_chain_label = 'BNB Smart Chain · USDTまたはUSDC' -%}
   {%- assign t_save = '割引' -%}
   {%- assign t_delivery = '想定納期' -%}
-  {%- assign t_finer = '決済はお客様のウォレットからQuedicの受取アドレスへ直接USDTまたはUSDCを送金します。トランザクションが承認され次第、営業日1日以内にメールでご連絡いたします。決済完了後の返金は承っておりません。' -%}
+  {%- assign t_finer = '決済はお客様のウォレットからQuedicの受取アドレスへ直接USDTまたはUSDCを送金します。トランザクションが承認され次第、営業日1日以内にメールでご連絡いたします。' -%}
   {%- assign t_featured_badge = '旗艦パッケージ' -%}
   {%- assign t_recurring_badge = '月次サブスクリプション' -%}
   {%- assign t_featured_program_badge = '中堅市場' -%}
@@ -73,6 +99,32 @@
   {%- assign t_how_step4 = 'ウォレット側のポップアップで、送金額と送金先アドレスを確認して署名。ガス代は0.5 USDT未満。' -%}
   {%- assign t_how_step5 = 'トランザクション承認後、トランザクションハッシュが受領証となります。営業日1日以内にこちらからメールいたします。' -%}
   {%- assign t_trust_eyebrow = '一線ブランドからの信頼' -%}
+  {%- assign t_why_onchain = 'オンチェーン決済はより速く、安価で、永久的な受領証を残します ── 銀行送金より、双方にとってベターです。' -%}
+  {%- assign t_terms_eyebrow = '取引条件' -%}
+  {%- assign t_terms_title = '当社のコミットメント' -%}
+  {%- assign t_terms_1 = '全注文について、オンチェーン承認後ただちにサービス受領書および請求書を発行します。' -%}
+  {%- assign t_terms_2 = '10,000 USDTを超える契約は、実行開始前に正式なサービス契約書を締結します。' -%}
+  {%- assign t_terms_3 = '想定納期内にスコープ通り提供できなかった場合、按分比例で返金いたします。' -%}
+  {%- assign t_terms_4 = 'NDA（秘密保持契約）はご要望に応じ無料で締結します。' -%}
+  {%- assign t_jump_programs = 'パッケージ' -%}
+  {%- assign t_jump_alacarte = '単品オーダー' -%}
+  {%- assign t_jump_howit = '注文方法' -%}
+  {%- assign t_jump_faq = 'FAQ' -%}
+  {%- assign t_jump_enterprise = 'エンタープライズ' -%}
+  {%- assign t_faq_eyebrow = 'よくあるご質問' -%}
+  {%- assign t_faq_title = 'FAQ' -%}
+  {%- assign t_faq_q1 = 'トランザクションが失敗したら？' -%}
+  {%- assign t_faq_a1 = 'オンチェーンでトランザクションが失敗した場合（ガス不足、ノード混雑など）、お客様の口座から引き落としは発生しません。ウォレットで再試行いただくか、BSC上のBNB残高がガス代（0.5 USDT未満）に足りているかご確認ください。問題が解決しない場合は brianlau@quedic.com までご連絡を。' -%}
+  {%- assign t_faq_q2 = 'ご注文のキャンセルは可能ですか？' -%}
+  {%- assign t_faq_a2 = 'オンチェーン承認後、注文は確定したものとみなされます。当社が実行を開始する前であれば、部分返金についてご相談可能です。実行開始後はスコープに応じて按分清算となります。詳細は上記の「取引条件」をご確認ください。' -%}
+  {%- assign t_faq_q3 = 'KYCは必要ですか？' -%}
+  {%- assign t_faq_a3 = '当社のご注文プロセスでは個人KYCは要求しません。すべての決済はB2B（法人間）サービス調達であり、個人本人確認は伴いません。ただし、お客様の所在地で暗号資産決済に追加規制がある場合は、事前にコンプライアンスをご確認ください。' -%}
+  {%- assign t_faq_q4 = 'エスカレーションや問題報告はどうすれば？' -%}
+  {%- assign t_faq_a4 = 'すべてのお客様にご注文後、専任のアカウントマネージャーをアサインします（メール／Telegramで連絡可）。納品遅延やスコープ齟齬がある場合は、まず当該マネージャーへ。24時間以内に応答がない場合は brianlau@quedic.com までご連絡ください。' -%}
+  {%- assign t_faq_q5 = '会社向けの請求書発行は可能ですか？' -%}
+  {%- assign t_faq_a5 = 'はい。各ご注文について、確認後にフルなサービス請求書（項目・金額・トランザクションハッシュ・受領日付を含む）を発行します。法人会計・税務記録にご利用いただけます。特定のフォーマット（GST／VAT／統一番号など）が必要な場合は、注文フォームの備考欄にご記入ください。' -%}
+  {%- assign t_faq_q6 = 'なぜUSDT／USDC、銀行送金ではないのですか？' -%}
+  {%- assign t_faq_a6 = 'オンチェーン決済は両者にとって効率的です：着金は数秒、手数料0.5 USDT未満、永久検証可能な受領証付き。銀行送金は1〜3営業日、手数料25〜50 USD、越境コンプライアンスで遅延しがちです。クリプトネイティブのお客様にとっては、最も自然な決済チャネルです。' -%}
 {%- else -%}
   {%- assign t_pay = 'Pay now' -%}
   {%- assign t_monthly = '/mo' -%}
@@ -80,7 +132,7 @@
   {%- assign t_chain_label = 'BNB Smart Chain · USDT or USDC' -%}
   {%- assign t_save = 'Save' -%}
   {%- assign t_delivery = 'Delivery' -%}
-  {%- assign t_finer = 'Checkout sends USDT or USDC directly from your wallet to the Quedic receiving address. Once the transaction confirms on-chain, our team contacts you by email within one business day. All sales are final.' -%}
+  {%- assign t_finer = 'Checkout sends USDT or USDC directly from your wallet to the Quedic receiving address. Once the transaction confirms on-chain, our team contacts you by email within one business day.' -%}
   {%- assign t_featured_badge = 'Flagship' -%}
   {%- assign t_recurring_badge = 'Monthly retainer' -%}
   {%- assign t_featured_program_badge = 'Mid-market' -%}
@@ -110,6 +162,32 @@
   {%- assign t_how_step4 = 'Confirm the amount and recipient in your wallet popup, then sign. Gas costs less than 0.5 USDT.' -%}
   {%- assign t_how_step5 = "Once confirmed, your tx hash is the receipt. You'll hear from us by email within one business day." -%}
   {%- assign t_trust_eyebrow = "Trusted by leading crypto brands" -%}
+  {%- assign t_why_onchain = 'On-chain settlement is faster, cheaper and produces a permanent receipt — better than wire for both sides.' -%}
+  {%- assign t_terms_eyebrow = 'Commerce terms' -%}
+  {%- assign t_terms_title = 'Our commitments' -%}
+  {%- assign t_terms_1 = 'A full service receipt and invoice are issued immediately upon on-chain confirmation.' -%}
+  {%- assign t_terms_2 = 'Engagements above 10,000 USDT are covered by a signed service agreement before execution begins.' -%}
+  {%- assign t_terms_3 = 'If we cannot deliver as scoped within the stated window, we refund proportionally.' -%}
+  {%- assign t_terms_4 = 'NDAs are signed on request, at no additional charge.' -%}
+  {%- assign t_jump_programs = 'Programs' -%}
+  {%- assign t_jump_alacarte = 'À la carte' -%}
+  {%- assign t_jump_howit = 'How it works' -%}
+  {%- assign t_jump_faq = 'FAQ' -%}
+  {%- assign t_jump_enterprise = 'Enterprise' -%}
+  {%- assign t_faq_eyebrow = 'Frequently asked' -%}
+  {%- assign t_faq_title = 'FAQ' -%}
+  {%- assign t_faq_q1 = 'What if my transaction fails?' -%}
+  {%- assign t_faq_a1 = "If a transaction fails on-chain (insufficient gas, busy nodes), you are not charged. Retry from your wallet or check that you hold enough BNB on BSC to cover gas (less than 0.5 USDT). If problems persist, email brianlau@quedic.com." -%}
+  {%- assign t_faq_q2 = 'Can I cancel an order?' -%}
+  {%- assign t_faq_a2 = 'Once a payment is confirmed on-chain, the order is considered placed. If you raise a cancellation before we begin execution, partial refunds are negotiable. After execution starts, settlement is proportional to scope delivered. See "Commerce terms" above.' -%}
+  {%- assign t_faq_q3 = 'Do you require KYC?' -%}
+  {%- assign t_faq_a3 = "Our checkout flow does not require personal KYC. All payments are treated as B2B service procurement, not personal identity verification. If your jurisdiction has specific rules on crypto payments, please confirm your compliance posture before purchasing." -%}
+  {%- assign t_faq_q4 = 'How do I escalate an issue?' -%}
+  {%- assign t_faq_a4 = "Every order is assigned a dedicated account manager reachable by email or Telegram. Raise delivery delays or scope disputes with them first. If you don't hear back within 24 hours, email brianlau@quedic.com directly." -%}
+  {%- assign t_faq_q5 = 'Can I get an invoice for my company?' -%}
+  {%- assign t_faq_a5 = "Yes. Every order produces a full invoice (line items, amount, transaction hash, payment date) usable for corporate accounting and tax records. If you need a specific format (GST, VAT, etc.), note it in the order form." -%}
+  {%- assign t_faq_q6 = 'Why USDT/USDC instead of bank wire?' -%}
+  {%- assign t_faq_a6 = "On-chain settlement is more efficient on both sides: arrives in seconds, costs less than 0.5 USDT in fees, and leaves a permanent verifiable receipt. Bank wire takes 1–3 business days, costs 25–50 USD, and often gets delayed by cross-border compliance. For crypto-native clients, this is the natural payment channel." -%}
 {%- endif -%}
 
 {%- assign packages = site.data.packages.packages | sort: 'weight' -%}
@@ -129,10 +207,24 @@
         <img src="{{ '/images/htx.png' | relative_url }}" alt="HTX" />
       </div>
     </div>
+    <p class="shop-trust__why">{{ t_why_onchain }}</p>
   </div>
 </section>
 
-<section class="section">
+<!-- Sticky anchor nav -->
+<nav class="shop-jump" aria-label="Shop sections">
+  <div class="container">
+    <ul>
+      <li><a href="#programs">{{ t_jump_programs }}</a></li>
+      <li><a href="#a-la-carte">{{ t_jump_alacarte }}</a></li>
+      <li><a href="#how-it-works">{{ t_jump_howit }}</a></li>
+      <li><a href="#faq">{{ t_jump_faq }}</a></li>
+      <li><a href="#enterprise">{{ t_jump_enterprise }}</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="section" id="programs">
   <div class="container">
 
     <div class="shop-meta">
@@ -193,7 +285,8 @@
 
         <div class="shop-card__price">
           {%- if pkg.original_usdt and pkg.original_usdt > pkg.price_usdt -%}
-            <span class="shop-card__original">{{ pkg.original_usdt }}</span>
+            <span class="shop-card__original">{{ pkg.original_usdt }} USDT</span>
+            <span class="shop-card__arrow" aria-hidden="true">→</span>
           {%- endif -%}
           <span class="shop-card__amount">{{ pkg.price_usdt }}</span>
           <span class="shop-card__currency">USDT</span>
@@ -219,9 +312,23 @@
 
     <p class="fine-print shop-finer">{{ t_finer }}</p>
 
+    <!-- Commerce terms -->
+    <aside class="shop-terms" id="terms">
+      <div class="shop-terms__head">
+        <span class="eyebrow eyebrow--brand">{{ t_terms_eyebrow }}</span>
+        <h3 class="shop-terms__title">{{ t_terms_title }}</h3>
+      </div>
+      <ul class="shop-terms__list">
+        <li>{{ t_terms_1 }}</li>
+        <li>{{ t_terms_2 }}</li>
+        <li>{{ t_terms_3 }}</li>
+        <li>{{ t_terms_4 }}</li>
+      </ul>
+    </aside>
+
     {%- assign ent = site.data.packages.enterprise -%}
     {%- if ent -%}
-    <aside class="shop-enterprise">
+    <aside class="shop-enterprise" id="enterprise">
       <div class="shop-enterprise__head">
         <span class="eyebrow eyebrow--brand">{{ ent.title[lang] | default: ent.title.en }}</span>
         <h3 class="shop-enterprise__title">{{ ent.tagline[lang] | default: ent.tagline.en }}</h3>
@@ -259,7 +366,7 @@
 
     <!-- Quick buys -->
     {%- if quick_buys -%}
-    <section class="shop-quickbuys">
+    <section class="shop-quickbuys" id="a-la-carte">
       <div class="shop-quickbuys__head">
         <span class="eyebrow eyebrow--brand">{{ t_quickbuys_eyebrow }}</span>
         <h3 class="shop-quickbuys__title">{{ t_quickbuys_title }}</h3>
@@ -272,9 +379,12 @@
                  data-price-usdt="{{ q.price_usdt }}"
                  data-price-usdc="{{ q.price_usdt }}"
                  data-recurring="false"
-                 data-category="quickbuy">
+                 data-category="{{ q.category | default: 'all' }}">
           <h4 class="quickbuy-card__title">{{ q.title[lang] | default: q.title.en }}</h4>
           <p class="quickbuy-card__desc">{{ q.description[lang] | default: q.description.en }}</p>
+          {%- if q.delivery -%}
+          <p class="quickbuy-card__delivery">{{ t_delivery }}: {{ q.delivery[lang] | default: q.delivery.en }}</p>
+          {%- endif -%}
           <div class="quickbuy-card__foot">
             <span class="quickbuy-card__price">{{ q.price_usdt }} <span>USDT</span></span>
             <button class="btn btn--ghost btn--sm" data-checkout-trigger data-package-id="{{ q.id }}">{{ t_pay }}</button>
@@ -286,7 +396,7 @@
     {%- endif -%}
 
     <!-- How to pay with crypto (for non-crypto-native customers) -->
-    <section class="shop-howto">
+    <section class="shop-howto" id="how-it-works">
       <div class="shop-howto__head">
         <span class="eyebrow eyebrow--brand">{{ t_how_eyebrow }}</span>
         <h3 class="shop-howto__title">{{ t_how_title }}</h3>
@@ -298,6 +408,22 @@
         <li>{{ t_how_step4 }}</li>
         <li>{{ t_how_step5 }}</li>
       </ol>
+    </section>
+
+    <!-- FAQ -->
+    <section class="shop-faq" id="faq">
+      <div class="shop-faq__head">
+        <span class="eyebrow eyebrow--brand">{{ t_faq_eyebrow }}</span>
+        <h3 class="shop-faq__title">{{ t_faq_title }}</h3>
+      </div>
+      <div class="shop-faq__items">
+        <details><summary>{{ t_faq_q1 }}</summary><p>{{ t_faq_a1 }}</p></details>
+        <details><summary>{{ t_faq_q2 }}</summary><p>{{ t_faq_a2 }}</p></details>
+        <details><summary>{{ t_faq_q3 }}</summary><p>{{ t_faq_a3 }}</p></details>
+        <details><summary>{{ t_faq_q4 }}</summary><p>{{ t_faq_a4 }}</p></details>
+        <details><summary>{{ t_faq_q5 }}</summary><p>{{ t_faq_a5 }}</p></details>
+        <details><summary>{{ t_faq_q6 }}</summary><p>{{ t_faq_a6 }}</p></details>
+      </div>
     </section>
 
     <aside class="shop-custom">
