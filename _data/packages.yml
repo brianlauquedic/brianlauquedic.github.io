@@ -71,6 +71,11 @@ categories:
       en: "Launch"
       zh-tw: "代幣發行"
       ja: "ローンチ"
+  - id: retainer
+    label:
+      en: "Retainer"
+      zh-tw: "月費合約"
+      ja: "リテイナー"
 
 # =====================================================================
 # 13 curated programs — 3-column grid (4-5 rows on desktop)
@@ -535,14 +540,14 @@ packages:
   # reminder before next month's invoice.
   - id: pr-retainer
     weight: 11
-    category: pr
+    category: retainer
     price_usdt: 9800
     price_usdc: 9800
     recurring: true
     delivery:
-      en: "Continuous — kicks off within 5 business days"
-      zh-tw: "持續性 ── 5 個工作日內啟動"
-      ja: "継続的 ── 5営業日以内に始動"
+      en: "Continuous"
+      zh-tw: "持續性"
+      ja: "継続的"
     tags:
       en: ["Retainer", "Monthly"]
       zh-tw: ["月費合約", "持續"]
@@ -557,6 +562,7 @@ packages:
       ja: "専任チームによる継続的PRリズム ── 毎月、英語ドロップ・地域配信・KOL展開・ライブ接点・中国本土カバレッジを実行。"
     bullets:
       en:
+        - "Kicks off within 5 business days"
         - "Dedicated account team"
         - "Monthly Global English drop"
         - "Monthly multi-language regional wave"
@@ -566,6 +572,7 @@ packages:
         - "Newsjacking / rapid-response window"
         - "Monthly performance review"
       zh-tw:
+        - "5 個工作日內啟動"
         - "專屬客戶團隊"
         - "每月英文新聞發佈一次"
         - "每月多語言區域聯播一次"
@@ -575,6 +582,7 @@ packages:
         - "新聞借勢／快速反應窗口"
         - "每月成效檢視"
       ja:
+        - "5営業日以内に始動"
         - "専任アカウントチーム"
         - "月次・英語PRドロップ"
         - "月次・多言語地域配信"
@@ -863,6 +871,22 @@ quick_buys:
       en: "Sina, NetEase, Sohu, Zhihu, Weibo, WeChat, Xiaohongshu, Baidu Knows / Wenku and GEO AI — coverage of the eleven platforms where Chinese retail forms its first opinion."
       zh-tw: "新浪、網易、搜狐、知乎、微博、微信、小紅書、百度知道／文庫與 GEO AI ── 覆蓋中國散戶形成第一印象的 11 個平台。"
       ja: "Sina、NetEase、Sohu、知乎、微博、WeChat、小紅書、百度知道／文庫、GEO AI ── 中国リテールが最初の印象を形成する11プラットフォームをカバー。"
+
+  - id: english-kol-single
+    category: kol
+    price_usdt: 300
+    delivery:
+      en: "5–7 business days"
+      zh-tw: "5–7 個工作日"
+      ja: "5〜7営業日"
+    title:
+      en: "English crypto KOL — single curated post"
+      zh-tw: "英文加密 KOL ── 單條精選"
+      ja: "英語クリプトKOL ── 単発精選投稿"
+    description:
+      en: "One vetted English-speaking crypto KOL post on X — engagement-quality screened, not media-kit follower count."
+      zh-tw: "一位精選英文加密 KOL 在 X 上發文 ── 以真實互動質量篩選，非媒體資料粉絲數。"
+      ja: "厳選した英語クリプトKOLによるX投稿1本 ── 媒体資料のフォロワー数ではなく、真のエンゲージメント品質で選定。"
 
 # =====================================================================
 # Enterprise tier — anchor pricing reference

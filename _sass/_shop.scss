@@ -42,14 +42,21 @@
   }
 }
 
-// ---- Sticky anchor nav ----
-.shop-jump {
+// ---- Sticky double-deck nav: anchor links + filter chips ----
+// Both ride together under the site header so the user always has
+// jump and filter controls visible.
+.shop-stickybar {
   position: sticky;
-  top: 104px;            // matches site-header height
+  top: 104px;            // matches desktop site-header height
   z-index: 30;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: saturate(180%) blur(10px);
   -webkit-backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid $border;
+  @media (max-width: $bp-md) { top: 72px; }
+}
+
+.shop-jump {
   border-bottom: 1px solid $border;
   ul {
     display: flex;
@@ -76,9 +83,6 @@
       transition: color .15s, background .15s;
       &:hover { color: $brand; background: rgba(91,47,217,0.06); }
     }
-  }
-  @media (max-width: $bp-md) {
-    top: 72px;            // mobile header is 72px
   }
 }
 
@@ -400,51 +404,100 @@
 }
 
 // ============================================================
-// After-payment process — 4 numbered steps explaining what happens
+// Combined process — How to pay (left) + After you pay (right)
+// 2-column on desktop; stacks on mobile
 // ============================================================
-.shop-after {
+.shop-process {
   margin-top: 64px;
   padding-top: 56px;
   border-top: 1px solid $border;
+  display: grid;
+  gap: 48px;
+  grid-template-columns: 1fr;
 
-  &__head {
-    margin-bottom: 32px;
+  @media (min-width: $bp-md) {
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+
+  &__col {
     .eyebrow { display: inline-block; margin-bottom: 8px; }
   }
+
   &__title {
     font-family: $font-display;
-    font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+    font-size: clamp(1.4rem, 2.2vw, 1.7rem);
     font-weight: 600;
     letter-spacing: -0.015em;
     color: $text;
-    margin: 0;
+    margin: 0 0 24px;
   }
+
   &__steps {
-    display: grid;
-    gap: 24px;
-    grid-template-columns: 1fr;
     list-style: none;
     padding: 0;
     margin: 0;
-    @media (min-width: $bp-sm) { grid-template-columns: repeat(2, 1fr); }
-    @media (min-width: $bp-md) { grid-template-columns: repeat(4, 1fr); }
-    li {
-      padding: 24px 20px;
-      background: $bg-soft;
-      border-radius: $radius-lg;
-      h4 {
-        font-family: $font-display;
-        font-size: 1rem;
-        font-weight: 600;
-        margin: 0 0 8px;
-        color: $brand;
-        letter-spacing: -0.01em;
-      }
-      p {
-        font-size: 0.92rem;
+
+    // Howto variant — numbered list, plain text per step
+    &--howto {
+      counter-reset: howto-step;
+      li {
+        counter-increment: howto-step;
+        padding: 14px 0 14px 52px;
+        position: relative;
         color: $text-muted;
+        font-size: 0.94rem;
         line-height: 1.55;
-        margin: 0;
+        border-bottom: 1px solid $border;
+        &::before {
+          content: counter(howto-step, decimal-leading-zero);
+          position: absolute;
+          left: 0;
+          top: 14px;
+          font-family: $font-display;
+          font-size: 1.05rem;
+          font-weight: 600;
+          color: $brand;
+          letter-spacing: -0.02em;
+        }
+        &:last-child { border-bottom: 0; }
+      }
+    }
+
+    // After variant — h4 title + body paragraph per step
+    &--after {
+      counter-reset: after-step;
+      li {
+        counter-increment: after-step;
+        padding: 14px 0 14px 52px;
+        position: relative;
+        border-bottom: 1px solid $border;
+        &::before {
+          content: counter(after-step, decimal-leading-zero);
+          position: absolute;
+          left: 0;
+          top: 14px;
+          font-family: $font-display;
+          font-size: 1.05rem;
+          font-weight: 600;
+          color: $brand;
+          letter-spacing: -0.02em;
+        }
+        &:last-child { border-bottom: 0; }
+        h4 {
+          font-family: $font-display;
+          font-size: 0.98rem;
+          font-weight: 600;
+          margin: 0 0 4px;
+          color: $text;
+          letter-spacing: -0.01em;
+        }
+        p {
+          font-size: 0.9rem;
+          color: $text-muted;
+          line-height: 1.55;
+          margin: 0;
+        }
       }
     }
   }
@@ -538,56 +591,6 @@
 .btn--sm {
   padding: 8px 14px;
   font-size: 0.85rem;
-}
-
-// ============================================================
-// How to pay with crypto — 5-step explainer
-// ============================================================
-.shop-howto {
-  margin-top: 64px;
-  padding: 40px 32px;
-  background: $bg-soft;
-  border-radius: $radius-lg;
-
-  &__head {
-    margin-bottom: 24px;
-    .eyebrow { display: inline-block; margin-bottom: 8px; }
-  }
-  &__title {
-    font-family: $font-display;
-    font-size: clamp(1.3rem, 2.2vw, 1.6rem);
-    font-weight: 600;
-    letter-spacing: -0.015em;
-    color: $text;
-    margin: 0;
-  }
-  &__steps {
-    counter-reset: howto-step;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    li {
-      counter-increment: howto-step;
-      padding: 14px 0 14px 56px;
-      position: relative;
-      color: $text-muted;
-      font-size: 0.95rem;
-      line-height: 1.55;
-      border-bottom: 1px solid $border;
-      &::before {
-        content: counter(howto-step, decimal-leading-zero);
-        position: absolute;
-        left: 0;
-        top: 14px;
-        font-family: $font-display;
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: $brand;
-        letter-spacing: -0.02em;
-      }
-      &:last-child { border-bottom: 0; }
-    }
-  }
 }
 
 // ============================================================

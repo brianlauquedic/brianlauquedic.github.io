@@ -447,24 +447,50 @@
     });
 
     // Filter chips — show/hide cards by category across BOTH grids
-    // (main packages and à la carte quick-buys).
+    // (main packages and à la carte quick-buys). Also hides any
+    // section whose visible card count drops to zero so users don't
+    // see orphaned headers.
     var filterButtons = $$('.shop-filter');
     if (filterButtons.length) {
-      var allCards = document.querySelectorAll(
-        '.shop-card[data-category], .quickbuy-card[data-category]'
-      );
+      var mainCards = document.querySelectorAll('.shop-card[data-category]');
+      var quickCards = document.querySelectorAll('.quickbuy-card[data-category]');
+      var quickbuySection = document.querySelector('.shop-quickbuys');
+
+      var applyFilter = function (cat) {
+        var visibleMain = 0;
+        mainCards.forEach(function (card) {
+          if (cat === 'all' || card.getAttribute('data-category') === cat) {
+            card.removeAttribute('hidden');
+            visibleMain += 1;
+          } else {
+            card.setAttribute('hidden', '');
+          }
+        });
+
+        var visibleQuick = 0;
+        quickCards.forEach(function (card) {
+          if (cat === 'all' || card.getAttribute('data-category') === cat) {
+            card.removeAttribute('hidden');
+            visibleQuick += 1;
+          } else {
+            card.setAttribute('hidden', '');
+          }
+        });
+
+        // Hide the entire Quick Buys section if no cards match —
+        // avoids an empty "À la carte" header staring at the user.
+        if (quickbuySection) {
+          if (visibleQuick === 0) quickbuySection.setAttribute('hidden', '');
+          else quickbuySection.removeAttribute('hidden');
+        }
+      };
+
       filterButtons.forEach(function (btn) {
         btn.addEventListener('click', function () {
           var cat = btn.getAttribute('data-category');
           filterButtons.forEach(function (b) { b.classList.remove('active'); });
           btn.classList.add('active');
-          allCards.forEach(function (card) {
-            if (cat === 'all' || card.getAttribute('data-category') === cat) {
-              card.removeAttribute('hidden');
-            } else {
-              card.setAttribute('hidden', '');
-            }
-          });
+          applyFilter(cat);
         });
       });
     }

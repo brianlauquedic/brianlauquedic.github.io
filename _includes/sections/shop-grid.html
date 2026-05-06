@@ -211,27 +211,19 @@
   </div>
 </section>
 
-<!-- Sticky anchor nav -->
-<nav class="shop-jump" aria-label="Shop sections">
+<!-- Sticky anchor nav + filter chips, both follow the user as they scroll -->
+<div class="shop-stickybar" aria-label="Shop navigation">
   <div class="container">
-    <ul>
-      <li><a href="#programs">{{ t_jump_programs }}</a></li>
-      <li><a href="#a-la-carte">{{ t_jump_alacarte }}</a></li>
-      <li><a href="#how-it-works">{{ t_jump_howit }}</a></li>
-      <li><a href="#faq">{{ t_jump_faq }}</a></li>
-      <li><a href="#enterprise">{{ t_jump_enterprise }}</a></li>
-    </ul>
-  </div>
-</nav>
+    <nav class="shop-jump" aria-label="Shop sections">
+      <ul>
+        <li><a href="#programs">{{ t_jump_programs }}</a></li>
+        <li><a href="#a-la-carte">{{ t_jump_alacarte }}</a></li>
+        <li><a href="#how-it-works">{{ t_jump_howit }}</a></li>
+        <li><a href="#faq">{{ t_jump_faq }}</a></li>
+        <li><a href="#enterprise">{{ t_jump_enterprise }}</a></li>
+      </ul>
+    </nav>
 
-<section class="section" id="programs">
-  <div class="container">
-
-    <div class="shop-meta">
-      <span class="eyebrow eyebrow--brand">{{ t_chain_label }}</span>
-    </div>
-
-    <!-- Filter chips -->
     <div class="shop-filters" role="tablist" aria-label="Category filter">
       {%- for c in categories -%}
         <button
@@ -240,6 +232,15 @@
           data-category="{{ c.id }}"
           role="tab">{{ c.label[lang] | default: c.label.en }}</button>
       {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<section class="section" id="programs">
+  <div class="container">
+
+    <div class="shop-meta">
+      <span class="eyebrow eyebrow--brand">{{ t_chain_label }}</span>
     </div>
 
     <div class="shop-grid">
@@ -284,14 +285,18 @@
         </header>
 
         <div class="shop-card__price">
-          {%- if pkg.original_usdt and pkg.original_usdt > pkg.price_usdt -%}
+          {%- comment -%}
+            Only surface the strikethrough + Save badge when the discount is
+            meaningful (≥ 10%). Tiny discounts read as anomalies, not deals.
+          {%- endcomment -%}
+          {%- if discount_pct >= 10 -%}
             <span class="shop-card__original">{{ pkg.original_usdt }} USDT</span>
             <span class="shop-card__arrow" aria-hidden="true">→</span>
           {%- endif -%}
           <span class="shop-card__amount">{{ pkg.price_usdt }}</span>
           <span class="shop-card__currency">USDT</span>
           {%- if pkg.recurring %}<span class="shop-card__period">{{ t_monthly }}</span>{%- endif %}
-          {%- if discount_pct > 0 %}<span class="shop-card__savings">{{ t_save }} {{ discount_pct }}%</span>{%- endif %}
+          {%- if discount_pct >= 10 %}<span class="shop-card__savings">{{ t_save }} {{ discount_pct }}%</span>{%- endif %}
         </div>
 
         <div class="shop-card__includes">
@@ -338,31 +343,8 @@
     </aside>
     {%- endif -%}
 
-    <!-- After-payment process -->
-    <section class="shop-after">
-      <div class="shop-after__head">
-        <span class="eyebrow eyebrow--brand">{{ t_after_eyebrow }}</span>
-        <h3 class="shop-after__title">{{ t_after_title }}</h3>
-      </div>
-      <ol class="shop-after__steps">
-        <li>
-          <h4>{{ t_after_step1_title }}</h4>
-          <p>{{ t_after_step1_body }}</p>
-        </li>
-        <li>
-          <h4>{{ t_after_step2_title }}</h4>
-          <p>{{ t_after_step2_body }}</p>
-        </li>
-        <li>
-          <h4>{{ t_after_step3_title }}</h4>
-          <p>{{ t_after_step3_body }}</p>
-        </li>
-        <li>
-          <h4>{{ t_after_step4_title }}</h4>
-          <p>{{ t_after_step4_body }}</p>
-        </li>
-      </ol>
-    </section>
+    <!-- placeholder removed: after-payment moved into combined section below -->
+
 
     <!-- Quick buys -->
     {%- if quick_buys -%}
@@ -395,19 +377,29 @@
     </section>
     {%- endif -%}
 
-    <!-- How to pay with crypto (for non-crypto-native customers) -->
-    <section class="shop-howto" id="how-it-works">
-      <div class="shop-howto__head">
+    <!-- Combined: How to pay (left) + After you pay (right) -->
+    <section class="shop-process" id="how-it-works">
+      <div class="shop-process__col">
         <span class="eyebrow eyebrow--brand">{{ t_how_eyebrow }}</span>
-        <h3 class="shop-howto__title">{{ t_how_title }}</h3>
+        <h3 class="shop-process__title">{{ t_how_title }}</h3>
+        <ol class="shop-process__steps shop-process__steps--howto">
+          <li>{{ t_how_step1 }}</li>
+          <li>{{ t_how_step2 }}</li>
+          <li>{{ t_how_step3 }}</li>
+          <li>{{ t_how_step4 }}</li>
+          <li>{{ t_how_step5 }}</li>
+        </ol>
       </div>
-      <ol class="shop-howto__steps">
-        <li>{{ t_how_step1 }}</li>
-        <li>{{ t_how_step2 }}</li>
-        <li>{{ t_how_step3 }}</li>
-        <li>{{ t_how_step4 }}</li>
-        <li>{{ t_how_step5 }}</li>
-      </ol>
+      <div class="shop-process__col">
+        <span class="eyebrow eyebrow--brand">{{ t_after_eyebrow }}</span>
+        <h3 class="shop-process__title">{{ t_after_title }}</h3>
+        <ol class="shop-process__steps shop-process__steps--after">
+          <li><h4>{{ t_after_step1_title }}</h4><p>{{ t_after_step1_body }}</p></li>
+          <li><h4>{{ t_after_step2_title }}</h4><p>{{ t_after_step2_body }}</p></li>
+          <li><h4>{{ t_after_step3_title }}</h4><p>{{ t_after_step3_body }}</p></li>
+          <li><h4>{{ t_after_step4_title }}</h4><p>{{ t_after_step4_body }}</p></li>
+        </ol>
+      </div>
     </section>
 
     <!-- FAQ -->
