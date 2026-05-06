@@ -54,6 +54,11 @@ bodyClass: "page-brands"
 
     <div class="media-network">
       <div class="media-network__grid">
+        <div class="media-network__cell">Reuters</div>
+        <div class="media-network__cell">Bloomberg</div>
+        <div class="media-network__cell">Financial Times</div>
+        <div class="media-network__cell">Forbes</div>
+        <div class="media-network__cell">TechCrunch</div>
         <div class="media-network__cell">Cointelegraph</div>
         <div class="media-network__cell">The Block</div>
         <div class="media-network__cell">CoinDesk</div>
