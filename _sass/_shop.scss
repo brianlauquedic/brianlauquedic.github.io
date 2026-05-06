@@ -541,11 +541,13 @@
 }
 
 // ============================================================
-// Quick buys — single-item activations (smaller cards)
-// Visually demoted on a soft-grey panel so the 100–700 USDT scale
-// doesn't fight with the multi-thousand bundle prices above.
+// À la carte — full single-buy section. Holds: search bar,
+// 12 curated quickbuy cards, and 10 collapsible category groups
+// covering ~150 long-tail SKUs from the internal pricing sheets.
+// Visually a unified soft-grey panel so the whole catalog reads
+// as one searchable surface.
 // ============================================================
-.shop-quickbuys {
+.shop-alacarte {
   margin-top: 72px;
   padding: 48px 24px 56px;
   background: $bg-soft;
@@ -557,13 +559,13 @@
   }
 
   &__head {
-    margin-bottom: 28px;
+    margin-bottom: 24px;
     max-width: 60ch;
     .eyebrow { display: inline-block; margin-bottom: 8px; }
   }
   &__title {
     font-family: $font-display;
-    font-size: clamp(1.3rem, 2.1vw, 1.6rem);
+    font-size: clamp(1.5rem, 2.3vw, 1.85rem);
     font-weight: 600;
     letter-spacing: -0.015em;
     color: $text;
@@ -571,16 +573,106 @@
   }
   &__body {
     color: $text-muted;
-    font-size: 0.94rem;
+    font-size: 0.96rem;
     line-height: 1.55;
     margin: 0;
   }
-  &__grid {
+  &__cards {
     display: grid;
-    gap: 10px;
+    gap: 12px;
     grid-template-columns: 1fr;
+    margin-top: 8px;
     @media (min-width: $bp-sm) { grid-template-columns: repeat(2, 1fr); }
     @media (min-width: $bp-md) { grid-template-columns: repeat(3, 1fr); }
+  }
+}
+
+// ============================================================
+// Search bar — sits above quickbuy cards. Filters cards + rows.
+// ============================================================
+.shop-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 16px;
+  padding: 4px 14px 4px 48px;
+  background: $bg;
+  border: 1px solid $border;
+  border-radius: 999px;
+  transition: border-color .15s ease, box-shadow .15s ease;
+
+  &:focus-within {
+    border-color: $brand;
+    box-shadow: 0 0 0 3px rgba(91, 47, 217, 0.12);
+  }
+
+  &__icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    color: $text-muted;
+    pointer-events: none;
+  }
+
+  &__input {
+    flex: 1;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    font-family: $font-body;
+    font-size: 0.95rem;
+    color: $text;
+    padding: 14px 4px;
+    min-width: 0;
+    &::placeholder { color: $text-label; }
+    // Hide native search clear button (we render our own)
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-decoration { -webkit-appearance: none; }
+  }
+
+  &__clear {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border: 0;
+    border-radius: 50%;
+    background: $bg-soft;
+    color: $text-muted;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease;
+    &:hover { background: $brand; color: #fff; }
+  }
+
+  &__status {
+    margin: -8px 0 16px 18px;
+    font-size: 0.82rem;
+    color: $text-muted;
+    font-family: $font-display;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    em {
+      font-style: normal;
+      color: $brand;
+      font-weight: 600;
+    }
+  }
+
+  &__no-results {
+    margin: 24px 0 0;
+    padding: 24px 20px;
+    text-align: center;
+    background: $bg;
+    border: 1px dashed $border-strong;
+    border-radius: $radius-lg;
+    color: $text-muted;
+    font-size: 0.94rem;
+    line-height: 1.55;
   }
 }
 
@@ -1156,91 +1248,74 @@ body.checkout-open {
 }
 
 // ============================================================
-// Full pricing reference — collapsible category tables for the
-// long-tail of single-platform SKUs (~150 items across 9 groups).
-// Visually quieter than the card grids above; rows are dense so
-// the catalog reads as a quick scan rather than a wall of cards.
+// Categories — collapsible category groups inside À la carte.
+// Each group is a clean white card on the soft-grey panel,
+// expanding to reveal a flex-row list of SKUs. Designed to look
+// like soft accordions, not a spreadsheet.
 // ============================================================
-.shop-reference {
-  margin-top: 80px;
-  padding-top: 64px;
+.shop-categories {
+  margin-top: 48px;
+  padding-top: 40px;
   border-top: 1px solid $border;
 
-  &__head {
-    margin-bottom: 32px;
-    max-width: 70ch;
+  &__intro {
+    margin-bottom: 24px;
+    max-width: 60ch;
     .eyebrow { display: inline-block; margin-bottom: 8px; }
   }
-
   &__title {
     font-family: $font-display;
-    font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+    font-size: clamp(1.15rem, 1.8vw, 1.35rem);
     font-weight: 600;
     letter-spacing: -0.015em;
     color: $text;
-    margin: 0 0 12px;
+    margin: 0 0 8px;
   }
-
   &__body {
     color: $text-muted;
-    font-size: 1rem;
+    font-size: 0.92rem;
     line-height: 1.55;
     margin: 0;
   }
-
-  &__groups {
+  &__list {
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
+}
 
-  &__group {
-    border: 1px solid $border;
-    border-radius: $radius-lg;
-    background: $bg;
-    overflow: hidden;
-    transition: border-color .2s ease;
+.shop-categ {
+  background: $bg;
+  border: 1px solid $border;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  transition: border-color .2s ease, box-shadow .2s ease;
 
-    &[open] {
-      border-color: rgba(91, 47, 217, 0.25);
-    }
+  &[open] {
+    border-color: rgba(91, 47, 217, 0.32);
+    box-shadow: 0 8px 24px -16px rgba(91, 47, 217, 0.25);
   }
 
-  &__summary {
+  &__head {
     list-style: none;
     cursor: pointer;
     padding: 18px 24px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+    gap: 14px;
     font-family: $font-display;
-    font-weight: 600;
     color: $text;
     transition: background .15s ease;
 
     &::-webkit-details-marker { display: none; }
     &:hover { background: $bg-soft; }
-
-    &::after {
-      content: "+";
-      font-size: 1.4rem;
-      font-weight: 400;
-      color: $brand;
-      width: 24px;
-      text-align: center;
-      transition: transform .2s ease;
-      flex-shrink: 0;
-    }
-    .shop-reference__group[open] > &::after {
-      content: "−";
-    }
   }
 
-  &__group-title {
-    font-size: 1.05rem;
-    letter-spacing: -0.01em;
+  &__title {
     flex: 1;
+    font-size: 1.04rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
   }
 
   &__count {
@@ -1249,71 +1324,78 @@ body.checkout-open {
     font-weight: 500;
     color: $text-muted;
     background: $bg-soft;
-    padding: 3px 10px;
+    padding: 3px 11px;
     border-radius: 999px;
     line-height: 1;
+    flex-shrink: 0;
   }
-  .shop-reference__group[open] > .shop-reference__summary > .shop-reference__count {
-    background: rgba(91, 47, 217, 0.1);
+  &[open] > &__head > &__count {
+    background: rgba(91, 47, 217, 0.12);
     color: $brand;
   }
 
+  &__chevron {
+    flex-shrink: 0;
+    width: 12px;
+    height: 12px;
+    border-right: 2px solid $brand;
+    border-bottom: 2px solid $brand;
+    transform: rotate(45deg);
+    transform-origin: 65% 65%;
+    transition: transform .2s ease;
+    margin-right: 4px;
+  }
+  &[open] > &__head > &__chevron {
+    transform: rotate(225deg);
+  }
+
   &__note {
-    margin: 0 24px 16px;
+    margin: 0 24px 12px;
     padding: 12px 16px;
     background: $bg-soft;
-    border-radius: $radius;
+    border-left: 3px solid $brand-bright;
+    border-radius: 0 $radius $radius 0;
     font-size: 0.88rem;
     color: $text-muted;
     line-height: 1.55;
   }
 
-  &__table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 0 0 4px;
-
-    th, td {
-      padding: 12px 24px;
-      text-align: left;
-      vertical-align: middle;
-    }
-
-    thead {
-      th {
-        font-family: $font-display;
-        font-size: 0.7rem;
-        font-weight: 500;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: $text-label;
-        border-top: 1px solid $border;
-        border-bottom: 1px solid $border;
-        background: $bg-soft;
-      }
-    }
+  &__rows {
+    list-style: none;
+    margin: 0;
+    padding: 0 8px 8px;
   }
-
-  &__th-price { width: 140px; text-align: right !important; }
-  &__th-action { width: 110px; text-align: right !important; }
 }
 
-.pricing-row {
-  border-bottom: 1px solid $border;
-  &:last-child { border-bottom: 0; }
-  &:hover { background: $bg-soft; }
+// ============================================================
+// Single SKU row inside a category accordion. Flex layout, not
+// a table — looks much cleaner than a spreadsheet.
+// ============================================================
+.shop-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-radius: $radius;
   transition: background .15s ease;
 
-  &__service {
+  & + & { border-top: 1px solid $border; }
+  &:hover { background: $bg-soft; }
+
+  &__title {
+    flex: 1;
     font-size: 0.92rem;
     color: $text;
     line-height: 1.45;
+    min-width: 0;
   }
 
   &__price {
-    text-align: right;
+    flex-shrink: 0;
     font-family: $font-display;
+    text-align: right;
     white-space: nowrap;
+    min-width: 92px;
   }
   &__amount {
     font-size: 0.98rem;
@@ -1321,35 +1403,43 @@ body.checkout-open {
     color: $brand;
   }
   &__unit {
-    font-size: 0.76rem;
+    font-size: 0.74rem;
     color: $text-muted;
-    margin-left: 3px;
+    margin-left: 4px;
+    font-weight: 500;
   }
-  &__quote {
+  &__price--quote {
     font-size: 0.82rem;
     color: $text-label;
     font-style: italic;
+    font-weight: 400;
   }
 
   &__action {
-    text-align: right;
+    flex-shrink: 0;
+    min-width: 72px;
+    text-align: center;
   }
 }
 
-// Mobile stacking — labels above values, action below
+// Mobile: stack price + button under the title for readable tap targets
 @media (max-width: $bp-sm) {
-  .shop-reference {
-    &__table {
-      thead { display: none; }
-      tbody, tr, td { display: block; }
-      th, td { padding: 8px 18px; }
+  .shop-row {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 12px;
+    &__title {
+      flex: 1 1 100%;
+      font-size: 0.94rem;
     }
-  }
-  .pricing-row {
-    padding: 14px 0;
-    &__service { font-size: 0.92rem; padding-bottom: 6px !important; }
-    &__price { text-align: left; padding-top: 0 !important; padding-bottom: 6px !important; }
-    &__action { text-align: left; padding-top: 0 !important; padding-bottom: 14px !important; }
+    &__price {
+      flex: 1;
+      text-align: left;
+      min-width: 0;
+    }
+    &__action {
+      flex-shrink: 0;
+    }
   }
 }
 
@@ -1358,7 +1448,11 @@ body.checkout-open {
   font-size: 0.78rem;
   font-family: $font-display;
   font-weight: 500;
+  white-space: nowrap;
 }
+
+// Search-hidden state: rows / cards filtered out by search query
+[data-search-hidden] { display: none !important; }
 
 // Brief highlight on the card a chip jumped to. Subtle tint pulse
 // rather than border flash so it doesn't compete with hover states.

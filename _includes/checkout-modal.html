@@ -28,6 +28,7 @@
   {%- assign m_error_title = '交易失敗' -%}
   {%- assign m_retry = '重試' -%}
   {%- assign m_secure_note = '錢包直接與 BSC 區塊鏈互動。Quedic 不接觸您的私鑰。' -%}
+  {%- assign m_search_matches = '個結果' -%}
 {%- elsif lang == 'ja' -%}
   {%- assign m_recurring_note = 'これは月次サービスの初月分のお支払いです。毎月単発でお支払いいただく形式で、次月が近づきましたら更新リマインダーをメールでお送りします。オンチェーンで自動引き落としは行いません ── 翌月の継続可否は常にお客様が判断します。' -%}
   {%- assign m_title = 'お支払い' -%}
@@ -57,6 +58,7 @@
   {%- assign m_error_title = 'トランザクション失敗' -%}
   {%- assign m_retry = '再試行' -%}
   {%- assign m_secure_note = 'ウォレットはBSCブロックチェーンと直接やりとりします。Quedicが秘密鍵に触れることはありません。' -%}
+  {%- assign m_search_matches = '件' -%}
 {%- else -%}
   {%- assign m_recurring_note = "This is the first month's payment for a monthly service. Each month is a separate transaction — we'll email a renewal reminder before the next billing cycle. There's no on-chain auto-charge — the decision to renew is always yours." -%}
   {%- assign m_title = 'Checkout' -%}
@@ -86,6 +88,7 @@
   {%- assign m_error_title = 'Transaction failed' -%}
   {%- assign m_retry = 'Try again' -%}
   {%- assign m_secure_note = 'Your wallet talks directly to the BSC blockchain. Quedic never sees your private key.' -%}
+  {%- assign m_search_matches = 'matches' -%}
 {%- endif -%}
 
 <div class="checkout" id="checkout-modal" aria-hidden="true" role="dialog" aria-labelledby="checkout-title">
@@ -223,7 +226,8 @@
   "labels": {
     "pay_btn": {{ m_pay_btn | jsonify }},
     "paying": {{ m_paying | jsonify }},
-    "pending": {{ m_pending | jsonify }}
+    "pending": {{ m_pending | jsonify }},
+    "search_matches": {{ m_search_matches | jsonify }}
   }
 }
 </script>

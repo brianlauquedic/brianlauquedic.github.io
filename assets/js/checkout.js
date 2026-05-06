@@ -379,12 +379,12 @@
   function openModal(card) {
     // Three layouts share the same data attributes:
     // .shop-card (main bundles), .quickbuy-card (quick buys),
-    // .pricing-row <tr> (full pricing reference table).
-    var titleEl = card.querySelector('.shop-card__title, .quickbuy-card__title, .pricing-row__service');
+    // .shop-row (category-list <li>).
+    var titleEl = card.querySelector('.shop-card__title, .quickbuy-card__title, .shop-row__title');
     var summaryEl = card.querySelector('.shop-card__summary, .quickbuy-card__desc');
-    // For pricing-row <tr>, the service label IS the title; no summary.
-    if (!titleEl && card.classList.contains('pricing-row')) {
-      titleEl = card.querySelector('.pricing-row__service') || card;
+    // For .shop-row, the row's data-searchable attr or title text is the label
+    if (!titleEl && card.classList.contains('shop-row')) {
+      titleEl = card.querySelector('.shop-row__title') || card;
     }
     state.pkg = {
       id: card.getAttribute('data-package-id'),
@@ -443,12 +443,12 @@
   // ---- 9. Wire up event handlers --------------------------------------
   function bind() {
     // Open from any orderable element: package card, quick-buy card,
-    // or full-pricing-table row (.pricing-row <tr>).
+    // or category row (<li class="shop-row pricing-row">).
     document.addEventListener('click', function (e) {
       var trigger = e.target.closest('[data-checkout-trigger]');
       if (!trigger) return;
       e.preventDefault();
-      var card = trigger.closest('.shop-card, .quickbuy-card, .pricing-row');
+      var card = trigger.closest('.shop-card, .quickbuy-card, .shop-row, .pricing-row');
       if (card) openModal(card);
     });
 
@@ -522,6 +522,115 @@
           scrollToCard(cat);
         });
       });
+    }
+
+    // ----------------------------------------------------------------
+    // À la carte search — filters quickbuy cards + category rows by
+    // substring match against data-searchable. Auto-expands any
+    // category whose rows match. Hides categories with no matches.
+    // ----------------------------------------------------------------
+    var searchInput = document.querySelector('[data-shop-search]');
+    if (searchInput) {
+      var searchClear = document.querySelector('[data-shop-search-clear]');
+      var searchStatus = document.querySelector('[data-shop-search-status]');
+      var searchNoResults = document.querySelector('[data-shop-search-no-results]');
+      var searchCards = Array.from(document.querySelectorAll('.quickbuy-card[data-searchable]'));
+      var searchRows = Array.from(document.querySelectorAll('.shop-row[data-searchable]'));
+      var searchCategs = Array.from(document.querySelectorAll('.shop-categ'));
+      // Remember the user's manual open/close state so we can restore it
+      // when they clear the search.
+      var prevOpenState = new WeakMap();
+
+      var normalize = function (s) {
+        return (s || '').toString().toLowerCase().normalize('NFKC');
+      };
+
+      var applySearch = function (raw) {
+        var q = normalize(raw).trim();
+        var hasQuery = q.length > 0;
+
+        // First-time entering search mode — snapshot which categories
+        // were open so we can restore on clear.
+        if (hasQuery && !applySearch._snapshotted) {
+          searchCategs.forEach(function (c) { prevOpenState.set(c, c.open); });
+          applySearch._snapshotted = true;
+        }
+
+        var visibleCardCount = 0;
+        searchCards.forEach(function (card) {
+          var hay = normalize(card.getAttribute('data-searchable'));
+          var match = !hasQuery || hay.indexOf(q) !== -1;
+          if (match) {
+            card.removeAttribute('data-search-hidden');
+            visibleCardCount += 1;
+          } else {
+            card.setAttribute('data-search-hidden', '');
+          }
+        });
+
+        var visibleRowCount = 0;
+        searchRows.forEach(function (row) {
+          var hay = normalize(row.getAttribute('data-searchable'));
+          var match = !hasQuery || hay.indexOf(q) !== -1;
+          if (match) {
+            row.removeAttribute('data-search-hidden');
+            visibleRowCount += 1;
+          } else {
+            row.setAttribute('data-search-hidden', '');
+          }
+        });
+
+        // Hide entire category if 0 matching rows; otherwise show + open
+        searchCategs.forEach(function (categ) {
+          var anyVisible = !!categ.querySelector('.shop-row:not([data-search-hidden])');
+          if (!hasQuery) {
+            categ.removeAttribute('data-search-hidden');
+            // Restore prior open/close state
+            categ.open = prevOpenState.get(categ) || false;
+          } else if (anyVisible) {
+            categ.removeAttribute('data-search-hidden');
+            categ.open = true; // auto-expand to surface matches
+          } else {
+            categ.setAttribute('data-search-hidden', '');
+          }
+        });
+
+        // Status / clear button visibility
+        if (hasQuery) {
+          if (searchClear) searchClear.removeAttribute('hidden');
+          if (searchStatus) {
+            var totalVisible = visibleCardCount + visibleRowCount;
+            var label = (CONFIG.labels && CONFIG.labels.search_matches) || 'matches';
+            searchStatus.innerHTML = '<em>' + totalVisible + '</em> ' + label;
+            searchStatus.removeAttribute('hidden');
+          }
+          if (searchNoResults) {
+            if (visibleCardCount + visibleRowCount === 0) searchNoResults.removeAttribute('hidden');
+            else searchNoResults.setAttribute('hidden', '');
+          }
+        } else {
+          if (searchClear) searchClear.setAttribute('hidden', '');
+          if (searchStatus) searchStatus.setAttribute('hidden', '');
+          if (searchNoResults) searchNoResults.setAttribute('hidden', '');
+          applySearch._snapshotted = false;
+        }
+      };
+
+      // Debounce input for smoother typing
+      var searchTimer;
+      searchInput.addEventListener('input', function () {
+        clearTimeout(searchTimer);
+        var val = searchInput.value;
+        searchTimer = setTimeout(function () { applySearch(val); }, 80);
+      });
+
+      if (searchClear) {
+        searchClear.addEventListener('click', function () {
+          searchInput.value = '';
+          applySearch('');
+          searchInput.focus();
+        });
+      }
     }
 
     // Smooth-scroll for sticky shop nav anchors

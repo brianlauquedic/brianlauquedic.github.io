@@ -45,16 +45,16 @@
   {%- assign t_terms_4 = '保密協議（NDA）依需求簽訂，不額外收費。' -%}
   {%- assign t_jump_programs = '套餐' -%}
   {%- assign t_jump_alacarte = '單品下單' -%}
-  {%- assign t_jump_reference = '完整報價單' -%}
   {%- assign t_jump_howit = '如何下單' -%}
   {%- assign t_jump_faq = '常見問題' -%}
   {%- assign t_jump_enterprise = '企業級' -%}
-  {%- assign t_reference_eyebrow = '完整服務目錄' -%}
-  {%- assign t_reference_title = '完整報價單' -%}
-  {%- assign t_reference_body = '我們提供的全部服務 SKU。每個分類預設折疊，點擊展開後可單筆下單，使用同一鏈上結帳流程。' -%}
-  {%- assign t_reference_table_service = '服務' -%}
-  {%- assign t_reference_table_price = '價格' -%}
-  {%- assign t_reference_table_action = '操作' -%}
+  {%- assign t_search_placeholder = '搜尋服務 ── 錢包、KOL、AMA、地區⋯' -%}
+  {%- assign t_search_clear = '清除' -%}
+  {%- assign t_search_no_results = '沒有符合的服務。試試其他關鍵字，或聯繫我們協助。' -%}
+  {%- assign t_search_matches = '個結果' -%}
+  {%- assign t_categories_eyebrow = '更多單品' -%}
+  {%- assign t_categories_title = '完整服務目錄' -%}
+  {%- assign t_categories_body = '展開分類查看更多單品 ── 同一鏈上結帳流程，秒級完成。' -%}
   {%- assign t_buy_btn = '下單' -%}
   {%- assign t_on_request = '報價請洽' -%}
   {%- assign t_faq_eyebrow = '常見問題' -%}
@@ -115,16 +115,16 @@
   {%- assign t_terms_4 = 'NDA（秘密保持契約）はご要望に応じ無料で締結します。' -%}
   {%- assign t_jump_programs = 'パッケージ' -%}
   {%- assign t_jump_alacarte = '単品オーダー' -%}
-  {%- assign t_jump_reference = '全価格表' -%}
   {%- assign t_jump_howit = '注文方法' -%}
   {%- assign t_jump_faq = 'FAQ' -%}
   {%- assign t_jump_enterprise = 'エンタープライズ' -%}
-  {%- assign t_reference_eyebrow = '全サービスカタログ' -%}
-  {%- assign t_reference_title = '全価格表' -%}
-  {%- assign t_reference_body = '当社が提供する全SKU。カテゴリーは初期状態で折りたたまれており、展開後は同じオンチェーン決済フローで個別注文できます。' -%}
-  {%- assign t_reference_table_service = 'サービス' -%}
-  {%- assign t_reference_table_price = '価格' -%}
-  {%- assign t_reference_table_action = '操作' -%}
+  {%- assign t_search_placeholder = 'サービス検索 ── ウォレット、KOL、AMA、地域⋯' -%}
+  {%- assign t_search_clear = 'クリア' -%}
+  {%- assign t_search_no_results = '該当するサービスがありません。別のキーワードをお試しいただくか、お問い合わせください。' -%}
+  {%- assign t_search_matches = '件' -%}
+  {%- assign t_categories_eyebrow = 'さらに単品' -%}
+  {%- assign t_categories_title = '全サービスカタログ' -%}
+  {%- assign t_categories_body = 'カテゴリーを展開してさらに単品を確認 ── 同じオンチェーン決済で素早く注文。' -%}
   {%- assign t_buy_btn = '注文' -%}
   {%- assign t_on_request = 'お見積もり' -%}
   {%- assign t_faq_eyebrow = 'よくあるご質問' -%}
@@ -185,16 +185,16 @@
   {%- assign t_terms_4 = 'NDAs are signed on request, at no additional charge.' -%}
   {%- assign t_jump_programs = 'Programs' -%}
   {%- assign t_jump_alacarte = 'À la carte' -%}
-  {%- assign t_jump_reference = 'Full pricing' -%}
   {%- assign t_jump_howit = 'How it works' -%}
   {%- assign t_jump_faq = 'FAQ' -%}
   {%- assign t_jump_enterprise = 'Enterprise' -%}
-  {%- assign t_reference_eyebrow = 'Full service catalog' -%}
-  {%- assign t_reference_title = 'Full pricing reference' -%}
-  {%- assign t_reference_body = 'Every SKU we sell. Each category is collapsed by default — expand to order any single line, same on-chain checkout flow.' -%}
-  {%- assign t_reference_table_service = 'Service' -%}
-  {%- assign t_reference_table_price = 'Price' -%}
-  {%- assign t_reference_table_action = 'Action' -%}
+  {%- assign t_search_placeholder = 'Search services — wallet, KOL, AMA, region…' -%}
+  {%- assign t_search_clear = 'Clear' -%}
+  {%- assign t_search_no_results = 'No services match. Try other keywords or contact us for help.' -%}
+  {%- assign t_search_matches = 'matches' -%}
+  {%- assign t_categories_eyebrow = 'More à la carte' -%}
+  {%- assign t_categories_title = 'Full service catalog' -%}
+  {%- assign t_categories_body = 'Expand any category to browse more single-line services — same on-chain checkout, in seconds.' -%}
   {%- assign t_buy_btn = 'Order' -%}
   {%- assign t_on_request = 'On request' -%}
   {%- assign t_faq_eyebrow = 'Frequently asked' -%}
@@ -240,7 +240,6 @@
       <ul>
         <li><a href="#programs">{{ t_jump_programs }}</a></li>
         <li><a href="#a-la-carte">{{ t_jump_alacarte }}</a></li>
-        <li><a href="#reference">{{ t_jump_reference }}</a></li>
         <li><a href="#how-it-works">{{ t_jump_howit }}</a></li>
         <li><a href="#faq">{{ t_jump_faq }}</a></li>
         <li><a href="#enterprise">{{ t_jump_enterprise }}</a></li>
@@ -375,21 +374,46 @@
     <!-- placeholder removed: after-payment moved into combined section below -->
 
 
-    <!-- Quick buys -->
+    <!-- À la carte — curated cards (top), search bar, category accordions
+         (bottom). Search filters across all single-buy services. -->
     {%- if quick_buys -%}
-    <section class="shop-quickbuys" id="a-la-carte">
-      <div class="shop-quickbuys__head">
+    <section class="shop-alacarte" id="a-la-carte">
+      <div class="shop-alacarte__head">
         <span class="eyebrow eyebrow--brand">{{ t_quickbuys_eyebrow }}</span>
-        <h3 class="shop-quickbuys__title">{{ t_quickbuys_title }}</h3>
-        <p class="shop-quickbuys__body">{{ t_quickbuys_body }}</p>
+        <h3 class="shop-alacarte__title">{{ t_quickbuys_title }}</h3>
+        <p class="shop-alacarte__body">{{ t_quickbuys_body }}</p>
       </div>
-      <div class="shop-quickbuys__grid">
+
+      <!-- Search bar — filters cards + category rows live -->
+      <div class="shop-search" role="search">
+        <svg class="shop-search__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+          <path d="M20 20L17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <input
+          type="search"
+          class="shop-search__input"
+          placeholder="{{ t_search_placeholder }}"
+          aria-label="{{ t_search_placeholder }}"
+          data-shop-search>
+        <button
+          type="button"
+          class="shop-search__clear"
+          data-shop-search-clear
+          aria-label="{{ t_search_clear }}"
+          hidden>×</button>
+      </div>
+      <p class="shop-search__status" data-shop-search-status hidden></p>
+
+      <!-- Curated quickbuy cards -->
+      <div class="shop-alacarte__cards">
         {%- for q in quick_buys -%}
         <article class="quickbuy-card"
                  data-package-id="{{ q.id }}"
                  data-price-usdt="{{ q.price_usdt }}"
                  data-price-usdc="{{ q.price_usdt }}"
                  data-recurring="false"
+                 data-searchable="{{ q.title[lang] | default: q.title.en }} {{ q.description[lang] | default: q.description.en }}"
                  data-category="{{ q.category | default: 'all' }}">
           <h4 class="quickbuy-card__title">{{ q.title[lang] | default: q.title.en }}</h4>
           <p class="quickbuy-card__desc">{{ q.description[lang] | default: q.description.en }}</p>
@@ -403,70 +427,58 @@
         </article>
         {%- endfor -%}
       </div>
-    </section>
-    {%- endif -%}
 
-    <!-- Full pricing reference — collapsible category tables for the
-         long-tail of single-platform SKUs that don't deserve their own
-         card but need to be findable & buyable. Same checkout modal. -->
-    {%- if pricing_tables and pricing_tables.size > 0 -%}
-    <section class="shop-reference" id="reference">
-      <div class="shop-reference__head">
-        <span class="eyebrow eyebrow--brand">{{ t_reference_eyebrow }}</span>
-        <h2 class="shop-reference__title">{{ t_reference_title }}</h2>
-        <p class="shop-reference__body">{{ t_reference_body }}</p>
-      </div>
+      <!-- Category accordions — long-tail SKUs (~150 items) -->
+      {%- if pricing_tables and pricing_tables.size > 0 -%}
+      <div class="shop-categories">
+        <div class="shop-categories__intro">
+          <span class="eyebrow eyebrow--brand">{{ t_categories_eyebrow }}</span>
+          <h4 class="shop-categories__title">{{ t_categories_title }}</h4>
+          <p class="shop-categories__body">{{ t_categories_body }}</p>
+        </div>
 
-      <div class="shop-reference__groups">
-        {%- for grp in pricing_tables -%}
-        <details class="shop-reference__group" id="ref-{{ grp.id }}">
-          <summary class="shop-reference__summary">
-            <span class="shop-reference__group-title">{{ grp.title[lang] | default: grp.title.en }}</span>
-            <span class="shop-reference__count">{{ grp.rows | size }}</span>
-          </summary>
-          {%- if grp.note -%}
-          <p class="shop-reference__note">{{ grp.note[lang] | default: grp.note.en }}</p>
-          {%- endif -%}
-          <table class="shop-reference__table">
-            <thead>
-              <tr>
-                <th class="shop-reference__th-service">{{ t_reference_table_service }}</th>
-                <th class="shop-reference__th-price">{{ t_reference_table_price }}</th>
-                <th class="shop-reference__th-action">{{ t_reference_table_action }}</th>
-              </tr>
-            </thead>
-            <tbody>
+        <div class="shop-categories__list">
+          {%- for grp in pricing_tables -%}
+          <details class="shop-categ" data-categ-id="{{ grp.id }}">
+            <summary class="shop-categ__head">
+              <span class="shop-categ__title">{{ grp.title[lang] | default: grp.title.en }}</span>
+              <span class="shop-categ__count">{{ grp.rows | size }}</span>
+              <span class="shop-categ__chevron" aria-hidden="true"></span>
+            </summary>
+            {%- if grp.note -%}
+            <p class="shop-categ__note">{{ grp.note[lang] | default: grp.note.en }}</p>
+            {%- endif -%}
+            <ul class="shop-categ__rows">
               {%- for row in grp.rows -%}
-              <tr class="pricing-row"
+              <li class="shop-row pricing-row"
                   data-package-id="{{ row.id }}"
                   data-price-usdt="{{ row.price_usdt | default: 0 }}"
                   data-price-usdc="{{ row.price_usdt | default: 0 }}"
                   data-recurring="false"
                   data-category="{{ row.category | default: 'pr' }}"
-                  data-on-quote="{{ row.on_quote | default: false }}">
-                <td class="pricing-row__service">{{ row.label[lang] | default: row.label.en }}</td>
-                <td class="pricing-row__price">
-                  {%- if row.on_quote -%}
-                    <span class="pricing-row__quote">{{ t_on_request }}</span>
-                  {%- else -%}
-                    <span class="pricing-row__amount">{{ row.price_usdt }}</span>
-                    <span class="pricing-row__unit">USDT</span>
-                  {%- endif -%}
-                </td>
-                <td class="pricing-row__action">
-                  {%- if row.on_quote -%}
-                    <a class="btn btn--ghost btn--xs" href="{{ t_contact_url }}">{{ t_on_request }}</a>
-                  {%- else -%}
-                    <button class="btn btn--ghost btn--xs" data-checkout-trigger data-package-id="{{ row.id }}">{{ t_buy_btn }}</button>
-                  {%- endif -%}
-                </td>
-              </tr>
+                  data-on-quote="{{ row.on_quote | default: false }}"
+                  data-searchable="{{ row.label[lang] | default: row.label.en }}">
+                <span class="shop-row__title">{{ row.label[lang] | default: row.label.en }}</span>
+                {%- if row.on_quote -%}
+                  <span class="shop-row__price shop-row__price--quote">{{ t_on_request }}</span>
+                  <a class="btn btn--ghost btn--xs shop-row__action" href="{{ t_contact_url }}">{{ t_on_request }}</a>
+                {%- else -%}
+                  <span class="shop-row__price">
+                    <span class="shop-row__amount">{{ row.price_usdt }}</span>
+                    <span class="shop-row__unit">USDT</span>
+                  </span>
+                  <button class="btn btn--ghost btn--xs shop-row__action" data-checkout-trigger data-package-id="{{ row.id }}">{{ t_buy_btn }}</button>
+                {%- endif -%}
+              </li>
               {%- endfor -%}
-            </tbody>
-          </table>
-        </details>
-        {%- endfor -%}
+            </ul>
+          </details>
+          {%- endfor -%}
+        </div>
+
+        <p class="shop-search__no-results" data-shop-search-no-results hidden>{{ t_search_no_results }}</p>
       </div>
+      {%- endif -%}
     </section>
     {%- endif -%}
 
