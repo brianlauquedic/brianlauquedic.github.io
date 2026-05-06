@@ -446,21 +446,20 @@
       if (card) openModal(card);
     });
 
-    // Filter chips — show/hide cards by category across BOTH grids
-    // (main packages and à la carte quick-buys). Also hides any
-    // section whose visible card count drops to zero so users don't
-    // see orphaned headers.
+    // Category chips — jump nav, not show/hide filter.
+    // Clicking a chip scrolls to the first card matching that category.
+    // All cards stay visible at all times so customers can keep
+    // browsing past the destination.
     // NOTE: must use document.querySelectorAll (not $$ helper) because
-    // $$ is scoped to the checkout modal — filter buttons live in the
-    // page body, outside the modal.
+    // $$ is scoped to the checkout modal — chips live in the page body.
     var filterButtons = Array.from(document.querySelectorAll('.shop-filter'));
     if (filterButtons.length) {
       var mainCards = document.querySelectorAll('.shop-card[data-category]');
       var quickCards = document.querySelectorAll('.quickbuy-card[data-category]');
-      var quickbuySection = document.querySelector('.shop-quickbuys');
 
-      // Virtual category groups — clicking one chip surfaces multiple
-      // underlying tags. Avoids lonely 1-card filter views.
+      // Virtual chip → real categories. Lets one chip ("Programs")
+      // cover multiple thin tags (brand, launch, retainer) without
+      // splitting them across separate chips.
       var virtualCategories = {
         programs: ['brand', 'launch', 'retainer']
       };
@@ -471,32 +470,41 @@
         return cardCat === cat;
       };
 
-      var applyFilter = function (cat) {
-        var visibleMain = 0;
-        mainCards.forEach(function (card) {
-          if (matchesCategory(card.getAttribute('data-category'), cat)) {
-            card.removeAttribute('hidden');
-            visibleMain += 1;
-          } else {
-            card.setAttribute('hidden', '');
+      var findFirstMatch = function (nodeList, cat) {
+        for (var i = 0; i < nodeList.length; i++) {
+          if (matchesCategory(nodeList[i].getAttribute('data-category'), cat)) {
+            return nodeList[i];
           }
-        });
+        }
+        return null;
+      };
 
-        var visibleQuick = 0;
-        quickCards.forEach(function (card) {
-          if (matchesCategory(card.getAttribute('data-category'), cat)) {
-            card.removeAttribute('hidden');
-            visibleQuick += 1;
-          } else {
-            card.setAttribute('hidden', '');
-          }
-        });
+      var scrollToCard = function (cat) {
+        var target;
+        if (cat === 'all') {
+          // "全部" scrolls back to the top of the programs grid
+          target = document.getElementById('programs');
+        } else {
+          // Prefer the main package grid; fall back to Quick Buys
+          target = findFirstMatch(mainCards, cat) || findFirstMatch(quickCards, cat);
+        }
+        if (!target) return;
 
-        // Hide the entire Quick Buys section if no cards match —
-        // avoids an empty "À la carte" header staring at the user.
-        if (quickbuySection) {
-          if (visibleQuick === 0) quickbuySection.setAttribute('hidden', '');
-          else quickbuySection.removeAttribute('hidden');
+        // Account for sticky header (~104px) + sticky chip bar (~56px)
+        var offset = 168;
+        var top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+
+        // Brief highlight on the destination card so customers see
+        // exactly which item the chip pointed them to.
+        var flashClass = null;
+        if (target.classList.contains('shop-card')) flashClass = 'shop-card--just-jumped';
+        else if (target.classList.contains('quickbuy-card')) flashClass = 'quickbuy-card--just-jumped';
+        if (flashClass) {
+          target.classList.add(flashClass);
+          setTimeout(function () {
+            target.classList.remove(flashClass);
+          }, 1600);
         }
       };
 
@@ -505,7 +513,7 @@
           var cat = btn.getAttribute('data-category');
           filterButtons.forEach(function (b) { b.classList.remove('active'); });
           btn.classList.add('active');
-          applyFilter(cat);
+          scrollToCard(cat);
         });
       });
     }

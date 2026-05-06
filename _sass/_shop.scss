@@ -140,6 +140,12 @@
     box-shadow: 0 18px 40px -18px rgba(91,47,217,0.35), 0 2px 10px -6px rgba(10,10,15,0.08);
   }
 
+  // Brief highlight after a chip-driven jump — visually points at the
+  // landed-on card without altering layout. Auto-removes after 1.6s.
+  &--just-jumped {
+    animation: shopJumpFlash 1.6s ease-out;
+  }
+
   // Featured: anchor / flagship card. Stronger lift than regular cards
   // so customers spot the upgrade path against the surrounding grid.
   &--featured {
@@ -1140,4 +1146,22 @@ body.checkout-open {
   font-size: 0.78rem;
   color: $text-label;
   margin: 0 0 14px;
+}
+
+// Quickbuys also get the jump-flash treatment when a chip lands on
+// one of them (e.g. clicking "Live" with no main-grid Live cards
+// nearby would otherwise scroll into the À la carte panel silently).
+.quickbuy-card--just-jumped {
+  animation: shopJumpFlash 1.6s ease-out;
+}
+
+// Brief highlight on the card a chip jumped to. Subtle tint pulse
+// rather than border flash so it doesn't compete with hover states.
+@keyframes shopJumpFlash {
+  0%   { box-shadow: 0 0 0 0 rgba(91, 47, 217, 0.0),
+                     0 0 0 1px rgba(91, 47, 217, 0.0); }
+  15%  { box-shadow: 0 0 0 6px rgba(91, 47, 217, 0.18),
+                     0 0 0 1px rgba(91, 47, 217, 0.55); }
+  100% { box-shadow: 0 0 0 0 rgba(91, 47, 217, 0.0),
+                     0 0 0 1px rgba(91, 47, 217, 0.0); }
 }
