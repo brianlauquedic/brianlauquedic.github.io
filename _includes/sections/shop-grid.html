@@ -409,15 +409,32 @@
       <p class="shop-search__status" data-shop-search-status hidden></p>
 
       <!-- Curated quickbuy cards -->
-      <div class="shop-alacarte__cards">
+      <div class="shop-alacarte__cards" data-shop-cards>
         {%- for q in quick_buys -%}
-        <article class="quickbuy-card"
+        {%- assign cat = q.category | default: 'all' -%}
+        {%- case cat -%}
+          {%- when 'listings' -%}{%- assign cat_label = '' -%}{%- assign cat_label_zh = '' -%}{%- assign cat_label_ja = '' -%}
+            {%- if lang == 'zh-tw' -%}{%- assign cat_text = '收錄' -%}{%- elsif lang == 'ja' -%}{%- assign cat_text = '掲載' -%}{%- else -%}{%- assign cat_text = 'Listings' -%}{%- endif -%}
+          {%- when 'pr' -%}
+            {%- if lang == 'zh-tw' -%}{%- assign cat_text = '公關' -%}{%- elsif lang == 'ja' -%}{%- assign cat_text = 'PR' -%}{%- else -%}{%- assign cat_text = 'PR' -%}{%- endif -%}
+          {%- when 'kol' -%}
+            {%- if lang == 'zh-tw' -%}{%- assign cat_text = 'KOL' -%}{%- elsif lang == 'ja' -%}{%- assign cat_text = 'KOL' -%}{%- else -%}{%- assign cat_text = 'KOL' -%}{%- endif -%}
+          {%- when 'live' -%}
+            {%- if lang == 'zh-tw' -%}{%- assign cat_text = '直播' -%}{%- elsif lang == 'ja' -%}{%- assign cat_text = 'ライブ' -%}{%- else -%}{%- assign cat_text = 'Live' -%}{%- endif -%}
+          {%- else -%}{%- assign cat_text = '' -%}
+        {%- endcase -%}
+        <article class="quickbuy-card quickbuy-card--cat-{{ cat }}"
                  data-package-id="{{ q.id }}"
                  data-price-usdt="{{ q.price_usdt }}"
                  data-price-usdc="{{ q.price_usdt }}"
                  data-recurring="false"
-                 data-searchable="{{ q.title[lang] | default: q.title.en }} {{ q.description[lang] | default: q.description.en }}"
-                 data-category="{{ q.category | default: 'all' }}">
+                 data-searchable="{{ q.title[lang] | default: q.title.en }} {{ q.description[lang] | default: q.description.en }} {{ cat_text }}"
+                 data-category="{{ cat }}">
+          {%- if cat_text != '' -%}
+          <span class="quickbuy-card__cat" aria-hidden="true">
+            <span class="quickbuy-card__cat-dot"></span>{{ cat_text }}
+          </span>
+          {%- endif -%}
           <h4 class="quickbuy-card__title">{{ q.title[lang] | default: q.title.en }}</h4>
           <p class="quickbuy-card__desc">{{ q.description[lang] | default: q.description.en }}</p>
           {%- if q.delivery -%}

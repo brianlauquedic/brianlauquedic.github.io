@@ -534,12 +534,16 @@
       var searchClear = document.querySelector('[data-shop-search-clear]');
       var searchStatus = document.querySelector('[data-shop-search-status]');
       var searchNoResults = document.querySelector('[data-shop-search-no-results]');
+      var searchCardsContainer = document.querySelector('[data-shop-cards]');
       var searchCards = Array.from(document.querySelectorAll('.quickbuy-card[data-searchable]'));
       var searchRows = Array.from(document.querySelectorAll('.shop-row[data-searchable]'));
       var searchCategs = Array.from(document.querySelectorAll('.shop-categ'));
       // Remember the user's manual open/close state so we can restore it
       // when they clear the search.
       var prevOpenState = new WeakMap();
+      // Suppress search while user is composing (IME for CJK input —
+      // typing 中文/日本語 fires `input` continuously per keystroke).
+      var imeComposing = false;
 
       var normalize = function (s) {
         return (s || '').toString().toLowerCase().normalize('NFKC');
@@ -548,6 +552,13 @@
       var applySearch = function (raw) {
         var q = normalize(raw).trim();
         var hasQuery = q.length > 0;
+
+        // Toggle the cards container into flex-wrap layout when
+        // searching, so 1 visible card doesn't leave 2 blank columns.
+        if (searchCardsContainer) {
+          if (hasQuery) searchCardsContainer.setAttribute('data-search-active', 'true');
+          else searchCardsContainer.removeAttribute('data-search-active');
+        }
 
         // First-time entering search mode — snapshot which categories
         // were open so we can restore on clear.
@@ -595,17 +606,23 @@
           }
         });
 
-        // Status / clear button visibility
+        // Status / clear button visibility. When zero matches, suppress
+        // the count line and show only the no-results panel — the count
+        // would just say "0" alongside the panel, which is redundant.
+        var totalVisible = visibleCardCount + visibleRowCount;
         if (hasQuery) {
           if (searchClear) searchClear.removeAttribute('hidden');
           if (searchStatus) {
-            var totalVisible = visibleCardCount + visibleRowCount;
-            var label = (CONFIG.labels && CONFIG.labels.search_matches) || 'matches';
-            searchStatus.innerHTML = '<em>' + totalVisible + '</em> ' + label;
-            searchStatus.removeAttribute('hidden');
+            if (totalVisible > 0) {
+              var label = (CONFIG.labels && CONFIG.labels.search_matches) || 'matches';
+              searchStatus.innerHTML = '<em>' + totalVisible + '</em> ' + label;
+              searchStatus.removeAttribute('hidden');
+            } else {
+              searchStatus.setAttribute('hidden', '');
+            }
           }
           if (searchNoResults) {
-            if (visibleCardCount + visibleRowCount === 0) searchNoResults.removeAttribute('hidden');
+            if (totalVisible === 0) searchNoResults.removeAttribute('hidden');
             else searchNoResults.setAttribute('hidden', '');
           }
         } else {
@@ -616,12 +633,22 @@
         }
       };
 
-      // Debounce input for smoother typing
+      // Debounce input for smoother typing. Skip while IME composing
+      // — only fire when the user has finalized a CJK composition.
       var searchTimer;
-      searchInput.addEventListener('input', function () {
+      var queueSearch = function () {
+        if (imeComposing) return;
         clearTimeout(searchTimer);
         var val = searchInput.value;
         searchTimer = setTimeout(function () { applySearch(val); }, 80);
+      };
+      searchInput.addEventListener('input', queueSearch);
+      searchInput.addEventListener('compositionstart', function () {
+        imeComposing = true;
+      });
+      searchInput.addEventListener('compositionend', function () {
+        imeComposing = false;
+        queueSearch();
       });
 
       if (searchClear) {

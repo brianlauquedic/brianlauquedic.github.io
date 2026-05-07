@@ -584,6 +584,19 @@
     margin-top: 8px;
     @media (min-width: $bp-sm) { grid-template-columns: repeat(2, 1fr); }
     @media (min-width: $bp-md) { grid-template-columns: repeat(3, 1fr); }
+
+    // When search has filtered cards, switch from grid to flex-wrap so
+    // visible cards pack together without leaving lopsided empty columns.
+    &[data-search-active="true"] {
+      display: flex;
+      flex-wrap: wrap;
+      .quickbuy-card {
+        flex: 1 1 calc(33.333% - 8px);
+        min-width: 0;
+        @media (max-width: $bp-md) { flex: 1 1 calc(50% - 6px); }
+        @media (max-width: $bp-sm) { flex: 1 1 100%; }
+      }
+    }
   }
 }
 
@@ -688,6 +701,36 @@
     border-color: $brand;
     transform: translateY(-1px);
   }
+
+  // Category badge — small colored dot + label so customers can scan
+  // the 12 cards by service type without reading every title.
+  &__cat {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-start;
+    margin: 0 0 10px;
+    font-family: $font-display;
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: $text-label;
+    line-height: 1;
+  }
+  &__cat-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: $text-label;
+    flex-shrink: 0;
+  }
+
+  // Per-category dot accents — tinted to encode category visually
+  &--cat-listings .quickbuy-card__cat-dot { background: #5B2FD9; } // brand purple
+  &--cat-pr       .quickbuy-card__cat-dot { background: #2EB6A0; } // teal
+  &--cat-kol      .quickbuy-card__cat-dot { background: #E48800; } // amber
+  &--cat-live     .quickbuy-card__cat-dot { background: #D23E73; } // rose
 
   &__title {
     font-family: $font-display;
