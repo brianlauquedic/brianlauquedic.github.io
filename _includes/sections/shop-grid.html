@@ -57,6 +57,7 @@
   {%- assign t_categories_body = '展開分類查看更多單品 ── 同一鏈上結帳流程，秒級完成。' -%}
   {%- assign t_buy_btn = '下單' -%}
   {%- assign t_on_request = '報價請洽' -%}
+  {%- assign t_discuss_btn = '洽談' -%}
   {%- assign t_faq_eyebrow = '常見問題' -%}
   {%- assign t_faq_title = 'FAQ' -%}
   {%- assign t_faq_q1 = '交易失敗怎麼辦？' -%}
@@ -127,6 +128,7 @@
   {%- assign t_categories_body = 'カテゴリーを展開してさらに単品を確認 ── 同じオンチェーン決済で素早く注文。' -%}
   {%- assign t_buy_btn = '注文' -%}
   {%- assign t_on_request = 'お見積もり' -%}
+  {%- assign t_discuss_btn = 'ご相談' -%}
   {%- assign t_faq_eyebrow = 'よくあるご質問' -%}
   {%- assign t_faq_title = 'FAQ' -%}
   {%- assign t_faq_q1 = 'トランザクションが失敗したら？' -%}
@@ -197,6 +199,7 @@
   {%- assign t_categories_body = 'Expand any category to browse more single-line services — same on-chain checkout, in seconds.' -%}
   {%- assign t_buy_btn = 'Order' -%}
   {%- assign t_on_request = 'On request' -%}
+  {%- assign t_discuss_btn = 'Discuss' -%}
   {%- assign t_faq_eyebrow = 'Frequently asked' -%}
   {%- assign t_faq_title = 'FAQ' -%}
   {%- assign t_faq_q1 = 'What if my transaction fails?' -%}
@@ -431,11 +434,7 @@
       <!-- Category accordions — long-tail SKUs (~150 items) -->
       {%- if pricing_tables and pricing_tables.size > 0 -%}
       <div class="shop-categories">
-        <div class="shop-categories__intro">
-          <span class="eyebrow eyebrow--brand">{{ t_categories_eyebrow }}</span>
-          <h4 class="shop-categories__title">{{ t_categories_title }}</h4>
-          <p class="shop-categories__body">{{ t_categories_body }}</p>
-        </div>
+        <p class="shop-categories__hint">{{ t_categories_body }}</p>
 
         <div class="shop-categories__list">
           {%- for grp in pricing_tables -%}
@@ -461,7 +460,7 @@
                 <span class="shop-row__title">{{ row.label[lang] | default: row.label.en }}</span>
                 {%- if row.on_quote -%}
                   <span class="shop-row__price shop-row__price--quote">{{ t_on_request }}</span>
-                  <a class="btn btn--ghost btn--xs shop-row__action" href="{{ t_contact_url }}">{{ t_on_request }}</a>
+                  <a class="btn btn--ghost btn--xs shop-row__action" href="{{ t_contact_url }}">{{ t_discuss_btn }}</a>
                 {%- else -%}
                   <span class="shop-row__price">
                     <span class="shop-row__amount">{{ row.price_usdt }}</span>

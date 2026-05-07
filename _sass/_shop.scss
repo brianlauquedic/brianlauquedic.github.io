@@ -1254,29 +1254,21 @@ body.checkout-open {
 // like soft accordions, not a spreadsheet.
 // ============================================================
 .shop-categories {
-  margin-top: 48px;
-  padding-top: 40px;
+  margin-top: 40px;
+  padding-top: 32px;
   border-top: 1px solid $border;
 
-  &__intro {
-    margin-bottom: 24px;
-    max-width: 60ch;
-    .eyebrow { display: inline-block; margin-bottom: 8px; }
-  }
-  &__title {
-    font-family: $font-display;
-    font-size: clamp(1.15rem, 1.8vw, 1.35rem);
-    font-weight: 600;
-    letter-spacing: -0.015em;
-    color: $text;
-    margin: 0 0 8px;
-  }
-  &__body {
+  // Lightweight hint replacing the heavy "More à la carte" subhead.
+  // Redundant with the section title above; reads as a quick aside.
+  &__hint {
+    margin: 0 0 20px;
+    font-size: 0.88rem;
     color: $text-muted;
-    font-size: 0.92rem;
     line-height: 1.55;
-    margin: 0;
+    max-width: 60ch;
+    font-style: italic;
   }
+
   &__list {
     display: flex;
     flex-direction: column;

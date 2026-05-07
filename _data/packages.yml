@@ -1003,10 +1003,8 @@ pricing_tables:
         category: listings
         price_usdt: 300
         label: { en: "Bitget Wallet — token info listing", zh-tw: "Bitget 錢包 ── 代幣資訊收錄", ja: "Bitgetウォレット ── トークン情報掲載" }
-      - id: gmgn-info
-        category: listings
-        price_usdt: 600
-        label: { en: "GMGN — trader info listing", zh-tw: "GMGN ── 交易員資訊收錄", ja: "GMGN ── トレーダー情報掲載" }
+      # gmgn-info removed — same SKU appears as the gmgn-listing
+      # quickbuy card above to avoid duplicate buy options.
       - id: msg-listing
         category: listings
         price_usdt: 400
@@ -1049,22 +1047,12 @@ pricing_tables:
       zh-tw: "翻譯後新聞稿分發。可依地區或語言選擇。"
       ja: "翻訳済みプレスリリースの配信。地域・言語から選択可。"
     rows:
-      - id: pr-ap-300
-        category: pr
-        price_usdt: 600
-        label: { en: "AP wire + 300 satellite outlets", zh-tw: "美聯社 + 300 家媒體小站", ja: "AP通信 + 300サイト" }
-      - id: pr-yahoo
-        category: pr
-        price_usdt: 600
-        label: { en: "Yahoo Finance / News (Web2 only)", zh-tw: "雅虎系列（僅限 Web2 投放）", ja: "Yahoo Finance / News（Web2 のみ）" }
+      # pr-ap-300, pr-yahoo, pr-en-100 removed — already on the
+      # ap-press / yahoo-press / en-100-media quickbuy cards above.
       - id: pr-google-150
         category: pr
         price_usdt: 200
         label: { en: "Google indexable pack — 150 outlets", zh-tw: "谷歌包收錄套餐 ── 150 家", ja: "Google包収録パック ── 150サイト" }
-      - id: pr-en-100
-        category: pr
-        price_usdt: 100
-        label: { en: "English — 100 outlets", zh-tw: "英文媒體 ── 100 家", ja: "英語媒体 ── 100サイト" }
       - id: pr-boutique
         category: pr
         price_usdt: 20
@@ -1077,10 +1065,7 @@ pricing_tables:
         category: pr
         price_usdt: 80
         label: { en: "Japan — curated outlets", zh-tw: "日本精選媒體", ja: "日本厳選媒体" }
-      - id: pr-jp-50
-        category: pr
-        price_usdt: 100
-        label: { en: "Japanese — 50 outlets", zh-tw: "50 家日語媒體", ja: "日本語50媒体" }
+      # pr-jp-50 removed — already on jp-50-media quickbuy card.
       - id: pr-de-50
         category: pr
         price_usdt: 100
@@ -1381,10 +1366,8 @@ pricing_tables:
         category: kol
         price_usdt: 2000
         label: { en: "Japan — volume pack (10 KOLs)", zh-tw: "日本批量 KOL 套餐（10 位）", ja: "日本ボリュームKOLパック（10名）" }
-      - id: kol-cn-curated
-        category: kol
-        price_usdt: 500
-        label: { en: "Chinese-region — curated single KOL", zh-tw: "華語區精選 KOL ── 單條", ja: "華語圏厳選KOL ── 単発" }
+      # kol-cn-curated removed — same SKU as the chinese-kol-single
+      # quickbuy card above.
       - id: kol-cn-premium-3
         category: kol
         price_usdt: 4000
@@ -1401,14 +1384,12 @@ pricing_tables:
         category: kol
         price_usdt: 1500
         label: { en: "Chinese — volume pack (10 KOLs)", zh-tw: "華語區批量 KOL 套餐（10 位）", ja: "華語圏ボリュームKOLパック（10名）" }
+      # kol-cn-curated removed — already on chinese-kol-single card.
       - id: kol-en-budget
         category: kol
         price_usdt: 100
         label: { en: "English — value-for-money KOL (single)", zh-tw: "英文區高性價比 KOL ── 單條", ja: "英語圏コスパKOL ── 単発" }
-      - id: kol-en-curated
-        category: kol
-        price_usdt: 300
-        label: { en: "English — curated single KOL", zh-tw: "英文區精選 KOL ── 單條", ja: "英語圏厳選KOL ── 単発" }
+      # kol-en-curated removed — already on english-kol-single card.
       - id: kol-ai-3
         category: kol
         price_usdt: 1800
@@ -1481,10 +1462,7 @@ pricing_tables:
         category: kol
         price_usdt: 1000
         label: { en: "Budget pack (10 KOLs)", zh-tw: "高性價比套餐（10 位）", ja: "コスパパック（10名）" }
-      - id: kol-tg-elite
-        category: kol
-        price_usdt: 100
-        label: { en: "Premium TG community KOL post", zh-tw: "高端 TG 社群 KOL 宣發", ja: "プレミアムTGコミュニティKOL投稿" }
+      # kol-tg-elite moved → social-engagement group (correct platform)
 
   - id: x-engagement
     title:
@@ -1555,6 +1533,10 @@ pricing_tables:
       zh-tw: "跨平台互動與社群增長服務單位。歡迎客製化量級。"
       ja: "クロスプラットフォームのエンゲージメント・コミュニティ成長ユニット。カスタム数量も受注可。"
     rows:
+      - id: kol-tg-elite
+        category: kol
+        price_usdt: 100
+        label: { en: "Premium TG community KOL post", zh-tw: "高端 TG 社群 KOL 宣發", ja: "プレミアムTGコミュニティKOL投稿" }
       - id: tg-group-1k
         category: kol
         price_usdt: 5
