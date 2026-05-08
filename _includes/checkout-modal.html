@@ -20,6 +20,9 @@
   {%- assign m_contact_lead = '我們將透過電子郵件或 Telegram 在一個工作日內聯繫您，確認範疇並啟動服務交付。請填寫至少一個聯絡管道（Telegram 較快）。' -%}
   {%- assign m_contact_helper_email = '我們將以此郵件發送服務確認、進度更新與最終交付物。' -%}
   {%- assign m_contact_helper_tg = '加密領域客戶常用 Telegram，回覆速度通常快於郵件。' -%}
+  {%- assign m_target_url_label = '目標連結' -%}
+  {%- assign m_target_url_placeholder = 'https://x.com/yourpost  或  t.me/yourgroup' -%}
+  {%- assign m_target_url_helper = '請貼上要刷的具體推文／貼文／群組／頻道／影片連結。沒有此連結我們無法執行訂單。' -%}
   {%- assign m_required = '必填' -%}
   {%- assign m_pay_btn = '以 {token} 支付 {amount}' -%}
   {%- assign m_paying = '錢包簽名中…' -%}
@@ -53,6 +56,9 @@
   {%- assign m_contact_lead = 'メールまたはTelegramで、1営業日以内にスコープ確認・サービス開始のご連絡を差し上げます。最低1つの連絡先をご入力ください（Telegramの方が早く返信できます）。' -%}
   {%- assign m_contact_helper_email = 'サービス確認・進捗更新・最終納品物はこのメール宛にお送りします。' -%}
   {%- assign m_contact_helper_tg = '暗号資産業界のお客様はTelegram利用率が高く、メールより返信が早い傾向にあります。' -%}
+  {%- assign m_target_url_label = 'ターゲットURL' -%}
+  {%- assign m_target_url_placeholder = 'https://x.com/yourpost  または  t.me/yourgroup' -%}
+  {%- assign m_target_url_helper = 'ブースト対象のツイート／投稿／グループ／チャンネル／動画のURLをご記入ください。このリンクがないと施策を実行できません。' -%}
   {%- assign m_required = '必須' -%}
   {%- assign m_pay_btn = '{amount} {token} を支払う' -%}
   {%- assign m_paying = 'ウォレット署名中…' -%}
@@ -86,6 +92,9 @@
   {%- assign m_contact_lead = "We'll contact you by email or Telegram within one business day to confirm scope and kick off delivery. Please provide at least one channel — Telegram is usually faster." -%}
   {%- assign m_contact_helper_email = "We'll use this for the order confirmation, progress updates and final deliverables." -%}
   {%- assign m_contact_helper_tg = 'Crypto-native clients tend to live on Telegram — replies are typically faster than email.' -%}
+  {%- assign m_target_url_label = 'Target URL' -%}
+  {%- assign m_target_url_placeholder = 'https://x.com/yourpost  or  t.me/yourgroup' -%}
+  {%- assign m_target_url_helper = "Paste the exact tweet / post / group / channel / video URL we should boost. We can't run the order without this link." -%}
   {%- assign m_required = 'required' -%}
   {%- assign m_pay_btn = 'Pay {amount} {token}' -%}
   {%- assign m_paying = 'Awaiting wallet signature…' -%}
@@ -174,6 +183,17 @@
             <small class="checkout__field-helper">{{ m_contact_helper_tg }}</small>
           </label>
         </div>
+
+        <!-- Conditional: only buy-traffic SKUs (X likes/views/AMA listeners,
+             TG/Discord/IG/YT followers, Binance Square actions etc.) need
+             a target URL so we know which post / account to boost. JS
+             un-hides this when openModal() sees data-target-url-required
+             on the clicked card / row. Required when shown. -->
+        <label class="checkout__field--conditional" data-checkout-target-url hidden>
+          <span class="checkout__target-url-label">{{ m_target_url_label }} <em>({{ m_required }})</em></span>
+          <input type="url" name="target_url" placeholder="{{ m_target_url_placeholder }}" />
+          <small class="checkout__field-helper">{{ m_target_url_helper }}</small>
+        </label>
 
         <label>
           <span>{{ m_notes_label }}</span>

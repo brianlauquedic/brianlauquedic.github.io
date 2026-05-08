@@ -384,6 +384,7 @@
                   data-recurring="false"
                   data-category="{{ row.category | default: 'pr' }}"
                   data-on-quote="{{ row.on_quote | default: false }}"
+                  data-target-url-required="{{ grp.requires_target_url | default: false }}"
                   data-searchable="{{ row.label[lang] | default: row.label.en }}">
                 <span class="shop-row__title">{{ row.label[lang] | default: row.label.en }}</span>
                 {%- if row.on_quote -%}
