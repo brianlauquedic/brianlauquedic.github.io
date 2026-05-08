@@ -1024,6 +1024,44 @@
     .checkout__warn { margin-bottom: 12px; }
   }
 
+  // Lead-in paragraph above the form, explaining why we need a
+  // contact channel (we'll reach out within 1 business day to start
+  // delivery — payment alone isn't enough).
+  &__contact-lead {
+    margin: 0 0 18px;
+    padding: 14px 16px;
+    background: rgba(91, 47, 217, 0.06);
+    border-left: 3px solid $brand;
+    border-radius: 0 $radius $radius 0;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: $text;
+  }
+
+  // Visually grouped contact-info block — emphasizes that email +
+  // Telegram are how Quedic reaches the customer post-payment.
+  &__contact-block {
+    display: grid;
+    gap: 16px;
+    padding: 18px 18px 16px;
+    background: $bg-soft;
+    border-radius: $radius;
+    border: 1px solid $border;
+    @media (min-width: $bp-sm) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__field-helper {
+    display: block;
+    font-size: 0.74rem;
+    color: $text-muted;
+    line-height: 1.45;
+    margin-top: 6px;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
   &__form {
     display: grid;
     gap: 16px;
@@ -1592,4 +1630,35 @@ body.checkout-open {
 // so the accordion stays understated as a "talk to us" affordance.
 .shop-categ[data-categ-id="on-quote"] {
   .shop-categ__title { color: $text-muted; font-style: italic; }
+}
+
+// ============================================================
+// Programs section header — added when À la carte moved above
+// the bundle grid. The grid had no intro before; now that bundles
+// come second, customers need a brief context line ("here's why
+// you might want a bundle instead of single items").
+// ============================================================
+.shop-programs-intro {
+  margin-top: 80px;
+  padding-top: 56px;
+  border-top: 1px solid $border;
+  margin-bottom: 32px;
+  max-width: 60ch;
+
+  .eyebrow { display: inline-block; margin-bottom: 8px; }
+
+  &__title {
+    font-family: $font-display;
+    font-size: clamp(1.5rem, 2.3vw, 1.85rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: $text;
+    margin: 0 0 10px;
+  }
+  &__body {
+    color: $text-muted;
+    font-size: 0.96rem;
+    line-height: 1.55;
+    margin: 0;
+  }
 }

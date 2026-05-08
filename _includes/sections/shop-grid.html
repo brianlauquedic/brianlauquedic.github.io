@@ -60,6 +60,9 @@
   {%- assign t_discuss_btn = '洽談' -%}
   {%- assign t_jumpto = '快速跳至：' -%}
   {%- assign t_bulk_btn = '批量訂購' -%}
+  {%- assign t_programs_eyebrow = '組合方案' -%}
+  {%- assign t_programs_title = '推薦套餐' -%}
+  {%- assign t_programs_body = '已為常見發行情境預先編組的套餐 ── 比逐項挑選更省、團隊已驗證的組合，鎖定核心成果而非單品 SKU。' -%}
   {%- assign t_faq_eyebrow = '常見問題' -%}
   {%- assign t_faq_title = 'FAQ' -%}
   {%- assign t_faq_q1 = '交易失敗怎麼辦？' -%}
@@ -133,6 +136,9 @@
   {%- assign t_discuss_btn = 'ご相談' -%}
   {%- assign t_jumpto = 'カテゴリへ移動：' -%}
   {%- assign t_bulk_btn = '一括注文' -%}
+  {%- assign t_programs_eyebrow = '組み合わせプログラム' -%}
+  {%- assign t_programs_title = 'おすすめパッケージ' -%}
+  {%- assign t_programs_body = '一般的なローンチシーンに合わせて事前編成済みのパッケージ ── 単品の合計より割安で、チームが検証済みの組み合わせ。SKUごとではなく成果ベースで設計。' -%}
   {%- assign t_faq_eyebrow = 'よくあるご質問' -%}
   {%- assign t_faq_title = 'FAQ' -%}
   {%- assign t_faq_q1 = 'トランザクションが失敗したら？' -%}
@@ -206,6 +212,9 @@
   {%- assign t_discuss_btn = 'Discuss' -%}
   {%- assign t_jumpto = 'Jump to:' -%}
   {%- assign t_bulk_btn = 'Bulk order' -%}
+  {%- assign t_programs_eyebrow = 'Pre-built combinations' -%}
+  {%- assign t_programs_title = 'Curated programs' -%}
+  {%- assign t_programs_body = 'Pre-bundled for common launch scenarios — typically cheaper than buying the components separately, with sequencing our team has validated. Outcome-led, not SKU-led.' -%}
   {%- assign t_faq_eyebrow = 'Frequently asked' -%}
   {%- assign t_faq_title = 'FAQ' -%}
   {%- assign t_faq_q1 = 'What if my transaction fails?' -%}
@@ -247,8 +256,8 @@
   <div class="container">
     <nav class="shop-jump" aria-label="Shop sections">
       <ul>
-        <li><a href="#programs">{{ t_jump_programs }}</a></li>
         <li><a href="#a-la-carte">{{ t_jump_alacarte }}</a></li>
+        <li><a href="#programs">{{ t_jump_programs }}</a></li>
         <li><a href="#how-it-works">{{ t_jump_howit }}</a></li>
         <li><a href="#faq">{{ t_jump_faq }}</a></li>
         <li><a href="#enterprise">{{ t_jump_enterprise }}</a></li>
@@ -268,11 +277,146 @@
   </div>
 </div>
 
-<section class="section" id="programs">
+<section class="section" id="shop">
   <div class="container">
 
     <div class="shop-meta">
       <span class="eyebrow eyebrow--brand">{{ t_chain_label }}</span>
+    </div>
+
+    <!-- À la carte moved to top per user feedback: customers should
+         see specific single services first, then bundles. -->
+    {%- if quick_buys -%}
+    <section class="shop-alacarte" id="a-la-carte">
+      <div class="shop-alacarte__head">
+        <span class="eyebrow eyebrow--brand">{{ t_quickbuys_eyebrow }}</span>
+        <h3 class="shop-alacarte__title">{{ t_quickbuys_title }}</h3>
+        <p class="shop-alacarte__body">{{ t_quickbuys_body }}</p>
+      </div>
+
+      <div class="shop-search" role="search">
+        <svg class="shop-search__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+          <path d="M20 20L17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <input
+          type="search"
+          class="shop-search__input"
+          placeholder="{{ t_search_placeholder }}"
+          aria-label="{{ t_search_placeholder }}"
+          data-shop-search>
+        <button
+          type="button"
+          class="shop-search__clear"
+          data-shop-search-clear
+          aria-label="{{ t_search_clear }}"
+          hidden>×</button>
+      </div>
+      <p class="shop-search__status" data-shop-search-status hidden></p>
+
+      <div class="shop-alacarte__cards" data-shop-cards>
+        {%- for q in quick_buys -%}
+        {%- assign cat = q.category | default: 'all' -%}
+        {%- case cat -%}
+          {%- when 'listings' -%}
+            {%- if lang == 'zh-tw' -%}{%- assign cat_text = '收錄' -%}{%- elsif lang == 'ja' -%}{%- assign cat_text = '掲載' -%}{%- else -%}{%- assign cat_text = 'Listings' -%}{%- endif -%}
+          {%- when 'pr' -%}
+            {%- if lang == 'zh-tw' -%}{%- assign cat_text = '公關' -%}{%- elsif lang == 'ja' -%}{%- assign cat_text = 'PR' -%}{%- else -%}{%- assign cat_text = 'PR' -%}{%- endif -%}
+          {%- when 'kol' -%}
+            {%- if lang == 'zh-tw' -%}{%- assign cat_text = 'KOL' -%}{%- elsif lang == 'ja' -%}{%- assign cat_text = 'KOL' -%}{%- else -%}{%- assign cat_text = 'KOL' -%}{%- endif -%}
+          {%- when 'live' -%}
+            {%- if lang == 'zh-tw' -%}{%- assign cat_text = '直播' -%}{%- elsif lang == 'ja' -%}{%- assign cat_text = 'ライブ' -%}{%- else -%}{%- assign cat_text = 'Live' -%}{%- endif -%}
+          {%- else -%}{%- assign cat_text = '' -%}
+        {%- endcase -%}
+        <article class="quickbuy-card quickbuy-card--cat-{{ cat }}"
+                 data-package-id="{{ q.id }}"
+                 data-price-usdt="{{ q.price_usdt }}"
+                 data-price-usdc="{{ q.price_usdt }}"
+                 data-recurring="false"
+                 data-searchable="{{ q.title[lang] | default: q.title.en }} {{ q.description[lang] | default: q.description.en }} {{ cat_text }}"
+                 data-category="{{ cat }}">
+          {%- if cat_text != '' -%}
+          <span class="quickbuy-card__cat" aria-hidden="true">
+            <span class="quickbuy-card__cat-dot"></span>{{ cat_text }}
+          </span>
+          {%- endif -%}
+          <h4 class="quickbuy-card__title">{{ q.title[lang] | default: q.title.en }}</h4>
+          <p class="quickbuy-card__desc">{{ q.description[lang] | default: q.description.en }}</p>
+          {%- if q.delivery -%}
+          <p class="quickbuy-card__delivery">{{ t_delivery }}: {{ q.delivery[lang] | default: q.delivery.en }}</p>
+          {%- endif -%}
+          <div class="quickbuy-card__foot">
+            <span class="quickbuy-card__price">{{ q.price_usdt }} <span>USDT</span></span>
+            <button class="btn btn--ghost btn--sm" data-checkout-trigger data-package-id="{{ q.id }}">{{ t_pay }}</button>
+          </div>
+        </article>
+        {%- endfor -%}
+      </div>
+
+      {%- if pricing_tables and pricing_tables.size > 0 -%}
+      <div class="shop-categories">
+        <p class="shop-categories__hint">{{ t_categories_body }}</p>
+
+        <div class="shop-categories__list">
+          {%- for grp in pricing_tables -%}
+          <details class="shop-categ" data-categ-id="{{ grp.id }}">
+            <summary class="shop-categ__head">
+              <span class="shop-categ__title">{{ grp.title[lang] | default: grp.title.en }}</span>
+              <span class="shop-categ__count">{{ grp.rows | size }}</span>
+              <span class="shop-categ__chevron" aria-hidden="true"></span>
+            </summary>
+            {%- if grp.note -%}
+            <p class="shop-categ__note">{{ grp.note[lang] | default: grp.note.en }}</p>
+            {%- endif -%}
+            <ul class="shop-categ__rows">
+              {%- for row in grp.rows -%}
+              {%- assign bulk_only = false -%}
+              {%- if row.on_quote == nil and row.price_usdt and row.price_usdt < 30 -%}
+                {%- assign bulk_only = true -%}
+              {%- endif -%}
+              <li class="shop-row pricing-row{% if bulk_only %} shop-row--bulk{% endif %}"
+                  data-package-id="{{ row.id }}"
+                  data-price-usdt="{{ row.price_usdt | default: 0 }}"
+                  data-price-usdc="{{ row.price_usdt | default: 0 }}"
+                  data-recurring="false"
+                  data-category="{{ row.category | default: 'pr' }}"
+                  data-on-quote="{{ row.on_quote | default: false }}"
+                  data-searchable="{{ row.label[lang] | default: row.label.en }}">
+                <span class="shop-row__title">{{ row.label[lang] | default: row.label.en }}</span>
+                {%- if row.on_quote -%}
+                  <span class="shop-row__price shop-row__price--quote">{{ t_on_request }}</span>
+                  <a class="btn btn--ghost btn--xs shop-row__action" href="{{ t_contact_url }}">{{ t_discuss_btn }}</a>
+                {%- elsif bulk_only -%}
+                  <span class="shop-row__price">
+                    <span class="shop-row__amount">{{ row.price_usdt }}</span>
+                    <span class="shop-row__unit">USDT</span>
+                  </span>
+                  <a class="btn btn--ghost btn--xs shop-row__action" href="{{ t_contact_url }}">{{ t_bulk_btn }}</a>
+                {%- else -%}
+                  <span class="shop-row__price">
+                    <span class="shop-row__amount">{{ row.price_usdt }}</span>
+                    <span class="shop-row__unit">USDT</span>
+                  </span>
+                  <button class="btn btn--ghost btn--xs shop-row__action" data-checkout-trigger data-package-id="{{ row.id }}">{{ t_buy_btn }}</button>
+                {%- endif -%}
+              </li>
+              {%- endfor -%}
+            </ul>
+          </details>
+          {%- endfor -%}
+        </div>
+
+        <p class="shop-search__no-results" data-shop-search-no-results hidden>{{ t_search_no_results }}</p>
+      </div>
+      {%- endif -%}
+    </section>
+    {%- endif -%}
+
+    <!-- Programs (curated bundles) — now after À la carte -->
+    <div class="shop-programs-intro" id="programs">
+      <span class="eyebrow eyebrow--brand">{{ t_programs_eyebrow }}</span>
+      <h3 class="shop-programs-intro__title">{{ t_programs_title }}</h3>
+      <p class="shop-programs-intro__body">{{ t_programs_body }}</p>
     </div>
 
     <div class="shop-grid">
@@ -380,148 +524,6 @@
       <p class="shop-enterprise__body">{{ ent.body[lang] | default: ent.body.en }}</p>
       <a class="btn btn--primary" href="{{ t_contact_url | relative_url }}">{{ ent.cta[lang] | default: ent.cta.en }}</a>
     </aside>
-    {%- endif -%}
-
-    <!-- placeholder removed: after-payment moved into combined section below -->
-
-
-    <!-- À la carte — curated cards (top), search bar, category accordions
-         (bottom). Search filters across all single-buy services. -->
-    {%- if quick_buys -%}
-    <section class="shop-alacarte" id="a-la-carte">
-      <div class="shop-alacarte__head">
-        <span class="eyebrow eyebrow--brand">{{ t_quickbuys_eyebrow }}</span>
-        <h3 class="shop-alacarte__title">{{ t_quickbuys_title }}</h3>
-        <p class="shop-alacarte__body">{{ t_quickbuys_body }}</p>
-      </div>
-
-      <!-- Search bar — filters cards + category rows live -->
-      <div class="shop-search" role="search">
-        <svg class="shop-search__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
-          <path d="M20 20L17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <input
-          type="search"
-          class="shop-search__input"
-          placeholder="{{ t_search_placeholder }}"
-          aria-label="{{ t_search_placeholder }}"
-          data-shop-search>
-        <button
-          type="button"
-          class="shop-search__clear"
-          data-shop-search-clear
-          aria-label="{{ t_search_clear }}"
-          hidden>×</button>
-      </div>
-      <p class="shop-search__status" data-shop-search-status hidden></p>
-
-      <!-- Curated quickbuy cards -->
-      <div class="shop-alacarte__cards" data-shop-cards>
-        {%- for q in quick_buys -%}
-        {%- assign cat = q.category | default: 'all' -%}
-        {%- case cat -%}
-          {%- when 'listings' -%}{%- assign cat_label = '' -%}{%- assign cat_label_zh = '' -%}{%- assign cat_label_ja = '' -%}
-            {%- if lang == 'zh-tw' -%}{%- assign cat_text = '收錄' -%}{%- elsif lang == 'ja' -%}{%- assign cat_text = '掲載' -%}{%- else -%}{%- assign cat_text = 'Listings' -%}{%- endif -%}
-          {%- when 'pr' -%}
-            {%- if lang == 'zh-tw' -%}{%- assign cat_text = '公關' -%}{%- elsif lang == 'ja' -%}{%- assign cat_text = 'PR' -%}{%- else -%}{%- assign cat_text = 'PR' -%}{%- endif -%}
-          {%- when 'kol' -%}
-            {%- if lang == 'zh-tw' -%}{%- assign cat_text = 'KOL' -%}{%- elsif lang == 'ja' -%}{%- assign cat_text = 'KOL' -%}{%- else -%}{%- assign cat_text = 'KOL' -%}{%- endif -%}
-          {%- when 'live' -%}
-            {%- if lang == 'zh-tw' -%}{%- assign cat_text = '直播' -%}{%- elsif lang == 'ja' -%}{%- assign cat_text = 'ライブ' -%}{%- else -%}{%- assign cat_text = 'Live' -%}{%- endif -%}
-          {%- else -%}{%- assign cat_text = '' -%}
-        {%- endcase -%}
-        <article class="quickbuy-card quickbuy-card--cat-{{ cat }}"
-                 data-package-id="{{ q.id }}"
-                 data-price-usdt="{{ q.price_usdt }}"
-                 data-price-usdc="{{ q.price_usdt }}"
-                 data-recurring="false"
-                 data-searchable="{{ q.title[lang] | default: q.title.en }} {{ q.description[lang] | default: q.description.en }} {{ cat_text }}"
-                 data-category="{{ cat }}">
-          {%- if cat_text != '' -%}
-          <span class="quickbuy-card__cat" aria-hidden="true">
-            <span class="quickbuy-card__cat-dot"></span>{{ cat_text }}
-          </span>
-          {%- endif -%}
-          <h4 class="quickbuy-card__title">{{ q.title[lang] | default: q.title.en }}</h4>
-          <p class="quickbuy-card__desc">{{ q.description[lang] | default: q.description.en }}</p>
-          {%- if q.delivery -%}
-          <p class="quickbuy-card__delivery">{{ t_delivery }}: {{ q.delivery[lang] | default: q.delivery.en }}</p>
-          {%- endif -%}
-          <div class="quickbuy-card__foot">
-            <span class="quickbuy-card__price">{{ q.price_usdt }} <span>USDT</span></span>
-            <button class="btn btn--ghost btn--sm" data-checkout-trigger data-package-id="{{ q.id }}">{{ t_pay }}</button>
-          </div>
-        </article>
-        {%- endfor -%}
-      </div>
-
-      <!-- Category accordions — long-tail SKUs (~150 items) -->
-      {%- if pricing_tables and pricing_tables.size > 0 -%}
-      <div class="shop-categories">
-        <p class="shop-categories__hint">{{ t_categories_body }}</p>
-
-        <div class="shop-categories__list">
-          {%- for grp in pricing_tables -%}
-          <details class="shop-categ" data-categ-id="{{ grp.id }}">
-            <summary class="shop-categ__head">
-              <span class="shop-categ__title">{{ grp.title[lang] | default: grp.title.en }}</span>
-              <span class="shop-categ__count">{{ grp.rows | size }}</span>
-              <span class="shop-categ__chevron" aria-hidden="true"></span>
-            </summary>
-            {%- if grp.note -%}
-            <p class="shop-categ__note">{{ grp.note[lang] | default: grp.note.en }}</p>
-            {%- endif -%}
-            <ul class="shop-categ__rows">
-              {%- for row in grp.rows -%}
-              {%- comment -%}
-                Items priced below 30 USDT are typically per-unit batch
-                rates (X likes per 100 = 3 USDT, etc.) where on-chain
-                gas would dwarf the cost of one unit. Render a "Bulk
-                order" link to contact instead of the on-chain Order
-                button — keeps the catalog complete without inviting
-                impractical single-unit orders.
-              {%- endcomment -%}
-              {%- assign bulk_only = false -%}
-              {%- if row.on_quote == nil and row.price_usdt and row.price_usdt < 30 -%}
-                {%- assign bulk_only = true -%}
-              {%- endif -%}
-              <li class="shop-row pricing-row{% if bulk_only %} shop-row--bulk{% endif %}"
-                  data-package-id="{{ row.id }}"
-                  data-price-usdt="{{ row.price_usdt | default: 0 }}"
-                  data-price-usdc="{{ row.price_usdt | default: 0 }}"
-                  data-recurring="false"
-                  data-category="{{ row.category | default: 'pr' }}"
-                  data-on-quote="{{ row.on_quote | default: false }}"
-                  data-searchable="{{ row.label[lang] | default: row.label.en }}">
-                <span class="shop-row__title">{{ row.label[lang] | default: row.label.en }}</span>
-                {%- if row.on_quote -%}
-                  <span class="shop-row__price shop-row__price--quote">{{ t_on_request }}</span>
-                  <a class="btn btn--ghost btn--xs shop-row__action" href="{{ t_contact_url }}">{{ t_discuss_btn }}</a>
-                {%- elsif bulk_only -%}
-                  <span class="shop-row__price">
-                    <span class="shop-row__amount">{{ row.price_usdt }}</span>
-                    <span class="shop-row__unit">USDT</span>
-                  </span>
-                  <a class="btn btn--ghost btn--xs shop-row__action" href="{{ t_contact_url }}">{{ t_bulk_btn }}</a>
-                {%- else -%}
-                  <span class="shop-row__price">
-                    <span class="shop-row__amount">{{ row.price_usdt }}</span>
-                    <span class="shop-row__unit">USDT</span>
-                  </span>
-                  <button class="btn btn--ghost btn--xs shop-row__action" data-checkout-trigger data-package-id="{{ row.id }}">{{ t_buy_btn }}</button>
-                {%- endif -%}
-              </li>
-              {%- endfor -%}
-            </ul>
-          </details>
-          {%- endfor -%}
-        </div>
-
-        <p class="shop-search__no-results" data-shop-search-no-results hidden>{{ t_search_no_results }}</p>
-      </div>
-      {%- endif -%}
-    </section>
     {%- endif -%}
 
     <!-- Combined: How to pay (left) + After you pay (right) -->

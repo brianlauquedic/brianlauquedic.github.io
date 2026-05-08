@@ -15,8 +15,11 @@
   {%- assign m_switch_chain = '切換至 BNB Smart Chain' -%}
   {%- assign m_name_label = '專案名稱' -%}
   {%- assign m_email_label = '聯絡電子郵件' -%}
-  {%- assign m_telegram_label = 'Telegram（選填）' -%}
+  {%- assign m_telegram_label = 'Telegram（建議填寫）' -%}
   {%- assign m_notes_label = '專案簡述（選填）' -%}
+  {%- assign m_contact_lead = '我們將透過電子郵件或 Telegram 在一個工作日內聯繫您，確認範疇並啟動服務交付。請填寫至少一個聯絡管道（Telegram 較快）。' -%}
+  {%- assign m_contact_helper_email = '我們將以此郵件發送服務確認、進度更新與最終交付物。' -%}
+  {%- assign m_contact_helper_tg = '加密領域客戶常用 Telegram，回覆速度通常快於郵件。' -%}
   {%- assign m_required = '必填' -%}
   {%- assign m_pay_btn = '以 {token} 支付 {amount}' -%}
   {%- assign m_paying = '錢包簽名中…' -%}
@@ -45,8 +48,11 @@
   {%- assign m_switch_chain = 'BNB Smart Chainに切替' -%}
   {%- assign m_name_label = 'プロジェクト名' -%}
   {%- assign m_email_label = 'ご連絡先メール' -%}
-  {%- assign m_telegram_label = 'Telegram（任意）' -%}
+  {%- assign m_telegram_label = 'Telegram（推奨）' -%}
   {%- assign m_notes_label = 'プロジェクト概要（任意）' -%}
+  {%- assign m_contact_lead = 'メールまたはTelegramで、1営業日以内にスコープ確認・サービス開始のご連絡を差し上げます。最低1つの連絡先をご入力ください（Telegramの方が早く返信できます）。' -%}
+  {%- assign m_contact_helper_email = 'サービス確認・進捗更新・最終納品物はこのメール宛にお送りします。' -%}
+  {%- assign m_contact_helper_tg = '暗号資産業界のお客様はTelegram利用率が高く、メールより返信が早い傾向にあります。' -%}
   {%- assign m_required = '必須' -%}
   {%- assign m_pay_btn = '{amount} {token} を支払う' -%}
   {%- assign m_paying = 'ウォレット署名中…' -%}
@@ -75,8 +81,11 @@
   {%- assign m_switch_chain = 'Switch to BNB Smart Chain' -%}
   {%- assign m_name_label = 'Project name' -%}
   {%- assign m_email_label = 'Contact email' -%}
-  {%- assign m_telegram_label = 'Telegram (optional)' -%}
+  {%- assign m_telegram_label = 'Telegram (recommended)' -%}
   {%- assign m_notes_label = 'Project notes (optional)' -%}
+  {%- assign m_contact_lead = "We'll contact you by email or Telegram within one business day to confirm scope and kick off delivery. Please provide at least one channel — Telegram is usually faster." -%}
+  {%- assign m_contact_helper_email = "We'll use this for the order confirmation, progress updates and final deliverables." -%}
+  {%- assign m_contact_helper_tg = 'Crypto-native clients tend to live on Telegram — replies are typically faster than email.' -%}
   {%- assign m_required = 'required' -%}
   {%- assign m_pay_btn = 'Pay {amount} {token}' -%}
   {%- assign m_paying = 'Awaiting wallet signature…' -%}
@@ -139,19 +148,33 @@
     <!-- STEP 2: Form -->
     <section class="checkout__step" data-checkout-step="form" hidden>
       <h3 class="checkout__step-title">{{ m_step2 }}</h3>
+
+      <!-- Lead-in: explains WHY we need contact details and that one
+           is required so we can actually reach the customer after the
+           on-chain payment lands. -->
+      <p class="checkout__contact-lead">{{ m_contact_lead }}</p>
+
       <form data-checkout-form class="checkout__form" novalidate>
         <label>
           <span>{{ m_name_label }} <em>({{ m_required }})</em></span>
           <input type="text" name="project_name" required />
         </label>
-        <label>
-          <span>{{ m_email_label }} <em>({{ m_required }})</em></span>
-          <input type="email" name="email" required />
-        </label>
-        <label>
-          <span>{{ m_telegram_label }}</span>
-          <input type="text" name="telegram" placeholder="@handle" />
-        </label>
+
+        <!-- Highlighted contact-fields group — visually grouped to
+             stress that this is how Quedic will reach out. -->
+        <div class="checkout__contact-block">
+          <label>
+            <span>{{ m_email_label }} <em>({{ m_required }})</em></span>
+            <input type="email" name="email" required placeholder="you@company.com" />
+            <small class="checkout__field-helper">{{ m_contact_helper_email }}</small>
+          </label>
+          <label>
+            <span>{{ m_telegram_label }}</span>
+            <input type="text" name="telegram" placeholder="@yourhandle" />
+            <small class="checkout__field-helper">{{ m_contact_helper_tg }}</small>
+          </label>
+        </div>
+
         <label>
           <span>{{ m_notes_label }}</span>
           <textarea name="notes" rows="3"></textarea>
