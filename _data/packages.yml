@@ -1677,24 +1677,7 @@ pricing_tables:
         on_quote: true
         label: { en: "Smart contract & LP development", zh-tw: "合約開發、LP 開發", ja: "スマートコントラクト・LP開発" }
 
-# =====================================================================
-# Enterprise tier — anchor pricing reference
-# =====================================================================
-enterprise:
-  price_from_usdt: 75000
-  title:
-    en: "Enterprise"
-    zh-tw: "企業級客製"
-    ja: "エンタープライズ"
-  tagline:
-    en: "From 75,000 USDT"
-    zh-tw: "75,000 USDT 起"
-    ja: "75,000 USDT〜"
-  body:
-    en: "Multi-token portfolios, multi-region launches, ongoing strategic counsel and dedicated senior teams. Three- to twelve-month engagements, scoped against your business milestones rather than line-item SKUs."
-    zh-tw: "多代幣組合、跨區域發行、持續性戰略諮詢與專屬資深團隊。三至十二個月委託，依您的業務里程碑而非 SKU 列項定義範圍。"
-    ja: "複数トークン・ポートフォリオ、複数地域ローンチ、継続的な戦略カウンセル、専任シニアチーム。3〜12ヶ月の契約を、SKU項目ではなく事業マイルストーンを基準にスコープ設計。"
-  cta:
-    en: "Discuss enterprise scope"
-    zh-tw: "洽談企業級需求"
-    ja: "エンタープライズ要件を相談"
+# Enterprise tier removed per user request — fixed-price anchor at
+# 75,000 USDT was misleading (real bespoke scope can't be priced at
+# a single floor). Custom-priced engagements live in the on-quote
+# pricing-table group above and the /contact/ page.
