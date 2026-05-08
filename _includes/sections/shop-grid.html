@@ -47,6 +47,8 @@
   {%- assign t_jump_alacarte = '單品下單' -%}
   {%- assign t_jump_howit = '如何下單' -%}
   {%- assign t_jump_faq = '常見問題' -%}
+  {%- assign t_jump_enterprise = '企業級' -%}
+  {%- assign t_enterprise_eyebrow = '專屬合作' -%}
   {%- assign t_search_placeholder = '搜尋服務 ── 錢包、KOL、AMA、地區⋯' -%}
   {%- assign t_search_clear = '清除' -%}
   {%- assign t_search_no_results = '沒有符合的服務。試試其他關鍵字，或聯繫我們協助。' -%}
@@ -122,6 +124,8 @@
   {%- assign t_jump_alacarte = '単品オーダー' -%}
   {%- assign t_jump_howit = '注文方法' -%}
   {%- assign t_jump_faq = 'FAQ' -%}
+  {%- assign t_jump_enterprise = 'エンタープライズ' -%}
+  {%- assign t_enterprise_eyebrow = '専任パートナーシップ' -%}
   {%- assign t_search_placeholder = 'サービス検索 ── ウォレット、KOL、AMA、地域⋯' -%}
   {%- assign t_search_clear = 'クリア' -%}
   {%- assign t_search_no_results = '該当するサービスがありません。別のキーワードをお試しいただくか、お問い合わせください。' -%}
@@ -197,6 +201,8 @@
   {%- assign t_jump_alacarte = 'À la carte' -%}
   {%- assign t_jump_howit = 'How it works' -%}
   {%- assign t_jump_faq = 'FAQ' -%}
+  {%- assign t_jump_enterprise = 'Enterprise' -%}
+  {%- assign t_enterprise_eyebrow = 'Bespoke partnership' -%}
   {%- assign t_search_placeholder = 'Search services — wallet, KOL, AMA, region…' -%}
   {%- assign t_search_clear = 'Clear' -%}
   {%- assign t_search_no_results = 'No services match. Try other keywords or contact us for help.' -%}
@@ -257,6 +263,7 @@
         <li><a href="#programs">{{ t_jump_programs }}</a></li>
         <li><a href="#how-it-works">{{ t_jump_howit }}</a></li>
         <li><a href="#faq">{{ t_jump_faq }}</a></li>
+        <li><a href="#enterprise">{{ t_jump_enterprise }}</a></li>
       </ul>
     </nav>
 
@@ -510,7 +517,17 @@
       </ul>
     </aside>
 
-    <!-- Enterprise card removed — fixed 75,000 USDT floor was misleading. -->
+    {%- assign ent = site.data.packages.enterprise -%}
+    {%- if ent -%}
+    <aside class="shop-enterprise" id="enterprise">
+      <div class="shop-enterprise__head">
+        <span class="eyebrow eyebrow--brand">{{ t_enterprise_eyebrow }}</span>
+        <h3 class="shop-enterprise__title">{{ ent.title[lang] | default: ent.title.en }}</h3>
+      </div>
+      <p class="shop-enterprise__body">{{ ent.body[lang] | default: ent.body.en }}</p>
+      <a class="btn btn--primary" href="{{ t_contact_url | relative_url }}">{{ ent.cta[lang] | default: ent.cta.en }}</a>
+    </aside>
+    {%- endif -%}
 
 
     <!-- Combined: How to pay (left) + After you pay (right) -->
