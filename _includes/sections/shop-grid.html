@@ -58,6 +58,8 @@
   {%- assign t_buy_btn = '下單' -%}
   {%- assign t_on_request = '報價請洽' -%}
   {%- assign t_discuss_btn = '洽談' -%}
+  {%- assign t_jumpto = '快速跳至：' -%}
+  {%- assign t_bulk_btn = '批量訂購' -%}
   {%- assign t_faq_eyebrow = '常見問題' -%}
   {%- assign t_faq_title = 'FAQ' -%}
   {%- assign t_faq_q1 = '交易失敗怎麼辦？' -%}
@@ -129,6 +131,8 @@
   {%- assign t_buy_btn = '注文' -%}
   {%- assign t_on_request = 'お見積もり' -%}
   {%- assign t_discuss_btn = 'ご相談' -%}
+  {%- assign t_jumpto = 'カテゴリへ移動：' -%}
+  {%- assign t_bulk_btn = '一括注文' -%}
   {%- assign t_faq_eyebrow = 'よくあるご質問' -%}
   {%- assign t_faq_title = 'FAQ' -%}
   {%- assign t_faq_q1 = 'トランザクションが失敗したら？' -%}
@@ -200,6 +204,8 @@
   {%- assign t_buy_btn = 'Order' -%}
   {%- assign t_on_request = 'On request' -%}
   {%- assign t_discuss_btn = 'Discuss' -%}
+  {%- assign t_jumpto = 'Jump to:' -%}
+  {%- assign t_bulk_btn = 'Bulk order' -%}
   {%- assign t_faq_eyebrow = 'Frequently asked' -%}
   {%- assign t_faq_title = 'FAQ' -%}
   {%- assign t_faq_q1 = 'What if my transaction fails?' -%}
@@ -250,6 +256,7 @@
     </nav>
 
     <div class="shop-filters" role="tablist" aria-label="Category filter">
+      <span class="shop-filters__label" aria-hidden="true">{{ t_jumpto }}</span>
       {%- for c in categories -%}
         <button
           type="button"
@@ -280,7 +287,8 @@
                data-price-usdt="{{ pkg.price_usdt }}"
                data-price-usdc="{{ pkg.price_usdc }}"
                data-recurring="{{ pkg.recurring }}"
-               data-category="{{ pkg.category }}">
+               data-category="{{ pkg.category }}"
+               data-searchable="{{ pkg.title[lang] | default: pkg.title.en }} {{ pkg.summary[lang] | default: pkg.summary.en }} {% for tag in pkg.tags[lang] %}{{ tag }} {% endfor %}{% for b in pkg.bullets[lang] %}{{ b }} {% endfor %}">
 
         {%- if pkg.featured -%}
           <span class="shop-card__badge shop-card__badge--featured">{{ t_featured_badge }}</span>
@@ -466,7 +474,19 @@
             {%- endif -%}
             <ul class="shop-categ__rows">
               {%- for row in grp.rows -%}
-              <li class="shop-row pricing-row"
+              {%- comment -%}
+                Items priced below 30 USDT are typically per-unit batch
+                rates (X likes per 100 = 3 USDT, etc.) where on-chain
+                gas would dwarf the cost of one unit. Render a "Bulk
+                order" link to contact instead of the on-chain Order
+                button — keeps the catalog complete without inviting
+                impractical single-unit orders.
+              {%- endcomment -%}
+              {%- assign bulk_only = false -%}
+              {%- if row.on_quote == nil and row.price_usdt and row.price_usdt < 30 -%}
+                {%- assign bulk_only = true -%}
+              {%- endif -%}
+              <li class="shop-row pricing-row{% if bulk_only %} shop-row--bulk{% endif %}"
                   data-package-id="{{ row.id }}"
                   data-price-usdt="{{ row.price_usdt | default: 0 }}"
                   data-price-usdc="{{ row.price_usdt | default: 0 }}"
@@ -478,6 +498,12 @@
                 {%- if row.on_quote -%}
                   <span class="shop-row__price shop-row__price--quote">{{ t_on_request }}</span>
                   <a class="btn btn--ghost btn--xs shop-row__action" href="{{ t_contact_url }}">{{ t_discuss_btn }}</a>
+                {%- elsif bulk_only -%}
+                  <span class="shop-row__price">
+                    <span class="shop-row__amount">{{ row.price_usdt }}</span>
+                    <span class="shop-row__unit">USDT</span>
+                  </span>
+                  <a class="btn btn--ghost btn--xs shop-row__action" href="{{ t_contact_url }}">{{ t_bulk_btn }}</a>
                 {%- else -%}
                   <span class="shop-row__price">
                     <span class="shop-row__amount">{{ row.price_usdt }}</span>

@@ -90,10 +90,24 @@
 .shop-filters {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 8px;
   margin-bottom: 32px;
   padding-bottom: 24px;
   border-bottom: 1px solid $border;
+
+  // Tiny prefix label clarifying that chips are NAVIGATION (jump),
+  // not a filter — distinguishes them from the search bar in À la
+  // carte which actually filters.
+  &__label {
+    font-family: $font-display;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: $text-label;
+    margin-right: 4px;
+  }
 }
 .shop-filter {
   font-family: $font-display;
@@ -1498,4 +1512,84 @@ body.checkout-open {
                      0 0 0 1px rgba(91, 47, 217, 0.55); }
   100% { box-shadow: 0 0 0 0 rgba(91, 47, 217, 0.0),
                      0 0 0 1px rgba(91, 47, 217, 0.0); }
+}
+
+// ============================================================
+// Accordion expand animation — soft fade + slide on open. Native
+// <details> hides content via content-visibility, so we can't
+// transition height directly. Animation runs each time the panel
+// opens; on close it just disappears (browser default).
+// ============================================================
+@keyframes shopCategExpand {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.shop-categ[open] > .shop-categ__note,
+.shop-categ[open] > .shop-categ__rows {
+  animation: shopCategExpand 0.28s ease-out;
+}
+
+// ============================================================
+// Search match highlight on main package cards. Search doesn't
+// hide main bundles (they're top-of-funnel context) — instead it
+// pulses any matching card so the customer notices it.
+// ============================================================
+@keyframes shopCardSearchPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(91, 47, 217, 0.0); }
+  35%      { box-shadow: 0 0 0 8px rgba(91, 47, 217, 0.20),
+                         0 0 0 1px rgba(91, 47, 217, 0.55); }
+}
+.shop-card--search-match {
+  animation: shopCardSearchPulse 1.4s ease-out;
+  border-color: rgba(91, 47, 217, 0.45);
+}
+
+// ============================================================
+// Bulk-only row treatment. Items priced < 30 USDT show a "Bulk
+// order" link instead of single-unit Order, since on-chain gas
+// would dwarf the per-unit price. Subtle visual differentiation
+// keeps them in the catalog without inviting impractical orders.
+// ============================================================
+.shop-row--bulk {
+  .shop-row__action {
+    background: transparent;
+    color: $text-muted;
+    border-color: $border-strong;
+    &:hover {
+      color: $brand;
+      border-color: $brand;
+      background: transparent;
+    }
+  }
+  .shop-row__amount { color: $text; }
+  .shop-row__unit::after {
+    content: " /unit";
+    font-size: 0.7rem;
+    color: $text-label;
+    margin-left: 2px;
+  }
+}
+
+// ============================================================
+// Mobile KOL-pack row tightening — long titles like "Mid-premium
+// pack (5 KOLs)" overflowed at narrow widths.
+// ============================================================
+@media (max-width: $bp-sm) {
+  .shop-row {
+    &__title {
+      word-break: break-word;
+      overflow-wrap: anywhere;
+      line-height: 1.4;
+    }
+    &__action {
+      flex: 0 0 auto;
+      min-width: 84px;
+    }
+  }
+}
+
+// On-quote group: visually quieter — content is all "On request"
+// so the accordion stays understated as a "talk to us" affordance.
+.shop-categ[data-categ-id="on-quote"] {
+  .shop-categ__title { color: $text-muted; font-style: italic; }
 }

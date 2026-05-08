@@ -535,6 +535,7 @@
       var searchStatus = document.querySelector('[data-shop-search-status]');
       var searchNoResults = document.querySelector('[data-shop-search-no-results]');
       var searchCardsContainer = document.querySelector('[data-shop-cards]');
+      var searchMainCards = Array.from(document.querySelectorAll('.shop-card[data-searchable]'));
       var searchCards = Array.from(document.querySelectorAll('.quickbuy-card[data-searchable]'));
       var searchRows = Array.from(document.querySelectorAll('.shop-row[data-searchable]'));
       var searchCategs = Array.from(document.querySelectorAll('.shop-categ'));
@@ -566,6 +567,20 @@
           searchCategs.forEach(function (c) { prevOpenState.set(c, c.open); });
           applySearch._snapshotted = true;
         }
+
+        // Main package cards: never hide — they're context. Just
+        // pulse the matching ones so the customer notices.
+        var matchedMain = 0;
+        searchMainCards.forEach(function (card) {
+          var hay = normalize(card.getAttribute('data-searchable'));
+          var match = hasQuery && hay.indexOf(q) !== -1;
+          if (match) {
+            card.classList.add('shop-card--search-match');
+            matchedMain += 1;
+          } else {
+            card.classList.remove('shop-card--search-match');
+          }
+        });
 
         var visibleCardCount = 0;
         searchCards.forEach(function (card) {
@@ -609,7 +624,9 @@
         // Status / clear button visibility. When zero matches, suppress
         // the count line and show only the no-results panel — the count
         // would just say "0" alongside the panel, which is redundant.
-        var totalVisible = visibleCardCount + visibleRowCount;
+        // Main-package matches counted separately — they get a pulse,
+        // not a hide, but they should bump the total visible count.
+        var totalVisible = visibleCardCount + visibleRowCount + matchedMain;
         if (hasQuery) {
           if (searchClear) searchClear.removeAttribute('hidden');
           if (searchStatus) {

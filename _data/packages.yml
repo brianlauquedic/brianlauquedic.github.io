@@ -1624,13 +1624,13 @@ pricing_tables:
 
   - id: on-quote
     title:
-      en: "Custom & on-quote services"
-      zh-tw: "客製化與報價類服務"
-      ja: "カスタム・お見積もり制サービス"
+      en: "Custom projects (priced on scope)"
+      zh-tw: "客製化項目（按範疇報價）"
+      ja: "カスタム案件（スコープに応じて見積もり）"
     note:
-      en: "Scope-dependent items priced per project. Contact us for quotes."
-      zh-tw: "依範疇定價的客製項目。請聯繫我們報價。"
-      ja: "スコープに応じて個別見積もりを行う項目。お問い合わせください。"
+      en: "Scope-dependent items priced per project. Reach out and we'll scope and quote within one business day."
+      zh-tw: "依範疇定價的客製項目。聯繫我們後一個工作日內完成範疇與報價。"
+      ja: "スコープに応じて個別見積もりを行う項目。ご連絡から1営業日以内にスコープ確認とお見積もりをお返しします。"
     rows:
       - id: q-web3-major
         category: pr
