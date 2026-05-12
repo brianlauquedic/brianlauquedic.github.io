@@ -859,13 +859,13 @@ quick_buys:
       zh-tw: "3–5 個工作日"
       ja: "3〜5営業日"
     title:
-      en: "Yahoo Finance / News distribution"
-      zh-tw: "雅虎財經／新聞發佈"
-      ja: "Yahoo Finance／News配信"
+      en: "Yahoo Finance / News distribution (Web2 only)"
+      zh-tw: "雅虎財經／新聞發佈（僅限 Web2 內容）"
+      ja: "Yahoo Finance／News配信（Web2のみ）"
     description:
-      en: "One press release distributed via Yahoo Finance and Yahoo News."
-      zh-tw: "新聞稿一篇，透過雅虎財經與雅虎新聞發佈。"
-      ja: "プレスリリース1本を Yahoo Finance / Yahoo News 経由で配信。"
+      en: "Yahoo currently restricts web3 / crypto content. Best for non-crypto announcements (traditional finance, consumer brands, SaaS, etc.). One press release on Yahoo Finance and Yahoo News."
+      zh-tw: "雅虎目前限制 web3／加密內容發佈，僅適用於非加密類公告（傳統金融、消費品牌、SaaS 等）。新聞稿一篇，透過雅虎財經與雅虎新聞發佈。"
+      ja: "Yahoo は現在 web3 / クリプト関連コンテンツの配信を制限しています。非クリプト系（伝統金融・コンシューマーブランド・SaaS 等）の発表に最適。プレスリリース1本を Yahoo Finance / Yahoo News 経由で配信。"
 
   - id: gmgn-listing
     category: listings
