@@ -1,8 +1,16 @@
 twitter:
   name: '@QuedicCap'
   url: 'https://x.com/QuedicCap'
-telegram:
-  name: '@BrianLauQuedic'
-  url: 'https://t.me/BrianLauQuedic'
-email: 'brianlau@quedic.com'
+# Primary contact channel: Telegram. List shown across the site
+# (footer, contact CTA, contact pages, contact-form note, shop FAQ).
+# Click any handle → opens Telegram chat with that account directly.
+telegrams:
+  - name: '@AndyAndy8787'
+    handle: 'AndyAndy8787'
+  - name: '@gigiboe'
+    handle: 'gigiboe'
+  - name: '@AACCKa123'
+    handle: 'AACCKa123'
+  - name: '@BrianLauQuedic'
+    handle: 'BrianLauQuedic'
 contact_button_link: 'contact'

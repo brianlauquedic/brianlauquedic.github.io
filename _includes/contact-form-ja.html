@@ -37,8 +37,7 @@
   <button class="btn btn--primary contact-form__submit" type="submit">送信する</button>
 
   <p class="fine-print" style="margin-top:8px;">
-    営業日1日以内にお返事いたします。直接ご連絡される場合は
-    {% if site.data.contact.email %}<a href="mailto:{{ site.data.contact.email }}">{{ site.data.contact.email }}</a>{% endif %}
-    までどうぞ。
+    営業日1日以内にお返事いたします。または Telegram で直接ご連絡：
+    {% for tg in site.data.contact.telegrams %}<a href="https://t.me/{{ tg.handle }}">{{ tg.name }}</a>{% unless forloop.last %} · {% endunless %}{% endfor %}。
   </p>
 </form>

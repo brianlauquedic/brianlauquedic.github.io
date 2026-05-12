@@ -37,7 +37,7 @@
   <button class="btn btn--primary contact-form__submit" type="submit">Send message</button>
 
   <p class="fine-print" style="margin-top:8px;">
-    We&rsquo;ll reply within one business day. You can also reach us directly at
-    {% if site.data.contact.email %}<a href="mailto:{{ site.data.contact.email }}">{{ site.data.contact.email }}</a>{% endif %}.
+    We&rsquo;ll reply within one business day. Or Telegram us directly:
+    {% for tg in site.data.contact.telegrams %}<a href="https://t.me/{{ tg.handle }}">{{ tg.name }}</a>{% unless forloop.last %} · {% endunless %}{% endfor %}.
   </p>
 </form>

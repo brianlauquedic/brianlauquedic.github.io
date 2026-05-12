@@ -8,8 +8,13 @@
       </p>
       <div class="contact-cta__ctas">
         <a class="btn btn--primary" href="{{ '/zh-tw/contact/' | relative_url }}">展開對話</a>
-        {% if site.data.contact.email %}<a class="btn btn--ghost" href="mailto:{{ site.data.contact.email }}">{{ site.data.contact.email }}</a>{% endif %}
       </div>
+      {% if site.data.contact.telegrams %}
+      <p class="contact-cta__telegrams">
+        或直接 Telegram 聯繫：
+        {% for tg in site.data.contact.telegrams %}<a href="https://t.me/{{ tg.handle }}">{{ tg.name }}</a>{% unless forloop.last %} · {% endunless %}{% endfor %}
+      </p>
+      {% endif %}
     </div>
   </div>
 </section>

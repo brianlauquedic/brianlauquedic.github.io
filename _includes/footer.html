@@ -67,7 +67,7 @@
           <img src="{{ site.logo.desktop | relative_url }}" alt="{{ site.title }}" style="height:28px;width:auto;" />
         </a>
         <p class="site-footer__tagline">{{ footer_tagline }}</p>
-        {% if site.data.contact.email %}<a class="btn btn--ghost" href="mailto:{{ site.data.contact.email }}">{{ footer_cta }}</a>{% endif %}
+        <a class="btn btn--ghost" href="{{ url_prefix | append: '/contact/' | relative_url }}">{{ footer_cta }}</a>
       </div>
 
       <div class="site-footer__col">
@@ -96,9 +96,10 @@
       <div class="site-footer__col">
         <h5>{{ k_title }}</h5>
         <ul>
-          {% if site.data.contact.email %}<li><a href="mailto:{{ site.data.contact.email }}">{{ site.data.contact.email }}</a></li>{% endif %}
-          {% if site.data.contact.twitter_name %}<li><a href="https://twitter.com/{{ site.data.contact.twitter_name | remove: '@' }}">Twitter / X</a></li>{% endif %}
-          {% if site.data.contact.telegram_name %}<li><a href="https://t.me/{{ site.data.contact.telegram_name | remove: '@' }}">Telegram</a></li>{% endif %}
+          {% for tg in site.data.contact.telegrams %}
+          <li><a href="https://t.me/{{ tg.handle }}">Telegram: {{ tg.name }}</a></li>
+          {% endfor %}
+          {% if site.data.contact.twitter %}<li><a href="{{ site.data.contact.twitter.url }}">Twitter / X</a></li>{% endif %}
         </ul>
       </div>
     </div>
@@ -106,8 +107,8 @@
     <div class="site-footer__bottom">
       <div>© {{ 'now' | date: '%Y' }} {{ site.title }}. {{ footer_rights }}</div>
       <div class="site-footer__socials">
-        {% if site.data.contact.twitter_name %}<a href="https://twitter.com/{{ site.data.contact.twitter_name | remove: '@' }}">X</a>{% endif %}
-        {% if site.data.contact.telegram_name %}<a href="https://t.me/{{ site.data.contact.telegram_name | remove: '@' }}">Telegram</a>{% endif %}
+        {% if site.data.contact.twitter %}<a href="{{ site.data.contact.twitter.url }}">X</a>{% endif %}
+        {% if site.data.contact.telegrams %}<a href="https://t.me/{{ site.data.contact.telegrams.first.handle }}">Telegram</a>{% endif %}
       </div>
     </div>
   </div>

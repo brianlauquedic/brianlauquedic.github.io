@@ -22,13 +22,18 @@ summary: "告訴我們您正在打造什麼。我們將於一個工作日內回�
     <div class="detail__grid">
       <aside class="detail__sidebar">
         <span class="eyebrow eyebrow--brand">直接聯絡管道</span>
-        <h4>電子郵件</h4>
-        {% if site.data.contact.email %}<p><a href="mailto:{{ site.data.contact.email }}">{{ site.data.contact.email }}</a></p>{% endif %}
-        <h4>即時通訊</h4>
+        <h4>Telegram</h4>
         <ul>
-          {% if site.data.contact.telegram_name %}<li><a href="https://t.me/{{ site.data.contact.telegram_name | remove: '@' }}">Telegram：{{ site.data.contact.telegram_name }}</a></li>{% endif %}
-          {% if site.data.contact.twitter_name %}<li><a href="https://twitter.com/{{ site.data.contact.twitter_name | remove: '@' }}">X ／ Twitter：{{ site.data.contact.twitter_name }}</a></li>{% endif %}
+          {% for tg in site.data.contact.telegrams %}
+          <li><a href="https://t.me/{{ tg.handle }}">{{ tg.name }}</a></li>
+          {% endfor %}
         </ul>
+        {% if site.data.contact.twitter %}
+        <h4 style="margin-top:24px;">社群媒體</h4>
+        <ul>
+          <li><a href="{{ site.data.contact.twitter.url }}">X ／ Twitter：{{ site.data.contact.twitter.name }}</a></li>
+        </ul>
+        {% endif %}
         <h4 style="margin-top:32px;">回覆時間</h4>
         <p style="color: var(--text-muted,#5C5C6A); font-size:.92rem;">一個工作日內回覆。</p>
       </aside>
