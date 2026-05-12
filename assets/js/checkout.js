@@ -37,73 +37,84 @@
   function shortAddr(a) { return a ? a.slice(0, 6) + '…' + a.slice(-4) : ''; }
 
   // ---- 3. Wallet discovery (EIP-6963 + legacy fallbacks) ---------------
-  function discoverWallets() {
-    state.detectedProviders = [];
-    // EIP-6963 — wallets announce themselves on this event
-    window.addEventListener('eip6963:announceProvider', function (event) {
-      if (!event.detail) return;
-      var info = event.detail.info || {};
-      state.detectedProviders.push({
-        provider: event.detail.provider,
-        label: info.name || 'Wallet',
-        rdns: info.rdns,
-        icon: info.icon
+  // Promise-based core. Returns when discovery is complete (300ms
+  // after dispatching the EIP-6963 request event, enough time for
+  // synchronous announcements + late-injected window.ethereum).
+  // Used both at startup and on-demand (when Connect / Switch wallet
+  // is clicked) — late-injected wallets in mobile in-app browsers
+  // are the main reason we re-run on demand.
+  function reDiscover() {
+    return new Promise(function (resolve) {
+      state.detectedProviders = [];
+      window.addEventListener('eip6963:announceProvider', function (event) {
+        if (!event.detail) return;
+        var info = event.detail.info || {};
+        // Avoid double-adding the same provider on repeated discoveries
+        var dup = state.detectedProviders.some(function (w) {
+          return w.provider === event.detail.provider;
+        });
+        if (dup) return;
+        state.detectedProviders.push({
+          provider: event.detail.provider,
+          label: info.name || 'Wallet',
+          rdns: info.rdns,
+          icon: info.icon
+        });
       });
-    });
-    window.dispatchEvent(new Event('eip6963:requestProvider'));
+      window.dispatchEvent(new Event('eip6963:requestProvider'));
 
-    // Allow a tick for synchronous announcements to land
-    setTimeout(function () {
-      // Legacy fallbacks if no 6963 wallet announced
-      if (state.detectedProviders.length === 0) {
-        if (window.okxwallet) {
-          state.detectedProviders.push({ provider: window.okxwallet, label: 'OKX Wallet' });
-        }
-        if (window.ethereum) {
-          var label = window.ethereum.isMetaMask ? 'MetaMask'
-                    : window.ethereum.isOkxWallet ? 'OKX Wallet'
-                    : 'Browser Wallet';
-          // Avoid duplicates
-          var alreadyHave = state.detectedProviders.some(function (w) {
-            return w.provider === window.ethereum;
-          });
-          if (!alreadyHave) {
-            state.detectedProviders.push({ provider: window.ethereum, label: label });
+      setTimeout(function () {
+        // Legacy fallbacks if no 6963 wallet announced
+        if (state.detectedProviders.length === 0) {
+          if (window.okxwallet) {
+            state.detectedProviders.push({ provider: window.okxwallet, label: 'OKX Wallet' });
+          }
+          if (window.ethereum) {
+            var label = window.ethereum.isMetaMask ? 'MetaMask'
+                      : window.ethereum.isOkxWallet ? 'OKX Wallet'
+                      : 'Browser Wallet';
+            var dup = state.detectedProviders.some(function (w) {
+              return w.provider === window.ethereum;
+            });
+            if (!dup) {
+              state.detectedProviders.push({ provider: window.ethereum, label: label });
+            }
           }
         }
-      }
-      var noWallet = $('[data-checkout-no-wallet]');
-      var mobileOpen = $('[data-checkout-mobile-open]');
-      var connectBtn = $('[data-checkout-connect]');
-      if (state.detectedProviders.length === 0) {
-        // On mobile browsers (Safari / Chrome on iOS/Android), Web3
-        // wallets cannot inject window.ethereum. Show step-by-step
-        // instructions + deep-link buttons. Hide the Connect button
-        // entirely — leaving it disabled makes it look like a broken
-        // button to users who don't know why it's grey.
-        if (isMobileBrowser() && !isInWalletBrowser()) {
-          show(mobileOpen);
-          hide(noWallet);
-          hide(connectBtn);
-          wireDeepLinks();
-        } else {
-          // Desktop or in-wallet-browser without wallet: show the
-          // install-extension prompt + Connect (disabled).
-          show(noWallet);
-          hide(mobileOpen);
-          show(connectBtn);
-          if (connectBtn) connectBtn.disabled = true;
-        }
-      } else {
-        // Wallet detected — hide all the no-wallet UI variants and
-        // re-show the Connect button (might have been hidden by the
-        // mobile branch above).
+        resolve();
+      }, 300);
+    });
+  }
+
+  // Refresh the wallet-step UI based on what's currently detected.
+  // Extracted so disconnect() can re-run it after a fresh discovery.
+  function refreshWalletUI() {
+    var noWallet = $('[data-checkout-no-wallet]');
+    var mobileOpen = $('[data-checkout-mobile-open]');
+    var connectBtn = $('[data-checkout-connect]');
+    if (state.detectedProviders.length === 0) {
+      if (isMobileBrowser() && !isInWalletBrowser()) {
+        show(mobileOpen);
         hide(noWallet);
+        hide(connectBtn);
+        wireDeepLinks();
+      } else {
+        show(noWallet);
         hide(mobileOpen);
         show(connectBtn);
-        if (connectBtn) connectBtn.disabled = false;
+        if (connectBtn) connectBtn.disabled = true;
       }
-    }, 300);
+    } else {
+      hide(noWallet);
+      hide(mobileOpen);
+      show(connectBtn);
+      if (connectBtn) connectBtn.disabled = false;
+    }
+  }
+
+  // Startup-time discovery — runs once on page load.
+  function discoverWallets() {
+    reDiscover().then(refreshWalletUI);
   }
 
   // True on iOS Safari / Chrome / WeChat / TG built-in browser etc.
@@ -172,14 +183,34 @@
 
   // ---- 4. Connect wallet ----------------------------------------------
   async function connect(preferredProvider) {
+    // If we have no providers cached, re-run discovery once before
+    // giving up. Mobile in-app browsers sometimes inject window.ethereum
+    // AFTER the initial 300ms timeout fires, leaving us with an empty
+    // list at startup. Re-running on click gives the wallet a second
+    // chance to announce itself.
+    if (!preferredProvider && state.detectedProviders.length === 0) {
+      await reDiscover();
+      refreshWalletUI();
+    }
+
     var entry;
     if (preferredProvider) {
       entry = state.detectedProviders.find(function (w) { return w.provider === preferredProvider; });
     } else if (state.detectedProviders.length === 1) {
       entry = state.detectedProviders[0];
-    } else {
+    } else if (state.detectedProviders.length > 1) {
       // Multiple — show picker
       return showWalletPicker();
+    } else {
+      // Still 0 providers after retry — surface a real error so the
+      // user knows what to do (previously fell through to showWalletPicker
+      // which rendered an empty list = silent failure). Using alert
+      // instead of showError to avoid bouncing user to the final-error
+      // state — they can still retry from the connect step.
+      var msg = (CONFIG.labels && CONFIG.labels.no_wallet_after_retry) ||
+        'No Web3 wallet was detected. Please reload the page, or open this site inside your wallet app\'s built-in browser.';
+      window.alert(msg);
+      return;
     }
     if (!entry) return;
 
@@ -231,9 +262,14 @@
     state.providerLabel = null;
     state.chainId = null;
     hide($('[data-checkout-wallet-state]'));
+    hide($('[data-checkout-wallet-options]'));
     hide($('[data-checkout-chain-warn]'));
-    show($('[data-checkout-connect]'));
     setStep('wallet');
+    // Re-run discovery so newly installed wallets (or wallets that
+    // were late-injected) are picked up. Then refreshWalletUI shows
+    // either the connect button, the picker, or the mobile / no-wallet
+    // variants based on the new state.
+    reDiscover().then(refreshWalletUI);
   }
 
   function onAccountsChanged(accounts) {
