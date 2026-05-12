@@ -826,6 +826,129 @@
   margin-bottom: 24px;
 }
 
+// ============================================================
+// v24 — Quantity input for unit-priced SKUs
+// Only shown when the clicked card has data-unit-size set
+// (followers / likes / views, etc.). For fixed-price bundles
+// the block stays hidden and the customer never sees it.
+// ============================================================
+.checkout__quantity {
+  background: $bg-soft;
+  border: 1px solid $border;
+  border-radius: $radius-lg;
+  padding: 18px 20px;
+  margin-bottom: 24px;
+
+  &[hidden] { display: none; }
+}
+
+.checkout__quantity-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.checkout__quantity-label-text {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $text-label;
+  flex-basis: 100%;
+  margin-bottom: 4px;
+}
+
+.checkout__quantity-label input {
+  flex: 1 1 160px;
+  max-width: 200px;
+  padding: 10px 12px;
+  font-family: $font-body;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: $text;
+  background: #fff;
+  border: 1px solid $border-strong;
+  border-radius: $radius;
+  outline: none;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+
+  &:focus {
+    border-color: $brand;
+    box-shadow: 0 0 0 3px rgba(91, 47, 217, 0.18);
+  }
+
+  // remove number-input spinner on Firefox (we provide ▲▼ via native step)
+  -moz-appearance: textfield;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    opacity: 1;
+  }
+}
+
+// Red error state — under min_quantity
+.checkout__quantity-input--error {
+  border-color: #D23E73 !important;
+  box-shadow: 0 0 0 3px rgba(210, 62, 115, 0.18) !important;
+}
+
+.checkout__quantity-unit {
+  font-size: 0.92rem;
+  color: $text-muted;
+  font-weight: 500;
+}
+
+.checkout__quantity-helper {
+  margin: 0;
+  font-size: 0.8rem;
+  color: $text-muted;
+  line-height: 1.45;
+}
+
+.checkout__quantity-error {
+  margin: 6px 0 0;
+  font-size: 0.82rem;
+  color: #D23E73;
+  font-weight: 600;
+
+  &[hidden] { display: none; }
+}
+
+.checkout__quantity-total {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed $border-strong;
+}
+
+.checkout__quantity-total-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $text-label;
+}
+
+.checkout__quantity-total-amount {
+  font-family: $font-display;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $brand;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.checkout__quantity-total-currency {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: $text-muted;
+}
+
 .shop-custom {
   margin-top: 32px;
   padding: 36px 32px;
@@ -1106,6 +1229,101 @@
     // that `[hidden]` should produce — leaving the wallet-state widget
     // visible even when JS hasn't connected a wallet yet.
     &[hidden] { display: none; }
+  }
+
+  // ---------- Quantity block (unit-priced SKUs only) ----------
+  &__quantity {
+    margin: 16px 0 20px;
+    padding: 16px 18px;
+    background: $bg-soft;
+    border: 1px solid $border;
+    border-radius: $radius;
+    &[hidden] { display: none; }
+  }
+  &__quantity-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  &__quantity-label-text {
+    font-family: $font-display;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: $text-label;
+  }
+  &__quantity-label input {
+    width: 140px;
+    font: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 12px;
+    background: $bg;
+    border: 1px solid $border-strong;
+    border-radius: $radius;
+    color: $text;
+    transition: border-color .15s, box-shadow .15s;
+    -moz-appearance: textfield;     // hide Firefox spinner padding noise
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button { margin: 0; }
+    &:focus {
+      outline: none;
+      border-color: $brand;
+      box-shadow: 0 0 0 3px rgba(91, 47, 217, 0.12);
+    }
+  }
+  &__quantity-input--error {
+    border-color: #D23E73 !important;
+    box-shadow: 0 0 0 3px rgba(210, 62, 115, 0.12) !important;
+  }
+  &__quantity-unit {
+    font-size: 0.95rem;
+    color: $text-muted;
+  }
+  &__quantity-helper {
+    margin: 0 0 4px;
+    font-size: 0.8rem;
+    color: $text-muted;
+    line-height: 1.5;
+  }
+  &__quantity-error {
+    margin: 4px 0;
+    font-size: 0.82rem;
+    color: #D23E73;
+    font-weight: 500;
+    &[hidden] { display: none; }
+  }
+  &__quantity-total {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid $border;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  &__quantity-total-label {
+    font-family: $font-display;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: $text-label;
+  }
+  &__quantity-total-amount {
+    font-family: $font-display;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $brand;
+    letter-spacing: -0.02em;
+  }
+  &__quantity-total-currency {
+    font-family: $font-display;
+    font-size: 0.95rem;
+    color: $text-muted;
+    font-weight: 500;
   }
 
   &__wallet-dot {

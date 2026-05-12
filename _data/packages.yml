@@ -1501,10 +1501,16 @@ pricing_tables:
       - id: x-followers-bot
         category: kol
         price_usdt: 20
+        unit_size: 1000
+        min_quantity: 100
+        unit_label: { en: "followers", zh-tw: "粉絲", ja: "フォロワー" }
         label: { en: "X followers (bot, no warranty)", zh-tw: "X 粉絲（機器粉、無售後）", ja: "Xフォロワー（ボット、保証なし）" }
       - id: x-followers-warranty
         category: kol
         price_usdt: 30
+        unit_size: 1000
+        min_quantity: 100
+        unit_label: { en: "followers", zh-tw: "粉絲", ja: "フォロワー" }
         label: { en: "X followers (bot, 30-day warranty)", zh-tw: "X 粉絲（機器粉、包售後 30 天）", ja: "Xフォロワー（ボット、30日保証付）" }
       - id: x-giveaway
         category: kol
@@ -1513,35 +1519,59 @@ pricing_tables:
       - id: x-likes-100
         category: kol
         price_usdt: 3
-        label: { en: "X likes per 100 (min 100 batches)", zh-tw: "X 點讚 / 100（最少 100 起）", ja: "Xいいね / 100（100バッチ以上）" }
+        unit_size: 100
+        min_quantity: 100
+        unit_label: { en: "likes", zh-tw: "點讚", ja: "いいね" }
+        label: { en: "X likes (volume tier, 3 USDT per 100)", zh-tw: "X 點讚（量級版，每 100 個 3 USDT）", ja: "Xいいね（ボリューム枠、100いいね 3 USDT）" }
       - id: x-likes-10
         category: kol
         price_usdt: 2
-        label: { en: "X likes per 100 (min 10 batches)", zh-tw: "X 點讚 / 100（最少 10 起）", ja: "Xいいね / 100（10バッチ以上）" }
+        unit_size: 100
+        min_quantity: 10
+        unit_label: { en: "likes", zh-tw: "點讚", ja: "いいね" }
+        label: { en: "X likes (starter tier, 2 USDT per 100)", zh-tw: "X 點讚（起步版，每 100 個 2 USDT）", ja: "Xいいね（スターター枠、100いいね 2 USDT）" }
       - id: x-reposts-100
         category: kol
         price_usdt: 3
-        label: { en: "X reposts per 100 (min 100 batches)", zh-tw: "X 轉發 / 100（最少 100 起）", ja: "Xリポスト / 100（100バッチ以上）" }
+        unit_size: 100
+        min_quantity: 100
+        unit_label: { en: "reposts", zh-tw: "轉發", ja: "リポスト" }
+        label: { en: "X reposts (volume tier, 3 USDT per 100)", zh-tw: "X 轉發（量級版，每 100 個 3 USDT）", ja: "Xリポスト（ボリューム枠、100リポスト 3 USDT）" }
       - id: x-reposts-10
         category: kol
         price_usdt: 2
-        label: { en: "X reposts per 100 (min 10 batches)", zh-tw: "X 轉發 / 100（最少 10 起）", ja: "Xリポスト / 100（10バッチ以上）" }
+        unit_size: 100
+        min_quantity: 10
+        unit_label: { en: "reposts", zh-tw: "轉發", ja: "リポスト" }
+        label: { en: "X reposts (starter tier, 2 USDT per 100)", zh-tw: "X 轉發（起步版，每 100 個 2 USDT）", ja: "Xリポスト（スターター枠、100リポスト 2 USDT）" }
       - id: x-comments-100
         category: kol
         price_usdt: 15
-        label: { en: "X comments per 100 (custom optional)", zh-tw: "X 評論 / 100（可選自定義）", ja: "Xコメント / 100（カスタム可）" }
+        unit_size: 100
+        min_quantity: 100
+        unit_label: { en: "comments", zh-tw: "評論", ja: "コメント" }
+        label: { en: "X comments (15 USDT per 100, custom text optional)", zh-tw: "X 評論（每 100 條 15 USDT，可選自定義）", ja: "Xコメント（100件 15 USDT、カスタム可）" }
       - id: x-views-1k
         category: kol
         price_usdt: 1
-        label: { en: "X views per 1,000", zh-tw: "X 瀏覽 / 1000", ja: "X閲覧 / 1000" }
+        unit_size: 1000
+        min_quantity: 1000
+        unit_label: { en: "views", zh-tw: "瀏覽", ja: "閲覧" }
+        label: { en: "X views (1 USDT per 1,000)", zh-tw: "X 瀏覽（每 1000 次 1 USDT）", ja: "X閲覧（1000回 1 USDT）" }
       - id: x-ama-anon
         category: kol
         price_usdt: 6
-        label: { en: "X AMA anonymous listeners — 100 / 1H", zh-tw: "X AMA 匿名在線收聽 ── 100 人 / 1H", ja: "X AMA 匿名リスナー ── 100名 / 1H" }
+        unit_size: 100
+        min_quantity: 100
+        unit_label: { en: "listeners / 1H", zh-tw: "聽眾 / 1H", ja: "リスナー / 1H" }
+        label: { en: "X AMA anonymous listeners (6 USDT per 100 / 1H)", zh-tw: "X AMA 匿名在線收聽（每 100 人 / 1H 6 USDT）", ja: "X AMA 匿名リスナー（100名 / 1H 6 USDT）" }
       - id: x-ama-real
         category: kol
         price_usdt: 5
-        label: { en: "X AMA real listeners — 1 / 1H", zh-tw: "X AMA 真人在線收聽 ── 1 人 / 1H", ja: "X AMA 実在リスナー ── 1名 / 1H" }
+        unit_size: 1
+        min_quantity: 10
+        unit_label: { en: "live listeners / 1H", zh-tw: "真人聽眾 / 1H", ja: "実在リスナー / 1H" }
+        label: { en: "X AMA real listeners (5 USDT per 1 listener / 1H)", zh-tw: "X AMA 真人在線收聽（每 1 人 / 1H 5 USDT）", ja: "X AMA 実在リスナー（1名 / 1H 5 USDT）" }
       - id: x-tweet-cadence
         category: kol
         price_usdt: 200
@@ -1564,7 +1594,10 @@ pricing_tables:
       - id: tg-group-1k
         category: kol
         price_usdt: 5
-        label: { en: "Telegram group followers per 1,000", zh-tw: "Telegram 群聊增粉 / 1000", ja: "Telegramグループフォロワー / 1000" }
+        unit_size: 1000
+        min_quantity: 100
+        unit_label: { en: "members", zh-tw: "成員", ja: "メンバー" }
+        label: { en: "Telegram group followers (5 USDT per 1,000)", zh-tw: "Telegram 群聊增粉（每 1000 人 5 USDT）", ja: "Telegramグループフォロワー（1000人 5 USDT）" }
       - id: tg-giveaway
         category: kol
         price_usdt: 150
@@ -1580,7 +1613,10 @@ pricing_tables:
       - id: dc-group-1k
         category: kol
         price_usdt: 20
-        label: { en: "Discord group followers per 1,000", zh-tw: "Discord 群聊增粉 / 1000", ja: "Discordグループフォロワー / 1000" }
+        unit_size: 1000
+        min_quantity: 100
+        unit_label: { en: "members", zh-tw: "成員", ja: "メンバー" }
+        label: { en: "Discord group followers (20 USDT per 1,000)", zh-tw: "Discord 群聊增粉（每 1000 人 20 USDT）", ja: "Discordグループフォロワー（1000人 20 USDT）" }
       - id: dc-giveaway
         category: kol
         price_usdt: 150
@@ -1588,63 +1624,108 @@ pricing_tables:
       - id: ig-followers-1k
         category: kol
         price_usdt: 5
-        label: { en: "Instagram followers per 1,000", zh-tw: "Instagram 粉絲 / 1000", ja: "Instagramフォロワー / 1000" }
+        unit_size: 1000
+        min_quantity: 100
+        unit_label: { en: "followers", zh-tw: "粉絲", ja: "フォロワー" }
+        label: { en: "Instagram followers (5 USDT per 1,000)", zh-tw: "Instagram 粉絲（每 1000 人 5 USDT）", ja: "Instagramフォロワー（1000人 5 USDT）" }
       - id: ig-likes-1k
         category: kol
         price_usdt: 5
-        label: { en: "Instagram likes per 1,000", zh-tw: "Instagram 點讚 / 1000", ja: "Instagramいいね / 1000" }
+        unit_size: 1000
+        min_quantity: 100
+        unit_label: { en: "likes", zh-tw: "點讚", ja: "いいね" }
+        label: { en: "Instagram likes (5 USDT per 1,000)", zh-tw: "Instagram 點讚（每 1000 個 5 USDT）", ja: "Instagramいいね（1000いいね 5 USDT）" }
       - id: ig-views-1k
         category: kol
         price_usdt: 2
-        label: { en: "Instagram views per 1,000", zh-tw: "Instagram 瀏覽量 / 1000", ja: "Instagram閲覧 / 1000" }
+        unit_size: 1000
+        min_quantity: 100
+        unit_label: { en: "views", zh-tw: "瀏覽", ja: "閲覧" }
+        label: { en: "Instagram views (2 USDT per 1,000)", zh-tw: "Instagram 瀏覽量（每 1000 次 2 USDT）", ja: "Instagram閲覧（1000回 2 USDT）" }
       - id: ig-saves-1k
         category: kol
         price_usdt: 5
-        label: { en: "Instagram saves per 1,000", zh-tw: "Instagram 收藏 / 1000", ja: "Instagramコレクション / 1000" }
+        unit_size: 1000
+        min_quantity: 100
+        unit_label: { en: "saves", zh-tw: "收藏", ja: "コレクション" }
+        label: { en: "Instagram saves (5 USDT per 1,000)", zh-tw: "Instagram 收藏（每 1000 個 5 USDT）", ja: "Instagramコレクション（1000件 5 USDT）" }
       - id: ig-shares-1k
         category: kol
         price_usdt: 5
-        label: { en: "Instagram shares per 1,000", zh-tw: "Instagram 分享 / 1000", ja: "Instagramシェア / 1000" }
+        unit_size: 1000
+        min_quantity: 100
+        unit_label: { en: "shares", zh-tw: "分享", ja: "シェア" }
+        label: { en: "Instagram shares (5 USDT per 1,000)", zh-tw: "Instagram 分享（每 1000 次 5 USDT）", ja: "Instagramシェア（1000回 5 USDT）" }
       - id: ig-comments-100
         category: kol
         price_usdt: 20
-        label: { en: "Instagram comments per 100", zh-tw: "Instagram 評論 / 100", ja: "Instagramコメント / 100" }
+        unit_size: 100
+        min_quantity: 10
+        unit_label: { en: "comments", zh-tw: "評論", ja: "コメント" }
+        label: { en: "Instagram comments (20 USDT per 100)", zh-tw: "Instagram 評論（每 100 條 20 USDT）", ja: "Instagramコメント（100件 20 USDT）" }
       - id: yt-followers-1k
         category: kol
         price_usdt: 60
-        label: { en: "YouTube followers per 1,000 (min 100)", zh-tw: "YouTube 粉絲 / 1000（100 起）", ja: "YouTubeチャンネル登録 / 1000（100以上）" }
+        unit_size: 1000
+        min_quantity: 100
+        unit_label: { en: "subscribers", zh-tw: "粉絲", ja: "チャンネル登録者" }
+        label: { en: "YouTube subscribers (60 USDT per 1,000)", zh-tw: "YouTube 粉絲（每 1000 人 60 USDT）", ja: "YouTubeチャンネル登録（1000人 60 USDT）" }
       - id: yt-views-1k
         category: kol
         price_usdt: 15
-        label: { en: "YouTube views per 1,000 (min 50)", zh-tw: "YouTube 瀏覽 / 1000（50 起）", ja: "YouTube視聴 / 1000（50以上）" }
+        unit_size: 1000
+        min_quantity: 50
+        unit_label: { en: "views", zh-tw: "瀏覽", ja: "視聴" }
+        label: { en: "YouTube views (15 USDT per 1,000)", zh-tw: "YouTube 瀏覽（每 1000 次 15 USDT）", ja: "YouTube視聴（1000回 15 USDT）" }
       - id: yt-shares-1k
         category: kol
         price_usdt: 10
-        label: { en: "YouTube shares per 1,000 (min 50)", zh-tw: "YouTube 分享 / 1000（50 起）", ja: "YouTubeシェア / 1000（50以上）" }
+        unit_size: 1000
+        min_quantity: 50
+        unit_label: { en: "shares", zh-tw: "分享", ja: "シェア" }
+        label: { en: "YouTube shares (10 USDT per 1,000)", zh-tw: "YouTube 分享（每 1000 次 10 USDT）", ja: "YouTubeシェア（1000回 10 USDT）" }
       - id: yt-comments-1k
         category: kol
         price_usdt: 150
-        label: { en: "YouTube comments per 1,000 (min 50)", zh-tw: "YouTube 評論 / 1000（50 起）", ja: "YouTubeコメント / 1000（50以上）" }
+        unit_size: 1000
+        min_quantity: 50
+        unit_label: { en: "comments", zh-tw: "評論", ja: "コメント" }
+        label: { en: "YouTube comments (150 USDT per 1,000)", zh-tw: "YouTube 評論（每 1000 條 150 USDT）", ja: "YouTubeコメント（1000件 150 USDT）" }
       - id: bsq-followers-1k
         category: kol
         price_usdt: 300
-        label: { en: "Binance Square followers per 1,000 (min 100)", zh-tw: "幣安廣場粉絲 / 1000（100 起）", ja: "Binance Squareフォロワー / 1000（100以上）" }
+        unit_size: 1000
+        min_quantity: 100
+        unit_label: { en: "followers", zh-tw: "粉絲", ja: "フォロワー" }
+        label: { en: "Binance Square followers (300 USDT per 1,000)", zh-tw: "幣安廣場粉絲（每 1000 人 300 USDT）", ja: "Binance Squareフォロワー（1000人 300 USDT）" }
       - id: bsq-likes-1k
         category: kol
         price_usdt: 200
-        label: { en: "Binance Square post likes per 1,000 (min 50)", zh-tw: "幣安廣場帖子點讚 / 1000（50 起）", ja: "Binance Square投稿いいね / 1000（50以上）" }
+        unit_size: 1000
+        min_quantity: 50
+        unit_label: { en: "likes", zh-tw: "點讚", ja: "いいね" }
+        label: { en: "Binance Square post likes (200 USDT per 1,000)", zh-tw: "幣安廣場帖子點讚（每 1000 個 200 USDT）", ja: "Binance Square投稿いいね（1000いいね 200 USDT）" }
       - id: bsq-shares-1k
         category: kol
         price_usdt: 200
-        label: { en: "Binance Square post shares per 1,000 (min 50)", zh-tw: "幣安廣場帖子轉發 / 1000（50 起）", ja: "Binance Square投稿シェア / 1000（50以上）" }
+        unit_size: 1000
+        min_quantity: 50
+        unit_label: { en: "shares", zh-tw: "轉發", ja: "シェア" }
+        label: { en: "Binance Square post shares (200 USDT per 1,000)", zh-tw: "幣安廣場帖子轉發（每 1000 次 200 USDT）", ja: "Binance Square投稿シェア（1000回 200 USDT）" }
       - id: bsq-saves-1k
         category: kol
         price_usdt: 200
-        label: { en: "Binance Square post saves per 1,000 (min 50)", zh-tw: "幣安廣場帖子收藏 / 1000（50 起）", ja: "Binance Square投稿コレクション / 1000（50以上）" }
+        unit_size: 1000
+        min_quantity: 50
+        unit_label: { en: "saves", zh-tw: "收藏", ja: "コレクション" }
+        label: { en: "Binance Square post saves (200 USDT per 1,000)", zh-tw: "幣安廣場帖子收藏（每 1000 個 200 USDT）", ja: "Binance Square投稿コレクション（1000件 200 USDT）" }
       - id: bsq-comments-1k
         category: kol
         price_usdt: 200
-        label: { en: "Binance Square post comments per 1,000 (min 50)", zh-tw: "幣安廣場帖子評論 / 1000（50 起）", ja: "Binance Square投稿コメント / 1000（50以上）" }
+        unit_size: 1000
+        min_quantity: 50
+        unit_label: { en: "comments", zh-tw: "評論", ja: "コメント" }
+        label: { en: "Binance Square post comments (200 USDT per 1,000)", zh-tw: "幣安廣場帖子評論（每 1000 條 200 USDT）", ja: "Binance Square投稿コメント（1000件 200 USDT）" }
 
   - id: on-quote
     title:

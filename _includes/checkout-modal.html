@@ -44,6 +44,10 @@
   {%- assign m_secure_note = '錢包直接與 BSC 區塊鏈互動。Quedic 不接觸您的私鑰。' -%}
   {%- assign m_search_matches = '個結果' -%}
   {%- assign m_no_wallet_after_retry = '未檢測到 Web3 錢包。請重新整理頁面，或在錢包 App 的內建瀏覽器中打開本站。' -%}
+  {%- assign m_quantity_label = '訂購數量' -%}
+  {%- assign m_quantity_helper = '最少 {min} {unit}，可按單位 ({step}) 調整' -%}
+  {%- assign m_quantity_total = '總價' -%}
+  {%- assign m_quantity_min_error = '低於最低訂購量' -%}
 {%- elsif lang == 'ja' -%}
   {%- assign m_recurring_note = 'これは月次サービスの初月分のお支払いです。毎月単発でお支払いいただく形式で、次月が近づきましたら更新リマインダーをメールでお送りします。オンチェーンで自動引き落としは行いません ── 翌月の継続可否は常にお客様が判断します。' -%}
   {%- assign m_title = 'お支払い' -%}
@@ -89,6 +93,10 @@
   {%- assign m_secure_note = 'ウォレットはBSCブロックチェーンと直接やりとりします。Quedicが秘密鍵に触れることはありません。' -%}
   {%- assign m_search_matches = '件' -%}
   {%- assign m_no_wallet_after_retry = 'Web3ウォレットが検出されませんでした。ページを再読み込みするか、ウォレットアプリの内蔵ブラウザでこのサイトを開いてください。' -%}
+  {%- assign m_quantity_label = '注文数量' -%}
+  {%- assign m_quantity_helper = '最少 {min} {unit}、{step} 単位で調整可' -%}
+  {%- assign m_quantity_total = '合計' -%}
+  {%- assign m_quantity_min_error = '最低注文数を下回っています' -%}
 {%- else -%}
   {%- assign m_recurring_note = "This is the first month's payment for a monthly service. Each month is a separate transaction — we'll email a renewal reminder before the next billing cycle. There's no on-chain auto-charge — the decision to renew is always yours." -%}
   {%- assign m_title = 'Checkout' -%}
@@ -134,6 +142,10 @@
   {%- assign m_secure_note = 'Your wallet talks directly to the BSC blockchain. Quedic never sees your private key.' -%}
   {%- assign m_search_matches = 'matches' -%}
   {%- assign m_no_wallet_after_retry = "No Web3 wallet was detected. Please reload the page, or open this site inside your wallet app's built-in browser." -%}
+  {%- assign m_quantity_label = 'Quantity' -%}
+  {%- assign m_quantity_helper = 'Min {min} {unit} · adjusts in units of {step}' -%}
+  {%- assign m_quantity_total = 'Total' -%}
+  {%- assign m_quantity_min_error = 'Below minimum order quantity' -%}
 {%- endif -%}
 
 <div class="checkout" id="checkout-modal" aria-hidden="true" role="dialog" aria-labelledby="checkout-title">
@@ -150,6 +162,31 @@
 
     <div class="checkout__recurring-note" data-checkout-recurring-note hidden>
       {{ m_recurring_note }}
+    </div>
+
+    <!-- Quantity block — only shown for unit-priced SKUs (followers /
+         likes / views etc.). Hidden for fixed-price packages and
+         bundles. JS un-hides + wires it in openModal() based on the
+         clicked card's data-unit-size / data-min-quantity attributes. -->
+    <div class="checkout__quantity" data-checkout-quantity hidden>
+      <label class="checkout__quantity-label">
+        <span class="checkout__quantity-label-text">{{ m_quantity_label }}</span>
+        <input
+          type="number"
+          inputmode="numeric"
+          data-checkout-quantity-input
+          min="1"
+          step="1"
+          value="100" />
+        <span class="checkout__quantity-unit" data-checkout-quantity-unit></span>
+      </label>
+      <p class="checkout__quantity-helper" data-checkout-quantity-helper></p>
+      <p class="checkout__quantity-error" data-checkout-quantity-error hidden>{{ m_quantity_min_error }}</p>
+      <div class="checkout__quantity-total">
+        <span class="checkout__quantity-total-label">{{ m_quantity_total }}</span>
+        <span class="checkout__quantity-total-amount" data-checkout-quantity-total>0</span>
+        <span class="checkout__quantity-total-currency">USDT</span>
+      </div>
     </div>
 
     <!-- STEP 1: Wallet -->
@@ -330,7 +367,8 @@
     "paying": {{ m_paying | jsonify }},
     "pending": {{ m_pending | jsonify }},
     "search_matches": {{ m_search_matches | jsonify }},
-    "no_wallet_after_retry": {{ m_no_wallet_after_retry | jsonify }}
+    "no_wallet_after_retry": {{ m_no_wallet_after_retry | jsonify }},
+    "quantity_helper": {{ m_quantity_helper | jsonify }}
   }
 }
 </script>

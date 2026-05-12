@@ -361,8 +361,10 @@
     }
 
     var token = CONFIG.tokens[state.token];
-    var price = state.token === 'USDT' ? state.pkg.priceUsdt : state.pkg.priceUsdc;
-    var amountWei = priceToWei(price, token.decimals);
+    // Use computeTotal() so unit-priced SKUs charge quantity × per-unit
+    // (and fixed-price SKUs continue to charge the base price).
+    var total = computeTotal();
+    var amountWei = priceToWei(total, token.decimals);
     var data = buildTransferCalldata(CONFIG.receiving_wallet, amountWei);
 
     setStatus('pending');
@@ -390,7 +392,11 @@
         package_id: state.pkg.id,
         package_title: state.pkg.title,
         token: state.token,
-        amount: String(price),
+        amount: String(total),
+        // Unit-priced SKU details (empty strings for fixed-price SKUs)
+        quantity: state.pkg.unitSize ? String(state.pkg.quantity || '') : '',
+        unit_size: state.pkg.unitSize ? String(state.pkg.unitSize) : '',
+        unit_label: state.pkg.unitLabel || '',
         wallet: state.account,
         tx_hash: txHash,
         chain: CONFIG.chain.name,
@@ -505,11 +511,22 @@
     if (!titleEl && card.classList.contains('shop-row')) {
       titleEl = card.querySelector('.shop-row__title') || card;
     }
+    // Per-unit pricing: if card has data-unit-size, the unit price
+    // listed on the card is "price per N items" and the customer
+    // chooses a quantity. Total = (quantity / unit_size) × unit_price.
+    var unitSize = parseFloat(card.getAttribute('data-unit-size')) || 0;
+    var minQty = parseFloat(card.getAttribute('data-min-quantity')) || 1;
+    var unitLabel = card.getAttribute('data-unit-label') || '';
+
     state.pkg = {
       id: card.getAttribute('data-package-id'),
       priceUsdt: parseFloat(card.getAttribute('data-price-usdt')),
       priceUsdc: parseFloat(card.getAttribute('data-price-usdc')),
       recurring: card.getAttribute('data-recurring') === 'true',
+      unitSize: unitSize,
+      minQty: minQty,
+      unitLabel: unitLabel,
+      quantity: unitSize > 0 ? minQty : 0,  // start at min when unit-priced
       title: titleEl ? titleEl.textContent.trim() : '',
       summary: summaryEl ? summaryEl.textContent.trim() : ''
     };
@@ -521,6 +538,30 @@
     if (recNote) {
       if (state.pkg.recurring) recNote.removeAttribute('hidden');
       else recNote.setAttribute('hidden', '');
+    }
+
+    // Show / hide the quantity selector for unit-priced SKUs.
+    var qBlock = $('[data-checkout-quantity]');
+    var qInput = $('[data-checkout-quantity-input]');
+    var qUnit = $('[data-checkout-quantity-unit]');
+    var qHelper = $('[data-checkout-quantity-helper]');
+    if (qBlock && qInput) {
+      if (unitSize > 0) {
+        // Set input attrs to match the SKU
+        qInput.min = minQty;
+        qInput.step = computeStep(unitSize);
+        qInput.value = minQty;
+        if (qUnit) qUnit.textContent = unitLabel;
+        if (qHelper && CONFIG.labels && CONFIG.labels.quantity_helper) {
+          qHelper.textContent = CONFIG.labels.quantity_helper
+            .replace('{min}', minQty)
+            .replace('{unit}', unitLabel)
+            .replace('{step}', computeStep(unitSize));
+        }
+        qBlock.removeAttribute('hidden');
+      } else {
+        qBlock.setAttribute('hidden', '');
+      }
     }
 
     refreshPayLabel();
@@ -542,11 +583,35 @@
   }
 
   function refreshPayLabel() {
-    var price = state.token === 'USDT' ? state.pkg.priceUsdt : state.pkg.priceUsdc;
+    var total = computeTotal();
     var label = CONFIG.labels.pay_btn
-      .replace('{amount}', formatPrice(price))
+      .replace('{amount}', formatPrice(total))
       .replace('{token}', state.token);
     setText('[data-checkout-pay-label]', label);
+
+    // Mirror total into the quantity block too (for unit-priced SKUs)
+    var qTotal = $('[data-checkout-quantity-total]');
+    if (qTotal) qTotal.textContent = formatPrice(total);
+  }
+
+  // Total = base price × (quantity / unitSize), or just base price
+  // if not unit-priced.
+  function computeTotal() {
+    var unitPrice = state.token === 'USDT' ? state.pkg.priceUsdt : state.pkg.priceUsdc;
+    if (state.pkg.unitSize && state.pkg.unitSize > 0) {
+      var qty = state.pkg.quantity || state.pkg.minQty || 1;
+      return (qty / state.pkg.unitSize) * unitPrice;
+    }
+    return unitPrice;
+  }
+
+  // Smart step size — match the unit boundary so users see clean
+  // round numbers in the input ▲▼. For per-1000 SKUs, step by 100.
+  // For per-100 SKUs, step by 10. For per-1 SKUs, step by 1.
+  function computeStep(unitSize) {
+    if (unitSize >= 1000) return 100;
+    if (unitSize >= 100) return 10;
+    return 1;
   }
 
   function formatPrice(n) {
@@ -827,6 +892,33 @@
     if (disconnectBtn) disconnectBtn.addEventListener('click', disconnect);
     var switchBtn = $('[data-checkout-switch-chain]');
     if (switchBtn) switchBtn.addEventListener('click', switchToBsc);
+
+    // Quantity input — live-update total + validate min on each change
+    var qInput = $('[data-checkout-quantity-input]');
+    var qError = $('[data-checkout-quantity-error]');
+    var payBtn = $('[data-checkout-pay]');
+    if (qInput) {
+      var onQtyChange = function () {
+        var raw = parseFloat(qInput.value) || 0;
+        // Clamp to integer (these are countable items)
+        raw = Math.floor(raw);
+        state.pkg.quantity = raw;
+        var belowMin = raw < (state.pkg.minQty || 1);
+        // Toggle red error state + disable pay button
+        if (qError) {
+          if (belowMin) qError.removeAttribute('hidden');
+          else qError.setAttribute('hidden', '');
+        }
+        qInput.classList.toggle('checkout__quantity-input--error', belowMin);
+        if (payBtn) {
+          if (belowMin) payBtn.setAttribute('disabled', '');
+          else payBtn.removeAttribute('disabled');
+        }
+        refreshPayLabel();
+      };
+      qInput.addEventListener('input', onQtyChange);
+      qInput.addEventListener('change', onQtyChange);
+    }
 
     // Token toggle
     $$('[data-checkout-token]').forEach(function (btn) {
