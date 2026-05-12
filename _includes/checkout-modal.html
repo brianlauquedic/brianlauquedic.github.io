@@ -16,10 +16,9 @@
   {%- assign m_mobile_step1 = '打開 MetaMask 或 OKX Wallet app' -%}
   {%- assign m_mobile_step2 = '底部找 "DApp" 或 "Browser" 標籤' -%}
   {%- assign m_mobile_step3 = '地址欄輸入 quedic.com/shop' -%}
-  {%- assign m_mobile_quick_hint = '── 或一鍵嘗試（裝了對應 app 才有效） ──' -%}
+  {%- assign m_mobile_quick_hint = '── 或者，MetaMask 用戶可一鍵跳轉 ──' -%}
   {%- assign m_open_in_mm = '在 MetaMask 中開啟' -%}
-  {%- assign m_open_in_okx = '在 OKX Wallet 中開啟' -%}
-  {%- assign m_mobile_deeplink_warn = '⚠️ 如果按鈕打開的是錢包網站而非 app，說明系統沒成功跳轉。請用上面 3 步從錢包 app 內手動打開。' -%}
+  {%- assign m_mobile_deeplink_warn = '⚠️ OKX、Trust、幣安等其它錢包用戶請走上面 3 步手動打開（這些錢包的自動跳轉不穩定）。' -%}
   {%- assign m_chain_warn = '請切換至 BNB Smart Chain（chainId 56）。' -%}
   {%- assign m_switch_chain = '切換至 BNB Smart Chain' -%}
   {%- assign m_name_label = '專案名稱' -%}
@@ -62,10 +61,9 @@
   {%- assign m_mobile_step1 = 'MetaMask または OKX Wallet アプリを開く' -%}
   {%- assign m_mobile_step2 = '下部の「DApp」または「Browser」タブを探す' -%}
   {%- assign m_mobile_step3 = 'URLバーに quedic.com/shop と入力' -%}
-  {%- assign m_mobile_quick_hint = '── またはワンタップで開く（該当アプリがインストール済みの場合のみ有効） ──' -%}
+  {%- assign m_mobile_quick_hint = '── またはMetaMaskユーザーはワンタップで開く ──' -%}
   {%- assign m_open_in_mm = 'MetaMaskで開く' -%}
-  {%- assign m_open_in_okx = 'OKX Walletで開く' -%}
-  {%- assign m_mobile_deeplink_warn = '⚠️ ボタンがアプリではなくウォレットのウェブサイトを開いた場合、OSのルーティングが機能しなかったということです。上記の3ステップでウォレットアプリから手動でお開きください。' -%}
+  {%- assign m_mobile_deeplink_warn = '⚠️ OKX、Trust、Binance等の他のウォレットをご利用の場合は、上記の3ステップで手動でお開きください（これらのウォレットの自動ルーティングは不安定です）。' -%}
   {%- assign m_chain_warn = 'BNB Smart Chain（chainId 56）に切り替えてください。' -%}
   {%- assign m_switch_chain = 'BNB Smart Chainに切替' -%}
   {%- assign m_name_label = 'プロジェクト名' -%}
@@ -108,10 +106,9 @@
   {%- assign m_mobile_step1 = 'Open MetaMask or OKX Wallet app on your phone' -%}
   {%- assign m_mobile_step2 = 'Find the "DApp" or "Browser" tab at the bottom' -%}
   {%- assign m_mobile_step3 = 'Type quedic.com/shop in the URL bar' -%}
-  {%- assign m_mobile_quick_hint = '── Or try one-tap launch (only works if the app is installed) ──' -%}
+  {%- assign m_mobile_quick_hint = '── Or, MetaMask users can jump directly ──' -%}
   {%- assign m_open_in_mm = 'Open in MetaMask' -%}
-  {%- assign m_open_in_okx = 'Open in OKX Wallet' -%}
-  {%- assign m_mobile_deeplink_warn = "⚠️ If the button opens the wallet's website instead of the app, the OS didn't route correctly. Use the 3 steps above to open the page from inside the wallet app." -%}
+  {%- assign m_mobile_deeplink_warn = "⚠️ OKX / Trust / Binance and other wallet users: follow the 3 steps above (auto-routing for those wallets is unreliable)." -%}
   {%- assign m_chain_warn = 'Please switch to BNB Smart Chain (chainId 56).' -%}
   {%- assign m_switch_chain = 'Switch to BNB Smart Chain' -%}
   {%- assign m_name_label = 'Project name' -%}
@@ -183,14 +180,15 @@
         </ol>
         <p class="checkout__mobile-divider">{{ m_mobile_quick_hint }}</p>
         <div class="checkout__wallet-cta">
-          <a class="btn btn--ghost"
+          <!-- Only MetaMask gets a deep-link button. OKX/Trust/imToken
+               etc. have unreliable deep-link routing on iOS/Android,
+               so we don't surface them as "auto-jump" CTAs — users
+               of those wallets should follow the 3 manual steps above
+               (which work for ANY wallet's built-in DApp browser). -->
+          <a class="btn btn--primary"
              data-checkout-open-in-mm
              href="#"
              rel="noopener">{{ m_open_in_mm }}</a>
-          <a class="btn btn--ghost"
-             data-checkout-open-in-okx
-             href="#"
-             rel="noopener">{{ m_open_in_okx }}</a>
         </div>
         <p class="checkout__mobile-warn">{{ m_mobile_deeplink_warn }}</p>
       </div>

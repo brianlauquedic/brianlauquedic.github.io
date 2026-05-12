@@ -133,53 +133,19 @@
     return /MetaMask|OKX|TokenPocket|imToken|Bitget|Trust/i.test(ua);
   }
 
-  // Wire the two deep-link buttons. Platform-aware so we use the most
-  // reliable deep-link form per OS — iOS prefers universal links,
-  // Android benefits from intent: URLs with built-in fallback URLs.
+  // Wire the MetaMask deep-link button. Only MetaMask is offered as
+  // a one-tap auto-jump on mobile — its universal link
+  // (metamask.app.link) is properly registered with both iOS AASA
+  // and Android assetlinks, so it reliably opens the installed app
+  // and falls back to a meaningful install-prompt page if not.
+  // Other wallets (OKX, Trust, imToken, etc.) have inconsistent
+  // deep-link routing — users of those wallets are guided to follow
+  // the 3 manual steps shown above the button.
   function wireDeepLinks() {
     var mmBtn = $('[data-checkout-open-in-mm]');
-    var okxBtn = $('[data-checkout-open-in-okx]');
-    var fullUrl = window.location.href;
-    var encoded = encodeURIComponent(fullUrl);
-    var ua = navigator.userAgent || '';
-    var isIOS = /iPhone|iPad|iPod/i.test(ua);
-    var isAndroid = /Android/i.test(ua);
-
-    // MetaMask universal link works well on both iOS and Android —
-    // metamask.app.link is registered with both Apple AASA and
-    // Android assetlinks, so OS routes to the app when installed.
     if (mmBtn) {
       var host = window.location.host + window.location.pathname + window.location.search;
       mmBtn.href = 'https://metamask.app.link/dapp/' + host;
-    }
-
-    // OKX Wallet deep-linking is much less reliable than MetaMask.
-    // Best-effort by platform:
-    //
-    //   Android: intent: URL — most reliable. Built-in fallback URL
-    //            sends Chrome to the OKX download page if app isn't
-    //            installed.
-    //
-    //   iOS:     raw okx:// scheme. iOS shows a confirmation prompt
-    //            "Open in OKX Wallet?" if installed and not previously
-    //            dismissed. A universal-link wrapper (okx.com/...)
-    //            was tried in v23 but fell through to the OKX website
-    //            because OKX's AASA file doesn't route that path —
-    //            looked like a failure to users. Direct scheme at
-    //            least either works cleanly or silently fails (with
-    //            our visible mobile-step instructions as the backup).
-    //
-    //   Other:   raw okx:// scheme.
-    if (okxBtn) {
-      if (isAndroid) {
-        okxBtn.href = 'intent://wallet/dapp/details?dappUrl=' + encoded
-          + '#Intent;scheme=okx;package=com.okinc.okex.gp'
-          + ';S.browser_fallback_url=' + encodeURIComponent('https://www.okx.com/download')
-          + ';end';
-      } else {
-        // iOS + other: direct okx:// scheme
-        okxBtn.href = 'okx://wallet/dapp/details?dappUrl=' + encoded;
-      }
     }
   }
 
