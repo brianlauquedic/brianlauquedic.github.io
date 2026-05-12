@@ -745,6 +745,15 @@
   &--cat-pr       .quickbuy-card__cat-dot { background: #2EB6A0; } // teal
   &--cat-kol      .quickbuy-card__cat-dot { background: #E48800; } // amber
   &--cat-live     .quickbuy-card__cat-dot { background: #D23E73; } // rose
+  &--cat-test     .quickbuy-card__cat-dot { background: #9A9AAB; } // grey — utility / non-service marker
+
+  // Test card visual hint — soft grey dashed border so owner can
+  // spot it at a glance and won't mistake it for a real service.
+  &--cat-test {
+    border-style: dashed;
+    border-color: #C5C5D0;
+    background: $bg-soft;
+  }
 
   &__title {
     font-family: $font-display;

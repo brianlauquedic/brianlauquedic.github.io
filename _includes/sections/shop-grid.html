@@ -329,6 +329,8 @@
             {%- if lang == 'zh-tw' -%}{%- assign cat_text = 'KOL' -%}{%- elsif lang == 'ja' -%}{%- assign cat_text = 'KOL' -%}{%- else -%}{%- assign cat_text = 'KOL' -%}{%- endif -%}
           {%- when 'live' -%}
             {%- if lang == 'zh-tw' -%}{%- assign cat_text = '直播' -%}{%- elsif lang == 'ja' -%}{%- assign cat_text = 'ライブ' -%}{%- else -%}{%- assign cat_text = 'Live' -%}{%- endif -%}
+          {%- when 'test' -%}
+            {%- if lang == 'zh-tw' -%}{%- assign cat_text = '測試' -%}{%- elsif lang == 'ja' -%}{%- assign cat_text = 'テスト' -%}{%- else -%}{%- assign cat_text = 'TEST' -%}{%- endif -%}
           {%- else -%}{%- assign cat_text = '' -%}
         {%- endcase -%}
         <article class="quickbuy-card quickbuy-card--cat-{{ cat }}"

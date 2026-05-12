@@ -718,6 +718,26 @@ packages:
 # =====================================================================
 quick_buys:
 
+  # ⚠️ Internal payment-flow test card. Live for owner testing only —
+  # remove (or comment out) before public launch, otherwise customers
+  # may order it by accident. 1 USDT = end-to-end on-chain test
+  # (wallet connect → BSC tx → tx hash → Formspree email).
+  - id: payment-test
+    category: test
+    price_usdt: 1
+    delivery:
+      en: "Test order — no service delivered"
+      zh-tw: "測試訂單 ── 無服務交付"
+      ja: "テスト注文 ── サービス納品なし"
+    title:
+      en: "Payment flow test — 1 USDT"
+      zh-tw: "支付流程測試 ── 1 USDT"
+      ja: "決済フローテスト ── 1 USDT"
+    description:
+      en: "Internal test SKU for verifying the on-chain checkout end-to-end. Not a real service — do not order."
+      zh-tw: "內部測試 SKU，用於驗證鏈上下單全流程。非真實服務，請勿購買。"
+      ja: "オンチェーン決済フローを端から端まで検証するための内部テストSKU。実サービスではないため、ご注文しないでください。"
+
   - id: x-space
     category: live
     price_usdt: 400
