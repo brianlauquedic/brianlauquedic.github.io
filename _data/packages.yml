@@ -189,14 +189,17 @@ packages:
         - "MSG トークンプロフィール"
 
   # -------------------------------------------------------------------
-  # 04 — PR: Global English
-  # Bundle: 1,850 → 1,400 (-24%)
+  # 04 — PR: Global English (v25 — Yahoo dropped, multi-release output)
+  # Yahoo now blocks web3 content, so the bundle was rebuilt around
+  # AP wire (1 release) + Google indexing pack (3 releases) + 100
+  # English outlets (5 releases). Higher volume per bundle, slightly
+  # less discount (1,700 → 1,500 instead of 1,850 → 1,400).
   - id: english-newsroom
     weight: 4
     category: pr
-    price_usdt: 1400
-    price_usdc: 1400
-    original_usdt: 1850
+    price_usdt: 1500
+    price_usdc: 1500
+    original_usdt: 1700
     recurring: false
     delivery:
       en: "5–7 business days"
@@ -207,37 +210,31 @@ packages:
       zh-tw: ["公關", "全球"]
       ja: ["PR", "グローバル"]
     title:
-      en: "Global English coverage, in one drop."
-      zh-tw: "一次發佈，覆蓋全球英語圈。"
-      ja: "1度の配信で、英語圏グローバルを網羅。"
+      en: "Global English coverage, multi-release."
+      zh-tw: "多輪發稿，覆蓋全球英語圈。"
+      ja: "複数本配信で、英語圏グローバルを網羅。"
     summary:
-      en: "Wire-grade syndication, business-press indexing, and 100 English-language outlets — engineered for one announcement, broad reach."
-      zh-tw: "通訊社級聯播、商業財經索引、100 家英文媒體 ── 為單次重大發佈而設計的廣域觸達。"
-      ja: "通信社レベルのシンジケーション、ビジネス・プレス・インデックス、英語100媒体 ── 1度の重要発表に最大の到達範囲を設計。"
+      en: "Wire-grade syndication, a Google indexing pack and 100 English outlets — nine releases across the bundle window for sustained English-language presence."
+      zh-tw: "通訊社級聯播 + 谷歌收錄套餐 + 100 家英文媒體 ── 套餐期內共九篇發稿，持續鋪設英文聲量。"
+      ja: "通信社レベルのシンジケーション ＋ Googleインデックスパック ＋ 英語100媒体 ── パッケージ期間中9本の配信で英語圏での継続的プレゼンスを構築。"
     bullets:
       en:
         - "Press release writing &amp; polish"
-        - "AP wire + 300 satellite-site syndication"
-        - "Yahoo Finance / News distribution"
-        - "100 English crypto &amp; business outlets"
-        - "Google indexing across 250+ sources"
-        - "High-end business-finance press (100)"
+        - "AP wire + 300 satellite-site syndication (1 release)"
+        - "Google indexing pack — 150 sources (3 releases)"
+        - "100 English crypto &amp; business outlets (5 releases)"
         - "Performance summary report"
       zh-tw:
         - "新聞稿撰寫與打磨"
-        - "美聯社 + 300 家媒體小站聯播"
-        - "Yahoo Finance／News 發佈"
-        - "100 家英文加密與商業媒體"
-        - "Google 跨 250+ 家來源收錄"
-        - "高端商業財經媒體（100 家）"
+        - "美聯社 + 300 家媒體小站聯播（一篇）"
+        - "谷歌（Google）包收錄套餐（150 家，三篇）"
+        - "100 家英文媒體（五篇）"
         - "成效摘要報告"
       ja:
         - "プレスリリース作成・推敲"
-        - "AP通信 + 300サイトのシンジケーション"
-        - "Yahoo Finance／News配信"
-        - "英語クリプト・ビジネス100社"
-        - "Googleインデックス（250+ソース）"
-        - "ハイエンド・ビジネス財経メディア（100社）"
+        - "AP通信 + 300サイトのシンジケーション（1本）"
+        - "Googleインデックスパック ── 150ソース（3本）"
+        - "英語メディア100社（5本）"
         - "成果サマリーレポート"
 
   # -------------------------------------------------------------------
@@ -391,14 +388,17 @@ packages:
         - "日英バイリンガル成果報告"
 
   # -------------------------------------------------------------------
-  # 08 — KOL: Chinese-language (TITLE SOFTENED)
-  # Bundle: 4,660 → 3,800 (-18%)
+  # 08 — KOL: Chinese-language (v25 — re-scoped to KOL + AMA + press mix)
+  # WeChat Channels / Douyin video boost dropped — replaced with a
+  # Binance Square AMA and Chinese crypto-press placements (WeChat OA
+  # + newswire + 5 satellite outlets) for more durable, indexable
+  # exposure than ephemeral short-form video.
   - id: chinese-retail
     weight: 8
     category: kol
-    price_usdt: 3800
-    price_usdc: 3800
-    original_usdt: 4660
+    price_usdt: 4499
+    price_usdc: 4499
+    original_usdt: 5000
     recurring: false
     delivery:
       en: "10–14 business days"
@@ -413,34 +413,31 @@ packages:
       zh-tw: "觸達華語散戶受眾。"
       ja: "中国語圏リテール層へリーチする。"
     summary:
-      en: "Five mid-high Chinese KOLs plus a video push across WeChat Channels and Douyin — and one Chinese-language X Space."
-      zh-tw: "中至高端華語 KOL 5 位 + 微信視頻號與抖音的影片放大 + 一場中文 X Space。"
-      ja: "中堅〜上位の中国語圏KOL 5名 ＋ WeChat視頻号・抖音の動画ブースト ＋ 中国語X Space 1回。"
+      en: "Five mid-high Chinese KOLs plus a curated global Binance Square AMA, WeChat Official Account placement, and a wave of Chinese crypto-finance press."
+      zh-tw: "中至高端華語 KOL 5 位 + 全球精選 幣安廣場 AMA + 微信公眾號發佈 + 華語加密財經媒體鋪量。"
+      ja: "中堅〜上位の中国語圏KOL 5名 ＋ グローバル厳選 Binance Square AMA ＋ WeChat公式アカウント配信 ＋ 中国語クリプト財経メディア配信。"
     bullets:
       en:
         - "Five mid-high Chinese-language KOLs"
-        - "Cross-platform: X / Weibo / WeChat Channels"
-        - "WeChat Video Channels — 3 high-follower posts"
-        - "Douyin — 2 finance-tech KOL posts"
+        - "Curated global Binance Square AMA"
         - "Premium Telegram community shoutout"
-        - "One Chinese-language X Space"
-        - "Native content review &amp; reporting"
+        - "WeChat Official Account post (1 outlet)"
+        - "Chinese-language crypto newswire (1 outlet)"
+        - "Crypto-finance satellite outlets (5)"
       zh-tw:
         - "5 位中至高端華語 KOL"
-        - "跨平台：X／微博／微信視頻號"
-        - "微信視頻號 ── 3 條大 V 發文"
-        - "抖音 ── 2 條財經科技類 KOL"
+        - "全球精選 幣安廣場 AMA"
         - "高端 TG 社群發佈"
-        - "一場中文 X Space"
-        - "母語審稿與成效回報"
+        - "WX 公眾號 一家"
+        - "華語區塊鏈快訊 一家"
+        - "區塊鏈財經小站 五家"
       ja:
         - "中堅〜上位の中国語圏KOL 5名"
-        - "クロスプラットフォーム：X／微博／微信視頻号"
-        - "WeChat視頻号 ── 大手アカウント3投稿"
-        - "抖音（Douyin）── 財経テック系KOL 2投稿"
+        - "グローバル厳選 Binance Square AMA"
         - "ハイエンドTGコミュニティへの告知"
-        - "中国語X Space 1回"
-        - "ネイティブコンテンツレビュー・成果報告"
+        - "WeChat公式アカウント配信（1社）"
+        - "中国語ブロックチェーンニュースワイヤー（1社）"
+        - "クリプト・金融サテライト媒体（5社）"
 
   # -------------------------------------------------------------------
   # 09 — Live (TITLE SOFTENED)
