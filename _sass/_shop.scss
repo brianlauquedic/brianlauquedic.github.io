@@ -952,6 +952,16 @@
     gap: 8px;
     flex-wrap: wrap;
     margin-bottom: 16px;
+
+    // Mobile deep-link buttons get full width per row for better
+    // touch targets. The "Open in MetaMask" CTA is .btn--primary
+    // so it stands out from the secondary OKX option.
+    [data-checkout-mobile-open] & .btn {
+      flex: 1 1 100%;
+      padding: 14px 16px;
+      font-size: 0.95rem;
+      @media (min-width: $bp-sm) { flex: 1 1 calc(50% - 4px); }
+    }
   }
 
   &__wallet-list {

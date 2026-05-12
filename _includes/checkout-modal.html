@@ -11,6 +11,9 @@
   {%- assign m_no_wallet = '未偵測到 Web3 錢包。請安裝 OKX Wallet 或 MetaMask。' -%}
   {%- assign m_install_okx = '安裝 OKX Wallet' -%}
   {%- assign m_install_mm = '安裝 MetaMask' -%}
+  {%- assign m_mobile_open_hint = '手機瀏覽器看不到加密錢包。請在錢包 App 內建瀏覽器開啟本頁，或點下方按鈕一鍵跳轉。' -%}
+  {%- assign m_open_in_mm = '在 MetaMask 中開啟' -%}
+  {%- assign m_open_in_okx = '在 OKX Wallet 中開啟' -%}
   {%- assign m_chain_warn = '請切換至 BNB Smart Chain（chainId 56）。' -%}
   {%- assign m_switch_chain = '切換至 BNB Smart Chain' -%}
   {%- assign m_name_label = '專案名稱' -%}
@@ -47,6 +50,9 @@
   {%- assign m_no_wallet = 'Web3ウォレットが見つかりません。OKX WalletまたはMetaMaskをインストールしてください。' -%}
   {%- assign m_install_okx = 'OKX Walletをインストール' -%}
   {%- assign m_install_mm = 'MetaMaskをインストール' -%}
+  {%- assign m_mobile_open_hint = 'モバイルブラウザからは暗号資産ウォレットを検出できません。ウォレットアプリ内蔵ブラウザでこのページを開いてください。下のボタンでワンタップ起動できます。' -%}
+  {%- assign m_open_in_mm = 'MetaMaskで開く' -%}
+  {%- assign m_open_in_okx = 'OKX Walletで開く' -%}
   {%- assign m_chain_warn = 'BNB Smart Chain（chainId 56）に切り替えてください。' -%}
   {%- assign m_switch_chain = 'BNB Smart Chainに切替' -%}
   {%- assign m_name_label = 'プロジェクト名' -%}
@@ -83,6 +89,9 @@
   {%- assign m_no_wallet = 'No Web3 wallet detected. Install OKX Wallet or MetaMask to continue.' -%}
   {%- assign m_install_okx = 'Install OKX Wallet' -%}
   {%- assign m_install_mm = 'Install MetaMask' -%}
+  {%- assign m_mobile_open_hint = "Mobile browsers can't see crypto wallets. Open this page inside your wallet's built-in browser — tap a button below to launch it with one tap." -%}
+  {%- assign m_open_in_mm = 'Open in MetaMask' -%}
+  {%- assign m_open_in_okx = 'Open in OKX Wallet' -%}
   {%- assign m_chain_warn = 'Please switch to BNB Smart Chain (chainId 56).' -%}
   {%- assign m_switch_chain = 'Switch to BNB Smart Chain' -%}
   {%- assign m_name_label = 'Project name' -%}
@@ -134,6 +143,26 @@
         <div class="checkout__wallet-cta">
           <a class="btn btn--ghost" href="https://www.okx.com/download" target="_blank" rel="noopener">{{ m_install_okx }}</a>
           <a class="btn btn--ghost" href="https://metamask.io/download/" target="_blank" rel="noopener">{{ m_install_mm }}</a>
+        </div>
+      </div>
+
+      <!-- Mobile-only deep-link UI: when checkout.js detects that the
+           page is on a mobile browser AND no `window.ethereum` is
+           injected, this block is un-hidden and the install buttons
+           above are hidden. The deep links here jump straight to the
+           user's wallet app's built-in dApp browser, so the same site
+           reloads with `window.ethereum` available. -->
+      <div data-checkout-mobile-open hidden>
+        <p class="checkout__warn">{{ m_mobile_open_hint }}</p>
+        <div class="checkout__wallet-cta">
+          <a class="btn btn--primary"
+             data-checkout-open-in-mm
+             href="#"
+             rel="noopener">{{ m_open_in_mm }}</a>
+          <a class="btn btn--ghost"
+             data-checkout-open-in-okx
+             href="#"
+             rel="noopener">{{ m_open_in_okx }}</a>
         </div>
       </div>
 

@@ -73,14 +73,69 @@
         }
       }
       var noWallet = $('[data-checkout-no-wallet]');
+      var mobileOpen = $('[data-checkout-mobile-open]');
       var connectBtn = $('[data-checkout-connect]');
       if (state.detectedProviders.length === 0) {
-        show(noWallet);
+        // On mobile browsers (Safari / Chrome on iOS/Android), Web3
+        // wallets cannot inject window.ethereum. Show deep-link
+        // buttons that jump to the wallet app's built-in browser
+        // instead of the "install extension" copy that only fits
+        // desktop users.
+        if (isMobileBrowser() && !isInWalletBrowser()) {
+          show(mobileOpen);
+          hide(noWallet);
+          wireDeepLinks();
+        } else {
+          show(noWallet);
+          hide(mobileOpen);
+        }
         if (connectBtn) connectBtn.disabled = true;
       } else {
         hide(noWallet);
+        hide(mobileOpen);
       }
     }, 300);
+  }
+
+  // True on iOS Safari / Chrome / WeChat / TG built-in browser etc.
+  // — anywhere a Web3 extension can't run.
+  function isMobileBrowser() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+      .test(navigator.userAgent || '');
+  }
+
+  // True if we're already inside a wallet app's built-in dApp browser
+  // (where window.ethereum would normally be there but we got here
+  // before the injection completed). Defensive — if any of these UA
+  // strings appear, we shouldn't push the user to "Open in app".
+  function isInWalletBrowser() {
+    var ua = navigator.userAgent || '';
+    return /MetaMask|OKX|TokenPocket|imToken|Bitget|Trust/i.test(ua);
+  }
+
+  // Wire the two deep-link buttons. We compute the URLs at click
+  // time so we capture the latest URL (in case the SPA changes it).
+  function wireDeepLinks() {
+    var mmBtn = $('[data-checkout-open-in-mm]');
+    var okxBtn = $('[data-checkout-open-in-okx]');
+
+    // MetaMask universal link — strips https:// and prepends the
+    // wallet app deep-link host. If MetaMask is installed, iOS/Android
+    // opens it directly; if not, the link page guides to install.
+    if (mmBtn) {
+      var host = window.location.host + window.location.pathname + window.location.search;
+      mmBtn.href = 'https://metamask.app.link/dapp/' + host;
+    }
+
+    // OKX Wallet deep link — uses the okx:// scheme inside a
+    // universal-link wrapper for graceful fallback when not installed.
+    if (okxBtn) {
+      var fullUrl = window.location.href;
+      var encoded = encodeURIComponent(fullUrl);
+      okxBtn.href =
+        'https://www.okx.com/download?deeplink=' +
+        encodeURIComponent('okx://wallet/dapp/url?dappUrl=' + encoded);
+    }
   }
 
   // ---- 4. Connect wallet ----------------------------------------------
