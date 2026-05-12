@@ -8,17 +8,15 @@
 #   savings (strikethrough display in the UI).
 # =====================================================================
 
-# ⚠️ MUST be set to a real BSC wallet you control before launch.
-receiving_wallet: "0x0000000000000000000000000000000000000000"
+# BSC wallet that receives USDT/USDC from on-chain orders.
+receiving_wallet: "0xa1d1eaffafda03fa1c30091e34655edea50d3bde"
 
-# ⚠️ MUST be set to the Cloudflare Worker deployed from
-# cloudflare-worker/index.js (see cloudflare-worker/SETUP.md).
-# The Worker proxies orders → Telegram bot, keeping the bot token
-# server-side instead of leaking it into the browser.
-# Examples:
-#   "https://quedic-orders.<your-account>.workers.dev"
-#   "https://orders.quedic.com"    (after custom domain setup)
-order_endpoint: "https://orders.quedic.com"
+# Cloudflare Worker (cloudflare-worker/index.js, see SETUP.md). The
+# Worker holds the Telegram bot token as an encrypted env var and
+# forwards each order as a Markdown message to the internal Quedic
+# Telegram group. Browser sees only this Worker URL — bot token
+# never reaches the client.
+order_endpoint: "https://quedic-orders.thatbrianlau.workers.dev"
 
 chain:
   id: 56
