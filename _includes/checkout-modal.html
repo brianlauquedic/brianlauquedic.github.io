@@ -19,6 +19,7 @@
   {%- assign m_mobile_quick_hint = '── 或一鍵嘗試（裝了對應 app 才有效） ──' -%}
   {%- assign m_open_in_mm = '在 MetaMask 中開啟' -%}
   {%- assign m_open_in_okx = '在 OKX Wallet 中開啟' -%}
+  {%- assign m_mobile_deeplink_warn = '⚠️ 如果按鈕打開的是錢包網站而非 app，說明系統沒成功跳轉。請用上面 3 步從錢包 app 內手動打開。' -%}
   {%- assign m_chain_warn = '請切換至 BNB Smart Chain（chainId 56）。' -%}
   {%- assign m_switch_chain = '切換至 BNB Smart Chain' -%}
   {%- assign m_name_label = '專案名稱' -%}
@@ -64,6 +65,7 @@
   {%- assign m_mobile_quick_hint = '── またはワンタップで開く（該当アプリがインストール済みの場合のみ有効） ──' -%}
   {%- assign m_open_in_mm = 'MetaMaskで開く' -%}
   {%- assign m_open_in_okx = 'OKX Walletで開く' -%}
+  {%- assign m_mobile_deeplink_warn = '⚠️ ボタンがアプリではなくウォレットのウェブサイトを開いた場合、OSのルーティングが機能しなかったということです。上記の3ステップでウォレットアプリから手動でお開きください。' -%}
   {%- assign m_chain_warn = 'BNB Smart Chain（chainId 56）に切り替えてください。' -%}
   {%- assign m_switch_chain = 'BNB Smart Chainに切替' -%}
   {%- assign m_name_label = 'プロジェクト名' -%}
@@ -109,6 +111,7 @@
   {%- assign m_mobile_quick_hint = '── Or try one-tap launch (only works if the app is installed) ──' -%}
   {%- assign m_open_in_mm = 'Open in MetaMask' -%}
   {%- assign m_open_in_okx = 'Open in OKX Wallet' -%}
+  {%- assign m_mobile_deeplink_warn = "⚠️ If the button opens the wallet's website instead of the app, the OS didn't route correctly. Use the 3 steps above to open the page from inside the wallet app." -%}
   {%- assign m_chain_warn = 'Please switch to BNB Smart Chain (chainId 56).' -%}
   {%- assign m_switch_chain = 'Switch to BNB Smart Chain' -%}
   {%- assign m_name_label = 'Project name' -%}
@@ -189,11 +192,16 @@
              href="#"
              rel="noopener">{{ m_open_in_okx }}</a>
         </div>
+        <p class="checkout__mobile-warn">{{ m_mobile_deeplink_warn }}</p>
       </div>
 
       <div data-checkout-wallet-options class="checkout__wallet-list" hidden></div>
 
-      <button class="btn btn--primary" type="button" data-checkout-connect>{{ m_connect }}</button>
+      <!-- Default hidden — JS un-hides only after wallet discovery
+           confirms at least one provider exists. Avoids the 300ms
+           race where users tap a visible-but-not-yet-functional
+           Connect button on mobile no-wallet contexts. -->
+      <button class="btn btn--primary" type="button" data-checkout-connect hidden>{{ m_connect }}</button>
 
       <div class="checkout__wallet-state" data-checkout-wallet-state hidden>
         <span class="checkout__wallet-dot"></span>

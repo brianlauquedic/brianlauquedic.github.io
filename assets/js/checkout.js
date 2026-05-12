@@ -153,29 +153,31 @@
       mmBtn.href = 'https://metamask.app.link/dapp/' + host;
     }
 
-    // OKX Wallet deep-linking is much less reliable than MetaMask —
-    // OKX has shorter universal-link history and inconsistent app-side
-    // routing. Best-effort by platform:
+    // OKX Wallet deep-linking is much less reliable than MetaMask.
+    // Best-effort by platform:
     //
-    //   Android: intent: URL — most reliable on Android. Has a built-in
-    //            S.browser_fallback_url so if OKX isn't installed,
-    //            Chrome auto-redirects to the download page (no JS
-    //            timeout shenanigans needed).
+    //   Android: intent: URL — most reliable. Built-in fallback URL
+    //            sends Chrome to the OKX download page if app isn't
+    //            installed.
     //
-    //   iOS:     universal link via okx.com — if AASA file routes the
-    //            URL, OKX opens; otherwise browser falls through to
-    //            the OKX web wallet page.
+    //   iOS:     raw okx:// scheme. iOS shows a confirmation prompt
+    //            "Open in OKX Wallet?" if installed and not previously
+    //            dismissed. A universal-link wrapper (okx.com/...)
+    //            was tried in v23 but fell through to the OKX website
+    //            because OKX's AASA file doesn't route that path —
+    //            looked like a failure to users. Direct scheme at
+    //            least either works cleanly or silently fails (with
+    //            our visible mobile-step instructions as the backup).
     //
-    //   Other:   raw okx:// scheme as last resort.
+    //   Other:   raw okx:// scheme.
     if (okxBtn) {
       if (isAndroid) {
         okxBtn.href = 'intent://wallet/dapp/details?dappUrl=' + encoded
           + '#Intent;scheme=okx;package=com.okinc.okex.gp'
           + ';S.browser_fallback_url=' + encodeURIComponent('https://www.okx.com/download')
           + ';end';
-      } else if (isIOS) {
-        okxBtn.href = 'https://www.okx.com/web3/wallet/dappBrowser?dappUrl=' + encoded;
       } else {
+        // iOS + other: direct okx:// scheme
         okxBtn.href = 'okx://wallet/dapp/details?dappUrl=' + encoded;
       }
     }

@@ -1022,6 +1022,21 @@
     letter-spacing: 0.02em;
   }
 
+  // Amber warning shown below deep-link buttons — sets expectations
+  // that the buttons may fall through to wallet's website if iOS/
+  // Android didn't catch the deep link properly. Points user back
+  // to the 3 manual steps as the reliable path.
+  &__mobile-warn {
+    margin: 14px 0 0;
+    padding: 10px 12px;
+    background: #FFF8E6;
+    border-left: 3px solid #F0B941;
+    border-radius: 0 $radius $radius 0;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: $text;
+  }
+
   &__wallet-list {
     display: flex;
     flex-direction: column;
