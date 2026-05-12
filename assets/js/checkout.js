@@ -394,7 +394,6 @@
       priceUsdt: parseFloat(card.getAttribute('data-price-usdt')),
       priceUsdc: parseFloat(card.getAttribute('data-price-usdc')),
       recurring: card.getAttribute('data-recurring') === 'true',
-      requiresTargetUrl: card.getAttribute('data-target-url-required') === 'true',
       title: titleEl ? titleEl.textContent.trim() : '',
       summary: summaryEl ? summaryEl.textContent.trim() : ''
     };
@@ -406,21 +405,6 @@
     if (recNote) {
       if (state.pkg.recurring) recNote.removeAttribute('hidden');
       else recNote.setAttribute('hidden', '');
-    }
-
-    // Show / hide / require the conditional Target URL field — only
-    // buy-traffic SKUs (X likes/views, IG/YT followers, etc.) need it.
-    var targetUrlField = $('[data-checkout-target-url]');
-    var targetUrlInput = targetUrlField ? targetUrlField.querySelector('input[name="target_url"]') : null;
-    if (targetUrlField && targetUrlInput) {
-      if (state.pkg.requiresTargetUrl) {
-        targetUrlField.removeAttribute('hidden');
-        targetUrlInput.setAttribute('required', '');
-      } else {
-        targetUrlField.setAttribute('hidden', '');
-        targetUrlInput.removeAttribute('required');
-        targetUrlInput.value = ''; // clear stale value when reused
-      }
     }
 
     refreshPayLabel();

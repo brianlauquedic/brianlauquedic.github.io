@@ -1465,9 +1465,6 @@ pricing_tables:
       # kol-tg-elite moved → social-engagement group (correct platform)
 
   - id: x-engagement
-    # Buy-traffic group: every row needs a target URL so we know which
-    # tweet / account to boost. Modal renders an extra required field.
-    requires_target_url: true
     title:
       en: "X / Twitter engagement & growth"
       zh-tw: "X / Twitter 互動與增長"
@@ -1527,10 +1524,6 @@ pricing_tables:
         label: { en: "X tweet operations — 20 posts / week", zh-tw: "X 推文運營 ── 20 條 / 週", ja: "X投稿運用 ── 週20本" }
 
   - id: social-engagement
-    # Buy-traffic group: every row needs a target URL (group / post /
-    # channel / video) so we know where to send followers / likes /
-    # views. Modal renders an extra required field.
-    requires_target_url: true
     title:
       en: "Telegram, Discord, Instagram, YouTube & Binance Square"
       zh-tw: "Telegram、Discord、Instagram、YouTube 與幣安廣場"
