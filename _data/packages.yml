@@ -11,8 +11,14 @@
 # ⚠️ MUST be set to a real BSC wallet you control before launch.
 receiving_wallet: "0x0000000000000000000000000000000000000000"
 
-# Reuse the same Formspree project as the contact form.
-formspree_endpoint: "https://formspree.io/f/your-id"
+# ⚠️ MUST be set to the Cloudflare Worker deployed from
+# cloudflare-worker/index.js (see cloudflare-worker/SETUP.md).
+# The Worker proxies orders → Telegram bot, keeping the bot token
+# server-side instead of leaking it into the browser.
+# Examples:
+#   "https://quedic-orders.<your-account>.workers.dev"
+#   "https://orders.quedic.com"    (after custom domain setup)
+order_endpoint: "https://orders.quedic.com"
 
 chain:
   id: 56

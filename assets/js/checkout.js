@@ -290,8 +290,10 @@
 
       setText('[data-checkout-pending-text]', CONFIG.labels.pending);
 
-      // Notify Quedic team via Formspree (parallel — don't block UX waiting on receipt)
-      submitFormspree({
+      // Notify Quedic team — POST to the Cloudflare Worker, which
+      // forwards a formatted message to the internal Telegram group.
+      // Parallel — don't block UX while we wait for the on-chain receipt.
+      notifyOrder({
         package_id: state.pkg.id,
         package_title: state.pkg.title,
         token: state.token,
@@ -350,20 +352,41 @@
     });
   }
 
-  function submitFormspree(payload) {
-    if (!CONFIG.formspree || CONFIG.formspree.indexOf('your-id') !== -1) {
-      console.warn('[checkout] formspree endpoint not configured — order email skipped');
-      return Promise.resolve();
+  function notifyOrder(payload) {
+    // Skip silently if endpoint placeholder is unfilled. Real bot
+    // token + chat id live in Cloudflare Worker env vars; from the
+    // browser side we just POST JSON to a public Worker URL.
+    var endpoint = CONFIG.order_endpoint || '';
+    if (!endpoint ||
+        endpoint.indexOf('your-account') !== -1 ||
+        endpoint === 'https://orders.quedic.com') {
+      // The default value lives in _data/packages.yml; only POST
+      // once the user has changed it to an actual deployed Worker.
+      // We still allow orders.quedic.com if the user actually points
+      // it at a real Worker — the heuristic is they edited yaml.
+      // To avoid blocking real launch, check is loose: skip only
+      // when explicitly placeholder strings appear.
+      if (endpoint.indexOf('your-account') !== -1 || endpoint === '') {
+        console.warn('[checkout] order_endpoint not configured — order relay skipped');
+        return Promise.resolve();
+      }
     }
-    var fd = new FormData();
-    Object.keys(payload).forEach(function (k) { fd.append(k, payload[k] == null ? '' : String(payload[k])); });
-    return fetch(CONFIG.formspree, {
+    return fetch(endpoint, {
       method: 'POST',
-      body: fd,
-      headers: { 'Accept': 'application/json' }
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function (res) {
+      if (!res.ok) {
+        return res.json().catch(function () { return {}; }).then(function (body) {
+          console.error('[checkout] order relay failed', res.status, body);
+        });
+      }
     }).catch(function (e) {
-      // Email sending must never break the UX — log only.
-      console.error('[checkout] formspree post failed', e);
+      // Order relay must never break the UX — log only. Customer's
+      // payment is already on-chain; we can reconcile manually via
+      // BscScan if Telegram delivery failed.
+      console.error('[checkout] order relay post failed', e);
     });
   }
 

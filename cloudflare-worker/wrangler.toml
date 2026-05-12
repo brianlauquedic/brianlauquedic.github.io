@@ -1,0 +1,30 @@
+# Wrangler config for the Quedic order-relay Worker.
+# Use `wrangler deploy` to push, or paste index.js into the
+# Cloudflare dashboard if you prefer no-CLI setup.
+
+name = "quedic-orders"
+main = "index.js"
+compatibility_date = "2025-09-01"
+
+# Optional: bind a KV namespace for the per-IP rate limiter. If you
+# don't create / bind one, rate limiting is silently skipped (the
+# Worker still works, just without the limiter).
+#
+# To enable:
+#   1. wrangler kv:namespace create RATE_LIMIT_KV
+#   2. copy the printed `id` into the block below, then uncomment
+#
+# [[kv_namespaces]]
+# binding = "RATE_LIMIT_KV"
+# id = "YOUR_KV_NAMESPACE_ID_HERE"
+
+# Variables — DO NOT commit secrets. Use `wrangler secret put` for
+# TG_TOKEN, or set in the dashboard (Settings → Variables → Encrypt).
+[vars]
+# Set ALLOWED_ORIGINS as a plain (non-secret) var so anyone can audit
+# which sites the Worker accepts requests from.
+ALLOWED_ORIGINS = "https://www.quedic.com,https://quedic.com"
+
+# Required encrypted secrets — set with `wrangler secret put`:
+#   wrangler secret put TG_TOKEN
+#   wrangler secret put TG_CHAT_ID
