@@ -2,6 +2,22 @@
 // Shop — package grid + checkout modal
 // ============================================================
 
+// Defensive: the HTML `hidden` attribute should always hide the
+// element, but class-level `display: flex/block/grid` rules later
+// in this file override the user-agent `[hidden] { display: none }`
+// default. Force `hidden` to win unconditionally for shop-modal
+// related elements so the JS toggle behavior stays predictable.
+.checkout [hidden],
+[data-checkout-step][hidden],
+[data-checkout-connect][hidden],
+[data-checkout-disconnect][hidden],
+[data-checkout-no-wallet][hidden],
+[data-checkout-mobile-open][hidden],
+[data-checkout-wallet-state][hidden],
+[data-checkout-wallet-options][hidden],
+[data-checkout-chain-warn][hidden],
+[data-checkout-recurring-note][hidden] { display: none; }
+
 .shop-meta {
   margin-bottom: 24px;
 }
@@ -1084,6 +1100,12 @@
     background: $bg-soft;
     border-radius: $radius;
     margin-top: 12px;
+
+    // Honor the HTML `hidden` attribute. Without this, the class-level
+    // `display: flex` rule above wins over the UA default `display: none`
+    // that `[hidden]` should produce — leaving the wallet-state widget
+    // visible even when JS hasn't connected a wallet yet.
+    &[hidden] { display: none; }
   }
 
   &__wallet-dot {
