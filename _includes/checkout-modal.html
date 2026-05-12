@@ -180,14 +180,14 @@
         </ol>
         <p class="checkout__mobile-divider">{{ m_mobile_quick_hint }}</p>
         <div class="checkout__wallet-cta">
-          <!-- Only MetaMask gets a deep-link button. OKX/Trust/imToken
-               etc. have unreliable deep-link routing on iOS/Android,
-               so we don't surface them as "auto-jump" CTAs — users
-               of those wallets should follow the 3 manual steps above
-               (which work for ANY wallet's built-in DApp browser). -->
+          <!-- MetaMask universal link rendered server-side via Liquid
+               so the href is correct from page-load (not waiting on
+               JS wireDeepLinks). JS still overrides on click to capture
+               any URL fragment/query changes after navigation. -->
+          {%- assign _host = site.url | remove: 'https://' | remove: 'http://' -%}
           <a class="btn btn--primary"
              data-checkout-open-in-mm
-             href="#"
+             href="https://metamask.app.link/dapp/{{ _host }}{{ page.url }}"
              rel="noopener">{{ m_open_in_mm }}</a>
         </div>
         <p class="checkout__mobile-warn">{{ m_mobile_deeplink_warn }}</p>
