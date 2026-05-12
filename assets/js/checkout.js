@@ -348,11 +348,13 @@
       // Notify Quedic team — POST to the Cloudflare Worker, which
       // forwards a formatted message to the internal Telegram group.
       // Parallel — don't block UX while we wait for the on-chain receipt.
+      // amount is String()'d because the Worker validates payload
+      // fields with `typeof === 'string'` and bare numbers fail.
       notifyOrder({
         package_id: state.pkg.id,
         package_title: state.pkg.title,
         token: state.token,
-        amount: price,
+        amount: String(price),
         wallet: state.account,
         tx_hash: txHash,
         chain: CONFIG.chain.name,
