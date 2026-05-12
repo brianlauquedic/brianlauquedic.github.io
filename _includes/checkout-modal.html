@@ -11,10 +11,14 @@
   {%- assign m_no_wallet = '未偵測到 Web3 錢包。請安裝 OKX Wallet 或 MetaMask。' -%}
   {%- assign m_install_okx = '安裝 OKX Wallet' -%}
   {%- assign m_install_mm = '安裝 MetaMask' -%}
-  {%- assign m_mobile_open_hint = '手機瀏覽器看不到加密錢包。點下方按鈕一鍵跳轉到對應錢包 App。' -%}
+  {%- assign m_mobile_title = '在手機上付款' -%}
+  {%- assign m_mobile_intro = '手機普通瀏覽器看不到加密錢包。請改用錢包 app 內建瀏覽器：' -%}
+  {%- assign m_mobile_step1 = '打開 MetaMask 或 OKX Wallet app' -%}
+  {%- assign m_mobile_step2 = '底部找 "DApp" 或 "Browser" 標籤' -%}
+  {%- assign m_mobile_step3 = '地址欄輸入 quedic.com/shop' -%}
+  {%- assign m_mobile_quick_hint = '── 或一鍵嘗試（裝了對應 app 才有效） ──' -%}
   {%- assign m_open_in_mm = '在 MetaMask 中開啟' -%}
   {%- assign m_open_in_okx = '在 OKX Wallet 中開啟' -%}
-  {%- assign m_mobile_manual = '按鈕無效？打開錢包 App ── 找「瀏覽器 / DApp」標籤 ── 地址欄輸入 quedic.com/shop' -%}
   {%- assign m_chain_warn = '請切換至 BNB Smart Chain（chainId 56）。' -%}
   {%- assign m_switch_chain = '切換至 BNB Smart Chain' -%}
   {%- assign m_name_label = '專案名稱' -%}
@@ -51,10 +55,14 @@
   {%- assign m_no_wallet = 'Web3ウォレットが見つかりません。OKX WalletまたはMetaMaskをインストールしてください。' -%}
   {%- assign m_install_okx = 'OKX Walletをインストール' -%}
   {%- assign m_install_mm = 'MetaMaskをインストール' -%}
-  {%- assign m_mobile_open_hint = 'モバイルブラウザからは暗号資産ウォレットを検出できません。下のボタンでワンタップ起動できます。' -%}
+  {%- assign m_mobile_title = 'モバイルでお支払い' -%}
+  {%- assign m_mobile_intro = 'モバイルの通常ブラウザからは暗号資産ウォレットを検出できません。ウォレットアプリの内蔵ブラウザでお開きください：' -%}
+  {%- assign m_mobile_step1 = 'MetaMask または OKX Wallet アプリを開く' -%}
+  {%- assign m_mobile_step2 = '下部の「DApp」または「Browser」タブを探す' -%}
+  {%- assign m_mobile_step3 = 'URLバーに quedic.com/shop と入力' -%}
+  {%- assign m_mobile_quick_hint = '── またはワンタップで開く（該当アプリがインストール済みの場合のみ有効） ──' -%}
   {%- assign m_open_in_mm = 'MetaMaskで開く' -%}
   {%- assign m_open_in_okx = 'OKX Walletで開く' -%}
-  {%- assign m_mobile_manual = 'ボタンが効かない場合は、ウォレットアプリを開いて「ブラウザ／DApp」タブを開き、URLバーに quedic.com/shop と入力してください。' -%}
   {%- assign m_chain_warn = 'BNB Smart Chain（chainId 56）に切り替えてください。' -%}
   {%- assign m_switch_chain = 'BNB Smart Chainに切替' -%}
   {%- assign m_name_label = 'プロジェクト名' -%}
@@ -91,10 +99,14 @@
   {%- assign m_no_wallet = 'No Web3 wallet detected. Install OKX Wallet or MetaMask to continue.' -%}
   {%- assign m_install_okx = 'Install OKX Wallet' -%}
   {%- assign m_install_mm = 'Install MetaMask' -%}
-  {%- assign m_mobile_open_hint = "Mobile browsers can't see crypto wallets. Tap a button below to jump straight into your wallet app." -%}
+  {%- assign m_mobile_title = 'Paying on mobile' -%}
+  {%- assign m_mobile_intro = "Regular mobile browsers can't see crypto wallets. Use your wallet app's built-in browser instead:" -%}
+  {%- assign m_mobile_step1 = 'Open MetaMask or OKX Wallet app on your phone' -%}
+  {%- assign m_mobile_step2 = 'Find the "DApp" or "Browser" tab at the bottom' -%}
+  {%- assign m_mobile_step3 = 'Type quedic.com/shop in the URL bar' -%}
+  {%- assign m_mobile_quick_hint = '── Or try one-tap launch (only works if the app is installed) ──' -%}
   {%- assign m_open_in_mm = 'Open in MetaMask' -%}
   {%- assign m_open_in_okx = 'Open in OKX Wallet' -%}
-  {%- assign m_mobile_manual = "Buttons not working? Open your wallet app → find the Browser / DApp tab → type quedic.com/shop in the URL bar." -%}
   {%- assign m_chain_warn = 'Please switch to BNB Smart Chain (chainId 56).' -%}
   {%- assign m_switch_chain = 'Switch to BNB Smart Chain' -%}
   {%- assign m_name_label = 'Project name' -%}
@@ -156,9 +168,16 @@
            user's wallet app's built-in dApp browser, so the same site
            reloads with `window.ethereum` available. -->
       <div data-checkout-mobile-open hidden>
-        <p class="checkout__warn">{{ m_mobile_open_hint }}</p>
+        <h4 class="checkout__mobile-title">{{ m_mobile_title }}</h4>
+        <p class="checkout__mobile-intro">{{ m_mobile_intro }}</p>
+        <ol class="checkout__mobile-steps">
+          <li>{{ m_mobile_step1 }}</li>
+          <li>{{ m_mobile_step2 }}</li>
+          <li>{{ m_mobile_step3 }}</li>
+        </ol>
+        <p class="checkout__mobile-divider">{{ m_mobile_quick_hint }}</p>
         <div class="checkout__wallet-cta">
-          <a class="btn btn--primary"
+          <a class="btn btn--ghost"
              data-checkout-open-in-mm
              href="#"
              rel="noopener">{{ m_open_in_mm }}</a>
@@ -167,7 +186,6 @@
              href="#"
              rel="noopener">{{ m_open_in_okx }}</a>
         </div>
-        <p class="checkout__manual-fallback">{{ m_mobile_manual }}</p>
       </div>
 
       <div data-checkout-wallet-options class="checkout__wallet-list" hidden></div>

@@ -964,17 +964,62 @@
     }
   }
 
-  // Manual fallback hint shown below the mobile deep-link buttons.
-  // Covers the case where deep links silently fail (strict Android
-  // browser / Chinese OEM variant / OKX not installed).
-  &__manual-fallback {
-    margin: 12px 0 0;
-    padding: 10px 12px;
-    background: $bg-soft;
-    border-radius: $radius;
-    font-size: 0.82rem;
+  // ---------- Mobile no-wallet flow ----------
+  // When user opens the shop in mobile Safari/Chrome (no window.ethereum),
+  // we lead with manual 3-step instructions (the most reliable path)
+  // and only after that offer the optional one-tap deep-link buttons.
+  &__mobile-title {
+    margin: 0 0 8px;
+    font-family: $font-display;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: $text;
+  }
+  &__mobile-intro {
+    margin: 0 0 14px;
+    font-size: 0.92rem;
     line-height: 1.55;
     color: $text-muted;
+  }
+  &__mobile-steps {
+    counter-reset: mobile-step;
+    list-style: none;
+    margin: 0 0 16px;
+    padding: 0;
+    li {
+      counter-increment: mobile-step;
+      position: relative;
+      padding: 10px 0 10px 36px;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      color: $text;
+      border-bottom: 1px solid $border;
+      &::before {
+        content: counter(mobile-step);
+        position: absolute;
+        left: 0;
+        top: 10px;
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        text-align: center;
+        font-family: $font-display;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #fff;
+        background: $brand;
+        border-radius: 50%;
+      }
+      &:last-child { border-bottom: 0; }
+    }
+  }
+  &__mobile-divider {
+    margin: 0 0 12px;
+    text-align: center;
+    font-size: 0.78rem;
+    color: $text-label;
+    letter-spacing: 0.02em;
   }
 
   &__wallet-list {

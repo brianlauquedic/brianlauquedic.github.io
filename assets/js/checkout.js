@@ -77,22 +77,31 @@
       var connectBtn = $('[data-checkout-connect]');
       if (state.detectedProviders.length === 0) {
         // On mobile browsers (Safari / Chrome on iOS/Android), Web3
-        // wallets cannot inject window.ethereum. Show deep-link
-        // buttons that jump to the wallet app's built-in browser
-        // instead of the "install extension" copy that only fits
-        // desktop users.
+        // wallets cannot inject window.ethereum. Show step-by-step
+        // instructions + deep-link buttons. Hide the Connect button
+        // entirely — leaving it disabled makes it look like a broken
+        // button to users who don't know why it's grey.
         if (isMobileBrowser() && !isInWalletBrowser()) {
           show(mobileOpen);
           hide(noWallet);
+          hide(connectBtn);
           wireDeepLinks();
         } else {
+          // Desktop or in-wallet-browser without wallet: show the
+          // install-extension prompt + Connect (disabled).
           show(noWallet);
           hide(mobileOpen);
+          show(connectBtn);
+          if (connectBtn) connectBtn.disabled = true;
         }
-        if (connectBtn) connectBtn.disabled = true;
       } else {
+        // Wallet detected — hide all the no-wallet UI variants and
+        // re-show the Connect button (might have been hidden by the
+        // mobile branch above).
         hide(noWallet);
         hide(mobileOpen);
+        show(connectBtn);
+        if (connectBtn) connectBtn.disabled = false;
       }
     }, 300);
   }
@@ -113,42 +122,51 @@
     return /MetaMask|OKX|TokenPocket|imToken|Bitget|Trust/i.test(ua);
   }
 
-  // Wire the two deep-link buttons. We compute the URLs at click
-  // time so we capture the latest URL (in case the SPA changes it).
+  // Wire the two deep-link buttons. Platform-aware so we use the most
+  // reliable deep-link form per OS — iOS prefers universal links,
+  // Android benefits from intent: URLs with built-in fallback URLs.
   function wireDeepLinks() {
     var mmBtn = $('[data-checkout-open-in-mm]');
     var okxBtn = $('[data-checkout-open-in-okx]');
     var fullUrl = window.location.href;
     var encoded = encodeURIComponent(fullUrl);
+    var ua = navigator.userAgent || '';
+    var isIOS = /iPhone|iPad|iPod/i.test(ua);
+    var isAndroid = /Android/i.test(ua);
 
-    // MetaMask universal link — strips https:// and prepends the
-    // wallet app deep-link host. If MetaMask is installed, iOS/Android
-    // opens it directly; if not, the link page guides to install.
+    // MetaMask universal link works well on both iOS and Android —
+    // metamask.app.link is registered with both Apple AASA and
+    // Android assetlinks, so OS routes to the app when installed.
     if (mmBtn) {
       var host = window.location.host + window.location.pathname + window.location.search;
       mmBtn.href = 'https://metamask.app.link/dapp/' + host;
     }
 
-    // OKX Wallet — direct okx:// scheme. iOS/Android handle it
-    // natively when OKX app is installed. Previous attempt wrapped
-    // it in okx.com/download?deeplink=… but that page doesn't read
-    // the param, so users only saw the OKX download page open.
+    // OKX Wallet deep-linking is much less reliable than MetaMask —
+    // OKX has shorter universal-link history and inconsistent app-side
+    // routing. Best-effort by platform:
     //
-    // If OKX is NOT installed, the click results in a "no app to
-    // open this URL" error — which is why we attach a fallback
-    // click handler that redirects to the OKX download page after
-    // 1.8 seconds if the page is still visible (= app didn't open).
+    //   Android: intent: URL — most reliable on Android. Has a built-in
+    //            S.browser_fallback_url so if OKX isn't installed,
+    //            Chrome auto-redirects to the download page (no JS
+    //            timeout shenanigans needed).
+    //
+    //   iOS:     universal link via okx.com — if AASA file routes the
+    //            URL, OKX opens; otherwise browser falls through to
+    //            the OKX web wallet page.
+    //
+    //   Other:   raw okx:// scheme as last resort.
     if (okxBtn) {
-      okxBtn.href = 'okx://wallet/dapp/details?dappUrl=' + encoded;
-      okxBtn.addEventListener('click', function () {
-        // If after 1.8s the page is still visible, the OS didn't
-        // launch the OKX app — send user to the download page.
-        setTimeout(function () {
-          if (document.visibilityState === 'visible') {
-            window.location.href = 'https://www.okx.com/download';
-          }
-        }, 1800);
-      });
+      if (isAndroid) {
+        okxBtn.href = 'intent://wallet/dapp/details?dappUrl=' + encoded
+          + '#Intent;scheme=okx;package=com.okinc.okex.gp'
+          + ';S.browser_fallback_url=' + encodeURIComponent('https://www.okx.com/download')
+          + ';end';
+      } else if (isIOS) {
+        okxBtn.href = 'https://www.okx.com/web3/wallet/dappBrowser?dappUrl=' + encoded;
+      } else {
+        okxBtn.href = 'okx://wallet/dapp/details?dappUrl=' + encoded;
+      }
     }
   }
 
