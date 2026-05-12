@@ -11,9 +11,10 @@
   {%- assign m_no_wallet = '未偵測到 Web3 錢包。請安裝 OKX Wallet 或 MetaMask。' -%}
   {%- assign m_install_okx = '安裝 OKX Wallet' -%}
   {%- assign m_install_mm = '安裝 MetaMask' -%}
-  {%- assign m_mobile_open_hint = '手機瀏覽器看不到加密錢包。請在錢包 App 內建瀏覽器開啟本頁，或點下方按鈕一鍵跳轉。' -%}
+  {%- assign m_mobile_open_hint = '手機瀏覽器看不到加密錢包。點下方按鈕一鍵跳轉到對應錢包 App。' -%}
   {%- assign m_open_in_mm = '在 MetaMask 中開啟' -%}
   {%- assign m_open_in_okx = '在 OKX Wallet 中開啟' -%}
+  {%- assign m_mobile_manual = '按鈕無效？打開錢包 App ── 找「瀏覽器 / DApp」標籤 ── 地址欄輸入 quedic.com/shop' -%}
   {%- assign m_chain_warn = '請切換至 BNB Smart Chain（chainId 56）。' -%}
   {%- assign m_switch_chain = '切換至 BNB Smart Chain' -%}
   {%- assign m_name_label = '專案名稱' -%}
@@ -50,9 +51,10 @@
   {%- assign m_no_wallet = 'Web3ウォレットが見つかりません。OKX WalletまたはMetaMaskをインストールしてください。' -%}
   {%- assign m_install_okx = 'OKX Walletをインストール' -%}
   {%- assign m_install_mm = 'MetaMaskをインストール' -%}
-  {%- assign m_mobile_open_hint = 'モバイルブラウザからは暗号資産ウォレットを検出できません。ウォレットアプリ内蔵ブラウザでこのページを開いてください。下のボタンでワンタップ起動できます。' -%}
+  {%- assign m_mobile_open_hint = 'モバイルブラウザからは暗号資産ウォレットを検出できません。下のボタンでワンタップ起動できます。' -%}
   {%- assign m_open_in_mm = 'MetaMaskで開く' -%}
   {%- assign m_open_in_okx = 'OKX Walletで開く' -%}
+  {%- assign m_mobile_manual = 'ボタンが効かない場合は、ウォレットアプリを開いて「ブラウザ／DApp」タブを開き、URLバーに quedic.com/shop と入力してください。' -%}
   {%- assign m_chain_warn = 'BNB Smart Chain（chainId 56）に切り替えてください。' -%}
   {%- assign m_switch_chain = 'BNB Smart Chainに切替' -%}
   {%- assign m_name_label = 'プロジェクト名' -%}
@@ -89,9 +91,10 @@
   {%- assign m_no_wallet = 'No Web3 wallet detected. Install OKX Wallet or MetaMask to continue.' -%}
   {%- assign m_install_okx = 'Install OKX Wallet' -%}
   {%- assign m_install_mm = 'Install MetaMask' -%}
-  {%- assign m_mobile_open_hint = "Mobile browsers can't see crypto wallets. Open this page inside your wallet's built-in browser — tap a button below to launch it with one tap." -%}
+  {%- assign m_mobile_open_hint = "Mobile browsers can't see crypto wallets. Tap a button below to jump straight into your wallet app." -%}
   {%- assign m_open_in_mm = 'Open in MetaMask' -%}
   {%- assign m_open_in_okx = 'Open in OKX Wallet' -%}
+  {%- assign m_mobile_manual = "Buttons not working? Open your wallet app → find the Browser / DApp tab → type quedic.com/shop in the URL bar." -%}
   {%- assign m_chain_warn = 'Please switch to BNB Smart Chain (chainId 56).' -%}
   {%- assign m_switch_chain = 'Switch to BNB Smart Chain' -%}
   {%- assign m_name_label = 'Project name' -%}
@@ -164,6 +167,7 @@
              href="#"
              rel="noopener">{{ m_open_in_okx }}</a>
         </div>
+        <p class="checkout__manual-fallback">{{ m_mobile_manual }}</p>
       </div>
 
       <div data-checkout-wallet-options class="checkout__wallet-list" hidden></div>

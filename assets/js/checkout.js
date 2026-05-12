@@ -118,6 +118,8 @@
   function wireDeepLinks() {
     var mmBtn = $('[data-checkout-open-in-mm]');
     var okxBtn = $('[data-checkout-open-in-okx]');
+    var fullUrl = window.location.href;
+    var encoded = encodeURIComponent(fullUrl);
 
     // MetaMask universal link — strips https:// and prepends the
     // wallet app deep-link host. If MetaMask is installed, iOS/Android
@@ -127,14 +129,26 @@
       mmBtn.href = 'https://metamask.app.link/dapp/' + host;
     }
 
-    // OKX Wallet deep link — uses the okx:// scheme inside a
-    // universal-link wrapper for graceful fallback when not installed.
+    // OKX Wallet — direct okx:// scheme. iOS/Android handle it
+    // natively when OKX app is installed. Previous attempt wrapped
+    // it in okx.com/download?deeplink=… but that page doesn't read
+    // the param, so users only saw the OKX download page open.
+    //
+    // If OKX is NOT installed, the click results in a "no app to
+    // open this URL" error — which is why we attach a fallback
+    // click handler that redirects to the OKX download page after
+    // 1.8 seconds if the page is still visible (= app didn't open).
     if (okxBtn) {
-      var fullUrl = window.location.href;
-      var encoded = encodeURIComponent(fullUrl);
-      okxBtn.href =
-        'https://www.okx.com/download?deeplink=' +
-        encodeURIComponent('okx://wallet/dapp/url?dappUrl=' + encoded);
+      okxBtn.href = 'okx://wallet/dapp/details?dappUrl=' + encoded;
+      okxBtn.addEventListener('click', function () {
+        // If after 1.8s the page is still visible, the OS didn't
+        // launch the OKX app — send user to the download page.
+        setTimeout(function () {
+          if (document.visibilityState === 'visible') {
+            window.location.href = 'https://www.okx.com/download';
+          }
+        }, 1800);
+      });
     }
   }
 

@@ -964,6 +964,19 @@
     }
   }
 
+  // Manual fallback hint shown below the mobile deep-link buttons.
+  // Covers the case where deep links silently fail (strict Android
+  // browser / Chinese OEM variant / OKX not installed).
+  &__manual-fallback {
+    margin: 12px 0 0;
+    padding: 10px 12px;
+    background: $bg-soft;
+    border-radius: $radius;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: $text-muted;
+  }
+
   &__wallet-list {
     display: flex;
     flex-direction: column;
