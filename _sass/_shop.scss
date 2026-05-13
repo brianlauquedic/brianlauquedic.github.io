@@ -1485,6 +1485,61 @@
     margin-top: 16px;
   }
 
+  // v26.4 — Identity banner on the Pay step. Tells the customer
+  // which contact details they're checking out with so agency /
+  // freelance users don't accidentally route a new client's order
+  // to the previous client's @handle.
+  &__identity {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background: rgba(91, 47, 217, 0.06);
+    border: 1px solid rgba(91, 47, 217, 0.18);
+    border-radius: $radius;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+    font-size: 0.88rem;
+    line-height: 1.45;
+
+    &[hidden] { display: none; }
+  }
+
+  &__identity-info {
+    color: $text-muted;
+    flex: 1 1 auto;
+    min-width: 0;
+    word-break: break-word;
+
+    strong {
+      color: $text;
+      font-weight: 600;
+    }
+  }
+
+  &__identity-change {
+    flex: 0 0 auto;
+    background: none;
+    border: none;
+    padding: 0;
+    color: $brand;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 120ms ease;
+
+    &:hover { color: $brand-dark; }
+    &:focus-visible {
+      outline: 2px solid $brand;
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+  }
+
   &__secure-note {
     margin-top: 12px;
     color: $text-label;

@@ -33,6 +33,9 @@
   {%- assign m_target_url_helper = '若您訂購的是 X 點讚／轉發、IG 粉絲、YouTube 互動等買量服務，請貼上要刷的具體推文／貼文／群組／影片連結。其他類型訂單可留空。' -%}
   {%- assign m_required = '必填' -%}
   {%- assign m_form_continue = '繼續到付款 →' -%}
+  {%- assign m_identity_prefix = '以 ' -%}
+  {%- assign m_identity_suffix = ' 結帳' -%}
+  {%- assign m_identity_change = '換一個' -%}
   {%- assign m_pay_btn = '以 {token} 支付 {amount}' -%}
   {%- assign m_paying = '錢包簽名中…' -%}
   {%- assign m_pending = '交易上鏈中…' -%}
@@ -83,6 +86,9 @@
   {%- assign m_target_url_helper = 'X いいね／リツイート、IGフォロワー、YouTube エンゲージメント等の買量サービスをご注文の場合は、対象のツイート／投稿／グループ／動画のURLをご記入ください。それ以外のサービスは空欄で結構です。' -%}
   {%- assign m_required = '必須' -%}
   {%- assign m_form_continue = '支払いへ進む →' -%}
+  {%- assign m_identity_prefix = '' -%}
+  {%- assign m_identity_suffix = ' でお支払い' -%}
+  {%- assign m_identity_change = '別の連絡先で' -%}
   {%- assign m_pay_btn = '{amount} {token} を支払う' -%}
   {%- assign m_paying = 'ウォレット署名中…' -%}
   {%- assign m_pending = 'トランザクション処理中…' -%}
@@ -133,6 +139,9 @@
   {%- assign m_target_url_helper = "If you're ordering X likes/reposts, IG followers, YouTube engagement or similar buy-traffic services, paste the exact tweet / post / group / video URL we should boost. Leave blank for other services." -%}
   {%- assign m_required = 'required' -%}
   {%- assign m_form_continue = 'Continue to payment →' -%}
+  {%- assign m_identity_prefix = 'Checking out as ' -%}
+  {%- assign m_identity_suffix = '' -%}
+  {%- assign m_identity_change = 'Use different contact' -%}
   {%- assign m_pay_btn = 'Pay {amount} {token}' -%}
   {%- assign m_paying = 'Awaiting wallet signature…' -%}
   {%- assign m_pending = 'Transaction pending on chain…' -%}
@@ -316,6 +325,21 @@
     <!-- STEP 3: Pay -->
     <section class="checkout__step" data-checkout-step="pay" hidden>
       <h3 class="checkout__step-title">{{ m_step3 }}</h3>
+
+      <!-- Identity reminder: shows the email + telegram handle the
+           customer is checking out with. Critical for agencies /
+           freelancers who order on behalf of multiple clients —
+           lets them spot a stale handle BEFORE confirming the
+           on-chain transfer (which would route follow-up messages
+           to the wrong client). "Use different contact" clears all
+           form fields and bounces back to the form step. -->
+      <div class="checkout__identity" data-checkout-identity hidden>
+        <span class="checkout__identity-info">
+          {{ m_identity_prefix }}<strong data-checkout-identity-email></strong><span data-checkout-identity-tg-wrap hidden> · <strong data-checkout-identity-tg></strong></span>{{ m_identity_suffix }}
+        </span>
+        <button type="button" class="checkout__identity-change" data-checkout-identity-change>{{ m_identity_change }}</button>
+      </div>
+
       <div class="checkout__token-toggle" role="tablist">
         <button type="button" class="active" data-checkout-token="USDT" role="tab" aria-selected="true">USDT</button>
         <button type="button" data-checkout-token="USDC" role="tab" aria-selected="false">USDC</button>

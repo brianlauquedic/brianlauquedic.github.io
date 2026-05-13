@@ -302,6 +302,10 @@
       if (el.getAttribute('data-checkout-step') === name) show(el); else hide(el);
     });
     $$('[data-checkout-status]').forEach(hide);
+    // Identity banner lives inside the pay step but its content
+    // depends on form values — refresh on every step transition so
+    // it shows the latest email / telegram when entering pay.
+    refreshIdentityBanner();
   }
 
   function setStatus(name) {
@@ -309,6 +313,50 @@
     $$('[data-checkout-status]').forEach(function (el) {
       if (el.getAttribute('data-checkout-status') === name) show(el); else hide(el);
     });
+  }
+
+  // Identity banner: shown on the Pay step to remind the customer
+  // which email + telegram handle they're checking out with. This
+  // is the safety net for agency / freelance users whose form values
+  // are sticky across modal opens — they can spot stale handles
+  // before signing the on-chain tx and click "Use different contact"
+  // to reset.
+  function refreshIdentityBanner() {
+    var banner = $('[data-checkout-identity]');
+    if (!banner) return;
+    var form = $('[data-checkout-form]');
+    if (!form) { hide(banner); return; }
+    var emailInput = form.elements['email'];
+    var tgInput = form.elements['telegram'];
+    var email = emailInput ? emailInput.value.trim() : '';
+    var tg = tgInput ? tgInput.value.trim() : '';
+    // Only show if we actually have an email — otherwise there's
+    // nothing useful to display.
+    if (!email) { hide(banner); return; }
+    setText('[data-checkout-identity-email]', email);
+    var tgWrap = $('[data-checkout-identity-tg-wrap]');
+    if (tg) {
+      setText('[data-checkout-identity-tg]', tg);
+      show(tgWrap);
+    } else {
+      hide(tgWrap);
+    }
+    show(banner);
+  }
+
+  // "Use different contact" — wipe form fields and bounce the user
+  // back to the form step so they can enter fresh details. Focuses
+  // the email input so they can start typing immediately.
+  function changeIdentity() {
+    var form = $('[data-checkout-form]');
+    if (!form) return;
+    ['project_name', 'email', 'telegram', 'target_url', 'notes'].forEach(function (n) {
+      var el = form.elements[n];
+      if (el) el.value = '';
+    });
+    setStep('form');
+    var emailInput = form.elements['email'];
+    if (emailInput) setTimeout(function () { emailInput.focus(); }, 50);
   }
 
   function maybeAdvanceStep() {
@@ -958,6 +1006,12 @@
         if (form.checkValidity()) setStep('pay');
       });
     }
+
+    // "Use different contact" link on the identity banner (pay step).
+    // Wipes the form and bounces back to the form step. Lets agency
+    // users avoid checking out under the previous client's handle.
+    var changeIdentityBtn = $('[data-checkout-identity-change]');
+    if (changeIdentityBtn) changeIdentityBtn.addEventListener('click', changeIdentity);
 
     // Explicit "continue to payment" button on the form step.
     // Belt-and-suspenders next to the implicit input listener above:
