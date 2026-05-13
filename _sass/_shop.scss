@@ -1473,6 +1473,18 @@
     padding: 16px 22px;
   }
 
+  // v26.3 — explicit "continue to payment" button on the form step.
+  // Same look as the pay button but lives at the bottom of the form,
+  // outside <form>, so customers always have a visible next step
+  // even when the implicit input-listener auto-advance doesn't fire.
+  &__form-next {
+    width: 100%;
+    justify-content: center;
+    font-size: 1rem;
+    padding: 16px 22px;
+    margin-top: 16px;
+  }
+
   &__secure-note {
     margin-top: 12px;
     color: $text-label;

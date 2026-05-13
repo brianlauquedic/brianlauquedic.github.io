@@ -959,6 +959,22 @@
       });
     }
 
+    // Explicit "continue to payment" button on the form step.
+    // Belt-and-suspenders next to the implicit input listener above:
+    // if the customer reaches the form step with already-valid values
+    // (e.g. ordering a second package after a successful prior order)
+    // the input listener never fires — they need a button to click.
+    // reportValidity() shows the native field-level error if anything
+    // is invalid (e.g. target_url missing https:// prefix).
+    var formNextBtn = $('[data-checkout-form-next]');
+    if (formNextBtn) {
+      formNextBtn.addEventListener('click', function () {
+        var f = $('[data-checkout-form]');
+        if (!f) return;
+        if (f.reportValidity()) setStep('pay');
+      });
+    }
+
     // Pay button
     var payBtn = $('[data-checkout-pay]');
     if (payBtn) payBtn.addEventListener('click', pay);

@@ -32,6 +32,7 @@
   {%- assign m_target_url_placeholder = 'https://x.com/yourpost  或  t.me/yourgroup' -%}
   {%- assign m_target_url_helper = '若您訂購的是 X 點讚／轉發、IG 粉絲、YouTube 互動等買量服務，請貼上要刷的具體推文／貼文／群組／影片連結。其他類型訂單可留空。' -%}
   {%- assign m_required = '必填' -%}
+  {%- assign m_form_continue = '繼續到付款 →' -%}
   {%- assign m_pay_btn = '以 {token} 支付 {amount}' -%}
   {%- assign m_paying = '錢包簽名中…' -%}
   {%- assign m_pending = '交易上鏈中…' -%}
@@ -81,6 +82,7 @@
   {%- assign m_target_url_placeholder = 'https://x.com/yourpost  または  t.me/yourgroup' -%}
   {%- assign m_target_url_helper = 'X いいね／リツイート、IGフォロワー、YouTube エンゲージメント等の買量サービスをご注文の場合は、対象のツイート／投稿／グループ／動画のURLをご記入ください。それ以外のサービスは空欄で結構です。' -%}
   {%- assign m_required = '必須' -%}
+  {%- assign m_form_continue = '支払いへ進む →' -%}
   {%- assign m_pay_btn = '{amount} {token} を支払う' -%}
   {%- assign m_paying = 'ウォレット署名中…' -%}
   {%- assign m_pending = 'トランザクション処理中…' -%}
@@ -130,6 +132,7 @@
   {%- assign m_target_url_placeholder = 'https://x.com/yourpost  or  t.me/yourgroup' -%}
   {%- assign m_target_url_helper = "If you're ordering X likes/reposts, IG followers, YouTube engagement or similar buy-traffic services, paste the exact tweet / post / group / video URL we should boost. Leave blank for other services." -%}
   {%- assign m_required = 'required' -%}
+  {%- assign m_form_continue = 'Continue to payment →' -%}
   {%- assign m_pay_btn = 'Pay {amount} {token}' -%}
   {%- assign m_paying = 'Awaiting wallet signature…' -%}
   {%- assign m_pending = 'Transaction pending on chain…' -%}
@@ -296,6 +299,18 @@
           <textarea name="notes" rows="3"></textarea>
         </label>
       </form>
+
+      <!-- Explicit "next" button. Form already has an `input` listener
+           that auto-advances to the Pay step when fields validate, but
+           that listener only fires on user typing — a pre-filled valid
+           form (e.g. customer ordering a second package) never re-fires
+           it, so without this button the user could be stranded on the
+           form step with no obvious way forward. Click here = run
+           reportValidity(), if OK move to Pay, if not show native
+           field-level error. -->
+      <button class="btn btn--primary checkout__form-next" type="button" data-checkout-form-next>
+        {{ m_form_continue }}
+      </button>
     </section>
 
     <!-- STEP 3: Pay -->
