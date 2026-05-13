@@ -566,11 +566,26 @@
 
     refreshPayLabel();
 
-    // Reset state of stepper
-    if (state.account) {
-      maybeAdvanceStep();
-    } else {
+    // Reset stepper based on actual wallet/chain/form state.
+    // Critical for re-opens after a successful order: without this
+    // explicit decision, status='success' from the previous flow
+    // could remain visible, OR the form step could appear with old
+    // values pre-filled and no obvious way to advance to Pay (the
+    // form's input listener only auto-advances on user typing, so
+    // a pre-valid form gets the customer stuck).
+    var formEl = $('[data-checkout-form]');
+    var onBsc = !!state.chainId &&
+      (state.chainId === CONFIG.chain.hex ||
+       parseInt(state.chainId, 16) === CONFIG.chain.id);
+
+    if (!state.account) {
       setStep('wallet');
+    } else if (!onBsc) {
+      setStep('wallet');     // wallet step also surfaces the chain-warn UI
+    } else if (formEl && formEl.checkValidity()) {
+      setStep('pay');        // form already filled (e.g. from a prior order) — skip ahead
+    } else {
+      setStep('form');
     }
 
     modal.setAttribute('aria-hidden', 'false');
