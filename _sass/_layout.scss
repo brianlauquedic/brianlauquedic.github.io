@@ -13,6 +13,14 @@
   backdrop-filter: saturate(180%) blur(12px);
   -webkit-backdrop-filter: saturate(180%) blur(12px);
   border-bottom: 1px solid $border;
+  // v26.5 — Extend the frosted-glass background into the iOS safe
+  // area (notch / Dynamic Island). Without this, page content
+  // scrolling under the sticky header ghosts through the
+  // safe-area-inset-top gap above the visible header height,
+  // looking like "content showing above the nav bar". Padding (not
+  // margin) so __inner keeps its existing 80/104px height. On
+  // Android / desktop env() returns 0 — zero impact.
+  padding-top: env(safe-area-inset-top);
   &__inner {
     display: flex;
     align-items: center;

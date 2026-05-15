@@ -63,17 +63,36 @@
 // jump and filter controls visible.
 .shop-stickybar {
   position: sticky;
-  top: 104px;            // matches desktop site-header height
+  // v26.5 — site-header now includes env(safe-area-inset-top) as
+  // padding, so stickybar's "tuck under header" offset must add the
+  // same env() value or the chip row overlaps the header on
+  // notched devices.
+  top: calc(104px + env(safe-area-inset-top));
   z-index: 30;
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: saturate(180%) blur(10px);
   -webkit-backdrop-filter: saturate(180%) blur(10px);
   border-bottom: 1px solid $border;
-  @media (max-width: $bp-md) { top: 72px; }
+  @media (max-width: $bp-md) {
+    top: calc(72px + env(safe-area-inset-top));
+  }
 }
 
 .shop-jump {
   border-bottom: 1px solid $border;
+
+  // v26.5 — Hide the section jump-nav (Programs / À la carte / How
+  // it works / FAQ) on mobile. On a ~700px tall phone viewport the
+  // sticky double-deck nav (jump-nav + filter chips) was eating
+  // 25–30% of the screen all the time, leaving very little room
+  // for product cards. Jump anchors are duplicated in the hamburger
+  // menu for the rare user who actually wants to jump on mobile.
+  // Filter chips below this row stay sticky — that's the high-value
+  // navigation on mobile.
+  @media (max-width: $bp-md) {
+    display: none;
+  }
+
   ul {
     display: flex;
     gap: 4px;
