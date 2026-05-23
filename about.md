@@ -60,6 +60,9 @@ bodyClass: "page-about"
           <p>As Chief Marketing Officer, Brian leads Quedic&rsquo;s marketing, content, KOL and social practices. He architects end-to-end programs that sequence PR, creator campaigns and owned-channel strategy around client roadmaps rather than agency billing cycles. He is known for a direct, data-led approach to crypto comms: no template pitches, no follower-count theatrics, and no marketing that can&rsquo;t trace back to narrative, search or conversion.</p>
           <p>Brian brings a cross-border operating lens &mdash; fluent across Greater China, Southeast Asia and the broader Asia-Pacific &mdash; that gives Quedic clients real access to regional KOL, media and community networks beyond the English-language press cycle. He is a recurring voice at industry events and side programs across the global crypto calendar.</p>
         </div>
+        <a class="team-feature__resume-link" href="https://brianlau.quedic.com/" target="_blank" rel="noopener">
+          View Brian&rsquo;s full profile &amp; track record &rarr;
+        </a>
       </div>
     </div>
 

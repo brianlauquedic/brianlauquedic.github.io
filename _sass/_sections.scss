@@ -726,6 +726,36 @@
       &:last-child { margin-bottom: 0; }
     }
   }
+  // v26.6 — CTA link beneath a featured-member bio that points to
+  // their external profile / résumé subdomain. Sits OUTSIDE __bio so
+  // it visually reads as a "next action" rather than another bio
+  // paragraph. Brand-purple with arrow + underline so it's clearly
+  // clickable without competing with the eyebrow / name typography.
+  &__resume-link {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 24px;
+    padding-bottom: 2px;
+    color: $brand;
+    font-family: $font-display;
+    font-size: 0.98rem;
+    font-weight: 600;
+    letter-spacing: 0.005em;
+    text-decoration: none;
+    border-bottom: 2px solid rgba(91, 47, 217, 0.28);
+    transition: color 120ms ease, border-color 120ms ease;
+
+    &:hover,
+    &:focus-visible {
+      color: $brand-dark;
+      border-bottom-color: $brand-dark;
+    }
+    &:focus-visible {
+      outline: 2px solid $brand;
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+  }
 }
 
 // -----------

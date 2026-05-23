@@ -61,6 +61,9 @@ bodyClass: "page-about"
           <p>身為 Quedic 的首席行銷長，Brian 領導行銷、內容、KOL 與社交業務。他設計端到端的計劃，將公關、創作者戰役與自有渠道策略依客戶藍圖編排 —— 而非依代理商計費週期。他以加密傳播裡少見的直接、數據驅動作風聞名：不發樣板提案、不玩粉絲數花招、不做無法回溯到敘事、搜尋或轉換的行銷。</p>
           <p>Brian 帶著跨境操作視角 —— 熟悉大中華、東南亞與更廣亞太市場 —— 讓 Quedic 客戶真正觸及英語媒體週期之外的區域 KOL、媒體與社群網絡。他是全球加密產業活動與側邊節目的常駐聲音。</p>
         </div>
+        <a class="team-feature__resume-link" href="https://brianlau.quedic.com/" target="_blank" rel="noopener">
+          查看 Brian 的完整履歷與作品集 →
+        </a>
       </div>
     </div>
 
