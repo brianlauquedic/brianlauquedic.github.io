@@ -91,5 +91,6 @@ exclude:
   - LICENSE.md
   - LICENSE
   - README.md
+  - CLAUDE.md         # AI-assistant ops manual; contains literal Liquid examples ({% if %}) that break the Jekyll renderer if processed
   - run.sh
   - cloudflare-worker/
