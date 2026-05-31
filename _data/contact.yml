@@ -2,15 +2,24 @@ twitter:
   name: '@QuedicCap'
   url: 'https://x.com/QuedicCap'
 # Primary contact channel: Telegram. List shown across the site
-# (footer, contact CTA, contact pages, contact-form note, shop FAQ).
-# Click any handle → opens Telegram chat with that account directly.
+# (footer column, contact CTA, contact pages, contact-form note,
+# shop FAQ). Click any handle → opens Telegram chat with that
+# account directly. Order in this list = order shown to users.
 telegrams:
-  - name: '@AndyAndy8787'
-    handle: 'AndyAndy8787'
+  - name: '@SoSoSo737'
+    handle: 'SoSoSo737'
   - name: '@gigiboe'
     handle: 'gigiboe'
   - name: '@AACCKa123'
     handle: 'AACCKa123'
   - name: '@BrianLauQuedic'
     handle: 'BrianLauQuedic'
+# Brand-level "primary" Telegram — used for the single Telegram link
+# in footer's bottom-right social row (next to X). Decoupled from the
+# telegrams list above so reordering account managers doesn't change
+# which handle is the brand contact button. Currently points at the
+# CMO / co-founder.
+primary_telegram:
+  name: '@BrianLauQuedic'
+  handle: 'BrianLauQuedic'
 contact_button_link: 'contact'

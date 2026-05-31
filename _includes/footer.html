@@ -108,7 +108,7 @@
       <div>© {{ 'now' | date: '%Y' }} {{ site.title }}. {{ footer_rights }}</div>
       <div class="site-footer__socials">
         {% if site.data.contact.twitter %}<a href="{{ site.data.contact.twitter.url }}">X</a>{% endif %}
-        {% if site.data.contact.telegrams %}<a href="https://t.me/{{ site.data.contact.telegrams.first.handle }}">Telegram</a>{% endif %}
+        {% if site.data.contact.primary_telegram %}<a href="https://t.me/{{ site.data.contact.primary_telegram.handle }}">Telegram</a>{% elsif site.data.contact.telegrams %}<a href="https://t.me/{{ site.data.contact.telegrams.first.handle }}">Telegram</a>{% endif %}
       </div>
     </div>
   </div>
